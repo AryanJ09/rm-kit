@@ -1,7 +1,10 @@
+import { useState } from "react"
 import { ClipboardList, House, Target, Users } from "lucide-react"
 import { cn } from "cn"
 import { NavigationItem } from "./navigation-item"
 import { BottomNavigationCentralButton } from "./bottom-navigation-central-button"
+
+type Destination = "Home" | "Leads" | "Clients" | "CRM"
 
 const leftItems = [
   { label: "Home", icon: House },
@@ -13,18 +16,44 @@ const rightItems = [
   { label: "CRM", icon: ClipboardList },
 ] as const
 
-type BottomNavigationProps = React.ComponentProps<"nav"> & {
-  active: "Home" | "Leads" | "Clients" | "CRM"
+type BottomNavigationProps = Omit<React.ComponentProps<"nav">, "onChange"> & {
+  /** Controlled active destination. Omit to let the bar keep its own state. */
+  active?: Destination
+  /** Starting destination when the bar keeps its own state. */
+  defaultActive?: Destination
+  onActiveChange?: (destination: Destination) => void
   centerState?: "default" | "pressed" | "disabled"
+  onCenterClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 function BottomNavigation({
   active,
+  defaultActive = "Home",
+  onActiveChange,
   centerState = "default",
+  onCenterClick,
   className,
   ...props
 }: BottomNavigationProps) {
-  const stateFor = (label: string) => (label === active ? "active" : "inactive")
+  const [inner, setInner] = useState<Destination>(defaultActive)
+  const current = active ?? inner
+
+  const select = (destination: Destination) => {
+    if (active === undefined) setInner(destination)
+    onActiveChange?.(destination)
+  }
+  const stateFor = (label: Destination) => (label === current ? "active" : "inactive")
+
+  const renderItem = (item: (typeof leftItems)[number] | (typeof rightItems)[number]) => (
+    <NavigationItem
+      key={item.label}
+      label={item.label}
+      icon={item.icon}
+      state={stateFor(item.label)}
+      aria-current={current === item.label ? "page" : undefined}
+      onClick={() => select(item.label)}
+    />
+  )
 
   return (
     <nav
@@ -36,31 +65,15 @@ function BottomNavigation({
       )}
       {...props}
     >
-      <div className="flex">
-        {leftItems.map((item) => (
-          <NavigationItem
-            key={item.label}
-            label={item.label}
-            icon={item.icon}
-            state={stateFor(item.label)}
-            aria-current={active === item.label ? "page" : undefined}
-          />
-        ))}
-      </div>
-      <BottomNavigationCentralButton state={centerState} aria-label="Centre action" />
-      <div className="flex">
-        {rightItems.map((item) => (
-          <NavigationItem
-            key={item.label}
-            label={item.label}
-            icon={item.icon}
-            state={stateFor(item.label)}
-            aria-current={active === item.label ? "page" : undefined}
-          />
-        ))}
-      </div>
+      <div className="flex">{leftItems.map(renderItem)}</div>
+      <BottomNavigationCentralButton
+        state={centerState}
+        aria-label="Centre action"
+        onClick={onCenterClick}
+      />
+      <div className="flex">{rightItems.map(renderItem)}</div>
     </nav>
   )
 }
 
-export { BottomNavigation, type BottomNavigationProps }
+export { BottomNavigation, type BottomNavigationProps, type Destination }

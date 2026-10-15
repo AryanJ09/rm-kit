@@ -3,8 +3,10 @@
 // Writes rm-style/trace/<name>.md, rm-style/trace/trace.csv and rm-style/trace/README.md.
 import fs from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
+// fileURLToPath decodes %20 etc.; reading .pathname breaks on paths with spaces.
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const UI = path.join(ROOT, "rm-style/ui")
 const OUT = path.join(ROOT, "rm-style/trace")
 // Later files win, same as CSS load order (theme.css after globals.css).
@@ -90,7 +92,8 @@ function classify(cls) {
 
 // ---- 3. Resolve a classified class into the 5-hop row ----
 function resolve(c) {
-  if (!c.token) return { utility: "", semantic: "", primitive: "", value: c.kind === "hardcoded" ? c.token : `Tailwind default (${c.tailwind})`, file: c.kind === "hardcoded" ? "component file" : "node_modules/tailwindcss/theme.css", gap: true }
+  // Arbitrary values (`[...]`) set c.token but are not Tailwind defaults, so route them here too.
+  if (!c.token || c.kind === "hardcoded") return { utility: "", semantic: "", primitive: "", value: c.kind === "hardcoded" ? c.token : `Tailwind default (${c.tailwind})`, file: c.kind === "hardcoded" ? "component file" : "node_modules/tailwindcss/theme.css", gap: true }
   const hops = chain(c.token)
   if (!hops.length) return { utility: c.token, semantic: "", primitive: "", value: `Tailwind default${c.note ? ` (${c.note})` : ""}`, file: "node_modules/tailwindcss/theme.css", gap: true }
   const last = hops[hops.length - 1]

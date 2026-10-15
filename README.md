@@ -4,12 +4,23 @@ A design system built on [shadcn/ui](https://ui.shadcn.com). shadcn supplies the
 
 This repository is a fork of the shadcn/ui monorepo (MIT, see `LICENSE.md`). Everything specific to the kit lives in `apps/v4`.
 
+## Quick start (any computer)
+
+Install Node 22 or 24 from https://nodejs.org, open a terminal, and run:
+
+```bash
+git clone https://github.com/AryanJ09/rm-kit.git && cd rm-kit && corepack enable && pnpm install && pnpm storybook
+```
+
+Then open http://localhost:6006. The first start takes about a minute.
+
 ## Run it
 
 You need Node 22 or 24 LTS (`node -v`). pnpm is fetched by Corepack, which ships with Node 22 and 24. If `corepack enable` is missing or fails with a permissions error (common on Windows with a system-wide Node), run `npm i -g pnpm@10.33.4` instead, or use an administrator shell.
 
 ```bash
-git clone <your-repo-url> rm-kit && cd rm-kit
+git clone https://github.com/AryanJ09/rm-kit.git
+cd rm-kit
 corepack enable
 pnpm install
 pnpm storybook

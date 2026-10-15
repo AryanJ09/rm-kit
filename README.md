@@ -6,7 +6,7 @@ This repository is a fork of the shadcn/ui monorepo (MIT, see `LICENSE.md`). Eve
 
 ## Run it
 
-You need Node 22 or newer (`node -v`). Nothing else: pnpm is fetched by Corepack, which ships with Node.
+You need Node 22 or 24 LTS (`node -v`). pnpm is fetched by Corepack, which ships with Node 22 and 24. If `corepack enable` is missing or fails with a permissions error (common on Windows with a system-wide Node), run `npm i -g pnpm@10.33.4` instead, or use an administrator shell.
 
 ```bash
 git clone <your-repo-url> rm-kit && cd rm-kit
@@ -16,6 +16,8 @@ pnpm storybook
 ```
 
 Open http://localhost:6006. Works the same on macOS, Linux and Windows (PowerShell or Git Bash). The first start also builds the workspace packages Storybook depends on, so allow a minute.
+
+The install may print an "ignored build scripts" warning; it is harmless. Later starts also rebuild the workspace packages, which takes a few seconds.
 
 Port 6006 busy? `pnpm --filter=v4 exec storybook dev -p 6008`.
 

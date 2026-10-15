@@ -356,7 +356,7 @@ importers:
         version: 3.25.76
     devDependencies:
       '@chromatic-com/storybook':
-        specifier: latest
+        specifier: 5.5.1
         version: 5.5.1(storybook@10.6.2(@types/react@19.2.2)(prettier@3.6.2)(react@19.2.3))
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.4.1
@@ -419,7 +419,7 @@ importers:
         specifier: ^10.6.2
         version: 10.6.2(eslint@9.26.0(hono@4.13.13)(jiti@2.7.0))(typescript@5.9.2)
       playwright:
-        specifier: latest
+        specifier: 1.64.0
         version: 1.64.0
       prettier:
         specifier: ^3.4.2

@@ -5,8 +5,9 @@
 // to the same file as a "Figma All States" story.
 import fs from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-const ROOT = path.resolve(path.dirname(decodeURIComponent(new URL(import.meta.url).pathname)), "..")
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const UI = path.join(ROOT, "rm-style/ui")
 const EXAMPLES = path.join(ROOT, "examples/base")
 const OUT = path.join(ROOT, "stories")

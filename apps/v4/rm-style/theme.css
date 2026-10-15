@@ -45,6 +45,15 @@
   --color-destructive-pressed: var(--destructive-pressed);
   --color-destructive-subtle: var(--destructive-subtle);
   --color-control-stroke-default: var(--control-stroke-default);
+  --color-accent: var(--accent);
+  --color-accent-subtle-foreground: var(--accent-subtle-foreground);
+  --color-field-focus: var(--field-focus);
+  --color-field-label: var(--field-label);
+  --color-field-helper: var(--field-helper);
+  --color-field-placeholder: var(--field-placeholder);
+  --color-field-error: var(--field-error);
+  --color-field-success: var(--field-success);
+  --color-field-stroke: var(--field-stroke);
   --color-primary-focus-ring: var(--primary-focus-ring);
 
   /* Geometry overrides: Tailwind's defaults replaced with RM primitives. */
@@ -398,6 +407,17 @@
   --code-highlight: var(--ds-color-neutral-100);
   --code-number: var(--ds-color-neutral-500);
 
+
+  /* shared roles for the Figma batches (point at primitives only) */
+  --accent: var(--ds-color-accent-500);
+  --accent-subtle-foreground: var(--ds-color-accent-700);
+  --field-focus: var(--ds-color-brand-600);
+  --field-label: var(--ds-color-neutral-900);
+  --field-helper: var(--ds-color-neutral-500);
+  --field-placeholder: var(--ds-color-neutral-400);
+  --field-error: var(--ds-color-danger-600);
+  --field-success: var(--ds-color-success-700);
+  --field-stroke: var(--ds-color-neutral-300);
 
   /* status */
   --success: var(--ds-color-success-500);

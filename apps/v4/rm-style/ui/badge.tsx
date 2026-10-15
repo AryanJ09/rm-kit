@@ -3,7 +3,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-const figmaBadge = "h-4 rounded-(--radius-sm) text-(length:--ds-typography-font-size-10)"
+const figmaBadge = "h-(--ds-spacing-16) rounded-(--radius-sm) text-(length:--ds-typography-font-size-12)"
 
 const badgeVariants = cva(
   "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
@@ -20,7 +20,7 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
-        // Figma Badge types (additive): 16px tall, 4px radius, 10px label.
+        // Badge types from the Figma spec: 16px tall, 4px radius, 12px label.
         conservative: `${figmaBadge} bg-badge-conservative-background text-badge-conservative-foreground`,
         moderate: `${figmaBadge} bg-badge-moderate-background text-badge-moderate-foreground`,
         growth: `${figmaBadge} bg-badge-growth-background text-badge-growth-foreground`,

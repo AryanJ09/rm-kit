@@ -70,7 +70,7 @@ function SheetContent({
               />
             }
           >
-            <XIcon
+            <XIcon className="text-icon-accent"
             />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>

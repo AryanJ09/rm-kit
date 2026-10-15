@@ -271,7 +271,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon className="cn-rtl-flip" />
+      <PanelLeftIcon className="cn-rtl-flip text-icon-accent" />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )

@@ -126,7 +126,7 @@ function ToastClose({
       {...props}
     >
       {children ?? (
-        <XIcon aria-hidden="true" />
+        <XIcon aria-hidden="true" className="text-icon-accent" />
       )}
     </ToastPrimitive.Close>
   )

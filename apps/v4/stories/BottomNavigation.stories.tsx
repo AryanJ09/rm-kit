@@ -19,7 +19,7 @@ export const AllStates: Story = {
       {centerStates.map((centerState) => (
         <BottomNavigation
           key={centerState}
-          active="Home"
+          defaultActive="Home"
           centerState={centerState}
         />
       ))}

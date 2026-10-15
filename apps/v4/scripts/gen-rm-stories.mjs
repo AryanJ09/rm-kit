@@ -77,7 +77,7 @@ for (const comp of comps) {
     ...(figma ? [`import FigmaGrid from "./figma/${comp}"`] : []),
     "",
     "const meta = {",
-    `  title: "${RM_KIT.has(comp) ? "RM Kit" : "Components"}/${pascal(comp)}",`,
+    `  title: "${RM_KIT.has(comp) ? "RM Kit" : "Components"}/${comp === "input-group" ? "Forms" : pascal(comp)}",`,
     '  tags: ["autodocs"],',
     `  parameters: { layout: "${FULL_WIDTH.has(comp) ? "fullscreen" : "centered"}" },`,
     "} satisfies Meta",
@@ -85,7 +85,7 @@ for (const comp of comps) {
     "export default meta",
     "type Story = StoryObj<typeof meta>",
     "",
-    ...(figma ? ['export const FigmaAllStates: Story = { name: "Figma All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }'] : []),
+    ...(figma ? ['export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }'] : []),
     ...stories.map((s) => `export const ${s.name}: Story = { render: () => <${s.id} /> }`),
     "",
   ]

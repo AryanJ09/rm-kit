@@ -17,7 +17,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const FigmaAllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
+export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
 export const ChoiceCard: Story = { render: () => <DemoRadioGroupChoiceCard /> }
 export const Demo: Story = { render: () => <DemoRadioGroupDemo /> }
 export const Description: Story = { render: () => <DemoRadioGroupDescription /> }

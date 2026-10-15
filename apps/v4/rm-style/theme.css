@@ -45,7 +45,7 @@
   --color-destructive-pressed: var(--destructive-pressed);
   --color-destructive-subtle: var(--destructive-subtle);
   --color-control-stroke-default: var(--control-stroke-default);
-  --color-accent: var(--accent);
+  --color-icon-accent: var(--icon-accent);
   --color-accent-subtle-foreground: var(--accent-subtle-foreground);
   --color-field-focus: var(--field-focus);
   --color-field-label: var(--field-label);
@@ -409,7 +409,7 @@
 
 
   /* shared roles for the Figma batches (point at primitives only) */
-  --accent: var(--ds-color-accent-500);
+  --icon-accent: var(--ds-color-accent-500);
   --accent-subtle-foreground: var(--ds-color-accent-700);
   --field-focus: var(--ds-color-brand-600);
   --field-label: var(--ds-color-neutral-900);

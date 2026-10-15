@@ -496,9 +496,9 @@
 
   /* size roles */
   --size-header-height: var(--ds-size-control-48);
-  --size-control-sm: var(--ds-size-control-36);
-  --size-control-md: var(--ds-size-control-40);
-  --size-control-lg: var(--ds-size-control-48);
+  --size-control-sm: var(--ds-size-control-40);
+  --size-control-md: var(--ds-size-control-48);
+  --size-control-lg: var(--ds-size-56);
   --size-icon-sm: var(--ds-size-icon-16);
   --size-icon-md: var(--ds-size-icon-20);
   --size-icon-lg: var(--ds-size-icon-24);

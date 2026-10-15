@@ -6,9 +6,9 @@
 
 :root {
   /* Heights per size */
-  --field-height-sm: var(--ds-size-control-40);
-  --field-height-md: var(--ds-size-control-48);
-  --field-height-lg: var(--ds-size-56);
+  --field-height-sm: var(--size-control-sm);
+  --field-height-md: var(--size-control-md);
+  --field-height-lg: var(--size-control-lg);
 
   /* Border and focus */
   --field-border-width: var(--border-width-default);

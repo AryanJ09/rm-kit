@@ -16,7 +16,7 @@ import DemoButtonWithIcon from "@/examples/base/button-with-icon"
 import FigmaGrid from "./figma/button"
 
 const meta = {
-  title: "Components/Button",
+  title: "RM Kit/Button",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -24,7 +24,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
+export const FigmaAllStates: Story = { name: "Figma All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
 export const Default: Story = { render: () => <DemoButtonDefault /> }
 export const Demo: Story = { render: () => <DemoButtonDemo /> }
 export const Destructive: Story = { render: () => <DemoButtonDestructive /> }

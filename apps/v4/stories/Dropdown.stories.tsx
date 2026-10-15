@@ -12,7 +12,7 @@ import { cn } from "cn"
 import { ChevronUpIcon } from "lucide-react"
 
 const meta = {
-  title: "Components/Dropdown",
+  title: "RM Kit/Dropdown",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

@@ -25,7 +25,7 @@ import { InputGroupWithKbd as DemoInputGroupWithKbd } from "@/examples/base/inpu
 import { InputGroupWithTooltip as DemoInputGroupWithTooltip } from "@/examples/base/input-group-with-tooltip"
 
 const meta = {
-  title: "Components/InputGroup",
+  title: "Components/Forms",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

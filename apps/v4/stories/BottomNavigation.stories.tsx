@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { BottomNavigation } from "@/rm-style/ui/bottom-navigation"
 
 const meta = {
-  title: "Components/Bottom navigation",
+  title: "RM Kit/Bottom navigation",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

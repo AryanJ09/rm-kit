@@ -11,7 +11,11 @@ const UI = path.join(ROOT, "rm-style/ui")
 const EXAMPLES = path.join(ROOT, "examples/base")
 const OUT = path.join(ROOT, "stories")
 
-const comps = fs.readdirSync(UI).filter((f) => f.endsWith(".tsx")).map((f) => f.slice(0, -4))
+// Batch A structure: the RM Kit section holds the components we design and own; everything else is Components.
+// Calendar is part of Date picker, so it gets no story of its own.
+const RM_KIT = new Set(["button","badge","checkbox","radio-group","switch","input","textarea","search","dropdown","date-picker","navigation-item","bottom-navigation","alert-dialog","dialog","drawer","message","message-scroller","sheet"])
+const EXCLUDED = new Set(["calendar"])
+const comps = fs.readdirSync(UI).filter((f) => f.endsWith(".tsx")).map((f) => f.slice(0, -4)).filter((c) => !EXCLUDED.has(c))
 const byLength = [...comps].sort((a, b) => b.length - a.length)
 const pascal = (s) => s.split(/[-_]/).filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join("")
 
@@ -71,7 +75,7 @@ for (const comp of comps) {
     ...(figma ? [`import FigmaGrid from "./figma/${comp}"`] : []),
     "",
     "const meta = {",
-    `  title: "Components/${pascal(comp)}",`,
+    `  title: "${RM_KIT.has(comp) ? "RM Kit" : "Components"}/${pascal(comp)}",`,
     '  tags: ["autodocs"],',
     '  parameters: { layout: "centered" },',
     "} satisfies Meta",

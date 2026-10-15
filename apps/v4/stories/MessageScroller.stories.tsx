@@ -5,7 +5,7 @@ import { MessageScrollerOpeningPosition as DemoMessageScrollerOpeningPosition } 
 import { MessageScrollerState as DemoMessageScrollerState } from "@/examples/base/message-scroller-state"
 
 const meta = {
-  title: "Components/MessageScroller",
+  title: "RM Kit/MessageScroller",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

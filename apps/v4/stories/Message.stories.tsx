@@ -8,7 +8,7 @@ import { MessageGroupDemo as DemoMessageGroup } from "@/examples/base/message-gr
 import { MessageHeaderFooterDemo as DemoMessageHeaderFooter } from "@/examples/base/message-header-footer"
 
 const meta = {
-  title: "Components/Message",
+  title: "RM Kit/Message",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

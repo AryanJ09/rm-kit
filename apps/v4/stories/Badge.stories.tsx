@@ -9,7 +9,7 @@ import { BadgeVariants as DemoBadgeVariants } from "@/examples/base/badge-varian
 import FigmaGrid from "./figma/badge"
 
 const meta = {
-  title: "Components/Badge",
+  title: "RM Kit/Badge",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -17,7 +17,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
+export const FigmaAllStates: Story = { name: "Figma All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
 export const Colors: Story = { render: () => <DemoBadgeColors /> }
 export const Demo: Story = { render: () => <DemoBadgeDemo /> }
 export const Icon: Story = { render: () => <DemoBadgeIcon /> }

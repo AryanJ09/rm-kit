@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Search } from "@/rm-style/ui/search"
 
 const meta = {
-  title: "Components/Search",
+  title: "RM Kit/Search",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

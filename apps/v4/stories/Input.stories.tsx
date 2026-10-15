@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Input } from "@/rm-style/ui/input"
 
 const meta = {
-  title: "Components/Input",
+  title: "RM Kit/Input",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

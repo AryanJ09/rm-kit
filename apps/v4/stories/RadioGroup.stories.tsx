@@ -9,7 +9,7 @@ import { RadioGroupInvalid as DemoRadioGroupInvalid } from "@/examples/base/radi
 import FigmaGrid from "./figma/radio-group"
 
 const meta = {
-  title: "Components/RadioGroup",
+  title: "RM Kit/RadioGroup",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -17,7 +17,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
+export const FigmaAllStates: Story = { name: "Figma All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }
 export const ChoiceCard: Story = { render: () => <DemoRadioGroupChoiceCard /> }
 export const Demo: Story = { render: () => <DemoRadioGroupDemo /> }
 export const Description: Story = { render: () => <DemoRadioGroupDescription /> }

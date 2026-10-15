@@ -3,7 +3,7 @@ import { ClipboardList, House, Target, Users } from "lucide-react"
 import { NavigationItem } from "@/rm-style/ui/navigation-item"
 
 const meta = {
-  title: "Components/Navigation item",
+  title: "RM Kit/Navigation item",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

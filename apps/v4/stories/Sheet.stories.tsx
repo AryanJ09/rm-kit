@@ -5,7 +5,7 @@ import DemoSheetNoCloseButton from "@/examples/base/sheet-no-close-button"
 import DemoSheetSide from "@/examples/base/sheet-side"
 
 const meta = {
-  title: "Components/Sheet",
+  title: "RM Kit/Sheet",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

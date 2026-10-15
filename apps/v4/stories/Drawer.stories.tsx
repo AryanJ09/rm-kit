@@ -9,7 +9,7 @@ import { DrawerSnapPoints as DemoDrawerSnapPoints } from "@/examples/base/drawer
 import { DrawerSwipeHandle as DemoDrawerSwipeHandle } from "@/examples/base/drawer-swipe-handle"
 
 const meta = {
-  title: "Components/Drawer",
+  title: "RM Kit/Drawer",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

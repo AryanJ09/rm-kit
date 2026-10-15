@@ -8,7 +8,7 @@ import { AlertDialogSmallWithMedia as DemoAlertDialogSmallMedia } from "@/exampl
 import { AlertDialogSmall as DemoAlertDialogSmall } from "@/examples/base/alert-dialog-small"
 
 const meta = {
-  title: "Components/AlertDialog",
+  title: "RM Kit/AlertDialog",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

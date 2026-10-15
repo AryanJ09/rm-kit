@@ -4,7 +4,7 @@ import type { DateRange } from "react-day-picker"
 import { DatePicker } from "@/rm-style/ui/date-picker"
 
 const meta = {
-  title: "Components/Date picker",
+  title: "RM Kit/Date picker",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

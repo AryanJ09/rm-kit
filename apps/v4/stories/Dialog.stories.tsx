@@ -7,7 +7,7 @@ import { DialogScrollableContent as DemoDialogScrollableContent } from "@/exampl
 import { DialogStickyFooter as DemoDialogStickyFooter } from "@/examples/base/dialog-sticky-footer"
 
 const meta = {
-  title: "Components/Dialog",
+  title: "RM Kit/Dialog",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

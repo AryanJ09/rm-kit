@@ -1,5 +1,7 @@
 @import "../app/globals.css";
 @import "./components.css";
+@import "./fields.css";
+@import "./navigation.css";
 
 /*
  * Global theme for the local design system. Storybook-only.
@@ -54,6 +56,9 @@
   --color-field-error: var(--field-error);
   --color-field-success: var(--field-success);
   --color-field-stroke: var(--field-stroke);
+  --color-nav-center-background: var(--nav-center-background);
+  --color-nav-center-pressed: var(--nav-center-pressed);
+  --color-nav-surface: var(--nav-surface);
   --color-primary-focus-ring: var(--primary-focus-ring);
 
   /* Geometry overrides: Tailwind's defaults replaced with RM primitives. */
@@ -418,6 +423,11 @@
   --field-error: var(--ds-color-danger-600);
   --field-success: var(--ds-color-success-700);
   --field-stroke: var(--ds-color-neutral-300);
+
+  /* navigation roles (Batch 5) */
+  --nav-center-background: var(--ds-color-accent-500);
+  --nav-center-pressed: var(--ds-color-accent-700);
+  --nav-surface: var(--background);
 
   /* status */
   --success: var(--ds-color-success-500);

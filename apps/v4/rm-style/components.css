@@ -28,8 +28,8 @@
   --tabs-indicator: var(--primary);
 
   /* Badge (no semantic role, primitives) */
-  --badge-conservative-background: var(--ds-color-danger-50);
-  --badge-conservative-foreground: var(--ds-color-brand-900);
+  --badge-conservative-background: var(--ds-color-purple-50);
+  --badge-conservative-foreground: var(--ds-color-purple-800);
   --badge-moderate-background: var(--ds-color-info-100);
   --badge-moderate-foreground: var(--ds-color-brand-700);
   --badge-growth-background: var(--ds-color-warning-100);

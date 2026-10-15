@@ -145,7 +145,7 @@ function AttachmentActions({
 function AttachmentAction({
   className,
   variant,
-  size = "icon-xs",
+  size = "icon-sm",
   ...props
 }: React.ComponentProps<typeof Button>) {
   return (
@@ -153,7 +153,7 @@ function AttachmentAction({
       data-slot="attachment-action"
       variant={variant ?? "ghost"}
       size={size}
-      className={cn(className)}
+      className={cn("text-icon-default hover:text-foreground [&_svg]:text-icon-default", className)}
       {...props}
     />
   )

@@ -59,6 +59,12 @@
   --color-nav-center-background: var(--nav-center-background);
   --color-nav-center-pressed: var(--nav-center-pressed);
   --color-nav-surface: var(--nav-surface);
+  --color-icon-default: var(--icon-default);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+  --color-chart-9: var(--chart-9);
+  --color-chart-10: var(--chart-10);
   --color-overlay-color: var(--overlay-color);
   --color-primary-focus-ring: var(--primary-focus-ring);
 
@@ -413,6 +419,16 @@
   --code-highlight: var(--ds-color-neutral-100);
   --code-number: var(--ds-color-neutral-500);
 
+
+  /* icon colour: grey by default; accent only where the role says so */
+  --icon-default: var(--ds-color-neutral-500);
+
+  /* chart colours 6-10 (shadcn reads 1-5; the rest come from the palette) */
+  --chart-6: var(--ds-color-chart-6);
+  --chart-7: var(--ds-color-chart-7);
+  --chart-8: var(--ds-color-chart-8);
+  --chart-9: var(--ds-color-chart-9);
+  --chart-10: var(--ds-color-chart-10);
 
   /* shared roles for the Figma batches (point at primitives only) */
   --icon-accent: var(--ds-color-accent-500);

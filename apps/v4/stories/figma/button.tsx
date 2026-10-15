@@ -16,12 +16,12 @@ const states = [
 
 export default function FigmaButton() {
   return (
-    <div className="grid gap-4 p-4">
+    <div className="grid gap-(--ds-spacing-16) p-(--ds-spacing-16)">
       {types.map((type) => (
-        <div key={type.label} className="flex items-center gap-4">
-          <span className="w-20 text-sm text-text-secondary">{type.label}</span>
+        <div key={type.label} className="flex items-center gap-(--ds-spacing-16)">
+          <span className="w-(--ds-size-88) text-(length:--ds-typography-font-size-14) text-text-secondary">{type.label}</span>
           {states.map((state) => (
-            <Button key={state.label} variant={type.variant} size="xl" {...state.props}>
+            <Button key={state.label} variant={type.variant} size="md" {...state.props}>
               Apply
             </Button>
           ))}

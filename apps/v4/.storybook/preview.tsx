@@ -11,6 +11,12 @@ const preview: Preview = {
     ),
   ],
   parameters: {
+    options: {
+      // RM Kit first, then everything else in its default order.
+      storySort: {
+        order: ['RM Kit', '*'],
+      },
+    },
     controls: {
       matchers: {
        color: /(background|color)$/i,

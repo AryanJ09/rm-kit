@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react"
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { DateRange } from "react-day-picker"
 import { DatePicker } from "@/rm-style/ui/date-picker"
 

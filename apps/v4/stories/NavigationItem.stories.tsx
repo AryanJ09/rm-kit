@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { ClipboardList, House, Target, Users } from "lucide-react"
 import { NavigationItem } from "@/rm-style/ui/navigation-item"
 

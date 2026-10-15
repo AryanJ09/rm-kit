@@ -157,7 +157,7 @@ function AlertDialogAction({
 function AlertDialogCancel({
   className,
   variant = "secondary",
-  size = "xl",
+  size = "lg",
   ...props
 }: AlertDialogPrimitive.Close.Props &
   Pick<React.ComponentProps<typeof Button>, "variant" | "size">) {

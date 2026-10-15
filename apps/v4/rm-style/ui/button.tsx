@@ -37,6 +37,8 @@ function Button({
   variant = "default",
   size = "md",
   asChild = false,
+  render,
+  nativeButton: _nativeButton,
   loading = false,
   loadingLabel = "Please wait",
   children,
@@ -45,10 +47,28 @@ function Button({
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    /** base-ui style: render the button as another element, e.g. render={<a href="#" />}. */
+    render?: React.ReactElement<Record<string, unknown>>
+    /** Accepted for base-ui compatibility; a rendered link needs no extra handling. */
+    nativeButton?: boolean
     loading?: boolean
     loadingLabel?: string
   }) {
   const Comp = asChild ? Slot.Root : "button"
+  if (render) {
+    return React.cloneElement(
+      render,
+      {
+        "data-slot": "button",
+        "data-variant": variant,
+        "data-size": size,
+        className: cn(buttonVariants({ variant, size }), render.props.className as string | undefined, className),
+        onClick,
+        ...props,
+      },
+      children
+    )
+  }
   return (
     <Comp
       data-slot="button"

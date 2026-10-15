@@ -7,7 +7,7 @@ const bottomNavigationCentralButtonVariants = cva(
   {
     variants: {
       state: {
-        default: "bg-nav-center-background",
+        default: "bg-nav-center-background active:bg-nav-center-pressed",
         pressed: "bg-nav-center-pressed",
         disabled: "bg-surface-disabled",
       },

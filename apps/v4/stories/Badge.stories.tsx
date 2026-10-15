@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { Info } from "lucide-react"
 import { Badge } from "@/rm-style/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/rm-style/ui/table"
 
@@ -40,8 +41,9 @@ export const AllStates: Story = {
               </Badge>
             </TableCell>
             <TableCell>
+              {/* The icon is a slot: any svg child is sized by the badge, so swap Info for the real icon. */}
               <Badge variant={t}>
-                <span className="size-(--size-icon-sm) bg-current" aria-hidden="true" />
+                <Info />
                 {label(t)}
               </Badge>
             </TableCell>

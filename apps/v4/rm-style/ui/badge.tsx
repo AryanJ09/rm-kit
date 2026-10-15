@@ -6,7 +6,7 @@ import { cn } from "cn"
 const figmaBadge = "h-(--ds-spacing-16) rounded-(--radius-sm) text-(length:--ds-typography-font-size-12)"
 
 const badgeVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-(--ds-spacing-4) overflow-hidden rounded-(--radius-sm) border border-transparent px-(--ds-spacing-8) font-medium whitespace-nowrap",
+  "inline-flex w-fit shrink-0 items-center justify-center gap-(--ds-spacing-4) overflow-hidden rounded-(--radius-sm) border border-transparent px-(--ds-spacing-8) font-medium whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0",
   {
     variants: {
       variant: {

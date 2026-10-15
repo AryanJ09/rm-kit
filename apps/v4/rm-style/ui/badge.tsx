@@ -16,7 +16,7 @@ const badgeVariants = cva(
         outline: "border-border text-foreground",
         ghost: "text-foreground",
         link: "text-primary",
-        // Figma types: static labels, 16px tall, 12px text. No hover, focus or link styling.
+        // Figma types: static labels with tokenised height and text. No hover, focus or link styling.
         conservative: "h-(--ds-spacing-16) text-(length:--ds-typography-font-size-12) bg-badge-conservative-background text-badge-conservative-foreground",
         moderate: "h-(--ds-spacing-16) text-(length:--ds-typography-font-size-12) bg-badge-moderate-background text-badge-moderate-foreground",
         growth: "h-(--ds-spacing-16) text-(length:--ds-typography-font-size-12) bg-badge-growth-background text-badge-growth-foreground",

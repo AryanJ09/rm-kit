@@ -60,7 +60,7 @@ function BottomNavigation({
       data-slot="bottom-navigation"
       aria-label="Primary"
       className={cn(
-        "flex w-(--ds-size-layout-frame-width) items-start justify-between bg-nav-surface pt-(--ds-spacing-12) shadow-nav",
+        "flex w-(--ds-size-layout-frame-width) items-start justify-between bg-nav-surface pt-(--ds-spacing-14) shadow-nav",
         className
       )}
       {...props}

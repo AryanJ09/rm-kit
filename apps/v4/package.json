@@ -25,8 +25,11 @@
     "validate:registries": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/validate-registries.mts",
     "test:apps": "bun run ./scripts/build-test-app.mts",
     "postinstall": "fumadocs-mdx",
+    "prestorybook": "pnpm --filter=shadcn... build",
     "storybook": "storybook dev -p 6006",
+    "prebuild-storybook": "pnpm --filter=shadcn... build",
     "build-storybook": "storybook build",
+    "typecheck:kit": "tsc --noEmit -p tsconfig.kit.json",
     "audit:tokens": "node scripts/audit-tokens.mjs",
     "gen:stories": "node scripts/gen-rm-stories.mjs"
   },

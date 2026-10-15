@@ -19,7 +19,7 @@ Open http://localhost:6006. The sidebar starts with **RM Kit** (the Figma-specif
 
 ```bash
 pnpm --filter=v4 audit:tokens     # every token resolves to a primitive; no raw values in RM Kit components
-pnpm --filter=v4 typecheck
+pnpm --filter=v4 typecheck:kit    # kit, stories and Storybook config; needs no generated files
 pnpm --filter=v4 build-storybook
 ```
 

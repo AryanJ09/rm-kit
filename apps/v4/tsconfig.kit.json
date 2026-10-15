@@ -1,0 +1,18 @@
+{
+  // Typechecks the RM kit only (components, stories, Storybook config). Unlike the full
+  // app typecheck it needs no generated registry files, so it works on a fresh clone.
+  // The two aliases mirror the one in .storybook/main.ts.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "plugins": [],
+    "paths": {
+      "@/styles/base-nova/ui/*": ["./rm-style/ui/*"],
+      "@/styles/base-rhea/ui/*": ["./rm-style/ui/*"],
+      "@/*": ["./*"],
+      "react": ["./node_modules/@types/react"]
+    }
+  },
+  "include": ["rm-style/**/*.ts", "rm-style/**/*.tsx", "stories/**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
+  "exclude": ["node_modules"]
+}

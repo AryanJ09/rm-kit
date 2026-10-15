@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 const navigationItemVariants = cva(
-  "flex w-(--ds-size-72) h-(--ds-size-74) flex-col items-center justify-center gap-(--ds-spacing-8) font-medium text-(length:--ds-typography-font-size-12) transition-colors outline-none focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed active:text-destructive",
+  "flex w-(--ds-size-72) h-(--ds-size-74) flex-col items-center justify-center gap-(--ds-spacing-6) font-medium text-(length:--ds-typography-font-size-12) transition-colors outline-none focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed active:text-destructive",
   {
     variants: {
       state: {

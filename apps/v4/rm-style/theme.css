@@ -71,6 +71,7 @@
   --color-chart-9: var(--chart-9);
   --color-chart-10: var(--chart-10);
   --color-overlay-color: var(--overlay-color);
+  --color-overlay-scrim: var(--overlay-scrim);
   --color-primary-focus-ring: var(--primary-focus-ring);
 
   /* Geometry overrides: Tailwind's defaults replaced with RM primitives. */
@@ -480,6 +481,8 @@
   --border-width-default: var(--ds-size-border-width-1);
   --border-width-thick: var(--ds-size-border-width-thick);
   --overlay-color: var(--ds-color-neutral-1000);
+  /* Scrim behind dialogs, sheets and drawers: overlay colour at 10%. color-mix needs a percentage, not a bare 0.1. */
+  --overlay-scrim: color-mix(in oklab, var(--overlay-color) calc(var(--ds-opacity-10) * 100%), transparent);
   --overlay-opacity: var(--ds-opacity-60);
 
   /* charts */

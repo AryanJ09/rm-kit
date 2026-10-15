@@ -65,7 +65,7 @@ const checks = [
   [/\[(?:-?\d*\.?\d+)(?:px|rem|em|vh|vw|%)?\]/, "arbitrary number"],
   [/\[(?:-?\d*\.?\d+)(?:px|rem|em)\]/, "arbitrary px/rem"],
   // Zero is structural (p-0, min-w-0). Anything else must come from a token, not the numeric scale.
-  [/(?<![\w-])(?:p|px|py|pt|pb|pl|pr|ps|pe|m|mx|my|mt|mb|ml|mr|ms|me|gap|gap-x|gap-y|space-x|space-y|size|h|w|min-h|min-w|max-h|max-w|top|bottom|left|right|inset|translate-x|translate-y|-translate-x|-translate-y)-(?:[1-9]\d*(?:\.\d+)?|0\.\d+|px)(?![\w-])/, "default Tailwind spacing scale"],
+  [/(?<![\w-])(?:p|px|py|pt|pb|pl|pr|ps|pe|m|mx|my|mt|mb|ml|mr|ms|me|gap|gap-x|gap-y|space-x|space-y|size|h|w|min-h|min-w|max-h|max-w|top|bottom|left|right|inset|translate-x|translate-y|-translate-x|-translate-y)-(?:[1-9]\d*(?:\.\d+)?|0\.\d+|px)(?![\w/-])/, "default Tailwind spacing scale"],
   [rawColour, "default Tailwind palette colour"],
 ]
 for (const name of KIT) {

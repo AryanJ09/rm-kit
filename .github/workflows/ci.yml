@@ -19,6 +19,6 @@ jobs:
       - name: Token audit
         run: pnpm --filter=v4 audit:tokens
       - name: Typecheck
-        run: pnpm --filter=v4 typecheck
+        run: pnpm --filter=v4 typecheck:kit
       - name: Build Storybook
         run: pnpm --filter=v4 build-storybook

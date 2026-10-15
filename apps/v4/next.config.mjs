@@ -8,7 +8,9 @@ import { createMDX } from "fumadocs-mdx/next"
 // never generated locally (e.g. after pulling a commit that adds a new base),
 // Turbopack hits hundreds of module-not-found errors compiling /docs and the
 // dev server grinds to a halt. Fail fast with instructions instead.
-if (process.env.NODE_ENV === "development") {
+// Storybook (STORYBOOK=true) only reads this config and never compiles /docs, so a
+// fresh clone can run it without generating the styles first.
+if (process.env.NODE_ENV === "development" && process.env.STORYBOOK !== "true") {
   const componentsDir = path.join(process.cwd(), "registry/__components__")
   const referencedStyles = existsSync(componentsDir)
     ? new Set(

@@ -26,3 +26,17 @@
   /* Leading/trailing icons and the loading spinner */
   --field-icon-size: var(--ds-size-icon-16);
 }
+
+/* Batch 4: dropdown panel and date picker tokens. Owner: batch 4 only.
+   Component tokens for the Dropdown and Date picker popovers. Each one points
+   at a global token, so the panel follows the same primitives as the fields. */
+:root {
+  /* Options panel: shape, elevation and inner spacing */
+  --dropdown-panel-radius: var(--ds-radius-8);
+  --dropdown-panel-shadow: var(--ds-elevation-md);
+  --dropdown-panel-padding: var(--ds-spacing-4);
+
+  /* One option row */
+  --dropdown-option-padding-x: var(--ds-spacing-12);
+  --dropdown-option-padding-y: var(--ds-spacing-8);
+}

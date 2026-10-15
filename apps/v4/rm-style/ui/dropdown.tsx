@@ -3,7 +3,7 @@
 import * as React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "cn"
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/rm-style/ui/popover"
 import {
@@ -132,19 +132,15 @@ function DropdownPanel({
                 value={option.label}
                 disabled={option.disabled}
                 onSelect={() => onSelect?.(option.value)}
+                // CommandItem draws its own check when data-checked is true.
                 data-checked={checked}
+                aria-checked={checked}
                 className={cn(
                   "rounded-none px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-sm text-field-label data-selected:bg-surface-hover data-disabled:text-text-disabled",
                   checked && "font-medium"
                 )}
               >
                 <span className="min-w-0 flex-1 truncate">{option.label}</span>
-                {checked ? (
-                  <CheckIcon
-                    aria-hidden
-                    className="size-(--field-icon-size) shrink-0 text-field-label"
-                  />
-                ) : null}
               </CommandItem>
             )
           })}

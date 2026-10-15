@@ -10,8 +10,8 @@ export default function FigmaSwitch() {
       ].map((value) => (
         <div key={value.label} className="flex items-center gap-4">
           <span className="w-20 text-sm text-text-secondary">{value.label}</span>
-          <Switch checked={value.checked} />
-          <Switch checked={value.checked} disabled />
+          <Switch defaultChecked={value.checked} />
+          <Switch defaultChecked={value.checked} disabled />
         </div>
       ))}
     </div>

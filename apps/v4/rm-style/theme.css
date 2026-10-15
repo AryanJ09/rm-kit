@@ -1,0 +1,461 @@
+/*
+ * Global theme for the local design system. Storybook-only.
+ * Source: foundation-tokens.json (raw values) + semantic-tokens.json (roles).
+ *
+ * Layer 1  --ds-*          raw values, one per foundation token
+ * Layer 2  --<key>         semantic roles, shadcn names; reference layer 1 only
+ *
+ * Light only: the semantic file has no dark values.
+ */
+
+/* Utilities for the semantic roles that Tailwind doesn't know yet (bg-surface, text-text-primary, ...). */
+@theme inline {
+  --color-accent-strong: var(--accent-strong);
+  --color-control-border: var(--control-border);
+  --color-control-off: var(--control-off);
+  --color-ring-destructive: var(--ring-destructive);
+  --color-link: var(--link);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+  --color-surface-disabled: var(--surface-disabled);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-disabled: var(--text-disabled);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-error: var(--error);
+}
+
+:root {
+  /* ===== Layer 1: foundation (--ds-*) ===== */
+
+  /* color / brand */
+  --ds-color-brand-50: #eaeeff;
+  --ds-color-brand-100: #a5b3fc;
+  --ds-color-brand-200: #9aa7fa;
+  --ds-color-brand-300: #889aff;
+  --ds-color-brand-400: #6f83ff;
+  --ds-color-brand-500: #586efb;
+  --ds-color-brand-600: #3857ff;
+  --ds-color-brand-700: #304ecd;
+  --ds-color-brand-800: #2b44b5;
+  --ds-color-brand-900: #263b9d;
+  --ds-color-brand-950: #1c2d7a;
+
+  /* color / neutral */
+  --ds-color-neutral-0: #ffffff;
+  --ds-color-neutral-25: #fcfcfd;
+  --ds-color-neutral-50: #f9fafb;
+  --ds-color-neutral-100: #f3f4f6;
+  --ds-color-neutral-200: #e5e7eb;
+  --ds-color-neutral-300: #d1d5db;
+  --ds-color-neutral-400: #9ca3af;
+  --ds-color-neutral-500: #6b7280;
+  --ds-color-neutral-600: #4b5563;
+  --ds-color-neutral-700: #374151;
+  --ds-color-neutral-800: #1f2937;
+  --ds-color-neutral-900: #111827;
+  --ds-color-neutral-950: #0b1220;
+  --ds-color-neutral-1000: #000000;
+
+  /* color / success */
+  --ds-color-success-50: #ebf9ec;
+  --ds-color-success-100: #def7df;
+  --ds-color-success-200: #cdedcd;
+  --ds-color-success-300: #a9e7ac;
+  --ds-color-success-400: #80e089;
+  --ds-color-success-500: #4cd864;
+  --ds-color-success-600: #2e992e;
+  --ds-color-success-700: #1f8a3f;
+  --ds-color-success-800: #0c6329;
+  --ds-color-success-900: #003f15;
+  --ds-color-success-950: #002e0b;
+
+  /* color / warning */
+  --ds-color-warning-50: #fff8e8;
+  --ds-color-warning-100: #fff4e5;
+  --ds-color-warning-200: #ffe0b2;
+  --ds-color-warning-300: #fdcb89;
+  --ds-color-warning-400: #f9b55b;
+  --ds-color-warning-500: #f59e0b;
+  --ds-color-warning-600: #dc860e;
+  --ds-color-warning-700: #c36e0f;
+  --ds-color-warning-800: #aa570f;
+  --ds-color-warning-900: #92400e;
+  --ds-color-warning-950: #5b2404;
+
+  /* color / danger */
+  --ds-color-danger-50: #feeaee;
+  --ds-color-danger-100: #f9c9d3;
+  --ds-color-danger-200: #fca5a9;
+  --ds-color-danger-300: #fb7d7f;
+  --ds-color-danger-400: #f74f55;
+  --ds-color-danger-500: #ec1e30;
+  --ds-color-danger-600: #e01945;
+  --ds-color-danger-700: #b20633;
+  --ds-color-danger-800: #870021;
+  --ds-color-danger-900: #5e0011;
+  --ds-color-danger-950: #4a0009;
+
+  /* color / info */
+  --ds-color-info-50: #f0f7fd;
+  --ds-color-info-100: #e7f0f9;
+  --ds-color-info-200: #d5e3f2;
+  --ds-color-info-300: #acc4dd;
+  --ds-color-info-400: #84a5c9;
+  --ds-color-info-500: #5d88b4;
+  --ds-color-info-600: #356a9f;
+  --ds-color-info-700: #27547f;
+  --ds-color-info-800: #1b3e61;
+  --ds-color-info-900: #0e2a45;
+  --ds-color-info-950: #092037;
+
+  /* color / chart */
+  --ds-color-chart-1: #437fbf;
+  --ds-color-chart-2: #8f9ff5;
+  --ds-color-chart-3: #ffa64d;
+  --ds-color-chart-4: #ffd699;
+  --ds-color-chart-5: #ff8c1a;
+  --ds-color-chart-6: #2e5c8a;
+  --ds-color-chart-7: #5b9bd5;
+  --ds-color-chart-8: #9bc2e6;
+  --ds-color-chart-9: #a3a3a3;
+  --ds-color-chart-10: #737373;
+
+  /* typography */
+  --ds-typography-font-family-base: 'Roboto', system-ui, sans-serif;
+  --ds-typography-font-family-accent: 'Manrope', system-ui, sans-serif;
+  --ds-typography-font-size-10: 10px;
+  --ds-typography-font-size-12: 12px;
+  --ds-typography-font-size-14: 14px;
+  --ds-typography-font-size-16: 16px;
+  --ds-typography-font-size-18: 18px;
+  --ds-typography-font-size-20: 20px;
+  --ds-typography-font-size-24: 24px;
+  --ds-typography-font-size-28: 28px;
+  --ds-typography-font-size-32: 32px;
+  --ds-typography-font-size-40: 40px;
+  --ds-typography-font-size-48: 48px;
+  --ds-typography-font-weight-regular: 400;
+  --ds-typography-font-weight-medium: 500;
+  --ds-typography-font-weight-bold: 700;
+  --ds-typography-line-height-12: 12px;
+  --ds-typography-line-height-14: 14px;
+  --ds-typography-line-height-16: 16px;
+  --ds-typography-line-height-18: 18px;
+  --ds-typography-line-height-20: 20px;
+  --ds-typography-line-height-22: 22px;
+  --ds-typography-line-height-28: 28px;
+  --ds-typography-line-height-40: 40px;
+  --ds-typography-letter-spacing-tight: -0.025em;
+  --ds-typography-letter-spacing-normal: 0em;
+  --ds-typography-letter-spacing-wide: 0.035em;
+  --ds-typography-letter-spacing-wider: 0.1em;
+  --ds-typography-letter-spacing-widest: 0.16em;
+
+  /* spacing */
+  --ds-spacing-0: 0px;
+  --ds-spacing-2: 2px;
+  --ds-spacing-4: 4px;
+  --ds-spacing-8: 8px;
+  --ds-spacing-12: 12px;
+  --ds-spacing-16: 16px;
+  --ds-spacing-20: 20px;
+  --ds-spacing-24: 24px;
+  --ds-spacing-32: 32px;
+  --ds-spacing-40: 40px;
+  --ds-spacing-48: 48px;
+
+  /* radius */
+  --ds-radius-0: 0px;
+  --ds-radius-2: 2px;
+  --ds-radius-4: 4px;
+  --ds-radius-8: 8px;
+  --ds-radius-12: 12px;
+  --ds-radius-16: 16px;
+  --ds-radius-20: 20px;
+  --ds-radius-24: 24px;
+  --ds-radius-full: 9999px;
+
+  /* size */
+  --ds-size-icon-4: 4px;
+  --ds-size-icon-8: 8px;
+  --ds-size-icon-12: 12px;
+  --ds-size-icon-16: 16px;
+  --ds-size-icon-20: 20px;
+  --ds-size-icon-24: 24px;
+  --ds-size-icon-28: 28px;
+  --ds-size-icon-32: 32px;
+  --ds-size-icon-40: 40px;
+  --ds-size-icon-48: 48px;
+  --ds-size-control-36: 36px;
+  --ds-size-control-40: 40px;
+  --ds-size-control-44: 44px;
+  --ds-size-control-48: 48px;
+  --ds-size-layout-frame-width: 430px;
+  --ds-size-layout-nav-clearance: 100px;
+  --ds-size-border-width-hairline: 0.5px;
+  --ds-size-border-width-1: 1px;
+  --ds-size-border-width-thick: 1.5px;
+
+  /* elevation */
+  --ds-elevation-xs: 0px 1px 3px rgba(0, 0, 0, 0.06);
+  --ds-elevation-sm: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  --ds-elevation-md: 0px 4px 8px rgba(0, 0, 0, 0.08);
+  --ds-elevation-lg: 0px 5px 20px rgba(163, 163, 163, 0.14);
+  --ds-elevation-xl: 0px 5px 40px 8px rgba(163, 163, 163, 0.14);
+  --ds-elevation-2xl: 0px 12px 56px 12px rgba(163, 163, 163, 0.18);
+
+  /* opacity */
+  --ds-opacity-0: 0;
+  --ds-opacity-10: 0.1;
+  --ds-opacity-20: 0.2;
+  --ds-opacity-40: 0.4;
+  --ds-opacity-60: 0.6;
+  --ds-opacity-80: 0.8;
+  --ds-opacity-100: 1;
+
+  /* blur */
+  --ds-blur-none: 0px;
+  --ds-blur-sm: 4px;
+  --ds-blur-md: 8px;
+  --ds-blur-lg: 16px;
+  --ds-blur-xl: 24px;
+
+  /* motion */
+  --ds-motion-duration-instant: 50ms;
+  --ds-motion-duration-fast: 100ms;
+  --ds-motion-duration-normal: 200ms;
+  --ds-motion-duration-slow: 300ms;
+  --ds-motion-duration-slower: 500ms;
+  --ds-motion-easing-standard: ease;
+  --ds-motion-easing-accelerate: ease-in;
+  --ds-motion-easing-decelerate: ease-out;
+  --ds-motion-easing-bounce: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* z-index */
+  --ds-z-index-base: 1;
+  --ds-z-index-nav: 50;
+  --ds-z-index-overlay: 60;
+  --ds-z-index-top: 9999;
+
+  /* ===== Layer 2: semantic roles (shadcn names) ===== */
+
+  /* surfaces and text */
+  --background: var(--ds-color-neutral-0);
+  --foreground: var(--ds-color-neutral-900);
+  --card: var(--ds-color-neutral-0);
+  --card-foreground: var(--ds-color-neutral-900);
+  --popover: var(--ds-color-neutral-0);
+  --popover-foreground: var(--ds-color-neutral-900);
+  --primary: var(--ds-color-brand-600);
+  --primary-foreground: var(--ds-color-neutral-0);
+  --secondary: var(--ds-color-neutral-100);
+  --secondary-foreground: var(--ds-color-neutral-900);
+  --muted: var(--ds-color-neutral-100);
+  --muted-foreground: var(--ds-color-neutral-600);
+  --accent: var(--ds-color-brand-100);
+  --accent-foreground: var(--ds-color-neutral-950);
+  --accent-strong: var(--ds-color-brand-600);
+  --destructive: var(--ds-color-danger-600);
+  --destructive-foreground: var(--ds-color-neutral-0);
+
+  /* borders, inputs, focus */
+  --border: var(--ds-color-neutral-200);
+  --input: var(--ds-color-neutral-200);
+  --control-border: var(--ds-color-neutral-500);
+  --ring: var(--ds-color-brand-500);
+  --ring-destructive: var(--ds-color-danger-500);
+  --ring-width: var(--ds-spacing-2);
+  --ring-offset: var(--ds-color-neutral-0);
+  --ring-offset-width: var(--ds-spacing-2);
+  --focus-ring: var(--ds-color-brand-500);
+  --link: var(--ds-color-brand-600);
+
+  /* shape */
+  --radius: var(--ds-radius-8);
+
+  /* surface, text and border roles */
+  --surface: var(--ds-color-neutral-0);
+  --surface-hover: var(--ds-color-neutral-50);
+  --surface-active: var(--ds-color-neutral-100);
+  --surface-disabled: var(--ds-color-neutral-200);
+  --control-off: var(--ds-color-neutral-500);
+  --text-primary: var(--ds-color-neutral-900);
+  --text-secondary: var(--ds-color-neutral-600);
+  --text-tertiary: var(--ds-color-neutral-500);
+  --text-disabled: var(--ds-color-neutral-400);
+  --border-subtle: var(--ds-color-neutral-100);
+  --border-default: var(--ds-color-neutral-200);
+  --border-strong: var(--ds-color-neutral-300);
+
+  /* status */
+  --success: var(--ds-color-success-500);
+  --success-foreground: var(--ds-color-neutral-900);
+  --warning: var(--ds-color-warning-500);
+  --warning-foreground: var(--ds-color-neutral-900);
+  --info: var(--ds-color-info-500);
+  --info-foreground: var(--ds-color-neutral-900);
+  --error: var(--ds-color-danger-500);
+
+  /* elevation, motion, layering, borders, overlay */
+  --elevation-card: var(--ds-elevation-xs);
+  --motion-duration-fast: var(--ds-motion-duration-fast);
+  --motion-duration-normal: var(--ds-motion-duration-normal);
+  --motion-duration-slow: var(--ds-motion-duration-slow);
+  --motion-easing-standard: var(--ds-motion-easing-standard);
+  --motion-easing-decelerate: var(--ds-motion-easing-decelerate);
+  --motion-easing-accelerate: var(--ds-motion-easing-accelerate);
+  --z-index-base: var(--ds-z-index-base);
+  --z-index-nav: var(--ds-z-index-nav);
+  --z-index-overlay: var(--ds-z-index-overlay);
+  --z-index-top: var(--ds-z-index-top);
+  --border-width-hairline: var(--ds-size-border-width-hairline);
+  --border-width-default: var(--ds-size-border-width-1);
+  --border-width-thick: var(--ds-size-border-width-thick);
+  --overlay-color: var(--ds-color-neutral-1000);
+  --overlay-opacity: var(--ds-opacity-60);
+
+  /* charts */
+  --chart-series-1: var(--ds-color-chart-1); /* Deposits */
+  --chart-series-2: var(--ds-color-chart-2); /* Savings */
+  --chart-series-3: var(--ds-color-chart-3); /* Term */
+  --chart-series-4: var(--ds-color-chart-4); /* Investments */
+  --chart-series-5: var(--ds-color-chart-5); /* Fixed Income */
+  --chart-series-6: var(--ds-color-chart-6); /* Alternate */
+  --chart-series-7: var(--ds-color-chart-7); /* Cash */
+  --chart-series-8: var(--ds-color-chart-8); /* Assets */
+  --chart-series-9: var(--ds-color-chart-9); /* Insurance */
+  --chart-series-10: var(--ds-color-chart-10); /* Wealth */
+  /* shadcn charts read --chart-1..5 */
+  --chart-1: var(--chart-series-1);
+  --chart-2: var(--chart-series-2);
+  --chart-3: var(--chart-series-3);
+  --chart-4: var(--chart-series-4);
+  --chart-5: var(--chart-series-5);
+
+  /* spacing roles */
+  --spacing-inline-xs: var(--ds-spacing-4);
+  --spacing-inline-sm: var(--ds-spacing-8);
+  --spacing-inline-md: var(--ds-spacing-12);
+  --spacing-inline-lg: var(--ds-spacing-16);
+  --spacing-stack-xs: var(--ds-spacing-4);
+  --spacing-stack-sm: var(--ds-spacing-8);
+  --spacing-stack-md: var(--ds-spacing-16);
+  --spacing-stack-lg: var(--ds-spacing-24);
+  --spacing-section-sm: var(--ds-spacing-24);
+  --spacing-section-md: var(--ds-spacing-32);
+  --spacing-section-lg: var(--ds-spacing-48);
+  --spacing-page-header: var(--ds-spacing-16);
+  --spacing-page-content: var(--ds-spacing-16);
+  --spacing-page-footer: var(--ds-spacing-24);
+  --spacing-container-compact: var(--ds-spacing-12);
+  --spacing-container-default: var(--ds-spacing-16);
+  --spacing-container-wide: var(--ds-spacing-24);
+
+  /* size roles */
+  --size-header-height: var(--ds-size-control-48);
+  --size-control-sm: var(--ds-size-control-36);
+  --size-control-md: var(--ds-size-control-40);
+  --size-control-lg: var(--ds-size-control-48);
+  --size-icon-sm: var(--ds-size-icon-16);
+  --size-icon-md: var(--ds-size-icon-20);
+  --size-icon-lg: var(--ds-size-icon-24);
+
+  /* typography roles (composites: family, size, weight, line-height, letter-spacing) */
+  --typography-display-lg-font-family: var(--ds-typography-font-family-base);
+  --typography-display-lg-font-size: var(--ds-typography-font-size-40);
+  --typography-display-lg-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-display-lg-line-height: var(--ds-typography-line-height-40);
+  --typography-display-lg-letter-spacing: var(--ds-typography-letter-spacing-tight);
+
+  --typography-heading-lg-font-family: var(--ds-typography-font-family-base);
+  --typography-heading-lg-font-size: var(--ds-typography-font-size-28);
+  --typography-heading-lg-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-heading-lg-line-height: var(--ds-typography-line-height-40);
+  --typography-heading-lg-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-heading-md-font-family: var(--ds-typography-font-family-base);
+  --typography-heading-md-font-size: var(--ds-typography-font-size-24);
+  --typography-heading-md-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-heading-md-line-height: var(--ds-typography-line-height-28);
+  --typography-heading-md-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-heading-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-heading-sm-font-size: var(--ds-typography-font-size-20);
+  --typography-heading-sm-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-heading-sm-line-height: var(--ds-typography-line-height-28);
+  --typography-heading-sm-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-title-md-font-family: var(--ds-typography-font-family-base);
+  --typography-title-md-font-size: var(--ds-typography-font-size-16);
+  --typography-title-md-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-title-md-line-height: var(--ds-typography-line-height-22);
+  --typography-title-md-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-title-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-title-sm-font-size: var(--ds-typography-font-size-14);
+  --typography-title-sm-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-title-sm-line-height: var(--ds-typography-line-height-20);
+  --typography-title-sm-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-body-md-font-family: var(--ds-typography-font-family-base);
+  --typography-body-md-font-size: var(--ds-typography-font-size-14);
+  --typography-body-md-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-body-md-line-height: var(--ds-typography-line-height-20);
+  --typography-body-md-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-body-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-body-sm-font-size: var(--ds-typography-font-size-12);
+  --typography-body-sm-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-body-sm-line-height: var(--ds-typography-line-height-18);
+  --typography-body-sm-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-label-md-font-family: var(--ds-typography-font-family-base);
+  --typography-label-md-font-size: var(--ds-typography-font-size-14);
+  --typography-label-md-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-label-md-line-height: var(--ds-typography-line-height-20);
+  --typography-label-md-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-label-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-label-sm-font-size: var(--ds-typography-font-size-12);
+  --typography-label-sm-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-label-sm-line-height: var(--ds-typography-line-height-16);
+  --typography-label-sm-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-caption-font-family: var(--ds-typography-font-family-base);
+  --typography-caption-font-size: var(--ds-typography-font-size-12);
+  --typography-caption-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-caption-line-height: var(--ds-typography-line-height-16);
+  --typography-caption-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-micro-font-family: var(--ds-typography-font-family-base);
+  --typography-micro-font-size: var(--ds-typography-font-size-10);
+  --typography-micro-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-micro-line-height: var(--ds-typography-line-height-14);
+  --typography-micro-letter-spacing: var(--ds-typography-letter-spacing-wide);
+
+  --typography-metric-lg-font-family: var(--ds-typography-font-family-base);
+  --typography-metric-lg-font-size: var(--ds-typography-font-size-32);
+  --typography-metric-lg-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-metric-lg-line-height: var(--ds-typography-line-height-40);
+  --typography-metric-lg-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  --typography-metric-md-font-family: var(--ds-typography-font-family-base);
+  --typography-metric-md-font-size: var(--ds-typography-font-size-24);
+  --typography-metric-md-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-metric-md-line-height: var(--ds-typography-line-height-28);
+  --typography-metric-md-letter-spacing: var(--ds-typography-letter-spacing-normal);
+
+  /* ===== Fonts (the one typography hook: the family components render in) ===== */
+  --font-sans: var(--typography-body-md-font-family);
+}

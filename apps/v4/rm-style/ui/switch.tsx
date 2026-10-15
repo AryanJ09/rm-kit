@@ -1,26 +1,28 @@
 "use client"
 
-import * as React from "react"
+import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { cn } from "cn"
-import { Switch as SwitchPrimitive } from "radix-ui"
 
-// shadcn Switch structure, restyled from the Figma Switch spec. Value: Unchecked / Checked.
 function Switch({
   className,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+}: SwitchPrimitive.Root.Props & {
+  size?: "sm" | "default"
+}) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
+      data-size={size}
       className={cn(
-        "peer inline-flex h-(--ds-spacing-24) w-(--size-control-md) shrink-0 items-center rounded-(--radius-xl) border-transparent bg-control-stroke-default p-(--ds-spacing-4) outline-none transition-all focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring data-[state=checked]:bg-primary data-[state=unchecked]:hover:ring-(length:--ds-spacing-4) data-[state=unchecked]:hover:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled data-[state=checked]:disabled:bg-surface-disabled",
+        "peer group/switch relative inline-flex shrink-0 items-center rounded-full border border-transparent transition-all outline-none group-has-[:focus-visible]/field-label:border-transparent group-has-[:focus-visible]/field-label:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-(length:--ds-spacing-4) aria-invalid:ring-destructive/20 data-[size=default]:h-6 data-[size=default]:w-10 data-[size=default]:px-1 data-[size=sm]:h-3.5 data-[size=sm]:w-6 data-[size=sm]:px-0.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:bg-primary data-unchecked:bg-control-stroke-default dark:data-unchecked:bg-input/80 data-unchecked:not-data-disabled:hover:ring-(length:--ds-spacing-4) hover:ring-primary-focus-ring data-disabled:cursor-not-allowed data-disabled:bg-surface-disabled data-disabled:data-checked:bg-surface-disabled",
         className
       )}
       {...props}
     >
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
-        className="pointer-events-none block size-(--ds-spacing-16) rounded-(--ds-radius-full) bg-background transition-transform data-[state=checked]:translate-x-(--ds-spacing-16) data-[state=unchecked]:translate-x-0"
+        className="pointer-events-none block rounded-full bg-background ring-0 transition-transform group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 group-data-[size=default]/switch:data-checked:translate-x-4 group-data-[size=sm]/switch:data-checked:translate-x-2 dark:data-checked:bg-primary-foreground group-data-[size=default]/switch:data-unchecked:translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0 dark:data-unchecked:bg-foreground"
       />
     </SwitchPrimitive.Root>
   )

@@ -1,43 +1,36 @@
 "use client"
 
-import * as React from "react"
+import { Radio as RadioPrimitive } from "@base-ui/react/radio"
+import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { cn } from "cn"
-import { RadioGroup as RadioGroupPrimitive } from "radix-ui"
 
-// shadcn RadioGroup structure, restyled from the Figma Radio spec. Value: Unchecked / Checked.
-function RadioGroup({
-  className,
-  ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
+function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   return (
-    <RadioGroupPrimitive.Root
+    <RadioGroupPrimitive
       data-slot="radio-group"
-      className={cn("grid gap-(--ds-spacing-12)", className)}
+      className={cn("grid w-full gap-2", className)}
       {...props}
     />
   )
 }
 
-function RadioGroupItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
-    <RadioGroupPrimitive.Item
+    <RadioPrimitive.Root
       data-slot="radio-group-item"
       className={cn(
-        "group/radio aspect-square size-(--ds-size-icon-20) shrink-0 rounded-(--ds-radius-full) border-(length:--ring-width) border-control-stroke-default bg-background outline-none transition-all focus-visible:border-primary focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring data-[state=checked]:border-primary data-[state=unchecked]:hover:border-primary data-[state=unchecked]:hover:ring-(length:--ds-spacing-4) data-[state=unchecked]:hover:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-surface-disabled",
+        "group/radio-group-item peer relative flex aspect-square size-5 shrink-0 rounded-full border-(length:--ring-width) border-control-stroke-default outline-none group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-ring/50 not-data-checked:not-data-disabled:hover:border-primary not-data-disabled:hover:ring-(length:--ds-spacing-4) hover:ring-primary-focus-ring data-disabled:cursor-not-allowed data-disabled:border-surface-disabled aria-invalid:border-destructive aria-invalid:ring-(length:--ds-spacing-4) aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-background group-has-[:focus-visible]/field-label:data-checked:border-primary dark:data-checked:bg-primary",
         className
       )}
       {...props}
     >
-      <RadioGroupPrimitive.Indicator
+      <RadioPrimitive.Indicator
         data-slot="radio-group-indicator"
-        className="relative flex items-center justify-center"
+        className="flex size-5 items-center justify-center"
       >
-        <span className="size-(--ds-spacing-8) rounded-(--ds-radius-full) bg-primary group-disabled/radio:bg-surface-disabled" />
-      </RadioGroupPrimitive.Indicator>
-    </RadioGroupPrimitive.Item>
+        <span className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-disabled/radio-group-item:bg-surface-disabled" />
+      </RadioPrimitive.Indicator>
+    </RadioPrimitive.Root>
   )
 }
 

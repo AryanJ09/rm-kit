@@ -26,6 +26,20 @@ const config: StorybookConfig = {
   "framework": getAbsolutePath('@storybook/nextjs-vite'),
   "staticDirs": [
     "../public"
-  ]
+  ],
+  // shadcn's demos import "@/styles/base-nova/ui/*" (a few use base-rhea). Point them at the RM wrappers so every
+  // demo renders with rm-style, and a change to one component shows wherever it is used.
+  viteFinal: async (config) => {
+    const rmUi = fileURLToPath(new URL("../rm-style/ui/", import.meta.url))
+    const alias = { find: /^@\/styles\/base-(?:nova|rhea)\/ui\/(.*)$/, replacement: `${rmUi}$1` }
+    const existing = config.resolve?.alias ?? []
+    config.resolve = {
+      ...config.resolve,
+      alias: Array.isArray(existing)
+        ? [alias, ...existing]
+        : [alias, ...Object.entries(existing).map(([find, replacement]) => ({ find, replacement }))],
+    }
+    return config
+  },
 };
 export default config;

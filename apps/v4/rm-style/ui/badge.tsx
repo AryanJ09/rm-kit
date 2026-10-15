@@ -1,61 +1,61 @@
-import * as React from "react"
+import { mergeProps } from "@base-ui/react/merge-props"
+import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
-import { Slot } from "radix-ui"
 
-// shadcn Badge structure, restyled from rm-style/theme.css.
-// type = Figma Type; status = Figma Status (information, dot, icon). Only semantic tokens here.
+const figmaBadge = "h-4 rounded-(--radius-sm) text-(length:--ds-typography-font-size-10)"
+
 const badgeVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-(--ds-spacing-4) overflow-hidden rounded-(--radius-sm) px-(--ds-spacing-8) py-(--ds-spacing-2) h-(--ds-spacing-16) font-sans text-(length:--ds-typography-font-size-10) font-(--font-weight-medium) whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-(--ds-spacing-8)",
+  "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
-      type: {
-        conservative: "bg-badge-conservative-background text-badge-conservative-foreground",
-        moderate: "bg-badge-moderate-background text-badge-moderate-foreground",
-        growth: "bg-badge-growth-background text-badge-growth-foreground",
-        aggressive: "bg-badge-aggressive-background text-badge-aggressive-foreground",
-        secure: "bg-badge-secure-background text-badge-secure-foreground",
-        success: "bg-badge-success-background text-badge-success-foreground",
-        neutral: "bg-badge-neutral-background text-badge-neutral-foreground",
+      variant: {
+        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        secondary:
+          "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
+        destructive:
+          "bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20",
+        outline:
+          "border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground",
+        ghost:
+          "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
+        link: "text-primary underline-offset-4 hover:underline",
+        // Figma Badge types (additive): 16px tall, 4px radius, 10px label.
+        conservative: `${figmaBadge} bg-badge-conservative-background text-badge-conservative-foreground`,
+        moderate: `${figmaBadge} bg-badge-moderate-background text-badge-moderate-foreground`,
+        growth: `${figmaBadge} bg-badge-growth-background text-badge-growth-foreground`,
+        aggressive: `${figmaBadge} bg-badge-aggressive-background text-badge-aggressive-foreground`,
+        secure: `${figmaBadge} bg-badge-secure-background text-badge-secure-foreground`,
+        success: `${figmaBadge} bg-badge-success-background text-badge-success-foreground`,
+        neutral: `${figmaBadge} bg-badge-neutral-background text-badge-neutral-foreground`,
       },
     },
     defaultVariants: {
-      type: "neutral",
+      variant: "default",
     },
   }
 )
 
 function Badge({
   className,
-  type = "neutral",
-  status = "information",
-  asChild = false,
-  children,
+  variant = "default",
+  render,
   ...props
-}: React.ComponentProps<"span"> &
-  VariantProps<typeof badgeVariants> & {
-    asChild?: boolean
-    status?: "information" | "dot" | "icon"
-  }) {
-  const Comp = asChild ? Slot.Root : "span"
-
-  return (
-    <Comp
-      data-slot="badge"
-      data-type={type}
-      data-status={status}
-      className={cn(badgeVariants({ type }), className)}
-      {...props}
-    >
-      {status === "dot" && (
-        <span
-          data-slot="badge-dot"
-          className="size-(--ds-spacing-8) shrink-0 rounded-(--ds-radius-full) bg-current"
-        />
-      )}
-      {children}
-    </Comp>
-  )
+}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>) {
+  return useRender({
+    defaultTagName: "span",
+    props: mergeProps<"span">(
+      {
+        className: cn(badgeVariants({ variant }), className),
+      },
+      props
+    ),
+    render,
+    state: {
+      slot: "badge",
+      variant,
+    },
+  })
 }
 
 export { Badge, badgeVariants }

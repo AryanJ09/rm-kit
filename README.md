@@ -1,17 +1,22 @@
-# shadcn/ui
+# rm-kit
 
-A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code. **Use this to build your own component library**.
+Design system: shadcn components wrapped with the RM style (tokens in `apps/v4/rm-style`).
 
-![hero](apps/v4/public/opengraph-image.png)
+## Run Storybook
 
-## Documentation
+Requirements: Node 22 and pnpm 10.33.
 
-Visit https://ui.shadcn.com/docs to view the documentation.
+```bash
+pnpm install
+pnpm --filter=v4 storybook
+```
 
-## Contributing
+Open http://localhost:6006.
 
-Please read the [contributing guide](/CONTRIBUTING.md).
+## Where things are
 
-## License
-
-Licensed under the [MIT license](./LICENSE.md).
+- `apps/v4/rm-style/theme.css`: primitives and semantic roles. The single entry point.
+- `apps/v4/rm-style/components.css`: tokens used by one component.
+- `apps/v4/rm-style/ui/`: component wrappers.
+- `apps/v4/stories/`: Storybook stories.
+- `apps/v4/rm-style/OWNER-GUIDE.md`: how to change values and add components.

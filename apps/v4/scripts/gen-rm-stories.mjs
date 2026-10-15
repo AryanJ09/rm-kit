@@ -15,6 +15,8 @@ const OUT = path.join(ROOT, "stories")
 // Calendar is part of Date picker, so it gets no story of its own.
 const RM_KIT = new Set(["button","badge","checkbox","radio-group","switch","input","textarea","search","dropdown","date-picker","navigation-item","bottom-navigation","alert-dialog","dialog","drawer","message","message-scroller","sheet"])
 const EXCLUDED = new Set(["calendar"])
+// Batch E: these components are wider than a centred box, so their stories use the full canvas.
+const FULL_WIDTH = new Set(["card", "field", "input-group", "select", "switch"])
 const comps = fs.readdirSync(UI).filter((f) => f.endsWith(".tsx")).map((f) => f.slice(0, -4)).filter((c) => !EXCLUDED.has(c))
 const byLength = [...comps].sort((a, b) => b.length - a.length)
 const pascal = (s) => s.split(/[-_]/).filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join("")
@@ -77,7 +79,7 @@ for (const comp of comps) {
     "const meta = {",
     `  title: "${RM_KIT.has(comp) ? "RM Kit" : "Components"}/${pascal(comp)}",`,
     '  tags: ["autodocs"],',
-    '  parameters: { layout: "centered" },',
+    `  parameters: { layout: "${FULL_WIDTH.has(comp) ? "fullscreen" : "centered"}" },`,
     "} satisfies Meta",
     "",
     "export default meta",

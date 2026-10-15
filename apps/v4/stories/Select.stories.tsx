@@ -10,7 +10,7 @@ import { SelectScrollable as DemoSelectScrollable } from "@/examples/base/select
 const meta = {
   title: "Components/Select",
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "fullscreen" },
 } satisfies Meta
 
 export default meta

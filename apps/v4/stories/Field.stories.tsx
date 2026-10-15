@@ -16,7 +16,7 @@ import DemoFieldTextarea from "@/examples/base/field-textarea"
 const meta = {
   title: "Components/Field",
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "fullscreen" },
 } satisfies Meta
 
 export default meta

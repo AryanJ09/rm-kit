@@ -9,7 +9,7 @@ import { CardSpacing as DemoCardSpacing } from "@/examples/base/card-spacing"
 const meta = {
   title: "Components/Card",
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "fullscreen" },
 } satisfies Meta
 
 export default meta

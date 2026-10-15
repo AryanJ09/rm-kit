@@ -11,7 +11,7 @@ import FigmaGrid from "./figma/switch"
 const meta = {
   title: "RM Kit/Switch",
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "fullscreen" },
 } satisfies Meta
 
 export default meta

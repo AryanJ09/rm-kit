@@ -4,7 +4,7 @@ Component file: `rm-style/ui/drawer.tsx`
 
 Imports: `react`, `@base-ui/react/drawer`, `cn`
 
-Gaps (value not coming from an RM `--ds-*` primitive): **66** of 71
+Gaps (value not coming from an RM `--ds-*` primitive): **37** of 71
 
 | class | kind | utility token | semantic | primitive | value | defined in | gap |
 |---|---|---|---|---|---|---|---|
@@ -14,9 +14,9 @@ Gaps (value not coming from an RM `--ds-*` primitive): **66** of 71
 | `text-foreground` | color | --color-foreground | --foreground | --ds-color-neutral-900 | #111827 | app/globals.css -> rm-style/theme.css |  |
 | `text-muted-foreground` | color | --color-muted-foreground | --muted-foreground | --ds-color-neutral-600 | #4b5563 | app/globals.css -> rm-style/theme.css |  |
 | `text-popover-foreground` | color | --color-popover-foreground | --popover-foreground | --ds-color-neutral-900 | #111827 | app/globals.css -> rm-style/theme.css |  |
-| `text-base` | font-size | --text-base |  |  | Tailwind default | node_modules/tailwindcss/theme.css | yes |
-| `text-sm` | font-size | --text-sm |  |  | Tailwind default | node_modules/tailwindcss/theme.css | yes |
-| `font-medium` | font-weight | --font-weight-medium |  |  | Tailwind default | node_modules/tailwindcss/theme.css | yes |
+| `text-base` | font-size | --text-base |  | --ds-typography-font-size-16 | 16px | rm-style/theme.css |  |
+| `text-sm` | font-size | --text-sm |  | --ds-typography-font-size-14 | 14px | rm-style/theme.css |  |
+| `font-medium` | font-weight | --font-weight-medium |  | --ds-typography-font-weight-medium | 500 | rm-style/theme.css |  |
 | `[--bleed:3rem]` | hardcoded |  |  |  | [--bleed:3rem] | component file | yes |
 | `[--drawer-content-height:var(--drawer-height,auto)]` | hardcoded |  |  |  | [--drawer-content-height:var(--drawer-height,auto)] | component file | yes |
 | `[--peek:1rem]` | hardcoded |  |  |  | [--peek:1rem] | component file | yes |
@@ -53,29 +53,29 @@ Gaps (value not coming from an RM `--ds-*` primitive): **66** of 71
 | `transform-[translate3d(var(--translate-x,0px),var(--translate-y,0px),0)_scale(var(--stack-scale))]` | hardcoded |  |  |  | transform-[translate3d(var(--translate-x,0px),var(--translate-y,0px),0)_scale(var(--stack-scale))] | component file | yes |
 | `transition-[transform,height,opacity,filter]` | hardcoded |  |  |  | transition-[transform,height,opacity,filter] | component file | yes |
 | `after:rounded-full` | radius |  |  |  | Tailwind default (full) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-direction=down]:rounded-t-xl` | radius | --radius-xl |  |  | calc(var(--radius) * 1.4) | app/globals.css | yes |
-| `data-[swipe-direction=left]:rounded-r-xl` | radius | --radius-xl |  |  | calc(var(--radius) * 1.4) | app/globals.css | yes |
-| `data-[swipe-direction=right]:rounded-l-xl` | radius | --radius-xl |  |  | calc(var(--radius) * 1.4) | app/globals.css | yes |
-| `data-[swipe-direction=up]:rounded-b-xl` | radius | --radius-xl |  |  | calc(var(--radius) * 1.4) | app/globals.css | yes |
-| `data-[swipe-axis=x]:after:inset-y-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-axis=x]:inset-y-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-axis=y]:after:inset-x-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-axis=y]:inset-x-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-direction=down]:bottom-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-direction=left]:left-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-direction=right]:right-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[swipe-direction=up]:top-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `gap-0.5` | spacing | --spacing |  |  | Tailwind default (0.5 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `gap-2` | spacing | --spacing |  |  | Tailwind default (2 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[swipe-axis=x]/drawer-popup:after:h-24` | spacing | --spacing |  |  | Tailwind default (24 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[swipe-axis=x]/drawer-popup:after:w-1` | spacing | --spacing |  |  | Tailwind default (1 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[swipe-axis=x]/drawer-popup:w-3` | spacing | --spacing |  |  | Tailwind default (3 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[swipe-axis=y]/drawer-popup:after:h-1` | spacing | --spacing |  |  | Tailwind default (1 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[swipe-axis=y]/drawer-popup:after:w-24` | spacing | --spacing |  |  | Tailwind default (24 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[swipe-axis=y]/drawer-popup:h-3` | spacing | --spacing |  |  | Tailwind default (3 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `inset-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `md:gap-0.5` | spacing | --spacing |  |  | Tailwind default (0.5 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `min-h-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `p-4` | spacing | --spacing |  |  | Tailwind default (4 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `pb-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `pt-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
+| `data-[swipe-direction=down]:rounded-t-xl` | radius | --radius-xl |  | --ds-radius-12 | 12px | rm-style/theme.css |  |
+| `data-[swipe-direction=left]:rounded-r-xl` | radius | --radius-xl |  | --ds-radius-12 | 12px | rm-style/theme.css |  |
+| `data-[swipe-direction=right]:rounded-l-xl` | radius | --radius-xl |  | --ds-radius-12 | 12px | rm-style/theme.css |  |
+| `data-[swipe-direction=up]:rounded-b-xl` | radius | --radius-xl |  | --ds-radius-12 | 12px | rm-style/theme.css |  |
+| `data-[swipe-axis=x]:after:inset-y-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-axis=x]:inset-y-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-axis=y]:after:inset-x-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-axis=y]:inset-x-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-direction=down]:bottom-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-direction=left]:left-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-direction=right]:right-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[swipe-direction=up]:top-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `gap-0.5` | spacing | --spacing |  | --ds-spacing-4 | 0.5 x --spacing = 4px | rm-style/theme.css |  |
+| `gap-2` | spacing | --spacing |  | --ds-spacing-4 | 2 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[swipe-axis=x]/drawer-popup:after:h-24` | spacing | --spacing |  | --ds-spacing-4 | 24 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[swipe-axis=x]/drawer-popup:after:w-1` | spacing | --spacing |  | --ds-spacing-4 | 1 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[swipe-axis=x]/drawer-popup:w-3` | spacing | --spacing |  | --ds-spacing-4 | 3 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[swipe-axis=y]/drawer-popup:after:h-1` | spacing | --spacing |  | --ds-spacing-4 | 1 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[swipe-axis=y]/drawer-popup:after:w-24` | spacing | --spacing |  | --ds-spacing-4 | 24 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[swipe-axis=y]/drawer-popup:h-3` | spacing | --spacing |  | --ds-spacing-4 | 3 x --spacing = 4px | rm-style/theme.css |  |
+| `inset-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `md:gap-0.5` | spacing | --spacing |  | --ds-spacing-4 | 0.5 x --spacing = 4px | rm-style/theme.css |  |
+| `min-h-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `p-4` | spacing | --spacing |  | --ds-spacing-4 | 4 x --spacing = 4px | rm-style/theme.css |  |
+| `pb-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `pt-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |

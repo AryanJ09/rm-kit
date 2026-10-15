@@ -4,7 +4,7 @@ Component file: `rm-style/ui/checkbox.tsx`
 
 Imports: `@base-ui/react/checkbox`, `cn`, `lucide-react`
 
-Gaps (value not coming from an RM `--ds-*` primitive): **6** of 21
+Gaps (value not coming from an RM `--ds-*` primitive): **2** of 21
 
 | class | kind | utility token | semantic | primitive | value | defined in | gap |
 |---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ Gaps (value not coming from an RM `--ds-*` primitive): **6** of 21
 | `group-has-[:focus-visible]/field-label:not-data-checked:border-input` | color | --color-input | --input | --ds-color-neutral-200 | #e5e7eb | app/globals.css -> rm-style/theme.css |  |
 | `text-current` | color |  |  |  | Tailwind default (current) | node_modules/tailwindcss/theme.css | yes |
 | `rounded-[4px]` | hardcoded |  |  |  | rounded-[4px] | component file | yes |
-| `[&>svg]:size-3.5` | spacing | --spacing |  |  | Tailwind default (3.5 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `after:-inset-x-3` | spacing | --spacing |  |  | Tailwind default (3 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `after:-inset-y-2` | spacing | --spacing |  |  | Tailwind default (2 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `size-5` | spacing | --spacing |  |  | Tailwind default (5 x --spacing) | node_modules/tailwindcss/theme.css | yes |
+| `[&>svg]:size-3.5` | spacing | --spacing |  | --ds-spacing-4 | 3.5 x --spacing = 4px | rm-style/theme.css |  |
+| `after:-inset-x-3` | spacing | --spacing |  | --ds-spacing-4 | 3 x --spacing = 4px | rm-style/theme.css |  |
+| `after:-inset-y-2` | spacing | --spacing |  | --ds-spacing-4 | 2 x --spacing = 4px | rm-style/theme.css |  |
+| `size-5` | spacing | --spacing |  | --ds-spacing-4 | 5 x --spacing = 4px | rm-style/theme.css |  |

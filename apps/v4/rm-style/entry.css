@@ -1,0 +1,3 @@
+/* Single Tailwind entry for the RM system. Order matters: RM theme loads last so its roles win. */
+@import "../app/globals.css";
+@import "./theme.css";

@@ -4,7 +4,7 @@ Component file: `rm-style/ui/switch.tsx`
 
 Imports: `@base-ui/react/switch`, `cn`
 
-Gaps (value not coming from an RM `--ds-*` primitive): **15** of 27
+Gaps (value not coming from an RM `--ds-*` primitive): **9** of 27
 
 | class | kind | utility token | semantic | primitive | value | defined in | gap |
 |---|---|---|---|---|---|---|---|
@@ -29,9 +29,9 @@ Gaps (value not coming from an RM `--ds-*` primitive): **15** of 27
 | `group-data-[size=default]/switch:data-checked:translate-x-[calc(100%-2px)]` | hardcoded |  |  |  | translate-x-[calc(100%-2px)] | component file | yes |
 | `group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%-2px)]` | hardcoded |  |  |  | translate-x-[calc(100%-2px)] | component file | yes |
 | `rounded-full` | radius |  |  |  | Tailwind default (full) | node_modules/tailwindcss/theme.css | yes |
-| `after:-inset-x-3` | spacing | --spacing |  |  | Tailwind default (3 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `after:-inset-y-2` | spacing | --spacing |  |  | Tailwind default (2 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[size=default]/switch:data-unchecked:translate-x-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[size=default]/switch:size-4` | spacing | --spacing |  |  | Tailwind default (4 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[size=sm]/switch:data-unchecked:translate-x-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `group-data-[size=sm]/switch:size-3` | spacing | --spacing |  |  | Tailwind default (3 x --spacing) | node_modules/tailwindcss/theme.css | yes |
+| `after:-inset-x-3` | spacing | --spacing |  | --ds-spacing-4 | 3 x --spacing = 4px | rm-style/theme.css |  |
+| `after:-inset-y-2` | spacing | --spacing |  | --ds-spacing-4 | 2 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[size=default]/switch:data-unchecked:translate-x-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[size=default]/switch:size-4` | spacing | --spacing |  | --ds-spacing-4 | 4 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[size=sm]/switch:data-unchecked:translate-x-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `group-data-[size=sm]/switch:size-3` | spacing | --spacing |  | --ds-spacing-4 | 3 x --spacing = 4px | rm-style/theme.css |  |

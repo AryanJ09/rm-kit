@@ -7,65 +7,65 @@ A row is a **gap** when its value does not end in an RM `--ds-*` primitive (Tail
 
 | component | token classes | gaps | uses rm-style/ui |
 |---|---|---|---|
-| [accordion](accordion.md) | 16 | 10 |  |
-| [alert-dialog](alert-dialog.md) | 32 | 25 | button |
-| [alert](alert.md) | 21 | 14 |  |
+| [accordion](accordion.md) | 16 | 1 |  |
+| [alert-dialog](alert-dialog.md) | 32 | 4 | button |
+| [alert](alert.md) | 21 | 2 |  |
 | [aspect-ratio](aspect-ratio.md) | 0 | 0 |  |
-| [attachment](attachment.md) | 47 | 35 | button |
-| [avatar](avatar.md) | 28 | 21 |  |
-| [badge](badge.md) | 36 | 11 |  |
-| [breadcrumb](breadcrumb.md) | 10 | 7 |  |
-| [bubble](bubble.md) | 50 | 28 |  |
-| [button-group](button-group.md) | 16 | 12 | separator |
-| [button](button.md) | 67 | 32 | spinner |
-| [calendar](calendar.md) | 63 | 41 | button |
-| [card](card.md) | 22 | 17 |  |
-| [carousel](carousel.md) | 13 | 13 | button |
-| [chart](chart.md) | 33 | 21 |  |
-| [checkbox](checkbox.md) | 21 | 6 |  |
+| [attachment](attachment.md) | 47 | 0 | button |
+| [avatar](avatar.md) | 28 | 2 |  |
+| [badge](badge.md) | 36 | 2 |  |
+| [breadcrumb](breadcrumb.md) | 10 | 0 |  |
+| [bubble](bubble.md) | 50 | 11 |  |
+| [button-group](button-group.md) | 16 | 6 | separator |
+| [button](button.md) | 67 | 6 | spinner |
+| [calendar](calendar.md) | 63 | 19 | button |
+| [card](card.md) | 22 | 4 |  |
+| [carousel](carousel.md) | 13 | 1 | button |
+| [chart](chart.md) | 33 | 8 |  |
+| [checkbox](checkbox.md) | 21 | 2 |  |
 | [collapsible](collapsible.md) | 0 | 0 |  |
-| [combobox](combobox.md) | 65 | 37 | button, input-group |
-| [command](command.md) | 35 | 23 | dialog, input-group |
-| [context-menu](context-menu.md) | 42 | 18 |  |
-| [dialog](dialog.md) | 25 | 19 | button |
+| [combobox](combobox.md) | 65 | 6 | button, input-group |
+| [command](command.md) | 35 | 3 | dialog, input-group |
+| [context-menu](context-menu.md) | 42 | 1 |  |
+| [dialog](dialog.md) | 25 | 2 | button |
 | [direction](direction.md) | 0 | 0 |  |
-| [drawer](drawer.md) | 71 | 66 |  |
-| [dropdown-menu](dropdown-menu.md) | 46 | 19 |  |
-| [empty](empty.md) | 18 | 13 |  |
-| [field](field.md) | 39 | 26 | label, separator |
-| [hover-card](hover-card.md) | 7 | 3 |  |
-| [input-group](input-group.md) | 53 | 42 | button, input, textarea |
-| [input-otp](input-otp.md) | 21 | 6 |  |
-| [input](input.md) | 24 | 11 |  |
-| [item](item.md) | 34 | 26 | separator |
-| [kbd](kbd.md) | 14 | 8 |  |
-| [label](label.md) | 3 | 3 |  |
-| [marker](marker.md) | 17 | 11 |  |
-| [menubar](menubar.md) | 51 | 25 | dropdown-menu |
-| [message-scroller](message-scroller.md) | 18 | 13 | button |
-| [message](message.md) | 13 | 11 |  |
-| [native-select](native-select.md) | 30 | 16 |  |
-| [navigation-menu](navigation-menu.md) | 51 | 31 |  |
-| [pagination](pagination.md) | 3 | 3 | button |
-| [popover](popover.md) | 11 | 6 |  |
-| [progress](progress.md) | 8 | 5 |  |
-| [questionnaire](questionnaire.md) | 69 | 39 | button |
-| [radio-group](radio-group.md) | 26 | 10 |  |
-| [resizable](resizable.md) | 14 | 10 |  |
-| [scroll-area](scroll-area.md) | 10 | 8 |  |
-| [select](select.md) | 55 | 29 |  |
+| [drawer](drawer.md) | 71 | 37 |  |
+| [dropdown-menu](dropdown-menu.md) | 46 | 2 |  |
+| [empty](empty.md) | 18 | 1 |  |
+| [field](field.md) | 39 | 0 | label, separator |
+| [hover-card](hover-card.md) | 7 | 0 |  |
+| [input-group](input-group.md) | 53 | 12 | button, input, textarea |
+| [input-otp](input-otp.md) | 21 | 0 |  |
+| [input](input.md) | 24 | 2 |  |
+| [item](item.md) | 34 | 3 | separator |
+| [kbd](kbd.md) | 14 | 0 |  |
+| [label](label.md) | 3 | 0 |  |
+| [marker](marker.md) | 17 | 0 |  |
+| [menubar](menubar.md) | 51 | 3 | dropdown-menu |
+| [message-scroller](message-scroller.md) | 18 | 5 | button |
+| [message](message.md) | 13 | 1 |  |
+| [native-select](native-select.md) | 30 | 4 |  |
+| [navigation-menu](navigation-menu.md) | 51 | 12 |  |
+| [pagination](pagination.md) | 3 | 0 | button |
+| [popover](popover.md) | 11 | 0 |  |
+| [progress](progress.md) | 8 | 1 |  |
+| [questionnaire](questionnaire.md) | 69 | 11 | button |
+| [radio-group](radio-group.md) | 26 | 1 |  |
+| [resizable](resizable.md) | 14 | 0 |  |
+| [scroll-area](scroll-area.md) | 10 | 6 |  |
+| [select](select.md) | 55 | 3 |  |
 | [separator](separator.md) | 1 | 0 |  |
-| [sheet](sheet.md) | 33 | 29 | button |
-| [sidebar](sidebar.md) | 88 | 86 | button, input, separator, sheet, skeleton, tooltip |
-| [skeleton](skeleton.md) | 2 | 1 |  |
-| [slider](slider.md) | 12 | 8 |  |
-| [sonner](sonner.md) | 2 | 2 |  |
-| [spinner](spinner.md) | 1 | 1 |  |
-| [switch](switch.md) | 27 | 15 |  |
-| [table](table.md) | 13 | 7 |  |
-| [tabs](tabs.md) | 44 | 28 |  |
-| [textarea](textarea.md) | 18 | 6 |  |
-| [toast](toast.md) | 47 | 40 | button |
-| [toggle-group](toggle-group.md) | 11 | 6 | toggle |
-| [toggle](toggle.md) | 31 | 20 |  |
-| [tooltip](tooltip.md) | 27 | 24 |  |
+| [sheet](sheet.md) | 33 | 9 | button |
+| [sidebar](sidebar.md) | 88 | 35 | button, input, separator, sheet, skeleton, tooltip |
+| [skeleton](skeleton.md) | 2 | 0 |  |
+| [slider](slider.md) | 12 | 3 |  |
+| [sonner](sonner.md) | 2 | 0 |  |
+| [spinner](spinner.md) | 1 | 0 |  |
+| [switch](switch.md) | 27 | 9 |  |
+| [table](table.md) | 13 | 0 |  |
+| [tabs](tabs.md) | 44 | 11 |  |
+| [textarea](textarea.md) | 18 | 1 |  |
+| [toast](toast.md) | 47 | 24 | button |
+| [toggle-group](toggle-group.md) | 11 | 3 | toggle |
+| [toggle](toggle.md) | 31 | 4 |  |
+| [tooltip](tooltip.md) | 27 | 2 |  |

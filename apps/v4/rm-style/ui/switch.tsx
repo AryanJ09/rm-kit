@@ -1,28 +1,26 @@
 "use client"
 
-import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
+import * as React from "react"
 import { cn } from "cn"
+import { Switch as SwitchPrimitive } from "radix-ui"
 
+// shadcn Switch structure, restyled from the Figma Switch spec. Value: Unchecked / Checked.
 function Switch({
   className,
-  size = "default",
   ...props
-}: SwitchPrimitive.Root.Props & {
-  size?: "sm" | "default"
-}) {
+}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
-      data-size={size}
       className={cn(
-        "peer group/switch relative inline-flex shrink-0 items-center rounded-full border border-transparent transition-all outline-none group-has-[:focus-visible]/field-label:border-transparent group-has-[:focus-visible]/field-label:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        "peer inline-flex h-(--ds-spacing-24) w-(--size-control-md) shrink-0 items-center rounded-(--radius-xl) border-transparent bg-control-stroke-default p-(--ds-spacing-4) outline-none transition-all focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring data-[state=checked]:bg-primary data-[state=unchecked]:hover:ring-(length:--ds-spacing-4) data-[state=unchecked]:hover:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled data-[state=checked]:disabled:bg-surface-disabled",
         className
       )}
       {...props}
     >
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
-        className="pointer-events-none block rounded-full bg-background ring-0 transition-transform group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 group-data-[size=default]/switch:data-checked:translate-x-[calc(100%-2px)] group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%-2px)] dark:data-checked:bg-primary-foreground group-data-[size=default]/switch:data-unchecked:translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0 dark:data-unchecked:bg-foreground"
+        className="pointer-events-none block size-(--ds-spacing-16) rounded-(--ds-radius-full) bg-background transition-transform data-[state=checked]:translate-x-(--ds-spacing-16) data-[state=unchecked]:translate-x-0"
       />
     </SwitchPrimitive.Root>
   )

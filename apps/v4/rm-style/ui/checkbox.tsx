@@ -1,25 +1,33 @@
 "use client"
 
-import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
+import * as React from "react"
 import { cn } from "cn"
-import { CheckIcon } from "lucide-react"
+import { CheckIcon, MinusIcon } from "lucide-react"
+import { Checkbox as CheckboxPrimitive } from "radix-ui"
 
-function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
+// shadcn Checkbox structure, restyled from the Figma Checkbox spec. Unchecked / Checked / Intrim (indeterminate).
+function Checkbox({
+  className,
+  ...props
+}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        "peer relative flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-primary transition-colors outline-none group-has-disabled/field:opacity-50 group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground group-has-[:focus-visible]/field-label:data-checked:border-primary dark:data-checked:bg-primary",
+        "peer size-(--ds-size-icon-20) shrink-0 rounded-(--radius-sm) border-(length:--border-width-default) border-control-stroke-default bg-background outline-none transition-all focus-visible:border-primary focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=unchecked]:hover:border-primary data-[state=unchecked]:hover:ring-(length:--ds-spacing-4) data-[state=unchecked]:hover:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-surface-disabled disabled:bg-surface-disabled data-[state=checked]:disabled:border-surface-disabled data-[state=checked]:disabled:bg-surface-disabled data-[state=indeterminate]:disabled:border-surface-disabled data-[state=indeterminate]:disabled:bg-surface-disabled",
         className
       )}
       {...props}
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="grid place-content-center text-current transition-none [&>svg]:size-3.5"
+        className="grid place-content-center text-current transition-none"
       >
-        <CheckIcon
-        />
+        {props.checked === "indeterminate" ? (
+          <MinusIcon className="size-(--ds-size-icon-16)" />
+        ) : (
+          <CheckIcon className="size-(--ds-size-icon-16)" />
+        )}
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )

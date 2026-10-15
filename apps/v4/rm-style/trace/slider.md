@@ -4,7 +4,7 @@ Component file: `rm-style/ui/slider.tsx`
 
 Imports: `@base-ui/react/slider`, `cn`
 
-Gaps (value not coming from an RM `--ds-*` primitive): **8** of 12
+Gaps (value not coming from an RM `--ds-*` primitive): **3** of 12
 
 | class | kind | utility token | semantic | primitive | value | defined in | gap |
 |---|---|---|---|---|---|---|---|
@@ -15,8 +15,8 @@ Gaps (value not coming from an RM `--ds-*` primitive): **8** of 12
 | `ring-ring/50` | color | --color-ring | --ring | --ds-color-brand-500 | #586efb | app/globals.css -> rm-style/theme.css |  |
 | `transition-[color,box-shadow]` | hardcoded |  |  |  | transition-[color,box-shadow] | component file | yes |
 | `rounded-full` | radius |  |  |  | Tailwind default (full) | node_modules/tailwindcss/theme.css | yes |
-| `after:-inset-2` | spacing | --spacing |  |  | Tailwind default (2 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-horizontal:h-1` | spacing | --spacing |  |  | Tailwind default (1 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-vertical:min-h-40` | spacing | --spacing |  |  | Tailwind default (40 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-vertical:w-1` | spacing | --spacing |  |  | Tailwind default (1 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `size-3` | spacing | --spacing |  |  | Tailwind default (3 x --spacing) | node_modules/tailwindcss/theme.css | yes |
+| `after:-inset-2` | spacing | --spacing |  | --ds-spacing-4 | 2 x --spacing = 4px | rm-style/theme.css |  |
+| `data-horizontal:h-1` | spacing | --spacing |  | --ds-spacing-4 | 1 x --spacing = 4px | rm-style/theme.css |  |
+| `data-vertical:min-h-40` | spacing | --spacing |  | --ds-spacing-4 | 40 x --spacing = 4px | rm-style/theme.css |  |
+| `data-vertical:w-1` | spacing | --spacing |  | --ds-spacing-4 | 1 x --spacing = 4px | rm-style/theme.css |  |
+| `size-3` | spacing | --spacing |  | --ds-spacing-4 | 3 x --spacing = 4px | rm-style/theme.css |  |

@@ -4,7 +4,7 @@ Component file: `rm-style/ui/message-scroller.tsx`
 
 Imports: `react`, `cn`, `@/rm-style/ui/button`, `lucide-react`
 
-Gaps (value not coming from an RM `--ds-*` primitive): **13** of 18
+Gaps (value not coming from an RM `--ds-*` primitive): **5** of 18
 
 | class | kind | utility token | semantic | primitive | value | defined in | gap |
 |---|---|---|---|---|---|---|---|
@@ -18,11 +18,11 @@ Gaps (value not coming from an RM `--ds-*` primitive): **13** of 18
 | `data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)]` | hardcoded |  |  |  | ease-[cubic-bezier(0.7,0,0.84,0)] | component file | yes |
 | `data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)]` | hardcoded |  |  |  | ease-[cubic-bezier(0.23,1,0.32,1)] | component file | yes |
 | `transition-[translate,scale,opacity]` | hardcoded |  |  |  | transition-[translate,scale,opacity] | component file | yes |
-| `-translate-x-1/2` | spacing | --spacing |  |  | Tailwind default (1 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[active=true]:translate-y-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[direction=end]:bottom-4` | spacing | --spacing |  |  | Tailwind default (4 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-[direction=start]:top-4` | spacing | --spacing |  |  | Tailwind default (4 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `gap-6` | spacing | --spacing |  |  | Tailwind default (6 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `min-h-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `min-w-0` | spacing | --spacing |  |  | Tailwind default (0 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `rtl:translate-x-1/2` | spacing | --spacing |  |  | Tailwind default (1 x --spacing) | node_modules/tailwindcss/theme.css | yes |
+| `-translate-x-1/2` | spacing | --spacing |  | --ds-spacing-4 | 1 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[active=true]:translate-y-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[direction=end]:bottom-4` | spacing | --spacing |  | --ds-spacing-4 | 4 x --spacing = 4px | rm-style/theme.css |  |
+| `data-[direction=start]:top-4` | spacing | --spacing |  | --ds-spacing-4 | 4 x --spacing = 4px | rm-style/theme.css |  |
+| `gap-6` | spacing | --spacing |  | --ds-spacing-4 | 6 x --spacing = 4px | rm-style/theme.css |  |
+| `min-h-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `min-w-0` | spacing | --spacing |  | --ds-spacing-4 | 0 x --spacing = 4px | rm-style/theme.css |  |
+| `rtl:translate-x-1/2` | spacing | --spacing |  | --ds-spacing-4 | 1 x --spacing = 4px | rm-style/theme.css |  |

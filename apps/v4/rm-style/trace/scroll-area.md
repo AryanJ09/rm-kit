@@ -4,7 +4,7 @@ Component file: `rm-style/ui/scroll-area.tsx`
 
 Imports: `react`, `@base-ui/react/scroll-area`, `cn`
 
-Gaps (value not coming from an RM `--ds-*` primitive): **8** of 10
+Gaps (value not coming from an RM `--ds-*` primitive): **6** of 10
 
 | class | kind | utility token | semantic | primitive | value | defined in | gap |
 |---|---|---|---|---|---|---|---|
@@ -16,5 +16,5 @@ Gaps (value not coming from an RM `--ds-*` primitive): **8** of 10
 | `rounded-[inherit]` | hardcoded |  |  |  | rounded-[inherit] | component file | yes |
 | `transition-[color,box-shadow]` | hardcoded |  |  |  | transition-[color,box-shadow] | component file | yes |
 | `rounded-full` | radius |  |  |  | Tailwind default (full) | node_modules/tailwindcss/theme.css | yes |
-| `data-horizontal:h-2.5` | spacing | --spacing |  |  | Tailwind default (2.5 x --spacing) | node_modules/tailwindcss/theme.css | yes |
-| `data-vertical:w-2.5` | spacing | --spacing |  |  | Tailwind default (2.5 x --spacing) | node_modules/tailwindcss/theme.css | yes |
+| `data-horizontal:h-2.5` | spacing | --spacing |  | --ds-spacing-4 | 2.5 x --spacing = 4px | rm-style/theme.css |  |
+| `data-vertical:w-2.5` | spacing | --spacing |  | --ds-spacing-4 | 2.5 x --spacing = 4px | rm-style/theme.css |  |

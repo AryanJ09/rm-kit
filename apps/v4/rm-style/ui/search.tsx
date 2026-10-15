@@ -11,7 +11,7 @@ import { Spinner } from "@/rm-style/ui/spinner"
 // Pill-shaped search field. The wrapper draws the border and focus ring so the
 // icons and the text share one outline.
 const searchVariants = cva(
-  "group flex w-full min-w-0 items-center rounded-(--ds-radius-full) border-(length:--field-border-width) bg-background text-field-label transition-colors has-disabled:cursor-not-allowed has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--field-focus-ring-width) focus-within:ring-primary-focus-ring",
+  "group flex w-full min-w-0 items-center rounded-(--ds-radius-full) border-(length:--field-border-width) bg-background text-field-label transition-colors has-disabled:cursor-not-allowed has-disabled:border-control-disabled has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--field-focus-ring-width) focus-within:ring-primary-focus-ring",
   {
     variants: {
       size: {
@@ -62,7 +62,7 @@ function Search({
     >
       <SearchIcon
         aria-hidden
-        className="ml-(--field-padding-x) size-(--field-icon-size) shrink-0 text-field-placeholder"
+        className="ml-(--field-padding-x) size-(--size-icon-md) shrink-0 text-field-placeholder"
       />
       <InputPrimitive
         type="search"

@@ -4,7 +4,7 @@ import { cn } from "cn"
 
 // Same states and tokens as Input. Height is a minimum so the field grows with its content.
 const textareaVariants = cva(
-  "flex field-sizing-content w-full min-w-0 rounded-(--field-radius) border-(length:--field-border-width) bg-background px-(--field-padding-x) py-(--field-padding-y) text-field-label transition-colors outline-none placeholder:text-field-placeholder read-only:bg-surface-hover focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:text-text-disabled",
+  "flex field-sizing-content w-full min-w-0 rounded-(--field-radius) border-(length:--field-border-width) bg-background px-(--field-padding-x) py-(--field-padding-y) text-field-label transition-colors outline-none placeholder:text-field-placeholder read-only:bg-field-readonly focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
       size: {

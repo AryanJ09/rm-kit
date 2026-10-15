@@ -33,6 +33,8 @@
   --color-surface-hover: var(--surface-hover);
   --color-surface-active: var(--surface-active);
   --color-surface-disabled: var(--surface-disabled);
+  --color-control-disabled: var(--control-disabled);
+  --color-field-readonly: var(--field-readonly);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
@@ -142,6 +144,7 @@
   --ds-color-neutral-200: #e5e7eb;
   --ds-color-neutral-300: #cccccc;
   --ds-color-neutral-400: #999999;
+  --ds-color-neutral-75: #f7fafc;
   --ds-color-neutral-150: #e9edf0;
   --ds-color-neutral-350: #e3e7e9;
   --ds-color-neutral-450: #88939c;
@@ -239,6 +242,7 @@
   --ds-typography-font-family-base: 'Roboto', system-ui, sans-serif;
   --ds-typography-font-family-accent: 'Manrope', system-ui, sans-serif;
   --ds-typography-font-size-10: 10px;
+  --ds-typography-font-size-11: 11px;
   --ds-typography-font-size-12: 12px;
   --ds-typography-font-size-14: 14px;
   --ds-typography-font-size-16: 16px;
@@ -417,6 +421,8 @@
   --surface-hover: var(--ds-color-neutral-50);
   --surface-active: var(--ds-color-neutral-100);
   --surface-disabled: var(--ds-color-neutral-150);
+  --control-disabled: var(--ds-color-neutral-350);
+  --field-readonly: var(--ds-color-neutral-75);
   --control-off: var(--ds-color-neutral-500);
   --text-primary: var(--ds-color-neutral-900);
   --text-secondary: var(--ds-color-neutral-600);
@@ -464,7 +470,7 @@
   --field-label: var(--ds-color-neutral-900);
   --field-helper: var(--ds-color-neutral-500);
   --field-placeholder: var(--ds-color-neutral-400);
-  --field-error: var(--ds-color-danger-600);
+  --field-error: var(--ds-color-red-700);
   --field-success: var(--ds-color-success-700);
   --field-stroke: var(--ds-color-neutral-300);
 

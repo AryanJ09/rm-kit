@@ -23,10 +23,10 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground data-pressed:bg-primary-pressed active:bg-primary-pressed",
         secondary: "border-primary bg-background text-primary data-pressed:bg-primary-subtle active:bg-primary-subtle data-focused:border-primary focus-visible:border-primary",
-        ghost: "bg-background text-primary data-pressed:border-primary data-pressed:bg-primary-subtle active:border-primary active:bg-primary-subtle",
+        ghost: "bg-background text-primary data-pressed:bg-primary-subtle active:bg-primary-subtle",
         destructive: "bg-destructive text-destructive-foreground data-pressed:bg-destructive-pressed active:bg-destructive-pressed",
         outline: "border-primary bg-background text-primary data-pressed:bg-primary-subtle active:bg-primary-subtle",
-        link: "bg-background text-primary data-pressed:border-primary data-pressed:bg-primary-subtle active:border-primary active:bg-primary-subtle",
+        link: "bg-background text-primary data-pressed:bg-primary-subtle active:bg-primary-subtle",
       },
       size: {
         sm, md, lg,

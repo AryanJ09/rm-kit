@@ -20,8 +20,8 @@
   --field-padding-y: var(--ds-spacing-12);
 
   /* Gaps between a field and its label or helper text */
-  --field-label-gap: var(--ds-spacing-8);
-  --field-helper-gap: var(--ds-spacing-8);
+  --field-label-gap: var(--ds-spacing-6);
+  --field-helper-gap: var(--ds-spacing-6);
 
   /* Leading/trailing icons and the loading spinner */
   --field-icon-size: var(--ds-size-icon-16);
@@ -34,9 +34,9 @@
   /* Options panel: shape, elevation and inner spacing */
   --dropdown-panel-radius: var(--ds-radius-8);
   --dropdown-panel-shadow: var(--ds-elevation-md);
-  --dropdown-panel-padding: var(--ds-spacing-4);
+  --dropdown-panel-padding: var(--ds-spacing-8);
 
   /* One option row */
-  --dropdown-option-padding-x: var(--ds-spacing-12);
+  --dropdown-option-padding-x: var(--ds-spacing-8);
   --dropdown-option-padding-y: var(--ds-spacing-8);
 }

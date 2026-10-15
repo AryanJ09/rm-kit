@@ -7,9 +7,9 @@ const bottomNavigationCentralButtonVariants = cva(
   {
     variants: {
       state: {
-        default: "bg-nav-center-background active:bg-nav-center-pressed",
-        pressed: "bg-nav-center-pressed",
-        disabled: "bg-surface-disabled",
+        default: "bg-nav-center-background text-background active:bg-nav-center-pressed",
+        pressed: "bg-nav-center-pressed text-background",
+        disabled: "bg-surface-disabled text-text-disabled",
       },
     },
     defaultVariants: {
@@ -45,7 +45,7 @@ function BottomNavigationCentralButton({
       )}
       {...props}
     >
-      <BottomNavCenterIcon className="size-(--ds-size-icon-32) text-background" />
+      <BottomNavCenterIcon className="size-(--ds-size-icon-32)" />
     </button>
   )
 }

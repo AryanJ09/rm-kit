@@ -18,7 +18,7 @@ import {
 // Field shell shared by Dropdown and Date picker triggers. Same look as Input:
 // one blue focus, colours from semantic roles only.
 const fieldTriggerVariants = cva(
-  "flex w-full min-w-0 items-center justify-between gap-(--ds-spacing-8) rounded-(--field-radius) border-(length:--field-border-width) bg-background px-(--field-padding-x) text-left text-field-label transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:text-text-disabled",
+  "flex w-full min-w-0 items-center justify-between gap-(--ds-spacing-8) rounded-(--field-radius) border-(length:--field-border-width) bg-background px-(--field-padding-x) text-left text-field-label transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
       size: {
@@ -71,10 +71,10 @@ function FieldShell({
 
   return (
     <div className="flex w-full min-w-0 flex-col gap-(--field-label-gap)">
-      {label ? <span className="text-sm text-field-label">{label}</span> : null}
+      {label ? <span className="text-xs font-medium text-field-label">{label}</span> : null}
       {children}
       {helper ? (
-        <span className={cn("text-sm", helperColor)}>{helper}</span>
+        <span className={cn("text-(length:--ds-typography-font-size-11)", helperColor)}>{helper}</span>
       ) : null}
     </div>
   )
@@ -136,8 +136,7 @@ function DropdownPanel({
                 data-checked={checked}
                 aria-checked={checked}
                 className={cn(
-                  "rounded-none px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-sm text-field-label data-selected:bg-surface-hover data-disabled:text-text-disabled",
-                  checked && "font-medium"
+                  "rounded-none px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-xs text-field-label data-selected:bg-surface-hover data-[checked=true]:bg-destructive-subtle data-[checked=true]:text-destructive data-disabled:text-text-disabled"
                 )}
               >
                 <span className="min-w-0 flex-1 truncate">{option.label}</span>

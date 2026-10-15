@@ -6,18 +6,25 @@ This repository is a fork of the shadcn/ui monorepo (MIT, see `LICENSE.md`). Eve
 
 ## Run it
 
-Requirements: Node 22 (`.nvmrc`) and pnpm 10.33.
+You need Node 22 or newer (`node -v`). Nothing else: pnpm is fetched by Corepack, which ships with Node.
 
 ```bash
+git clone <your-repo-url> rm-kit && cd rm-kit
+corepack enable
 pnpm install
-pnpm --filter=v4 storybook
+pnpm storybook
 ```
 
-Open http://localhost:6006. The sidebar starts with **RM Kit** (the Figma-specified components), then **Examples** (a responsive dashboard), then the remaining shadcn components restyled with the same tokens.
+Open http://localhost:6006. Works the same on macOS, Linux and Windows (PowerShell or Git Bash). The first start also builds the workspace packages Storybook depends on, so allow a minute.
+
+Port 6006 busy? `pnpm --filter=v4 exec storybook dev -p 6008`.
+
+The sidebar starts with **RM Kit** (the Figma-specified components), then **Examples** (a responsive dashboard), then the remaining shadcn components restyled with the same tokens.
 
 ## Checks
 
 ```bash
+pnpm kit:check                    # token audit + kit typecheck
 pnpm --filter=v4 audit:tokens     # every token resolves to a primitive; no raw values in RM Kit components
 pnpm --filter=v4 typecheck:kit    # kit, stories and Storybook config; needs no generated files
 pnpm --filter=v4 build-storybook

@@ -12,7 +12,7 @@ Structure never changes. Only values change.
 ## Adding a component later
 1. Install it (shadcn writes it to `components.json`'s `ui` folder).
 2. Check its roles: `node scripts/check-rm-tokens.mjs` (once built) lists any role the component uses that `theme.css` does not define. Add those roles to section 2, pointing at a primitive.
-3. Preview it in Storybook at port 6006.
+3. Preview it in Storybook at port 6010.
 
 No component file needs editing. New components inherit RM values through the roles.
 

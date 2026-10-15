@@ -12,7 +12,7 @@ Install Node 22 or 24 from https://nodejs.org, open a terminal, and run:
 git clone https://github.com/AryanJ09/rm-kit.git && cd rm-kit && corepack enable && pnpm install && pnpm storybook
 ```
 
-Then open http://localhost:6006. The first start takes about a minute.
+Then open http://localhost:6010. The first start takes about a minute.
 
 ## Run it
 
@@ -26,11 +26,11 @@ pnpm install
 pnpm storybook
 ```
 
-Open http://localhost:6006. Works the same on macOS, Linux and Windows (PowerShell or Git Bash). The first start also builds the workspace packages Storybook depends on, so allow a minute.
+Open http://localhost:6010. Works the same on macOS, Linux and Windows (PowerShell or Git Bash). The first start also builds the workspace packages Storybook depends on, so allow a minute.
 
 The install may print an "ignored build scripts" warning; it is harmless. Later starts also rebuild the workspace packages, which takes a few seconds.
 
-Port 6006 busy? `pnpm --filter=v4 exec storybook dev -p 6008`.
+Port 6010 busy? `pnpm --filter=v4 exec storybook dev -p 6011`.
 
 The sidebar starts with **RM Kit** (the Figma-specified components), then **Examples** (a responsive dashboard), then the remaining shadcn components restyled with the same tokens.
 

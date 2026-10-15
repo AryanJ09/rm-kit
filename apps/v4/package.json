@@ -27,7 +27,7 @@
     "postinstall": "fumadocs-mdx",
     "build:deps": "pnpm --filter=@shadcn/react build && pnpm --filter=@shadcn/helpers build && pnpm --filter=shadcn... build",
     "prestorybook": "pnpm build:deps",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6010",
     "prebuild-storybook": "pnpm build:deps",
     "build-storybook": "storybook build",
     "pretypecheck:kit": "pnpm build:deps",

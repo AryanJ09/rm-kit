@@ -12,9 +12,9 @@ const preview: Preview = {
   ],
   parameters: {
     options: {
-      // RM Kit first, then everything else in its default order.
+      // RM Kit first, then the example screens, then everything else in its default order.
       storySort: {
-        order: ['RM Kit', '*'],
+        order: ['RM Kit', 'Examples', '*'],
       },
     },
     controls: {

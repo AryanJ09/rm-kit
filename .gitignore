@@ -56,4 +56,7 @@ __screenshots__
 
 CONTEXT.md
 docs/adr
-.claude/worktrees/
+.claude/
+
+# storybook
+storybook-static

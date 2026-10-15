@@ -1,17 +1,43 @@
 import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
+// Same states and tokens as Input. Height is a minimum so the field grows with its content.
+const textareaVariants = cva(
+  "flex field-sizing-content w-full min-w-0 rounded-(--field-radius) border-(length:--field-border-width) bg-transparent px-(--field-padding-x) py-(--field-padding-y) text-field-label transition-colors outline-none placeholder:text-field-placeholder read-only:bg-surface-hover focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:text-text-disabled",
+  {
+    variants: {
+      size: {
+        sm: "min-h-(--field-height-sm) text-sm",
+        md: "min-h-(--field-height-md) text-base",
+        lg: "min-h-(--field-height-lg) text-lg",
+      },
+      state: {
+        default: "border-field-stroke",
+        success: "border-field-success",
+        error: "border-field-error",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+      state: "default",
+    },
+  }
+)
+
+type TextareaProps = Omit<React.ComponentProps<"textarea">, "size"> &
+  VariantProps<typeof textareaVariants>
+
+function Textarea({ className, size, state, ...props }: TextareaProps) {
   return (
     <textarea
       data-slot="textarea"
-      className={cn(
-        "flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
-        className
-      )}
+      data-size={size}
+      data-state={state}
+      className={cn(textareaVariants({ size, state }), className)}
       {...props}
     />
   )
 }
 
-export { Textarea }
+export { Textarea, textareaVariants }

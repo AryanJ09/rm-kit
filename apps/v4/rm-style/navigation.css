@@ -1,6 +1,8 @@
 /* Batch 5: navigation tokens. Owner: batch 5 only. */
 @theme inline {
+  --shadow-nav: var(--nav-elevation);
 }
 
 :root {
+  --nav-elevation: var(--ds-elevation-nav);
 }

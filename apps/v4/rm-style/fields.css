@@ -1,6 +1,28 @@
-/* Batch 3: field shell tokens. Owner: batch 3 only. */
+/* Batch 3: field shell tokens. Owner: batch 3 only.
+   Component tokens for Input, Textarea and Search. Each one points at a
+   global token, so changing a global token updates every field. */
 @theme inline {
 }
 
 :root {
+  /* Heights per size */
+  --field-height-sm: var(--ds-size-control-40);
+  --field-height-md: var(--ds-size-control-48);
+  --field-height-lg: var(--ds-size-56);
+
+  /* Border and focus */
+  --field-border-width: var(--border-width-default);
+  --field-focus-ring-width: var(--ring-width);
+
+  /* Shape and inner spacing */
+  --field-radius: var(--radius-lg);
+  --field-padding-x: var(--ds-spacing-12);
+  --field-padding-y: var(--ds-spacing-12);
+
+  /* Gaps between a field and its label or helper text */
+  --field-label-gap: var(--ds-spacing-8);
+  --field-helper-gap: var(--ds-spacing-8);
+
+  /* Leading/trailing icons and the loading spinner */
+  --field-icon-size: var(--ds-size-icon-16);
 }

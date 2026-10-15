@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary:
           "border-primary bg-background text-primary hover:bg-muted aria-expanded:bg-muted active:bg-primary-subtle data-pressed:bg-primary-subtle disabled:border-surface-disabled disabled:bg-surface-disabled disabled:text-text-disabled dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         tertiary:
-          "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground disabled:opacity-50",
+          "bg-secondary text-secondary-foreground hover:bg-surface-active aria-expanded:bg-secondary aria-expanded:text-secondary-foreground disabled:opacity-50",
         ghost:
           "bg-background text-primary hover:bg-muted aria-expanded:bg-muted active:border-primary data-pressed:border-primary active:bg-primary-subtle data-pressed:bg-primary-subtle disabled:bg-surface-disabled disabled:text-text-disabled dark:hover:bg-muted/50",
         // shadcn outline and link, unchanged: they read semantic tokens (border, background, muted, foreground, primary).

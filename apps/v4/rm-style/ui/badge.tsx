@@ -20,7 +20,7 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
-        // Badge types from the Figma spec: 16px tall, 4px radius, 12px label.
+        // Badge types from the Figma spec: tokenised height, radius and label size.
         conservative: `${figmaBadge} bg-badge-conservative-background text-badge-conservative-foreground`,
         moderate: `${figmaBadge} bg-badge-moderate-background text-badge-moderate-foreground`,
         growth: `${figmaBadge} bg-badge-growth-background text-badge-growth-foreground`,

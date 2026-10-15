@@ -59,6 +59,7 @@
   --color-nav-center-background: var(--nav-center-background);
   --color-nav-center-pressed: var(--nav-center-pressed);
   --color-nav-surface: var(--nav-surface);
+  --color-overlay-color: var(--overlay-color);
   --color-primary-focus-ring: var(--primary-focus-ring);
 
   /* Geometry overrides: Tailwind's defaults replaced with RM primitives. */

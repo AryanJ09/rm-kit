@@ -129,7 +129,7 @@
   --ds-color-brand-400: #6f83ff;
   --ds-color-brand-500: #586efb;
   --ds-color-brand-600: #3857ff;
-  --ds-color-brand-700: #304ecd;
+  --ds-color-brand-700: #2941c9;
   --ds-color-brand-800: #2b44b5;
   --ds-color-brand-900: #263b9d;
   --ds-color-brand-950: #1c2d7a;
@@ -140,13 +140,26 @@
   --ds-color-neutral-50: #f9fafb;
   --ds-color-neutral-100: #f3f4f6;
   --ds-color-neutral-200: #e5e7eb;
-  --ds-color-neutral-300: #d1d5db;
-  --ds-color-neutral-400: #9ca3af;
-  --ds-color-neutral-500: #6b7280;
+  --ds-color-neutral-300: #cccccc;
+  --ds-color-neutral-400: #999999;
+  --ds-color-neutral-150: #e9edf0;
+  --ds-color-neutral-350: #e3e7e9;
+  --ds-color-neutral-450: #88939c;
+  /* Figma badge palette */
+  --ds-color-blue-50: #e3f2fd;
+  --ds-color-blue-700: #1976d2;
+  --ds-color-orange-50: #fff3e0;
+  --ds-color-orange-800: #e65100;
+  --ds-color-red-50: #ffebee;
+  --ds-color-red-700: #c62828;
+  --ds-color-steel-50: #f0f7fd;
+  --ds-color-green-50: #eaf5ee;
+  --ds-color-steel-700: #356a9f;
+  --ds-color-neutral-500: #666666;
   --ds-color-neutral-600: #4b5563;
   --ds-color-neutral-700: #374151;
   --ds-color-neutral-800: #1f2937;
-  --ds-color-neutral-900: #111827;
+  --ds-color-neutral-900: #212121;
   --ds-color-neutral-950: #0b1220;
   --ds-color-neutral-1000: #000000;
 
@@ -158,7 +171,7 @@
   --ds-color-success-400: #80e089;
   --ds-color-success-500: #4cd864;
   --ds-color-success-600: #2e992e;
-  --ds-color-success-700: #1f8a3f;
+  --ds-color-success-700: #24734b;
   --ds-color-success-800: #0c6329;
   --ds-color-success-900: #003f15;
   --ds-color-success-950: #002e0b;
@@ -256,6 +269,7 @@
   /* spacing */
   --ds-spacing-0: 0px;
   --ds-spacing-2: 2px;
+  --ds-spacing-3: 3px;
   --ds-spacing-4: 4px;
   --ds-spacing-6: 6px;
   --ds-spacing-8: 8px;
@@ -307,6 +321,8 @@
   --ds-size-72: 72px;
   --ds-size-74: 74px;
   --ds-size-88: 88px;
+  --ds-size-10: 10px;
+  --ds-size-18: 18px;
   --ds-size-96: 96px;
   --ds-size-256: 256px;
   --ds-size-288: 288px;
@@ -324,6 +340,7 @@
   --ds-opacity-0: 0;
   --ds-opacity-10: 0.1;
   --ds-opacity-20: 0.2;
+  --ds-opacity-25: 0.25;
   --ds-opacity-40: 0.4;
   --ds-opacity-60: 0.6;
   --ds-opacity-80: 0.8;
@@ -399,18 +416,18 @@
   --surface: var(--ds-color-neutral-0);
   --surface-hover: var(--ds-color-neutral-50);
   --surface-active: var(--ds-color-neutral-100);
-  --surface-disabled: var(--ds-color-neutral-200);
+  --surface-disabled: var(--ds-color-neutral-150);
   --control-off: var(--ds-color-neutral-500);
   --text-primary: var(--ds-color-neutral-900);
   --text-secondary: var(--ds-color-neutral-600);
   --text-tertiary: var(--ds-color-neutral-500);
-  --text-disabled: var(--ds-color-neutral-400);
+  --text-disabled: var(--ds-color-neutral-450);
   --border-subtle: var(--ds-color-neutral-100);
   --border-default: var(--ds-color-neutral-200);
   --border-strong: var(--ds-color-neutral-300);
 
   --control-stroke-default: var(--ds-color-neutral-300);
-  --primary-focus-ring: color-mix(in oklab, var(--primary) calc(var(--ds-opacity-20) * 100%), transparent);
+  --primary-focus-ring: color-mix(in oklab, var(--primary) calc(var(--ds-opacity-25) * 100%), transparent);
 
   /* sidebar, surface-foreground, selection and code (values approved) */
   --sidebar: var(--ds-color-neutral-50);

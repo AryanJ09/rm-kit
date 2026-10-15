@@ -36,7 +36,7 @@ export const AllStates: Story = {
             <TableCell><Badge variant={t}>{label(t)}</Badge></TableCell>
             <TableCell>
               <Badge variant={t}>
-                <span className="size-(--ds-spacing-8) rounded-(--ds-radius-full) bg-current" />
+                <span className="size-(--ds-spacing-6) rounded-(--ds-radius-full) bg-current" />
                 {label(t)}
               </Badge>
             </TableCell>

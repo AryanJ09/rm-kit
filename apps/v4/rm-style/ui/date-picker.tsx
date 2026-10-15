@@ -50,7 +50,7 @@ function formatValue(
 
 // Native selects keep keyboard and screen reader behaviour for free.
 const timeSelectClassName =
-  "h-(--field-height-sm) rounded-(--field-radius) border-(length:--field-border-width) border-field-stroke bg-transparent px-(--ds-spacing-8) text-sm text-field-label outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring"
+  "h-(--field-height-sm) rounded-(--field-radius) border-(length:--field-border-width) border-field-stroke bg-background px-(--ds-spacing-8) text-sm text-field-label outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring"
 
 type DatePickerProps = {
   id?: string

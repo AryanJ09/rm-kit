@@ -12,11 +12,11 @@
 
   /* Border and focus */
   --field-border-width: var(--border-width-default);
-  --field-focus-ring-width: var(--ring-width);
+  --field-focus-ring-width: var(--ds-spacing-3);
 
   /* Shape and inner spacing */
   --field-radius: var(--radius-lg);
-  --field-padding-x: var(--ds-spacing-12);
+  --field-padding-x: var(--ds-spacing-14);
   --field-padding-y: var(--ds-spacing-12);
 
   /* Gaps between a field and its label or helper text */

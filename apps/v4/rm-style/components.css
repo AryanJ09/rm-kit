@@ -30,16 +30,16 @@
   /* Badge (no semantic role, primitives) */
   --badge-conservative-background: var(--ds-color-purple-50);
   --badge-conservative-foreground: var(--ds-color-purple-800);
-  --badge-moderate-background: var(--ds-color-info-100);
-  --badge-moderate-foreground: var(--ds-color-brand-700);
-  --badge-growth-background: var(--ds-color-warning-100);
-  --badge-growth-foreground: var(--ds-color-warning-700);
-  --badge-aggressive-background: var(--ds-color-danger-50);
-  --badge-aggressive-foreground: var(--ds-color-danger-500);
-  --badge-neutral-background: var(--ds-color-neutral-200);
+  --badge-moderate-background: var(--ds-color-blue-50);
+  --badge-moderate-foreground: var(--ds-color-blue-700);
+  --badge-growth-background: var(--ds-color-orange-50);
+  --badge-growth-foreground: var(--ds-color-orange-800);
+  --badge-aggressive-background: var(--ds-color-red-50);
+  --badge-aggressive-foreground: var(--ds-color-red-700);
+  --badge-neutral-background: var(--ds-color-neutral-150);
   --badge-neutral-foreground: var(--ds-color-neutral-500);
-  --badge-secure-background: var(--ds-color-info-50);
-  --badge-secure-foreground: var(--ds-color-info-600);
-  --badge-success-background: var(--ds-color-success-50);
+  --badge-secure-background: var(--ds-color-steel-50);
+  --badge-secure-foreground: var(--ds-color-steel-700);
+  --badge-success-background: var(--ds-color-green-50);
   --badge-success-foreground: var(--ds-color-success-700);
 }

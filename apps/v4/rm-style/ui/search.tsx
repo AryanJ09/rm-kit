@@ -16,7 +16,7 @@ const searchVariants = cva(
     variants: {
       size: {
         sm: "h-(--field-height-sm) text-sm",
-        md: "h-(--field-height-md) text-base",
+        md: "h-(--field-height-md) text-sm",
         lg: "h-(--field-height-lg) text-lg",
       },
       state: {

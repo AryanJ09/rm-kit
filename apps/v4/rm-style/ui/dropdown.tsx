@@ -18,12 +18,12 @@ import {
 // Field shell shared by Dropdown and Date picker triggers. Same look as Input:
 // one blue focus, colours from semantic roles only.
 const fieldTriggerVariants = cva(
-  "flex w-full min-w-0 items-center justify-between gap-(--ds-spacing-8) rounded-(--field-radius) border-(length:--field-border-width) bg-transparent px-(--field-padding-x) text-left text-field-label transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:text-text-disabled",
+  "flex w-full min-w-0 items-center justify-between gap-(--ds-spacing-8) rounded-(--field-radius) border-(length:--field-border-width) bg-background px-(--field-padding-x) text-left text-field-label transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
       size: {
         sm: "h-(--field-height-sm) text-sm",
-        md: "h-(--field-height-md) text-base",
+        md: "h-(--field-height-md) text-sm",
         lg: "h-(--field-height-lg) text-lg",
       },
       state: {

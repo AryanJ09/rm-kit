@@ -56,3 +56,8 @@
   --chip-disabled-stroke: var(--control-disabled);
   --chip-disabled-text: var(--text-disabled);
 }
+
+/* Empty filter card and filter panel. */
+:root {
+  --empty-filter-stroke: color-mix(in oklab, var(--overlay-color) calc(var(--ds-opacity-8) * 100%), transparent);
+}

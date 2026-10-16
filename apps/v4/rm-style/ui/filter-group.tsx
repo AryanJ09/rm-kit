@@ -38,7 +38,7 @@ function FilterGroup({
       className={cn("flex w-full min-w-0 flex-col gap-(--field-label-gap)", className)}
     >
       {label ? (
-        <span className="text-(length:--ds-typography-font-size-12) font-medium text-field-label">{label}</span>
+        <span className="text-(length:--ds-typography-font-size-14) text-field-label">{label}</span>
       ) : null}
       <ToggleGroup
         aria-label={label}

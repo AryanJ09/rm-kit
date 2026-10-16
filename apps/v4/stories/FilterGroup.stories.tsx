@@ -5,7 +5,7 @@ import { FilterGroup } from "@/rm-style/ui/filter-group"
 // Hand-written: a filter group is a labelled set of Chips. Small groups stay inline; large groups move
 // into a bottom Sheet, the same FilterGroup inside it.
 const meta = {
-  title: "RM Kit/Filter group",
+  title: "RM Kit/Filter/Filter group",
   component: FilterGroup,
   args: { options: [{ value: "rekyc", label: "Re-KYC due" }] },
   tags: ["autodocs"],

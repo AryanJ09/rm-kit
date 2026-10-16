@@ -1,5 +1,7 @@
 "use client"
 
+// Pattern: a composition of kit components (Filter group, Button, Sheet). Patterns may import
+// components; components must never import patterns (scripts/audit-tokens.mjs enforces this).
 import * as React from "react"
 import { cn } from "cn"
 
@@ -75,4 +77,32 @@ function FilterSheet({
   )
 }
 
-export { FilterSheet, useFilterSide, type FilterSheetProps }
+// Empty state for the panel pattern: shown in place of results when no item matches.
+// Figma: Empty filter. It is a state of this pattern, not a separate component.
+function FilterEmptyState({
+  title = "No clients match these filters",
+  description = "Try removing a filter or searching by name or CRN.",
+  action,
+  className,
+}: {
+  title?: string
+  description?: string
+  action?: React.ReactNode
+  className?: string
+}) {
+  return (
+    <div
+      data-slot="filter-empty-state"
+      className={cn(
+        "flex w-full flex-col gap-(--ds-spacing-12) rounded-(--ds-radius-16) border-(length:--field-border-width) border-(--empty-filter-stroke) bg-background p-(--ds-spacing-24)",
+        className
+      )}
+    >
+      <p className="text-(length:--ds-typography-font-size-16) font-bold text-field-label">{title}</p>
+      <p className="text-(length:--ds-typography-font-size-11) text-field-label">{description}</p>
+      {action ? <div className="pt-(--ds-spacing-12)">{action}</div> : null}
+    </div>
+  )
+}
+
+export { FilterSheet, FilterEmptyState, useFilterSide, type FilterSheetProps }

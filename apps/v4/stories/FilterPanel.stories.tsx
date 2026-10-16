@@ -1,16 +1,15 @@
 import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Button } from "@/rm-style/ui/button"
-import { EmptyFilter } from "@/rm-style/ui/empty-filter"
 import { Filter } from "@/rm-style/ui/filter"
 import { type FilterGroupProps } from "@/rm-style/ui/filter-group"
-import { FilterSheet } from "@/rm-style/ui/filter-panel"
+import { FilterEmptyState, FilterSheet } from "@/rm-style/patterns/filter-panel"
 
 // Hand-written example screen. Figma: Filter group pattern and Empty filter.
 // The filters open as a bottom sheet on mobile and a side panel on desktop (same component).
 // Applied filters appear as Filter pills above the results; if nothing matches, Empty filter shows.
 const meta = {
-  title: "Examples/Filter panel",
+  title: "RM Kit/Filter/Patterns/Filter panel",
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
 } satisfies Meta
@@ -105,7 +104,7 @@ function FilterScreen() {
         ) : null}
 
         {results.length === 0 ? (
-          <EmptyFilter
+          <FilterEmptyState
             action={<Button variant="secondary" onClick={reset}>Reset filters</Button>}
           />
         ) : (
@@ -135,4 +134,13 @@ export const Mobile: Story = {
 // Desktop: the same filters open as a side panel.
 export const Desktop: Story = {
   render: () => <FilterScreen />,
+}
+
+// Empty state: the panel pattern's state for when no item matches the applied filters.
+export const EmptyState: Story = {
+  render: () => (
+    <div className="w-[430px] p-(--ds-spacing-16)">
+      <FilterEmptyState action={<Button variant="secondary">Reset filters</Button>} />
+    </div>
+  ),
 }

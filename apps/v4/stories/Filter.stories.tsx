@@ -5,7 +5,7 @@ import { Button } from "@/rm-style/ui/button"
 
 // Hand-written: an applied filter is a Chip in its selected look with a remove control.
 const meta = {
-  title: "RM Kit/Filter",
+  title: "RM Kit/Filter/Filter",
   component: Filter,
   args: { label: "Re-KYC due" },
   tags: ["autodocs"],

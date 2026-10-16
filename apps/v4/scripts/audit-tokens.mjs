@@ -86,6 +86,12 @@ for (const name of KIT) {
   })
 }
 
+// Layer rule: components in rm-style/ui never import patterns in rm-style/patterns.
+for (const file of fs.readdirSync(UI).filter((f) => f.endsWith(".tsx"))) {
+  const src = fs.readFileSync(path.join(UI, file), "utf8")
+  if (/from\s+["']@\/rm-style\/patterns\//.test(src)) problems.push(`layer ui/${file}: component imports a pattern`)
+}
+
 if (problems.length) {
   console.log(problems.join("\n"))
   console.log(`\n${problems.length} problem(s)`)

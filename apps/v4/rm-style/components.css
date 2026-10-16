@@ -43,3 +43,16 @@
   --badge-success-background: var(--ds-color-green-50);
   --badge-success-foreground: var(--ds-color-success-700);
 }
+
+/* Chip, Filter and FilterGroup. Built on the Toggle behaviour, styled from the field and primary roles. */
+:root {
+  --chip-background: var(--background);
+  --chip-stroke: var(--field-stroke);
+  --chip-text: var(--field-helper);
+  --chip-selected-background: var(--primary-subtle);
+  --chip-selected-stroke: var(--primary);
+  --chip-selected-text: var(--primary);
+  --chip-disabled-background: var(--surface-disabled);
+  --chip-disabled-stroke: var(--control-disabled);
+  --chip-disabled-text: var(--text-disabled);
+}

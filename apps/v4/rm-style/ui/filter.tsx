@@ -1,7 +1,7 @@
 import { XIcon } from "lucide-react"
 import { cn } from "cn"
 
-import { chipVariants } from "@/rm-style/ui/chip"
+import { toggleVariants } from "@/rm-style/ui/toggle"
 
 // An applied filter. It is a Chip in its selected look, with a remove control that only
 // removes the filter; it is not a toggle, so it has no pressed state of its own.
@@ -18,13 +18,13 @@ function Filter({ label, onRemove, size = "sm", className }: FilterProps) {
       data-slot="filter"
       data-size={size}
       className={cn(
-        chipVariants({ size }),
+        toggleVariants({ variant: "outline", size: size === "md" ? "default" : "sm" }),
         "border-(--chip-selected-stroke) bg-(--chip-selected-background) text-(--chip-selected-text)",
         onRemove ? "pe-(--ds-spacing-8)" : null,
         className
       )}
     >
-      <span className="min-w-0 truncate">{label}</span>
+      <span className="min-w-0 truncate text-(length:--ds-typography-font-size-12)">{label}</span>
       {onRemove ? (
         <button
           type="button"

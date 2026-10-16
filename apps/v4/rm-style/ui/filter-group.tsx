@@ -1,9 +1,9 @@
 "use client"
 
-import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group"
 import { cn } from "cn"
 
 import { Chip } from "@/rm-style/ui/chip"
+import { ToggleGroup } from "@/rm-style/ui/toggle-group"
 
 // A labelled set of chips. multiple lets several chips be on at once (multi-choice);
 // single keeps one on at a time (single choice). Use it inline, or inside a Sheet for large groups.
@@ -40,20 +40,19 @@ function FilterGroup({
       {label ? (
         <span className="text-(length:--ds-typography-font-size-12) font-medium text-field-label">{label}</span>
       ) : null}
-      <ToggleGroupPrimitive
+      <ToggleGroup
         aria-label={label}
         multiple={type === "multiple"}
         value={value}
         defaultValue={defaultValue}
         onValueChange={onValueChange}
-        className="flex flex-wrap gap-(--ds-spacing-8)"
       >
         {options.map((option) => (
-          <Chip key={option.value} value={option.value} disabled={option.disabled} size={size}>
+          <Chip key={option.value} value={option.value} disabled={option.disabled} size={size === "md" ? "default" : "sm"}>
             {option.label}
           </Chip>
         ))}
-      </ToggleGroupPrimitive>
+      </ToggleGroup>
       {helper ? (
         <span className="text-(length:--ds-typography-font-size-12) text-field-helper">{helper}</span>
       ) : null}

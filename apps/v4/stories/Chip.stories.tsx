@@ -13,7 +13,10 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const sizes = ["sm", "md"] as const
+const sizes = [
+  { size: "sm", label: "sm" },
+  { size: "default", label: "md" },
+] as const
 
 // Rows are the size scale (40, 48); columns are the states.
 export const AllStates: Story = {
@@ -29,9 +32,9 @@ export const AllStates: Story = {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {sizes.map((size) => (
+        {sizes.map(({ size, label }) => (
           <TableRow key={size}>
-            <TableCell>{size}</TableCell>
+            <TableCell>{label}</TableCell>
             <TableCell><Chip size={size}>Re-KYC due</Chip></TableCell>
             <TableCell><Chip size={size} defaultPressed>Re-KYC due</Chip></TableCell>
             <TableCell>

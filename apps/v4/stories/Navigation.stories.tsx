@@ -1,8 +1,8 @@
 import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { BottomNavigation, Navigation, TopNavigation, type Destination } from "@/rm-style/patterns/navigation"
+import { BottomNavigation, HamburgerNavigation, Navigation, type Destination } from "@/rm-style/patterns/navigation"
 
-// Hand-written: Navigation is a pattern. Mobile shows the bottom bar; desktop shows the top bar.
+// Hand-written: Navigation is a pattern. Mobile shows the bottom bar; desktop shows a menu button.
 const meta = {
   title: "RM Kit/Patterns/Navigation",
   component: Navigation,
@@ -26,9 +26,13 @@ export const BottomBar: Story = {
   ),
 }
 
-// Desktop top bar: same destinations, no central action.
-export const TopBar: Story = {
-  render: () => <TopNavigation defaultValue="Clients" />,
+// Desktop: a menu button that opens the destinations in a side panel.
+export const Menu: Story = {
+  render: () => (
+    <div className="p-(--ds-spacing-16)">
+      <HamburgerNavigation defaultValue="Clients" />
+    </div>
+  ),
 }
 
 // The responsive pattern with real screens: tapping a destination changes the screen.
@@ -37,7 +41,7 @@ function ResponsiveExample() {
   const [centreTaps, setCentreTaps] = useState(0)
   return (
     <div className="flex min-h-dvh flex-col bg-background font-sans text-foreground">
-      <div className="order-last fixed inset-x-0 bottom-0 z-40 flex justify-center md:static md:order-first md:z-auto">
+      <div className="order-last fixed inset-x-0 bottom-0 z-40 flex justify-center md:static md:order-first md:z-auto md:justify-start md:p-(--ds-spacing-16)">
         <Navigation
           value={screen}
           onValueChange={setScreen}
@@ -60,7 +64,7 @@ export const Mobile: Story = {
   globals: { viewport: { value: "mobile1", isRotated: false } },
 }
 
-// Desktop: top bar.
+// Desktop: menu button.
 export const Desktop: Story = {
   render: () => <ResponsiveExample />,
 }

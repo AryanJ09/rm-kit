@@ -1,14 +1,16 @@
 "use client"
 
 import * as React from "react"
-import { ClipboardList, House, Target, Users, type LucideIcon } from "lucide-react"
+import { ClipboardList, House, Menu, Target, Users, type LucideIcon } from "lucide-react"
 import { cn } from "cn"
 
 import { BottomNavigationCentralButton } from "@/rm-style/ui/bottom-navigation-central-button"
 import { NavigationItem } from "@/rm-style/ui/navigation-item"
 import { useIsDesktop } from "@/rm-style/patterns/use-media-query"
+import { Button } from "@/rm-style/ui/button"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/rm-style/ui/sheet"
 
-// Navigation is a pattern: mobile gets the bottom bar (with the central action), desktop gets a top bar.
+// Navigation is a pattern: mobile gets the bottom bar (with the central action), desktop gets a menu button.
 // Both share one destination list and one selection model, so the app only handles onValueChange.
 type Destination = "Home" | "Leads" | "Clients" | "CRM"
 
@@ -82,40 +84,50 @@ function BottomNavigation({
   )
 }
 
-// Desktop bar. Not in Figma yet: same destinations and selection as the mobile bar, laid out as a row
-// of labelled tabs with an icon, no central action. Sizes follow the control scale (48 tall).
-function TopNavigation({ value, defaultValue, onValueChange, className, ...props }: Omit<React.ComponentProps<"nav">, "onChange"> & SelectionProps) {
+// Desktop: a menu button that opens the destinations in a left side panel. Not in Figma yet: the same
+// destinations and selection as the mobile bar, without the central action. Selecting closes the panel.
+function HamburgerNavigation({ value, defaultValue, onValueChange }: SelectionProps) {
   const { current, select } = useSelection({ value, defaultValue, onValueChange })
+  const [open, setOpen] = React.useState(false)
   return (
-    <nav
-      data-slot="top-navigation"
-      aria-label="Primary"
-      className={cn("flex h-(--size-header-height) w-full items-center gap-(--ds-spacing-8) border-b border-border bg-nav-surface px-(--ds-spacing-16)", className)}
-      {...props}
-    >
-      {DESTINATIONS.map(({ value: destination, icon: Icon }) => {
-        const active = current === destination
-        return (
-          <button
-            key={destination}
-            type="button"
-            aria-current={active ? "page" : undefined}
-            onClick={() => select(destination)}
-            className={cn(
-              "inline-flex h-(--size-control-sm) items-center gap-(--ds-spacing-8) rounded-(--ds-radius-full) px-(--ds-spacing-16) text-(length:--typography-label-md-font-size) font-medium transition-colors outline-none focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring [&_svg]:size-(--size-icon-sm)",
-              active ? "bg-destructive-subtle text-destructive" : "text-field-helper hover:bg-surface-hover hover:text-field-label"
-            )}
-          >
-            <Icon aria-hidden="true" />
-            {destination}
-          </button>
-        )
-      })}
-    </nav>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger render={<Button variant="ghost" size="icon-md" aria-label="Open navigation" />}>
+        <Menu aria-hidden="true" />
+      </SheetTrigger>
+      <SheetContent side="left" className="gap-0 p-0 sm:max-w-xs">
+        <SheetHeader className="border-b border-border p-(--ds-spacing-24)">
+          <SheetTitle className="text-(length:--ds-typography-font-size-16) font-bold">Menu</SheetTitle>
+          <SheetDescription>Go to a section.</SheetDescription>
+        </SheetHeader>
+        <nav aria-label="Primary" className="flex flex-col gap-(--ds-spacing-4) p-(--ds-spacing-16)">
+          {DESTINATIONS.map(({ value: destination, icon: Icon }) => {
+            const active = current === destination
+            return (
+              <button
+                key={destination}
+                type="button"
+                aria-current={active ? "page" : undefined}
+                onClick={() => {
+                  select(destination)
+                  setOpen(false)
+                }}
+                className={cn(
+                  "flex h-(--size-control-md) items-center gap-(--ds-spacing-12) rounded-(--ds-radius-full) px-(--ds-spacing-16) text-(length:--typography-label-md-font-size) font-medium transition-colors outline-none focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring [&_svg]:size-(--size-icon-md)",
+                  active ? "bg-destructive-subtle text-destructive" : "text-field-helper hover:bg-surface-hover hover:text-field-label"
+                )}
+              >
+                <Icon aria-hidden="true" />
+                {destination}
+              </button>
+            )
+          })}
+        </nav>
+      </SheetContent>
+    </Sheet>
   )
 }
 
-// Responsive navigation: the bottom bar on mobile, the top bar on desktop (768px and up).
+// Responsive navigation: the bottom bar on mobile, a menu button on desktop (768px and up).
 // The centre action only exists in the bottom bar, so it is only passed there.
 type NavigationProps = SelectionProps & {
   centerState?: "default" | "pressed" | "disabled"
@@ -126,7 +138,7 @@ type NavigationProps = SelectionProps & {
 function Navigation({ value, defaultValue, onValueChange, centerState, onCenterClick, className }: NavigationProps) {
   const desktop = useIsDesktop()
   const selection = { value, defaultValue, onValueChange }
-  if (desktop) return <TopNavigation className={className} {...selection} />
+  if (desktop) return <HamburgerNavigation {...selection} />
   return (
     <BottomNavigation
       className={className}
@@ -137,4 +149,4 @@ function Navigation({ value, defaultValue, onValueChange, centerState, onCenterC
   )
 }
 
-export { Navigation, BottomNavigation, TopNavigation, type Destination, type NavigationProps, type BottomNavigationProps }
+export { Navigation, BottomNavigation, HamburgerNavigation, type Destination, type NavigationProps, type BottomNavigationProps }

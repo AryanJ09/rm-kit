@@ -81,9 +81,9 @@ function Search({
           aria-label="Clear search"
           onClick={onClear}
           disabled={props.disabled}
-          className="mr-(--ds-spacing-8) flex shrink-0 items-center justify-center rounded-(--ds-radius-full) text-field-placeholder hover:text-field-label disabled:pointer-events-none"
+          className="mr-(--ds-spacing-12) flex size-(--ds-spacing-24) shrink-0 items-center justify-center rounded-(--ds-radius-full) bg-field-clear-background text-field-helper transition-colors hover:bg-field-clear-background-hover hover:text-field-label disabled:pointer-events-none"
         >
-          <XIcon aria-hidden className="size-(--field-icon-size)" />
+          <XIcon aria-hidden className="size-(--ds-spacing-14)" />
         </button>
       ) : null}
     </div>

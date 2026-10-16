@@ -88,7 +88,15 @@ export type DropdownOption = {
 
 // The list itself, without the popover. The story renders it static for the
 // Open state; Dropdown renders it inside PopoverContent.
+// Option rows are as tall as the control of the same size: sm 40, md 48, lg 56, like buttons.
+const optionHeight = {
+  sm: "min-h-(--field-height-sm)",
+  md: "min-h-(--field-height-md)",
+  lg: "min-h-(--field-height-lg)",
+} as const
+
 function DropdownPanel({
+  size = "md",
   options,
   selected,
   searchable = false,
@@ -97,6 +105,7 @@ function DropdownPanel({
   onSelect,
   className,
 }: {
+  size?: keyof typeof optionHeight
   options: DropdownOption[]
   selected: string[]
   searchable?: boolean
@@ -136,7 +145,7 @@ function DropdownPanel({
                 data-checked={checked}
                 aria-checked={checked}
                 className={cn(
-                  "rounded-none px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-xs text-field-label data-selected:bg-surface-hover data-[checked=true]:bg-destructive-subtle data-[checked=true]:text-destructive data-disabled:text-text-disabled"
+                  cn(optionHeight[size], "rounded-none px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-sm text-field-label data-selected:bg-surface-hover data-[checked=true]:bg-destructive-subtle data-[checked=true]:text-destructive data-disabled:text-text-disabled")
                 )}
               >
                 <span className="min-w-0 flex-1 truncate">{option.label}</span>
@@ -239,6 +248,7 @@ function Dropdown({
           className={dropdownPanelClassName}
         >
           <DropdownPanel
+            size={size}
             options={options}
             selected={selected}
             searchable={searchable}

@@ -35,6 +35,8 @@
   --color-surface-disabled: var(--surface-disabled);
   --color-control-disabled: var(--control-disabled);
   --color-field-readonly: var(--field-readonly);
+  --color-field-clear-background: var(--field-clear-background);
+  --color-field-clear-background-hover: var(--field-clear-background-hover);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
@@ -423,6 +425,8 @@
   --surface-disabled: var(--ds-color-neutral-150);
   --control-disabled: var(--ds-color-neutral-350);
   --field-readonly: var(--ds-color-neutral-75);
+  --field-clear-background: var(--ds-color-neutral-150);
+  --field-clear-background-hover: var(--ds-color-neutral-350);
   --control-off: var(--ds-color-neutral-500);
   --text-primary: var(--ds-color-neutral-900);
   --text-secondary: var(--ds-color-neutral-600);

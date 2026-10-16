@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // Hand-written: this file is not regenerated. Badges are static labels: no hover, no focus.
 const meta = {
-  title: "RM Kit/Badge",
+  title: "RM Kit/Atoms/Badge",
   component: Badge,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },

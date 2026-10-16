@@ -4,7 +4,7 @@ import { Button } from "@/rm-style/ui/button"
 
 // Size and variant are properties here: change them in the Controls panel.
 const meta = {
-  title: "RM Kit/Button",
+  title: "RM Kit/Atoms/Button",
   component: Button,
   tags: ["autodocs"],
   args: { children: "Continue", variant: "default", size: "md" },

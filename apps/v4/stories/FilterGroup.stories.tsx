@@ -1,11 +1,11 @@
 import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { FilterGroup } from "@/rm-style/ui/filter-group"
+import { FilterGroup } from "@/rm-style/patterns/filter-group"
 
 // Hand-written: a filter group is a labelled set of Chips. Small groups stay inline; large groups move
 // into a bottom Sheet, the same FilterGroup inside it.
 const meta = {
-  title: "RM Kit/Filter/Filter group",
+  title: "RM Kit/Patterns/Filter group",
   component: FilterGroup,
   args: { options: [{ value: "rekyc", label: "Re-KYC due" }] },
   tags: ["autodocs"],

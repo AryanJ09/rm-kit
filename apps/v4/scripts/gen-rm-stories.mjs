@@ -80,7 +80,7 @@ for (const comp of comps) {
     ...(figma ? [`import FigmaGrid from "./figma/${comp}"`] : []),
     "",
     "const meta = {",
-    `  title: "${RM_KIT.has(comp) ? "RM Kit" : "Components"}/${comp === "input-group" ? "Forms" : pascal(comp)}",`,
+    `  title: "${RM_KIT.has(comp) ? "RM Kit/Atoms" : "Components"}/${comp === "input-group" ? "Forms" : pascal(comp)}",`,
     '  tags: ["autodocs"],',
     `  parameters: { layout: "${FULL_WIDTH.has(comp) ? "fullscreen" : "centered"}" },`,
     "} satisfies Meta",

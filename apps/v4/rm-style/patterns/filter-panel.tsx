@@ -6,7 +6,8 @@ import * as React from "react"
 import { cn } from "cn"
 
 import { Button } from "@/rm-style/ui/button"
-import { FilterGroup, type FilterGroupProps } from "@/rm-style/ui/filter-group"
+import { FilterGroup, type FilterGroupProps } from "@/rm-style/patterns/filter-group"
+import { useIsDesktop } from "@/rm-style/patterns/use-media-query"
 import {
   Sheet,
   SheetContent,
@@ -16,18 +17,9 @@ import {
   SheetTrigger,
 } from "@/rm-style/ui/sheet"
 
-// The filter panel is one component in two places: a bottom sheet on mobile and a side panel
-// on desktop (768px and up, the same breakpoint as md:). The groups and footer are identical.
+// The filter panel is one pattern in two places: a bottom sheet on mobile and a side panel on desktop.
 function useFilterSide(): "bottom" | "right" {
-  const [side, setSide] = React.useState<"bottom" | "right">("bottom")
-  React.useEffect(() => {
-    const query = window.matchMedia("(min-width: 768px)")
-    const update = () => setSide(query.matches ? "right" : "bottom")
-    update()
-    query.addEventListener("change", update)
-    return () => query.removeEventListener("change", update)
-  }, [])
-  return side
+  return useIsDesktop() ? "right" : "bottom"
 }
 
 type FilterSheetProps = {

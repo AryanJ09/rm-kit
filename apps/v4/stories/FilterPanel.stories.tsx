@@ -2,14 +2,14 @@ import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Button } from "@/rm-style/ui/button"
 import { Filter } from "@/rm-style/ui/filter"
-import { type FilterGroupProps } from "@/rm-style/ui/filter-group"
+import { type FilterGroupProps } from "@/rm-style/patterns/filter-group"
 import { FilterEmptyState, FilterSheet } from "@/rm-style/patterns/filter-panel"
 
 // Hand-written example screen. Figma: Filter group pattern and Empty filter.
 // The filters open as a bottom sheet on mobile and a side panel on desktop (same component).
 // Applied filters appear as Filter pills above the results; if nothing matches, Empty filter shows.
 const meta = {
-  title: "RM Kit/Filter/Patterns/Filter panel",
+  title: "RM Kit/Patterns/Filter panel",
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
 } satisfies Meta

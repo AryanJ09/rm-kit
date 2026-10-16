@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // Hand-written: this file is not regenerated. A Chip is a Toggle with the kit's chip look.
 const meta = {
-  title: "RM Kit/Filter/Chip",
+  title: "RM Kit/Atoms/Chip",
   component: Chip,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },

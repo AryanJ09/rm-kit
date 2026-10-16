@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // Hand-written: this file is not regenerated.
 const meta = {
-  title: "RM Kit/Checkbox",
+  title: "RM Kit/Atoms/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
   parameters: { layout: "centered" },

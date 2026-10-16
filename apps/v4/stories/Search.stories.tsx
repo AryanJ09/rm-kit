@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Search } from "@/rm-style/ui/search"
 
 const meta = {
-  title: "RM Kit/Search",
+  title: "RM Kit/Atoms/Search",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

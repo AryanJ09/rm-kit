@@ -12,7 +12,7 @@ import {
 } from "@/rm-style/ui/alert-dialog"
 import { Avatar, AvatarFallback } from "@/rm-style/ui/avatar"
 import { Badge } from "@/rm-style/ui/badge"
-import { BottomNavigation } from "@/rm-style/ui/bottom-navigation"
+import { Navigation, type Destination } from "@/rm-style/patterns/navigation"
 import { Button } from "@/rm-style/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/rm-style/ui/card"
 import { Checkbox } from "@/rm-style/ui/checkbox"
@@ -121,6 +121,7 @@ function AddClient() {
 }
 
 function Dashboard() {
+  const [screen, setScreen] = useState<Destination>("Clients")
   const [query, setQuery] = useState("")
   const [risk, setRisk] = useState<string[]>([])
   const [activeOnly, setActiveOnly] = useState(false)
@@ -248,9 +249,9 @@ function Dashboard() {
         </div>
       </main>
 
-      {/* Mobile only: primary navigation pinned to the bottom edge. */}
-      <div className="fixed inset-x-0 bottom-0 flex justify-center md:hidden">
-        <BottomNavigation defaultActive="Clients" />
+      {/* Navigation pattern: a bottom bar pinned to the edge on mobile, a top bar on desktop. */}
+      <div className="order-last fixed inset-x-0 bottom-0 z-40 flex justify-center md:static md:order-first md:z-auto">
+        <Navigation value={screen} onValueChange={setScreen} />
       </div>
 
       <AlertDialog open={removing !== null} onOpenChange={(open) => !open && setRemoving(null)}>

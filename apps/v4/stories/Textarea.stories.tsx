@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Textarea } from "@/rm-style/ui/textarea"
 
 const meta = {
-  title: "RM Kit/Textarea",
+  title: "RM Kit/Atoms/Textarea",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

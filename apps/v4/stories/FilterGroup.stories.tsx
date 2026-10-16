@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from "@/rm-style/ui/button"
 
 // Hand-written: a filter group is a labelled set of Chips. Small groups stay inline; large groups move
-// into a side Sheet, which is where the same FilterGroup lives on mobile and desktop.
+// into a bottom Sheet, the same FilterGroup inside it.
 const meta = {
   title: "RM Kit/Filter group",
   component: FilterGroup,
@@ -40,8 +40,8 @@ export const Single: Story = {
   render: () => <SingleExample />,
 }
 
-export const InSheet: Story = {
-  render: () => <InSheetExample />,
+export const InBottomSheet: Story = {
+  render: () => <InBottomSheetExample />,
 }
 
 function MultipleExample() {
@@ -63,14 +63,14 @@ function SingleExample() {
   )
 }
 
-function InSheetExample() {
+function InBottomSheetExample() {
   const [today, setToday] = useState<string[]>([])
   const [risk, setRisk] = useState<string[]>([])
   return (
     <div className="flex flex-col gap-(--ds-spacing-16) p-(--ds-spacing-16)">
       <Sheet>
         <SheetTrigger render={<Button variant="secondary" />}>Filters</SheetTrigger>
-        <SheetContent>
+        <SheetContent side="bottom">
           <SheetHeader>
             <SheetTitle>Filters</SheetTitle>
             <SheetDescription>Narrow the client list.</SheetDescription>

@@ -21,7 +21,6 @@ export const AllStates: Story = {
       <div className="flex flex-wrap items-center gap-(--ds-spacing-8)">
         <Filter label="Re-KYC due" size="sm" onRemove={() => {}} />
         <Filter label="Moderate" size="md" onRemove={() => {}} />
-        <Filter label="Renewals and maturities" size="lg" onRemove={() => {}} />
         <Filter label="Read only" size="sm" />
       </div>
     </div>

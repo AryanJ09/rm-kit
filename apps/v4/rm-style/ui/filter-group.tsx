@@ -17,7 +17,7 @@ type FilterGroupProps = {
   value?: string[]
   defaultValue?: string[]
   onValueChange?: (value: string[]) => void
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md"
   className?: string
 }
 

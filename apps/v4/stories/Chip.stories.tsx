@@ -13,9 +13,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const sizes = ["sm", "md", "lg"] as const
+const sizes = ["sm", "md"] as const
 
-// Rows are the size scale (40, 48, 56); columns are the states.
+// Rows are the size scale (40, 48); columns are the states.
 export const AllStates: Story = {
   render: () => (
     <Table className="w-full p-(--ds-spacing-16)">

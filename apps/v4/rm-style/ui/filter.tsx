@@ -8,7 +8,7 @@ import { chipVariants } from "@/rm-style/ui/chip"
 type FilterProps = {
   label: string
   onRemove?: () => void
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md"
   className?: string
 }
 

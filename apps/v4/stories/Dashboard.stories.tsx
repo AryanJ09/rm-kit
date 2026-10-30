@@ -12,7 +12,7 @@ import {
 } from "@/rm-style/ui/alert-dialog"
 import { Avatar, AvatarFallback } from "@/rm-style/ui/avatar"
 import { Badge } from "@/rm-style/ui/badge"
-import { BottomNavigation } from "@/rm-style/ui/bottom-navigation"
+import { BottomNavigation } from "@/rm-style/ui/application-shell/bottom-navigation"
 import { Button } from "@/rm-style/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/bases/base/ui/card"
 import { Checkbox } from "@/rm-style/ui/checkbox"
@@ -148,7 +148,7 @@ function Dashboard() {
     <div className="flex min-h-dvh flex-col bg-background font-sans text-foreground">
       <header className="flex flex-col gap-(--spacing-inline-lg) border-b border-border p-(--spacing-inline-lg) md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-(length:--font-size-2xl) font-medium">Clients</h1>
+          <h1 className="text-(length:--font-size-2xl) font-(--typography-label-sm-font-weight)">Clients</h1>
           <p className="text-(length:--font-size-sm) text-text-secondary">{rows.length} of {CLIENTS.length - removed.length} shown</p>
         </div>
         <div className="flex items-center gap-(--spacing-inline-sm)">
@@ -190,7 +190,7 @@ function Dashboard() {
                 <li key={c.id} className="flex items-center gap-(--spacing-inline-md) rounded-(--radius-md) border border-border p-(--spacing-inline-md)">
                   <Avatar><AvatarFallback>{initials(c.name)}</AvatarFallback></Avatar>
                   <div className="flex min-w-0 flex-1 flex-col gap-(--spacing-inline-xs)">
-                    <span className="truncate font-medium">{c.name}</span>
+                    <span className="truncate font-(--typography-label-sm-font-weight)">{c.name}</span>
                     <Badge variant={c.risk}>{label(c.risk)}</Badge>
                   </div>
                   <span className="text-(length:--font-size-sm) text-text-secondary">{c.aum}</span>

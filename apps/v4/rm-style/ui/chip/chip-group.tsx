@@ -1,15 +1,15 @@
 "use client"
 
-// RM Kit Filter Group is built on the existing Base UI toggle-group primitive. Keep the toggle foundation clear for agents.
+// RM Kit Chip Group is built on the existing Base UI toggle-group primitive. Keep the toggle foundation clear for agents.
 import * as React from "react"
-import { filterVariants } from "@/rm-style/ui/filter"
+import { chipVariants } from "./chip"
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle"
-import { ToggleGroup as FilterGroupPrimitive } from "@base-ui/react/toggle-group"
+import { ToggleGroup as ChipGroupPrimitive } from "@base-ui/react/toggle-group"
 import { type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-const FilterGroupContext = React.createContext<
-  VariantProps<typeof filterVariants> & {
+const ChipGroupContext = React.createContext<
+  VariantProps<typeof chipVariants> & {
     spacing?: number
     orientation?: "horizontal" | "vertical"
   }
@@ -20,7 +20,7 @@ const FilterGroupContext = React.createContext<
   orientation: "horizontal",
 })
 
-function FilterGroup({
+function ChipGroup({
   className,
   variant,
   size,
@@ -28,51 +28,51 @@ function FilterGroup({
   orientation = "horizontal",
   children,
   ...props
-}: FilterGroupPrimitive.Props &
-  VariantProps<typeof filterVariants> & {
+}: ChipGroupPrimitive.Props &
+  VariantProps<typeof chipVariants> & {
     spacing?: number
     orientation?: "horizontal" | "vertical"
   }) {
   return (
-    <FilterGroupPrimitive
-      data-slot="filter-group"
+    <ChipGroupPrimitive
+      data-slot="chip-group"
       data-variant={variant}
       data-size={size}
       data-spacing={spacing}
       data-orientation={orientation}
       className={cn(
-        "group/filter-group flex w-fit flex-row items-center gap-(--spacing-inline-sm) rounded-(--radius-pill) data-vertical:flex-col data-vertical:items-stretch",
+        "group/chip-group flex w-fit flex-row flex-wrap items-center gap-(--spacing-stack-2xs) rounded-(--radius-pill) data-vertical:flex-col data-vertical:items-stretch",
         className
       )}
       {...props}
     >
-      <FilterGroupContext.Provider
+      <ChipGroupContext.Provider
         value={{ variant, size, spacing, orientation }}
       >
         {children}
-      </FilterGroupContext.Provider>
-    </FilterGroupPrimitive>
+      </ChipGroupContext.Provider>
+    </ChipGroupPrimitive>
   )
 }
 
-function FilterGroupItem({
+function ChipGroupItem({
   className,
   children,
   variant = "default",
   size = "default",
   ...props
-}: TogglePrimitive.Props & VariantProps<typeof filterVariants>) {
-  const context = React.useContext(FilterGroupContext)
+}: TogglePrimitive.Props & VariantProps<typeof chipVariants>) {
+  const context = React.useContext(ChipGroupContext)
 
   return (
     <TogglePrimitive
-      data-slot="filter-group-item"
+      data-slot="chip-group-item"
       data-variant={context.variant || variant}
       data-size={context.size || size}
       data-spacing={context.spacing}
       className={cn(
         "shrink-0 focus:z-10 focus-visible:z-10",
-        filterVariants({
+        chipVariants({
           variant: context.variant || variant,
           size: context.size || size,
         }),
@@ -85,4 +85,4 @@ function FilterGroupItem({
   )
 }
 
-export { FilterGroup, FilterGroupItem }
+export { ChipGroup, ChipGroupItem }

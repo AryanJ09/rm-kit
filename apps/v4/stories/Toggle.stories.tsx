@@ -5,12 +5,14 @@ import { ToggleDisabled as DemoToggleDisabled } from "@/examples/base/toggle-dis
 import { ToggleOutline as DemoToggleOutline } from "@/examples/base/toggle-outline"
 import { ToggleSizes as DemoToggleSizes } from "@/examples/base/toggle-sizes"
 import { ToggleText as DemoToggleText } from "@/examples/base/toggle-text"
+import { Toggle } from "@/rm-style/ui/toggle"
 
 const meta = {
   title: "RM Kit/Upcoming/Toggle",
+  component: Toggle,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta
+} satisfies Meta<typeof Toggle>
 
 export default meta
 type Story = StoryObj<typeof meta>

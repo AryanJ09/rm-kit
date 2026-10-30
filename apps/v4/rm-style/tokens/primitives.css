@@ -115,6 +115,7 @@
   --ds-color-chart-gold-71: #c49b18;
 
   /* color / accent (Figma brand accent, ramp by step) */
+  --ds-color-accent-50: #feeaee;
   --ds-color-accent-500: #f23057;
   --ds-color-accent-700: #be1539;
 
@@ -139,6 +140,7 @@
   --ds-typography-font-size-48: 48px;
   --ds-typography-font-weight-regular: 400;
   --ds-typography-font-weight-medium: 500;
+  --ds-typography-font-weight-semibold: 600;
   --ds-typography-font-weight-bold: 700;
   --ds-typography-line-height-12: 12px;
   --ds-typography-line-height-14: 14px;
@@ -199,6 +201,7 @@
   --ds-size-control-44: 44px;
   --ds-size-control-48: 48px;
   --ds-size-layout-frame-width: 430px;
+  --ds-size-layout-frame-height: 932px;
   --ds-size-layout-nav-clearance: 100px;
   --ds-size-border-width-hairline: 0.5px;
   --ds-size-border-width-1: 1px;

@@ -7,6 +7,7 @@ import { SearchIcon, XIcon } from "lucide-react"
 import { cn } from "cn"
 
 import { Spinner } from "@/rm-style/ui/spinner"
+import { controlSize } from "./control"
 
 // Pill-shaped search field. The wrapper draws the border and focus ring so the
 // icons and the text share one outline.
@@ -14,11 +15,7 @@ const searchVariants = cva(
   "group flex w-full min-w-0 items-center rounded-(--radius-pill) border-(length:--border-width-default) bg-background text-(color:--field-label) transition-colors has-disabled:cursor-not-allowed has-disabled:border-control-disabled has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--focus-ring-width) focus-within:ring-primary-focus-ring",
   {
     variants: {
-      size: {
-        sm: "h-(--size-control-sm) text-sm",
-        md: "h-(--size-control-md) text-sm",
-        lg: "h-(--size-control-lg) text-lg",
-      },
+      size: controlSize,
       state: {
         default: "border-field-stroke",
         error: "border-field-error",
@@ -44,13 +41,22 @@ function Search({
   size,
   state,
   value,
+  defaultValue,
   onValueChange,
   onClear,
   loading = false,
   placeholder = "Search",
   ...props
 }: SearchProps) {
-  const hasValue = typeof value === "string" && value.length > 0
+  // Works controlled (value) or on its own (defaultValue). The clear icon empties the field either way.
+  const [inner, setInner] = React.useState(String(defaultValue ?? ""))
+  const current = value ?? inner
+  const hasValue = current.length > 0
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const change = (next: string) => {
+    if (value === undefined) setInner(next)
+    onValueChange?.(next)
+  }
 
   return (
     <div
@@ -67,19 +73,24 @@ function Search({
       <InputPrimitive
         type="search"
         data-slot="search-input"
-        value={value}
+        ref={inputRef}
+        value={current}
         placeholder={placeholder}
-        onChange={(event) => onValueChange?.(event.target.value)}
+        onChange={(event) => change(event.target.value)}
         className="h-full min-w-0 flex-1 bg-transparent px-(--spacing-inline-sm) outline-none placeholder:text-field-placeholder disabled:cursor-not-allowed [&::-webkit-search-cancel-button]:appearance-none"
         {...props}
       />
       {loading ? (
         <Spinner className="mr-(--spacing-inset-control-x) size-(--size-icon-sm) shrink-0 text-field-placeholder" />
-      ) : hasValue && onClear ? (
+      ) : hasValue ? (
         <button
           type="button"
           aria-label="Clear search"
-          onClick={onClear}
+          onClick={() => {
+            change("")
+            onClear?.()
+            inputRef.current?.focus()
+          }}
           disabled={props.disabled}
           className="mr-(--spacing-inline-sm) flex shrink-0 items-center justify-center rounded-(--radius-pill) text-field-placeholder hover:text-(color:--field-label) disabled:pointer-events-none"
         >

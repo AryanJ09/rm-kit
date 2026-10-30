@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 const badgeVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-(--spacing-inline-xs) overflow-hidden rounded-(--radius-sm) border border-transparent px-(--spacing-inline-sm) font-medium whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-(--size-icon-3xs) [&>svg]:shrink-0",
+  "inline-flex w-fit shrink-0 items-center justify-center gap-(--spacing-inline-xs) overflow-hidden rounded-(--radius-sm) border border-transparent px-(--spacing-inline-sm) text-(length:--font-size-xs) font-(--typography-label-strong-font-weight) whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-(--size-icon-3xs) [&>svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -33,14 +33,26 @@ const badgeVariants = cva(
 function Badge({
   className,
   variant = "default",
+  dot = false,
   render,
+  children,
   ...props
-}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>) {
+}: useRender.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & {
+    /** Status dot before the label, in the label colour. */
+    dot?: boolean
+  }) {
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
         className: cn(badgeVariants({ variant }), className),
+        children: (
+          <>
+            {dot && <span data-slot="badge-dot" className="size-(--size-dot) shrink-0 rounded-(--radius-pill) bg-current" />}
+            {children}
+          </>
+        ),
       },
       props
     ),

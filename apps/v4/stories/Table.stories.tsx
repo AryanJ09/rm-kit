@@ -3,12 +3,14 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { TableActions as DemoTableActions } from "@/examples/base/table-actions"
 import { TableDemo as DemoTableDemo } from "@/examples/base/table-demo"
 import { TableFooterExample as DemoTableFooter } from "@/examples/base/table-footer"
+import { Table } from "@/rm-style/ui/table"
 
 const meta = {
   title: "RM Kit/Upcoming/Table",
+  component: Table,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta
+} satisfies Meta<typeof Table>
 
 export default meta
 type Story = StoryObj<typeof meta>

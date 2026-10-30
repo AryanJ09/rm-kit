@@ -41,13 +41,16 @@ function SheetContent({
   children,
   side = "right",
   showCloseButton = true,
+  container,
   ...props
 }: SheetPrimitive.Popup.Props & {
   side?: "top" | "right" | "bottom" | "left"
   showCloseButton?: boolean
+  /** Open inside this element instead of the page (the mobile application shell keeps its sheet inside the frame). */
+  container?: HTMLElement | null
 }) {
   return (
-    <SheetPortal>
+    <SheetPortal container={container}>
       <SheetOverlay />
       <SheetPrimitive.Popup
         data-slot="sheet-content"
@@ -94,7 +97,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sheet-footer"
-      className={cn("mt-auto flex flex-col gap-(--spacing-inline-sm) p-(--spacing-inline-lg)", className)}
+      className={cn("mt-auto flex flex-row items-center justify-end gap-(--spacing-inline-md) p-(--spacing-inline-lg)", className)}
       {...props}
     />
   )

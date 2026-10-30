@@ -25,8 +25,8 @@ export default function EmptyDemo() {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">
-        <Button>Create Project</Button>
         <Button variant="outline">Import Project</Button>
+        <Button>Create Project</Button>
       </EmptyContent>
       <Button
         variant="link"

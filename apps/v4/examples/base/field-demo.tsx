@@ -1,6 +1,7 @@
 import { Button } from "@/styles/base-nova/ui/button"
 import { Checkbox } from "@/styles/base-nova/ui/checkbox"
 import {
+  FieldActions,
   Field,
   FieldDescription,
   FieldGroup,
@@ -161,12 +162,12 @@ export default function FieldDemo() {
               </Field>
             </FieldGroup>
           </FieldSet>
-          <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
+          <FieldActions>
             <Button variant="outline" type="button">
               Cancel
             </Button>
-          </Field>
+            <Button type="submit">Submit</Button>
+          </FieldActions>
         </FieldGroup>
       </form>
     </div>

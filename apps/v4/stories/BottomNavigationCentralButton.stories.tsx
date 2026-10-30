@@ -1,4 +1,4 @@
-import { BottomNavigationCentralButton } from "@/rm-style/ui/bottom-navigation-central-button"
+import { BottomNavigationCentralButton } from "@/rm-style/ui/application-shell/bottom-navigation-central-button"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 import { VariantGrid } from "./figma/component-set"

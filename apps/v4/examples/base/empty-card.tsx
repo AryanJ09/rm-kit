@@ -25,10 +25,10 @@ export function EmptyInCard() {
       </EmptyHeader>
       <EmptyContent>
         <div className="flex gap-2">
+          <Button variant="outline">Import project</Button>
           <Button render={<a href="#" />} nativeButton={false}>
             Create project
           </Button>
-          <Button variant="outline">Import project</Button>
         </div>
         <Button
           variant="link"

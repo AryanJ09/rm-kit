@@ -223,8 +223,21 @@ function FieldError({
   )
 }
 
+// Action row at the end of a form. The primary action is always the last child and sits at the right:
+// secondary actions first (Cancel, Reset), primary last (Submit, Save). Order in the DOM matches what the eye and keyboard see.
+function FieldActions({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="field-actions"
+      className={cn("flex w-full items-center justify-end gap-(--spacing-inline-md)", className)}
+      {...props}
+    />
+  )
+}
+
 export {
   Field,
+  FieldActions,
   FieldLabel,
   FieldDescription,
   FieldError,

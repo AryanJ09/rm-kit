@@ -32,6 +32,11 @@ const config: StorybookConfig = {
     // RM Card was removed; demos that still import a card get the shadcn base card.
     const baseCard = fileURLToPath(new URL("../registry/bases/base/ui/card", import.meta.url))
     const cardAlias = { find: /^@\/styles\/base-(?:nova|rhea)\/ui\/card$/, replacement: baseCard }
+    // The sidebar lives in the application-shell folder; the shadcn demos still import it by the old name.
+    const sidebarAlias = {
+      find: /^@\/styles\/base-(?:nova|rhea)\/ui\/sidebar$/,
+      replacement: `${rmUi}application-shell/sidebar`,
+    }
     const alias = {
       find: /^@\/styles\/base-(?:nova|rhea)\/ui\/(.*)$/,
       replacement: `${rmUi}$1`,
@@ -40,9 +45,10 @@ const config: StorybookConfig = {
     config.resolve = {
       ...config.resolve,
       alias: Array.isArray(existing)
-        ? [cardAlias, alias, ...existing]
+        ? [cardAlias, sidebarAlias, alias, ...existing]
         : [
             cardAlias,
+            sidebarAlias,
             alias,
             ...Object.entries(existing).map(([find, replacement]) => ({
               find,

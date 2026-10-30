@@ -26,7 +26,6 @@ const RM_KIT = new Set([
   "avatar",
   "dropdown-menu",
   "alert",
-  "sidebar",
   "tabs",
   "badge",
   "checkbox",
@@ -37,8 +36,6 @@ const RM_KIT = new Set([
   "search",
   "dropdown",
   "date-picker",
-  "navigation-item",
-  "bottom-navigation",
   "alert-dialog",
   "dialog",
   "drawer",
@@ -76,7 +73,7 @@ const STORY_NAMES = {
 }
 // Batch E: these components are wider than a centred box, so their stories use the full canvas.
 // Sidebar fills the viewport (its panel is full height), so it needs the whole canvas.
-const FULL_WIDTH = new Set(["input-group", "select", "sidebar"])
+const FULL_WIDTH = new Set(["input-group", "select"])
 const comps = fs
   .readdirSync(UI)
   .filter((f) => f.endsWith(".tsx"))

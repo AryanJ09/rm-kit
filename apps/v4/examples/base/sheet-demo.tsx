@@ -34,8 +34,8 @@ export default function SheetDemo() {
           </div>
         </div>
         <SheetFooter>
-          <Button type="submit">Save changes</Button>
           <SheetClose render={<Button variant="outline" />}>Close</SheetClose>
+          <Button type="submit">Save changes</Button>
         </SheetFooter>
       </SheetContent>
     </Sheet>

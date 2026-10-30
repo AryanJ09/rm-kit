@@ -1,23 +1,51 @@
+import * as React from "react"
+import { cardVariants } from "@/rm-style/ui/card"
 import { Skeleton } from "@/rm-style/ui/skeleton"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import { cn } from "cn"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
-function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
+// "card": every item is a Card (Figma "Client cue group"): the trigger is the card header, the panel its body.
+const AccordionVariant = React.createContext<"default" | "card">("default")
+// Chevron colour: "accent" (the stock red) or "default" (the grey icon role). Both are kept.
+const AccordionChevron = React.createContext<"accent" | "default">("accent")
+
+function Accordion({
+  className,
+  variant = "default",
+  chevron = "accent",
+  ...props
+}: AccordionPrimitive.Root.Props & {
+  variant?: "default" | "card"
+  chevron?: "accent" | "default"
+}) {
   return (
-    <AccordionPrimitive.Root
-      data-slot="accordion"
-      className={cn("flex w-full flex-col", className)}
-      {...props}
-    />
+    <AccordionChevron.Provider value={chevron}>
+      <AccordionVariant.Provider value={variant}>
+        <AccordionPrimitive.Root
+          data-slot="accordion"
+          data-variant={variant}
+          className={cn(
+            "flex w-full flex-col",
+            variant === "card" && "gap-(--spacing-inline-md)",
+            className
+          )}
+          {...props}
+        />
+      </AccordionVariant.Provider>
+    </AccordionChevron.Provider>
   )
 }
 
 function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
+  const card = React.useContext(AccordionVariant) === "card"
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("not-last:border-b", className)}
+      className={cn(
+        card ? cardVariants({ density: "default" }) : "not-last:border-b",
+        className
+      )}
       {...props}
     />
   )
@@ -28,12 +56,18 @@ function AccordionTrigger({
   children,
   ...props
 }: AccordionPrimitive.Trigger.Props) {
+  const card = React.useContext(AccordionVariant) === "card"
+  const iconColor =
+    React.useContext(AccordionChevron) === "default"
+      ? "text-icon-default"
+      : "text-icon-accent"
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-(--spacing-inset-md) text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-(--opacity-disabled) **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-(--size-icon-sm)",
+          card && "items-center! py-(--spacing-none)! hover:no-underline",
+          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-(--radius-lg) border border-transparent py-(--spacing-inset-md) text-left text-(length:--font-size-sm) font-(--typography-title-sm-font-weight) transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-(--opacity-disabled) **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-(--size-icon-sm)",
           className
         )}
         {...props}
@@ -41,11 +75,17 @@ function AccordionTrigger({
         {children}
         <ChevronDownIcon
           data-slot="accordion-trigger-icon"
-          className="text-icon-accent pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+          className={cn(
+            iconColor,
+            "pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+          )}
         />
         <ChevronUpIcon
           data-slot="accordion-trigger-icon"
-          className="text-icon-accent pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
+          className={cn(
+            iconColor,
+            "pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
+          )}
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -58,15 +98,17 @@ function AccordionContent({
   loading = false,
   ...props
 }: AccordionPrimitive.Panel.Props & { loading?: boolean }) {
+  const card = React.useContext(AccordionVariant) === "card"
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
-      className="overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up"
+      className="overflow-hidden text-(length:--font-size-sm) data-open:animate-accordion-down data-closed:animate-accordion-up"
       {...props}
     >
       <div
         className={cn(
-          "h-(--accordion-panel-height) pt-0 pb-(--spacing-inset-md) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-(--spacing-stack-md)",
+          card ? "pt-(--spacing-inline-md)" : "pt-0 pb-(--spacing-inset-md)",
+          "h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-(--spacing-stack-md)",
           className
         )}
       >

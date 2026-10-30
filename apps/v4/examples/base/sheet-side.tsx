@@ -48,10 +48,10 @@ export default function SheetSide() {
               ))}
             </div>
             <SheetFooter>
-              <Button type="submit">Save changes</Button>
               <SheetClose render={<Button variant="outline" />}>
                 Cancel
               </SheetClose>
+              <Button type="submit">Save changes</Button>
             </SheetFooter>
           </SheetContent>
         </Sheet>

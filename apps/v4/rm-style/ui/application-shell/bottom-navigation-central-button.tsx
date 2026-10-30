@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
-import { BottomNavCenterIcon } from "../icons/bottom-nav-center"
+import { BottomNavCenterIcon } from "../../icons/bottom-nav-center"
 
 const bottomNavigationCentralButtonVariants = cva(
   "inline-flex size-(--size-60) shrink-0 items-center justify-center rounded-(--radius-pill) transition-colors disabled:cursor-not-allowed",

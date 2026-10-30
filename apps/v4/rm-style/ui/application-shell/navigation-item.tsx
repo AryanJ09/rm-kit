@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 const navigationItemVariants = cva(
-  "flex w-(--size-72) h-(--size-nav-surface-height) flex-col items-center justify-center gap-(--spacing-stack-2xs) font-medium text-(length:--font-size-xs) transition-colors outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed active:text-destructive",
+  "flex w-(--size-72) h-(--size-nav-surface-height) flex-col items-center justify-center gap-(--spacing-stack-2xs) font-(--typography-label-sm-font-weight) text-(length:--font-size-xs) transition-colors outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed active:text-destructive",
   {
     variants: {
       state: {
@@ -24,9 +24,9 @@ const navigationItemWellVariants = cva(
   {
     variants: {
       state: {
-        inactive: "bg-transparent active:bg-destructive-subtle",
-        active: "bg-destructive-subtle",
-        pressed: "bg-destructive-subtle",
+        inactive: "bg-transparent active:bg-(color:--accent-subtle)",
+        active: "bg-(color:--accent-subtle)",
+        pressed: "bg-(color:--accent-subtle)",
         disabled: "bg-transparent",
       },
     },

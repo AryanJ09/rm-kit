@@ -1,6 +1,6 @@
 import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { BottomNavigation } from "@/rm-style/ui/bottom-navigation"
+import { BottomNavigation } from "@/rm-style/ui/application-shell/bottom-navigation"
 
 const meta = {
   title: "RM Kit/Bottom navigation/Bottom navigation",

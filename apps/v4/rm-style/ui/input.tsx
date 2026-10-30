@@ -2,18 +2,15 @@ import * as React from "react"
 import { Input as InputPrimitive } from "@base-ui/react/input"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import { controlSize } from "./control"
 
 // Colours come from semantic roles only. Focus is always the blue field-focus
 // border plus the primary focus ring, even when the field is in error.
 const inputVariants = cva(
-  "w-full min-w-0 rounded-lg border-(length:--border-width-default) px-(--spacing-inset-control-x) bg-background text-(color:--field-label) transition-colors outline-none placeholder:text-field-placeholder read-only:bg-field-readonly focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
+  "w-full min-w-0 rounded-(--radius-lg) border-(length:--border-width-default) px-(--spacing-inset-control-x) bg-background text-(color:--field-label) transition-colors outline-none placeholder:text-field-placeholder read-only:bg-field-readonly focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
-      size: {
-        sm: "h-(--size-control-sm) text-sm",
-        md: "h-(--size-control-md) text-sm",
-        lg: "h-(--size-control-lg) text-lg",
-      },
+      size: controlSize,
       state: {
         default: "border-field-stroke",
         success: "border-field-success",

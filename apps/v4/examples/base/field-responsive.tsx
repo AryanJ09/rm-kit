@@ -1,5 +1,6 @@
 import { Button } from "@/styles/base-nova/ui/button"
 import {
+  FieldActions,
   Field,
   FieldContent,
   FieldDescription,
@@ -27,12 +28,12 @@ export function FieldResponsive() {
               </FieldContent>
               <Input id="name" placeholder="Evil Rabbit" required />
             </Field>
-            <Field orientation="responsive">
-              <Button type="submit">Submit</Button>
+            <FieldActions>
               <Button type="button" variant="outline">
                 Cancel
               </Button>
-            </Field>
+              <Button type="submit">Submit</Button>
+            </FieldActions>
           </FieldGroup>
         </FieldSet>
       </form>

@@ -15,6 +15,20 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const types = ["conservative", "moderate", "growth", "aggressive", "secure", "success", "neutral"] as const
+
+// Every badge option as a control.
+export const Playground: StoryObj<{ variant: (typeof types)[number]; label: string; dot: boolean; icon: boolean }> = {
+  args: { variant: "moderate", label: "Scheduled", dot: true, icon: false },
+  argTypes: { variant: { control: "select", options: types } },
+  parameters: { layout: "centered" },
+  render: ({ variant, label, dot, icon }) => (
+    <Badge variant={variant} dot={dot}>
+      {icon && <Info />}
+      {label}
+    </Badge>
+  ),
+}
+
 const label = (t: string) => t[0].toUpperCase() + t.slice(1)
 
 // Rows are the seven types; columns are the three statuses.
@@ -35,10 +49,7 @@ export const AllStates: Story = {
             <TableCell>{label(t)}</TableCell>
             <TableCell><Badge variant={t}>{label(t)}</Badge></TableCell>
             <TableCell>
-              <Badge variant={t}>
-                <span className="size-(--size-dot) rounded-(--radius-pill) bg-current" />
-                {label(t)}
-              </Badge>
+              <Badge variant={t} dot>{label(t)}</Badge>
             </TableCell>
             <TableCell>
               {/* The icon is a slot: any svg child is sized by the badge, so swap Info for the real icon. */}

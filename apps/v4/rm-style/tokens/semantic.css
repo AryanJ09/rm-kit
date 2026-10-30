@@ -85,6 +85,7 @@
 
   /* shared roles for the Figma batches (point at primitives only) */
   --icon-accent: var(--ds-color-accent-500);
+  --accent-subtle: var(--ds-color-accent-50);
   --accent-subtle-foreground: var(--ds-color-accent-700);
   --field-focus: var(--ds-color-brand-600);
   --field-label: var(--ds-color-neutral-900);
@@ -252,6 +253,7 @@
   --size-nav-height: var(--ds-size-88);
   --size-nav-surface-height: var(--ds-size-74);
   --size-layout-frame-width: var(--ds-size-layout-frame-width);
+  --size-layout-frame-height: var(--ds-size-layout-frame-height);
   --size-layout-nav-clearance: var(--ds-size-layout-nav-clearance);
   --size-icon-xl: var(--ds-size-icon-48);
   --spacing-inset-nav: var(--ds-spacing-14);
@@ -388,6 +390,8 @@
   --typography-label-sm-font-family: var(--ds-typography-font-family-base);
   --typography-label-sm-font-size: var(--ds-typography-font-size-12);
   --typography-label-sm-font-weight: var(--ds-typography-font-weight-medium);
+  /* badge and status labels */
+  --typography-label-strong-font-weight: var(--ds-typography-font-weight-semibold);
   --typography-label-sm-line-height: var(--ds-typography-line-height-16);
   --typography-label-sm-letter-spacing: var(
     --ds-typography-letter-spacing-normal

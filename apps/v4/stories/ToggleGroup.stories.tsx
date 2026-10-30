@@ -7,12 +7,14 @@ import { ToggleGroupOutline as DemoToggleGroupOutline } from "@/examples/base/to
 import { ToggleGroupSizes as DemoToggleGroupSizes } from "@/examples/base/toggle-group-sizes"
 import { ToggleGroupSpacing as DemoToggleGroupSpacing } from "@/examples/base/toggle-group-spacing"
 import { ToggleGroupVertical as DemoToggleGroupVertical } from "@/examples/base/toggle-group-vertical"
+import { ToggleGroup } from "@/rm-style/ui/toggle-group"
 
 const meta = {
   title: "RM Kit/Upcoming/ToggleGroup",
+  component: ToggleGroup,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta
+} satisfies Meta<typeof ToggleGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>

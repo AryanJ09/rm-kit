@@ -21,12 +21,14 @@ import DemoInputGroupTooltip from "@/examples/base/input-group-tooltip"
 import { InputGroupWithAddons as DemoInputGroupWithAddons } from "@/examples/base/input-group-with-addons"
 import { InputGroupWithButtons as DemoInputGroupWithButtons } from "@/examples/base/input-group-with-buttons"
 import { InputGroupWithKbd as DemoInputGroupWithKbd } from "@/examples/base/input-group-with-kbd"
+import { InputGroup } from "@/rm-style/ui/input-group"
 
 const meta = {
   title: "RM Kit/Upcoming/Forms",
+  component: InputGroup,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-} satisfies Meta
+} satisfies Meta<typeof InputGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>

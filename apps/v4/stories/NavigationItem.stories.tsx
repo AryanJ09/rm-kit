@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { ClipboardList, House, Target, Users } from "lucide-react"
-import { NavigationItem } from "@/rm-style/ui/navigation-item"
+import { NavigationItem } from "@/rm-style/ui/application-shell/navigation-item"
 
 const meta = {
   title: "RM Kit/Bottom navigation/Navigation item",

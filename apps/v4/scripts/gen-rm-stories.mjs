@@ -17,9 +17,17 @@ const OUT = path.join(ROOT, "stories")
 // Shadcn components queued to join the kit; shown under RM Kit/Upcoming.
 // Width-driven demos collapse to nothing in the docs page under "centered"; pad them instead.
 const PADDED = new Set(["field", "progress", "slider"])
-const UPCOMING = new Set(["sidebar", "tabs", "table", "toggle", "toggle-group", "input-group"])
+const UPCOMING = new Set(["table", "toggle", "toggle-group", "input-group"])
 const RM_KIT = new Set([
   "button",
+  "command",
+  "scroll-area",
+  "separator",
+  "avatar",
+  "dropdown-menu",
+  "alert",
+  "sidebar",
+  "tabs",
   "badge",
   "checkbox",
   "radio-group",
@@ -67,7 +75,8 @@ const STORY_NAMES = {
   "filter-group": "Filter group",
 }
 // Batch E: these components are wider than a centred box, so their stories use the full canvas.
-const FULL_WIDTH = new Set(["input-group", "select"])
+// Sidebar fills the viewport (its panel is full height), so it needs the whole canvas.
+const FULL_WIDTH = new Set(["input-group", "select", "sidebar"])
 const comps = fs
   .readdirSync(UI)
   .filter((f) => f.endsWith(".tsx"))
@@ -144,12 +153,15 @@ for (const comp of comps) {
         : `import ${s.id} from "@/examples/base/${s.demo}"`
     ),
     ...(figma ? [`import FigmaGrid from "./figma/${comp}"`] : []),
+    // Upcoming groups name their RM component in meta so the Controls panel can read its props.
+    ...(UPCOMING.has(comp) ? [`import { ${pascal(comp)} } from "@/rm-style/ui/${comp}"`] : []),
     "",
     "const meta = {",
     `  title: "${UPCOMING.has(comp) ? "RM Kit/Upcoming" : RM_KIT.has(comp) ? "RM Kit" : "Components"}/${comp === "input-group" ? "Forms" : STORY_NAMES[comp] || pascal(comp)}",`,
+    ...(UPCOMING.has(comp) ? [`  component: ${pascal(comp)},`] : []),
     '  tags: ["autodocs"],',
     `  parameters: { layout: "${FULL_WIDTH.has(comp) ? "fullscreen" : PADDED.has(comp) ? "padded" : "centered"}" },`,
-    "} satisfies Meta",
+    `} satisfies Meta${UPCOMING.has(comp) ? `<typeof ${pascal(comp)}>` : ""}`,
     "",
     "export default meta",
     "type Story = StoryObj<typeof meta>",

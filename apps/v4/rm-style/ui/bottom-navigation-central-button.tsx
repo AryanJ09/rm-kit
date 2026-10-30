@@ -3,7 +3,7 @@ import { cn } from "cn"
 import { BottomNavCenterIcon } from "../icons/bottom-nav-center"
 
 const bottomNavigationCentralButtonVariants = cva(
-  "inline-flex size-(--ds-size-60) shrink-0 items-center justify-center rounded-(--ds-radius-full) transition-colors disabled:cursor-not-allowed",
+  "inline-flex size-(--size-60) shrink-0 items-center justify-center rounded-(--radius-pill) transition-colors disabled:cursor-not-allowed",
   {
     variants: {
       state: {
@@ -45,7 +45,7 @@ function BottomNavigationCentralButton({
       )}
       {...props}
     >
-      <BottomNavCenterIcon className="size-(--ds-size-icon-32)" />
+      <BottomNavCenterIcon className="size-(--size-control-32)" />
     </button>
   )
 }

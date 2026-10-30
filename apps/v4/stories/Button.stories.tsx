@@ -16,7 +16,7 @@ import DemoButtonWithIcon from "@/examples/base/button-with-icon"
 import FigmaGrid from "./figma/button"
 
 const meta = {
-  title: "RM Kit/Atoms/Button",
+  title: "RM Kit/Button",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

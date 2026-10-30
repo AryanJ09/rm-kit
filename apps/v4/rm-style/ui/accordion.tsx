@@ -1,3 +1,4 @@
+import { Skeleton } from "@/rm-style/ui/skeleton"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import { cn } from "cn"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
@@ -32,14 +33,20 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4",
+          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-(--spacing-inset-md) text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-(--opacity-disabled) **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-(--size-icon-sm)",
           className
         )}
         {...props}
       >
         {children}
-        <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 text-icon-accent group-aria-expanded/accordion-trigger:hidden" />
-        <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 text-icon-accent group-aria-expanded/accordion-trigger:inline" />
+        <ChevronDownIcon
+          data-slot="accordion-trigger-icon"
+          className="text-icon-accent pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+        />
+        <ChevronUpIcon
+          data-slot="accordion-trigger-icon"
+          className="text-icon-accent pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
+        />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
@@ -48,8 +55,9 @@ function AccordionTrigger({
 function AccordionContent({
   className,
   children,
+  loading = false,
   ...props
-}: AccordionPrimitive.Panel.Props) {
+}: AccordionPrimitive.Panel.Props & { loading?: boolean }) {
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
@@ -58,11 +66,23 @@ function AccordionContent({
     >
       <div
         className={cn(
-          "h-(--accordion-panel-height) pt-0 pb-2.5 data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "h-(--accordion-panel-height) pt-0 pb-(--spacing-inset-md) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-(--spacing-stack-md)",
           className
         )}
       >
-        {children}
+        {loading ? (
+          <div
+            data-slot="accordion-skeleton"
+            className="flex flex-col gap-(--spacing-stack-sm)"
+            aria-label="Loading"
+          >
+            <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+            <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+            <Skeleton className="h-(--size-skeleton-line-height) w-(--size-skeleton-line-width)" />
+          </div>
+        ) : (
+          children
+        )}
       </div>
     </AccordionPrimitive.Panel>
   )

@@ -1,42 +1,45 @@
-import { XIcon } from "lucide-react"
+"use client"
+
+// RM Kit Filter is built on the existing Base UI toggle primitive. Keep the toggle foundation clear for agents.
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle"
+import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-import { toggleVariants } from "@/rm-style/ui/toggle"
+const filterVariants = cva(
+  "group/filter hover:bg-surface-hover hover:text-text-primary focus-visible:ring-primary-focus-ring aria-pressed:bg-surface-active data-[state=on]:bg-surface-active inline-flex items-center justify-center gap-(--spacing-inline-xs) rounded-(--radius-md) font-sans text-(length:--typography-label-md-font-size) font-(--typography-label-md-font-weight) whitespace-nowrap transition-colors outline-none focus-visible:border-ring focus-visible:ring-(length:--spacing-stack-xs) disabled:pointer-events-none disabled:opacity-(--opacity-half) aria-invalid:border-destructive aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] dark:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--size-icon-md)",
+  {
+    variants: {
+      variant: {
+        default: "bg-transparent",
+        outline: "border border-input bg-transparent hover:bg-muted",
+      },
+      size: {
+        default:
+          "h-(--size-control-sm) min-w-(--size-control-sm) px-(--spacing-inset-md) has-data-[icon=inline-end]:pr-(--spacing-inline-sm) has-data-[icon=inline-start]:pl-(--spacing-inline-sm)",
+        sm: "h-(--size-control-36) min-w-(--size-control-36) rounded-(--radius-sm) px-(--spacing-inset-md) text-(length:--font-size-xs) has-data-[icon=inline-end]:pr-(--spacing-stack-2xs) has-data-[icon=inline-start]:pl-(--spacing-stack-2xs) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
+        lg: "h-(--size-control-44) min-w-(--size-control-44) px-(--spacing-inset-md) has-data-[icon=inline-end]:pr-(--spacing-inline-sm) has-data-[icon=inline-start]:pl-(--spacing-inline-sm)",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
 
-// An applied filter. It is a Chip in its selected look, with a remove control that only
-// removes the filter; it is not a toggle, so it has no pressed state of its own.
-type FilterProps = {
-  label: string
-  onRemove?: () => void
-  size?: "sm" | "md"
-  className?: string
-}
-
-function Filter({ label, onRemove, size = "sm", className }: FilterProps) {
+function Filter({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: TogglePrimitive.Props & VariantProps<typeof filterVariants>) {
   return (
-    <span
+    <TogglePrimitive
       data-slot="filter"
-      data-size={size}
-      className={cn(
-        toggleVariants({ variant: "outline", size: size === "md" ? "default" : "sm" }),
-        "border-(--chip-selected-stroke) bg-(--chip-selected-background) text-(--chip-selected-text)",
-        onRemove ? "pe-(--ds-spacing-8)" : null,
-        className
-      )}
-    >
-      <span className="min-w-0 truncate text-(length:--ds-typography-font-size-12)">{label}</span>
-      {onRemove ? (
-        <button
-          type="button"
-          aria-label={`Remove ${label}`}
-          onClick={onRemove}
-          className="flex size-(--ds-spacing-24) shrink-0 items-center justify-center rounded-(--ds-radius-full) text-(--chip-selected-text) transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring outline-none"
-        >
-          <XIcon aria-hidden className="size-(--size-icon-sm)" />
-        </button>
-      ) : null}
-    </span>
+      className={cn(filterVariants({ variant, size, className }))}
+      {...props}
+    />
   )
 }
 
-export { Filter, type FilterProps }
+export { Filter, filterVariants }

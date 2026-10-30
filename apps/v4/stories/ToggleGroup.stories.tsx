@@ -9,7 +9,7 @@ import { ToggleGroupSpacing as DemoToggleGroupSpacing } from "@/examples/base/to
 import { ToggleGroupVertical as DemoToggleGroupVertical } from "@/examples/base/toggle-group-vertical"
 
 const meta = {
-  title: "Components/ToggleGroup",
+  title: "RM Kit/Upcoming/ToggleGroup",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

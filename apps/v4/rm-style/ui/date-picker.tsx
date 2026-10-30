@@ -50,7 +50,7 @@ function formatValue(
 
 // Native selects keep keyboard and screen reader behaviour for free.
 const timeSelectClassName =
-  "h-(--field-height-sm) rounded-(--field-radius) border-(length:--field-border-width) border-field-stroke bg-background px-(--ds-spacing-8) text-sm text-field-label outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring"
+  "h-(--size-control-md) rounded-lg border-(length:--border-width-default) border-field-stroke bg-background px-(--spacing-inline-sm) text-sm text-(color:--field-label) outline-none focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
 
 type DatePickerProps = {
   id?: string
@@ -155,12 +155,12 @@ function DatePicker({
           </span>
           <CalendarIcon
             aria-hidden
-            className="size-(--field-icon-size) shrink-0 text-field-helper"
+            className="size-(--size-icon-sm) shrink-0 text-field-helper"
           />
         </PopoverTrigger>
         <PopoverContent
           align="start"
-          className="w-auto gap-(--ds-spacing-8) p-(--ds-spacing-8)"
+          className="w-auto gap-(--spacing-inline-sm) p-(--spacing-inset-sm)"
         >
           {mode === "range" ? (
             <Calendar
@@ -178,8 +178,8 @@ function DatePicker({
             />
           )}
           {enableTime ? (
-            <div className="flex items-center gap-(--ds-spacing-8) border-t border-field-stroke pt-(--ds-spacing-8)">
-              <span className="text-sm text-field-label">Time</span>
+            <div className="flex items-center gap-(--spacing-inline-sm) border-t border-field-stroke pt-(--spacing-stack-sm)">
+              <span className="text-sm text-(color:--field-label)">Time</span>
               <select
                 aria-label="Hour"
                 className={timeSelectClassName}

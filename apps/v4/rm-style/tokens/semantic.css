@@ -1,0 +1,428 @@
+:root {
+  /* ===== Layer 2: semantic roles (shadcn names) ===== */
+
+  /* surfaces and text */
+  --background: var(--ds-color-neutral-0);
+  --foreground: var(--ds-color-neutral-900);
+  --card: var(--ds-color-neutral-0);
+  --card-foreground: var(--ds-color-neutral-900);
+  --popover: var(--ds-color-neutral-0);
+  --popover-foreground: var(--ds-color-neutral-900);
+  --primary: var(--ds-color-brand-600);
+  --primary-foreground: var(--ds-color-neutral-0);
+  --primary-pressed: var(--ds-color-brand-700);
+  --primary-subtle: var(--ds-color-brand-50);
+  --secondary: var(--ds-color-neutral-100);
+  --secondary-foreground: var(--ds-color-neutral-900);
+  --muted: var(--ds-color-neutral-100);
+  --muted-foreground: var(--ds-color-neutral-600);
+  --accent: var(--ds-color-brand-100);
+  --accent-foreground: var(--ds-color-neutral-950);
+  --accent-strong: var(--ds-color-brand-600);
+  --destructive: var(--ds-color-danger-600);
+  --destructive-foreground: var(--ds-color-neutral-0);
+  --destructive-pressed: var(--ds-color-danger-700);
+  --destructive-subtle: var(--ds-color-danger-50);
+
+  /* borders, inputs, focus */
+  --border: var(--ds-color-neutral-200);
+  --input: var(--ds-color-neutral-200);
+  --control-border: var(--ds-color-neutral-500);
+  --ring: var(--ds-color-brand-500);
+  --ring-destructive: var(--ds-color-danger-500);
+  --ring-width: var(--ds-spacing-2);
+  --ring-offset: var(--ds-color-neutral-0);
+  --ring-offset-width: var(--ds-spacing-2);
+  --focus-ring: var(--ds-color-brand-500);
+  --ring-opacity: var(--ds-opacity-50);
+  --link: var(--ds-color-brand-600);
+
+  /* shape */
+  --radius: var(--ds-radius-8);
+
+  /* surface, text and border roles */
+  --surface: var(--ds-color-neutral-0);
+  --surface-hover: var(--ds-color-neutral-50);
+  --surface-active: var(--ds-color-neutral-100);
+  --surface-disabled: var(--ds-color-neutral-150);
+  --control-disabled: var(--ds-color-neutral-350);
+  --field-readonly: var(--ds-color-neutral-75);
+  --control-off: var(--ds-color-neutral-500);
+  --text-primary: var(--ds-color-neutral-900);
+  --text-secondary: var(--ds-color-neutral-600);
+  --text-tertiary: var(--ds-color-neutral-500);
+  --text-disabled: var(--ds-color-neutral-450);
+  --border-subtle: var(--ds-color-neutral-100);
+  --border-default: var(--ds-color-neutral-200);
+  --border-strong: var(--ds-color-neutral-300);
+
+  --control-stroke-default: var(--ds-color-neutral-300);
+  --primary-focus-ring: color-mix(
+    in oklab,
+    var(--primary) calc(var(--ds-opacity-25) * 100%),
+    transparent
+  );
+
+  /* sidebar, surface-foreground, selection and code (values approved) */
+  --sidebar: var(--ds-color-neutral-50);
+  --sidebar-foreground: var(--ds-color-neutral-900);
+  --sidebar-primary: var(--ds-color-brand-600);
+  --sidebar-primary-foreground: var(--ds-color-neutral-0);
+  --sidebar-accent: var(--ds-color-neutral-100);
+  --sidebar-accent-foreground: var(--ds-color-neutral-900);
+  --sidebar-border: var(--ds-color-neutral-200);
+  --sidebar-ring: var(--ds-color-brand-500);
+  --surface-foreground: var(--ds-color-neutral-900);
+  --selection: var(--ds-color-brand-600);
+  --selection-foreground: var(--ds-color-neutral-0);
+  --code: var(--ds-color-neutral-50);
+  --code-foreground: var(--ds-color-neutral-900);
+  --code-highlight: var(--ds-color-neutral-100);
+  --code-number: var(--ds-color-neutral-500);
+
+  /* icon colour: grey by default; accent only where the role says so */
+  --icon-default: var(--ds-color-neutral-500);
+
+  /* shared roles for the Figma batches (point at primitives only) */
+  --icon-accent: var(--ds-color-accent-500);
+  --accent-subtle-foreground: var(--ds-color-accent-700);
+  --field-focus: var(--ds-color-brand-600);
+  --field-label: var(--ds-color-neutral-900);
+  --field-helper: var(--ds-color-neutral-500);
+  --field-placeholder: var(--ds-color-neutral-400);
+  --field-error: var(--ds-color-red-700);
+  --field-success: var(--ds-color-success-700);
+  --field-stroke: var(--ds-color-neutral-300);
+
+  /* navigation roles (Batch 5) */
+  --nav-center-background: var(--ds-color-accent-500);
+  --nav-center-pressed: var(--ds-color-accent-700);
+  --nav-surface: var(--background);
+
+  /* status */
+  --success: var(--ds-color-success-500);
+  --success-foreground: var(--ds-color-neutral-900);
+  --warning: var(--ds-color-warning-500);
+  --warning-foreground: var(--ds-color-neutral-900);
+  --info: var(--ds-color-info-500);
+  --info-foreground: var(--ds-color-neutral-900);
+  --error: var(--ds-color-danger-500);
+
+  /* investment category roles (surface and text pairs) */
+  --category-conservative-surface: var(--ds-color-purple-50);
+  --category-conservative-text: var(--ds-color-purple-800);
+  --category-moderate-surface: var(--ds-color-blue-50);
+  --category-moderate-text: var(--ds-color-blue-700);
+  --category-growth-surface: var(--ds-color-orange-50);
+  --category-growth-text: var(--ds-color-orange-800);
+  --category-aggressive-surface: var(--ds-color-red-50);
+  --category-aggressive-text: var(--ds-color-red-700);
+  --category-neutral-surface: var(--ds-color-neutral-150);
+  --category-neutral-text: var(--ds-color-neutral-500);
+  --category-secure-surface: var(--ds-color-steel-50);
+  --category-secure-text: var(--ds-color-steel-700);
+  --category-success-surface: var(--ds-color-green-50);
+  --category-success-text: var(--ds-color-success-700);
+
+  /* elevation, motion, layering, borders, overlay */
+  --elevation-card: var(--ds-elevation-xs);
+  --elevation-popover: var(--ds-elevation-md);
+  --elevation-nav: var(--ds-elevation-nav);
+  --motion-duration-fast: var(--ds-motion-duration-fast);
+  --motion-duration-normal: var(--ds-motion-duration-normal);
+  --motion-duration-slow: var(--ds-motion-duration-slow);
+  --motion-easing-standard: var(--ds-motion-easing-standard);
+  --motion-easing-decelerate: var(--ds-motion-easing-decelerate);
+  --motion-easing-accelerate: var(--ds-motion-easing-accelerate);
+  --z-index-base: var(--ds-z-index-base);
+  --z-index-nav: var(--ds-z-index-nav);
+  --z-index-overlay: var(--ds-z-index-overlay);
+  --z-index-top: var(--ds-z-index-top);
+  --border-width-hairline: var(--ds-size-border-width-hairline);
+  --border-width-default: var(--ds-size-border-width-1);
+  --opacity-disabled: var(--ds-opacity-50);
+  --border-width-thick: var(--ds-size-border-width-thick);
+  --overlay-color: var(--ds-color-neutral-1000);
+
+
+  /* Scrim behind dialogs, sheets and drawers: overlay colour at 10%. color-mix needs a percentage, not a bare 0.1. */
+  --overlay-scrim: color-mix(
+    in oklab,
+    var(--overlay-color) calc(var(--ds-opacity-10) * 100%),
+    transparent
+  );
+  --overlay-opacity: var(--ds-opacity-60);
+
+  /* opacity scale (intent names; --opacity-disabled and --ring-opacity stay at 50) */
+  --opacity-faint: var(--ds-opacity-10);
+  --opacity-subtle: var(--ds-opacity-20);
+  --opacity-soft: var(--ds-opacity-30);
+  --opacity-medium: var(--ds-opacity-40);
+  --opacity-strong: var(--ds-opacity-60);
+  --opacity-heavy: var(--ds-opacity-80);
+  --opacity-half: var(--ds-opacity-50);
+
+  /* chart: positional series slots 1-10 (fallback for data without a named colour) */
+  --chart-1: var(--ds-color-chart-1);
+  --chart-2: var(--ds-color-chart-2);
+  --chart-3: var(--ds-color-chart-3);
+  --chart-4: var(--ds-color-chart-4);
+  --chart-5: var(--ds-color-chart-5);
+  --chart-6: var(--ds-color-chart-6);
+  --chart-7: var(--ds-color-chart-7);
+  --chart-8: var(--ds-color-chart-8);
+  --chart-9: var(--ds-color-chart-9);
+  --chart-10: var(--ds-color-chart-10);
+  --chart-inactive-opacity: var(--ds-opacity-30);
+
+  /* RM kit named chart colours (palette/chart/*) */
+  --chart-deposits: var(--ds-color-chart-3);
+  --chart-savings: var(--ds-color-chart-4);
+  --chart-term: var(--ds-color-chart-5);
+  --chart-investments: var(--ds-color-chart-purple-62);
+  --chart-fixed-income: var(--ds-color-chart-purple-83);
+  --chart-alternate: var(--ds-color-chart-purple-49);
+  --chart-cash: var(--ds-color-purple-50);
+  --chart-assets: var(--ds-color-chart-7);
+  --chart-insurance: var(--ds-color-chart-9);
+  --chart-book-assets: var(--ds-color-chart-2);
+  --chart-book-investments: var(--ds-color-chart-1);
+  --chart-book-insurance: var(--ds-color-neutral-300);
+  --chart-wealth-equity: var(--ds-color-chart-gold-62);
+  --chart-wealth-fixed-income: var(--ds-color-chart-gold-71);
+
+  /* spacing roles */
+  --spacing-none: var(--ds-spacing-0);
+  --spacing-inline-xs: var(--ds-spacing-4);
+  --spacing-inline-sm: var(--ds-spacing-8);
+  --spacing-inline-md: var(--ds-spacing-12);
+  --spacing-inline-lg: var(--ds-spacing-16);
+  --spacing-inline-xl: var(--ds-spacing-24);
+  --spacing-inset-control-x: var(--ds-spacing-16);
+  --spacing-inset-control-y: var(--ds-spacing-12);
+  --spacing-inset-sm: var(--ds-spacing-8);
+  --spacing-inset-md: var(--ds-spacing-10);
+  --spacing-stack-2xs: var(--ds-spacing-6);
+  --spacing-stack-3xs: var(--ds-spacing-2);
+  --spacing-stack-xs: var(--ds-spacing-4);
+  --spacing-stack-sm: var(--ds-spacing-8);
+  --spacing-stack-md: var(--ds-spacing-16);
+  --spacing-stack-lg: var(--ds-spacing-24);
+  --spacing-group: var(--ds-spacing-20);
+  --spacing-section-sm: var(--ds-spacing-24);
+  --spacing-section-md: var(--ds-spacing-32);
+  --spacing-section-lg: var(--ds-spacing-48);
+  --spacing-page-header: var(--ds-spacing-16);
+  --spacing-page-content: var(--ds-spacing-16);
+  --spacing-page-footer: var(--ds-spacing-24);
+  --spacing-container-compact: var(--ds-spacing-12);
+  --spacing-container-default: var(--ds-spacing-16);
+  --spacing-container-wide: var(--ds-spacing-24);
+
+  /* size roles */
+  --size-header-height: var(--ds-size-control-48);
+  --size-control-sm: var(--ds-size-control-40);
+  --size-control-md: var(--ds-size-control-48);
+  --size-control-lg: var(--ds-size-56);
+  --size-dot: var(--ds-size-icon-8);
+  --size-icon-xs: var(--ds-size-icon-14);
+  --size-icon-sm: var(--ds-size-icon-16);
+  --size-icon-md: var(--ds-size-icon-20);
+  --size-icon-lg: var(--ds-size-icon-24);
+  --size-control-28: var(--ds-size-icon-28);
+  --size-control-32: var(--ds-size-icon-32);
+  --size-control-36: var(--ds-size-control-36);
+  --size-control-44: var(--ds-size-control-44);
+  --size-288: var(--ds-size-288);
+  --size-18: var(--ds-size-18);
+  --size-40: var(--ds-spacing-40);
+  --size-60: var(--ds-size-60);
+  --size-72: var(--ds-size-72);
+  --size-96: var(--ds-size-96);
+  --size-128: var(--ds-size-128);
+  --size-160: var(--ds-size-160);
+  --size-icon-3xs: var(--ds-size-icon-12);
+
+  /* layout tokens: dimension roles the 17 semantic-only components read */
+  --ring-width-invalid: var(--ds-spacing-4);
+  --size-dot-md: var(--ds-size-10);
+  --size-icon-2xs: var(--ds-size-10);
+  --size-skeleton-line-height: var(--ds-spacing-12);
+  --size-skeleton-line-width: var(--ds-size-96);
+  --size-nav-height: var(--ds-size-88);
+  --size-nav-surface-height: var(--ds-size-74);
+  --size-layout-frame-width: var(--ds-size-layout-frame-width);
+  --size-layout-nav-clearance: var(--ds-size-layout-nav-clearance);
+  --size-icon-xl: var(--ds-size-icon-48);
+  --spacing-inset-nav: var(--ds-spacing-14);
+  --size-thumb: var(--ds-size-icon-12);
+  --size-track: var(--ds-size-icon-4);
+  --measure-progress-min-width: var(--ds-size-progress-min-width);
+  --viewport-sheet-max-height: var(--ds-size-sheet-max-height);
+
+  /* Radius roles */
+  --radius-xs: var(--ds-radius-2);
+  --radius-sm: var(--ds-radius-4);
+  --radius-md: var(--ds-radius-8);
+  --radius-lg: var(--ds-radius-8);
+  --radius-xl: var(--ds-radius-12);
+  --radius-2xl: var(--ds-radius-16);
+  --radius-3xl: var(--ds-radius-20);
+  --radius-4xl: var(--ds-radius-24);
+  --radius-pill: var(--ds-radius-full);
+
+  /* blur */
+  --blur-scale-sm: var(--ds-blur-sm);
+  --blur-scale-md: var(--ds-blur-md);
+  --blur-scale-lg: var(--ds-blur-lg);
+  --blur-scale-xl: var(--ds-blur-xl);
+
+  /* elevation scale */
+  --elevation-scale-xs: var(--ds-elevation-xs);
+  --elevation-scale-sm: var(--ds-elevation-sm);
+  --elevation-scale-md: var(--ds-elevation-md);
+  --elevation-scale-lg: var(--ds-elevation-lg);
+  --elevation-scale-xl: var(--ds-elevation-xl);
+  --elevation-scale-2xl: var(--ds-elevation-2xl);
+
+  /* type scale (Tailwind text-* utilities) */
+  --font-size-xs: var(--ds-typography-font-size-12);
+  --line-height-xs: var(--ds-typography-line-height-16);
+  --font-size-sm: var(--ds-typography-font-size-14);
+  --line-height-sm: var(--ds-typography-line-height-20);
+  --font-size-base: var(--ds-typography-font-size-16);
+  --line-height-base: var(--ds-typography-line-height-22);
+  --font-size-lg: var(--ds-typography-font-size-18);
+  --line-height-lg: var(--ds-typography-line-height-28);
+  --font-size-xl: var(--ds-typography-font-size-20);
+  --line-height-xl: var(--ds-typography-line-height-28);
+  --font-size-2xl: var(--ds-typography-font-size-24);
+  --line-height-2xl: var(--ds-typography-line-height-28);
+  --font-size-chart-axis: var(--ds-typography-font-size-10);
+  --font-size-chart-legend: var(--ds-typography-font-size-11);
+  --font-size-helper: var(--ds-typography-font-size-11);
+  --font-family-base: var(--ds-typography-font-family-base);
+  --letter-spacing-tight: var(--ds-typography-letter-spacing-tight);
+  --letter-spacing-normal: var(--ds-typography-letter-spacing-normal);
+  --letter-spacing-wide: var(--ds-typography-letter-spacing-wide);
+  --letter-spacing-wider: var(--ds-typography-letter-spacing-wider);
+  --letter-spacing-widest: var(--ds-typography-letter-spacing-widest);
+  --spacing-unit: var(--ds-spacing-4);
+  --breakpoint-wide: var(--ds-breakpoint-3xl);
+  --breakpoint-ultra: var(--ds-breakpoint-4xl);
+  --focus-ring-width: var(--ds-size-border-width-3);
+
+  /* typography roles (composites: family, size, weight, line-height, letter-spacing) */
+  --typography-display-lg-font-family: var(--ds-typography-font-family-base);
+  --typography-display-lg-font-size: var(--ds-typography-font-size-40);
+  --typography-display-lg-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-display-lg-line-height: var(--ds-typography-line-height-40);
+  --typography-display-lg-letter-spacing: var(
+    --ds-typography-letter-spacing-tight
+  );
+
+  --typography-heading-lg-font-family: var(--ds-typography-font-family-base);
+  --typography-heading-lg-font-size: var(--ds-typography-font-size-28);
+  --typography-heading-lg-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-heading-lg-line-height: var(--ds-typography-line-height-40);
+  --typography-heading-lg-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-heading-md-font-family: var(--ds-typography-font-family-base);
+  --typography-heading-md-font-size: var(--ds-typography-font-size-24);
+  --typography-heading-md-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-heading-md-line-height: var(--ds-typography-line-height-28);
+  --typography-heading-md-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-heading-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-heading-sm-font-size: var(--ds-typography-font-size-20);
+  --typography-heading-sm-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-heading-sm-line-height: var(--ds-typography-line-height-28);
+  --typography-heading-sm-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-title-md-font-family: var(--ds-typography-font-family-base);
+  --typography-title-md-font-size: var(--ds-typography-font-size-16);
+  --typography-title-md-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-title-md-line-height: var(--ds-typography-line-height-22);
+  --typography-title-md-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-title-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-title-sm-font-size: var(--ds-typography-font-size-14);
+  --typography-title-sm-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-title-sm-line-height: var(--ds-typography-line-height-20);
+  --typography-title-sm-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-body-md-font-family: var(--ds-typography-font-family-base);
+  --typography-body-md-font-size: var(--ds-typography-font-size-14);
+  --typography-body-md-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-body-md-line-height: var(--ds-typography-line-height-20);
+  --typography-body-md-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-body-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-body-sm-font-size: var(--ds-typography-font-size-12);
+  --typography-body-sm-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-body-sm-line-height: var(--ds-typography-line-height-18);
+  --typography-body-sm-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-label-md-font-family: var(--ds-typography-font-family-base);
+  --typography-label-md-font-size: var(--ds-typography-font-size-14);
+  --typography-label-md-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-label-md-line-height: var(--ds-typography-line-height-20);
+  --typography-label-md-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-label-sm-font-family: var(--ds-typography-font-family-base);
+  --typography-label-sm-font-size: var(--ds-typography-font-size-12);
+  --typography-label-sm-font-weight: var(--ds-typography-font-weight-medium);
+  --typography-label-sm-line-height: var(--ds-typography-line-height-16);
+  --typography-label-sm-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-caption-font-family: var(--ds-typography-font-family-base);
+  --typography-caption-font-size: var(--ds-typography-font-size-12);
+  --typography-caption-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-caption-line-height: var(--ds-typography-line-height-16);
+  --typography-caption-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-micro-font-family: var(--ds-typography-font-family-base);
+  --typography-micro-font-size: var(--ds-typography-font-size-10);
+  --typography-micro-font-weight: var(--ds-typography-font-weight-regular);
+  --typography-micro-line-height: var(--ds-typography-line-height-14);
+  --typography-micro-letter-spacing: var(--ds-typography-letter-spacing-wide);
+
+  --typography-metric-lg-font-family: var(--ds-typography-font-family-base);
+  --typography-metric-lg-font-size: var(--ds-typography-font-size-32);
+  --typography-metric-lg-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-metric-lg-line-height: var(--ds-typography-line-height-40);
+  --typography-metric-lg-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  --typography-metric-md-font-family: var(--ds-typography-font-family-base);
+  --typography-metric-md-font-size: var(--ds-typography-font-size-24);
+  --typography-metric-md-font-weight: var(--ds-typography-font-weight-bold);
+  --typography-metric-md-line-height: var(--ds-typography-line-height-28);
+  --typography-metric-md-letter-spacing: var(
+    --ds-typography-letter-spacing-normal
+  );
+
+  /* ===== Fonts (the one typography hook: the family components render in) ===== */
+  --font-sans: var(--typography-body-md-font-family);
+}

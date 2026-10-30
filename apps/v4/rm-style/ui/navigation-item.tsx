@@ -3,14 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 const navigationItemVariants = cva(
-  "flex w-(--ds-size-72) h-(--ds-size-74) flex-col items-center justify-center gap-(--ds-spacing-6) font-medium text-(length:--ds-typography-font-size-12) transition-colors outline-none focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed active:text-destructive",
+  "flex w-(--size-72) h-(--size-nav-surface-height) flex-col items-center justify-center gap-(--spacing-stack-2xs) font-medium text-(length:--font-size-xs) transition-colors outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed active:text-destructive",
   {
     variants: {
       state: {
         inactive: "text-field-helper",
         active: "text-destructive",
         pressed: "text-destructive",
-        disabled: "text-text-disabled opacity-(--ds-opacity-50)",
+        disabled: "text-text-disabled opacity-(--opacity-half)",
       },
     },
     defaultVariants: {
@@ -20,7 +20,7 @@ const navigationItemVariants = cva(
 )
 
 const navigationItemWellVariants = cva(
-  "flex w-(--ds-size-icon-48) h-(--ds-size-icon-28) items-center justify-center rounded-(--ds-radius-full)",
+  "flex w-(--size-icon-xl) h-(--size-control-28) items-center justify-center rounded-(--radius-pill)",
   {
     variants: {
       state: {
@@ -63,7 +63,7 @@ function NavigationItem({
       {...props}
     >
       <span className={navigationItemWellVariants({ state: resolvedState })}>
-        <Icon className="size-(--ds-size-icon-24)" aria-hidden="true" />
+        <Icon className="size-(--size-icon-lg)" aria-hidden="true" />
       </span>
       <span>{label}</span>
     </button>

@@ -7,7 +7,7 @@ import { ToggleSizes as DemoToggleSizes } from "@/examples/base/toggle-sizes"
 import { ToggleText as DemoToggleText } from "@/examples/base/toggle-text"
 
 const meta = {
-  title: "Components/Toggle",
+  title: "RM Kit/Upcoming/Toggle",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

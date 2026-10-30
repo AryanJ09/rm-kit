@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import DemoLabelDemo from "@/examples/base/label-demo"
 
 const meta = {
-  title: "Components/Label",
+  title: "RM Kit/Label",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

@@ -1,0 +1,21 @@
+.rmchart-panel { display: grid; gap: var(--spacing-inline-sm); }
+.rmchart-panel > h3 { margin: 0; font-size: var(--font-size-xs); font-weight: var(--typography-label-md-font-weight); color: var(--text-secondary); }
+.rmchart-frame { width: calc(var(--size-layout-frame-width) - 2 * var(--spacing-inline-lg)); max-width: 100%; }
+.rmchart-chart-area { position: relative; }
+.rmchart-chart-overlay { position: absolute; inset: 0 0 auto 0; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--spacing-inline-sm); pointer-events: none; }
+.rmchart-chart-overlay > * { pointer-events: auto; }
+.rmchart-empty-text { font-size: var(--font-size-chart-legend); color: var(--text-secondary); }
+.rmchart-baseline { height: var(--border-width-default); background: var(--border-default); }
+.rmchart-skel { display: grid; gap: var(--spacing-inline-sm); align-content: end; }
+.rmchart-metric-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-inline-md); }
+.rmchart-metric-strip .rmchart-label { font-size: var(--font-size-chart-legend); color: var(--text-secondary); }
+.rmchart-metric-strip .rmchart-change { font-size: var(--font-size-sm); font-weight: var(--typography-label-md-font-weight); display: flex; align-items: center; gap: var(--spacing-stack-3xs); }
+.rmchart-metric-strip .rmchart-positive { color: var(--field-success); }
+.rmchart-metric-strip .rmchart-negative { color: var(--field-error); }
+.rmchart-metric-strip .rmchart-neutral { color: var(--text-secondary); }
+.rmchart-row { display: flex; justify-content: space-between; font-size: var(--font-size-xs); }
+.rmchart-row span:first-child { color: var(--text-secondary); }
+.rmchart-chips { display: flex; gap: var(--spacing-inline-sm); flex-wrap: wrap; }
+.rmchart-divider { height: var(--border-width-default); background: var(--border-subtle); }
+.rmchart-caption { font-size: var(--font-size-chart-legend); color: var(--text-secondary); }
+.rmchart-portfolio-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--spacing-inline-md); min-width: 0; }

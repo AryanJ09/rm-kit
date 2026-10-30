@@ -11,13 +11,13 @@ import { Spinner } from "@/rm-style/ui/spinner"
 // Pill-shaped search field. The wrapper draws the border and focus ring so the
 // icons and the text share one outline.
 const searchVariants = cva(
-  "group flex w-full min-w-0 items-center rounded-(--ds-radius-full) border-(length:--field-border-width) bg-background text-field-label transition-colors has-disabled:cursor-not-allowed has-disabled:border-control-disabled has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--field-focus-ring-width) focus-within:ring-primary-focus-ring",
+  "group flex w-full min-w-0 items-center rounded-(--radius-pill) border-(length:--border-width-default) bg-background text-(color:--field-label) transition-colors has-disabled:cursor-not-allowed has-disabled:border-control-disabled has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--focus-ring-width) focus-within:ring-primary-focus-ring",
   {
     variants: {
       size: {
-        sm: "h-(--field-height-sm) text-sm",
-        md: "h-(--field-height-md) text-sm",
-        lg: "h-(--field-height-lg) text-lg",
+        sm: "h-(--size-control-sm) text-sm",
+        md: "h-(--size-control-md) text-sm",
+        lg: "h-(--size-control-lg) text-lg",
       },
       state: {
         default: "border-field-stroke",
@@ -62,7 +62,7 @@ function Search({
     >
       <SearchIcon
         aria-hidden
-        className="ml-(--field-padding-x) size-(--size-icon-md) shrink-0 text-field-placeholder"
+        className="ml-(--spacing-inset-control-x) size-(--size-icon-md) shrink-0 text-field-placeholder"
       />
       <InputPrimitive
         type="search"
@@ -70,20 +70,20 @@ function Search({
         value={value}
         placeholder={placeholder}
         onChange={(event) => onValueChange?.(event.target.value)}
-        className="h-full min-w-0 flex-1 bg-transparent px-(--ds-spacing-8) outline-none placeholder:text-field-placeholder disabled:cursor-not-allowed [&::-webkit-search-cancel-button]:appearance-none"
+        className="h-full min-w-0 flex-1 bg-transparent px-(--spacing-inline-sm) outline-none placeholder:text-field-placeholder disabled:cursor-not-allowed [&::-webkit-search-cancel-button]:appearance-none"
         {...props}
       />
       {loading ? (
-        <Spinner className="mr-(--field-padding-x) size-(--field-icon-size) shrink-0 text-field-placeholder" />
+        <Spinner className="mr-(--spacing-inset-control-x) size-(--size-icon-sm) shrink-0 text-field-placeholder" />
       ) : hasValue && onClear ? (
         <button
           type="button"
           aria-label="Clear search"
           onClick={onClear}
           disabled={props.disabled}
-          className="mr-(--ds-spacing-12) flex size-(--ds-spacing-24) shrink-0 items-center justify-center rounded-(--ds-radius-full) bg-field-clear-background text-field-helper transition-colors hover:bg-field-clear-background-hover hover:text-field-label disabled:pointer-events-none"
+          className="mr-(--spacing-inline-sm) flex shrink-0 items-center justify-center rounded-(--radius-pill) text-field-placeholder hover:text-(color:--field-label) disabled:pointer-events-none"
         >
-          <XIcon aria-hidden className="size-(--ds-spacing-14)" />
+          <XIcon aria-hidden className="size-(--size-icon-sm)" />
         </button>
       ) : null}
     </div>

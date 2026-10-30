@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // Hand-written: this file is not regenerated. Badges are static labels: no hover, no focus.
 const meta = {
-  title: "RM Kit/Atoms/Badge",
+  title: "RM Kit/Badge",
   component: Badge,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
@@ -20,7 +20,7 @@ const label = (t: string) => t[0].toUpperCase() + t.slice(1)
 // Rows are the seven types; columns are the three statuses.
 export const AllStates: Story = {
   render: () => (
-    <Table className="w-full p-(--ds-spacing-16)">
+    <Table className="w-full p-(--spacing-inline-lg)">
       <TableHeader>
         <TableRow>
           <TableHead>Type</TableHead>
@@ -36,7 +36,7 @@ export const AllStates: Story = {
             <TableCell><Badge variant={t}>{label(t)}</Badge></TableCell>
             <TableCell>
               <Badge variant={t}>
-                <span className="size-(--ds-spacing-6) rounded-(--ds-radius-full) bg-current" />
+                <span className="size-(--size-dot) rounded-(--radius-pill) bg-current" />
                 {label(t)}
               </Badge>
             </TableCell>
@@ -57,7 +57,7 @@ export const AllStates: Story = {
 // Real use: a client list with a risk badge per row.
 export const InContext: Story = {
   render: () => (
-    <Table className="w-full p-(--ds-spacing-16)">
+    <Table className="w-full p-(--spacing-inline-lg)">
       <TableHeader>
         <TableRow>
           <TableHead>Client</TableHead>

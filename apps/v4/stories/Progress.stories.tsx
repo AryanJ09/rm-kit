@@ -5,9 +5,9 @@ import DemoProgressDemo from "@/examples/base/progress-demo"
 import { ProgressWithLabel as DemoProgressLabel } from "@/examples/base/progress-label"
 
 const meta = {
-  title: "Components/Progress",
+  title: "RM Kit/Progress",
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
 } satisfies Meta
 
 export default meta

@@ -1,0 +1,856 @@
+{
+ "version": "1.1.0",
+ "datasets": {
+  "rv.rajesh": {
+   "unit": "L",
+   "series": [
+    "deposits",
+    "investments",
+    "assets",
+    "insurance"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹68 L",
+     "values": {
+      "deposits": 15.0,
+      "investments": 39.4,
+      "assets": 8.2,
+      "insurance": 5.4
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹92 L",
+     "values": {
+      "deposits": 20.2,
+      "investments": 53.4,
+      "assets": 11.0,
+      "insurance": 7.4
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "₹79 L",
+     "values": {
+      "deposits": 17.4,
+      "investments": 45.8,
+      "assets": 9.5,
+      "insurance": 6.3
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹84 L",
+     "values": {
+      "deposits": 18.5,
+      "investments": 48.7,
+      "assets": 10.1,
+      "insurance": 6.7
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹99.2 L",
+     "values": {
+      "deposits": 21.8,
+      "investments": 57.5,
+      "assets": 11.9,
+      "insurance": 7.9
+     }
+    }
+   ],
+   "summary": "Relationship value grew from ₹68 L in Aug’25 to ₹99.2 L in Aug’26, led by investments."
+  },
+  "rv.jayanti": {
+   "unit": "L",
+   "series": [
+    "deposits",
+    "investments",
+    "assets",
+    "insurance"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹33 L",
+     "values": {
+      "deposits": 7.3,
+      "investments": 19.1,
+      "assets": 4.0,
+      "insurance": 2.6
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹41 L",
+     "values": {
+      "deposits": 9.0,
+      "investments": 23.8,
+      "assets": 4.9,
+      "insurance": 3.3
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹37 L",
+     "values": {
+      "deposits": 8.1,
+      "investments": 21.5,
+      "assets": 4.4,
+      "insurance": 3.0
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹39 L",
+     "values": {
+      "deposits": 8.6,
+      "investments": 22.6,
+      "assets": 4.7,
+      "insurance": 3.1
+     }
+    }
+   ],
+   "summary": "Relationship value moved from ₹33 L in Aug’25 to ₹39 L in Aug’26."
+  },
+  "deposits.rajesh": {
+   "unit": "L",
+   "series": [
+    "ca",
+    "sa",
+    "td"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹20 L",
+     "values": {
+      "ca": 14.8,
+      "sa": 4.4,
+      "td": 0.8
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹24 L",
+     "values": {
+      "ca": 17.8,
+      "sa": 5.3,
+      "td": 1.0
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "₹22 L",
+     "values": {
+      "ca": 16.3,
+      "sa": 4.8,
+      "td": 0.9
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹23 L",
+     "values": {
+      "ca": 17.0,
+      "sa": 5.1,
+      "td": 0.9
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹21.9 L",
+     "values": {
+      "ca": 16.2,
+      "sa": 4.8,
+      "td": 0.9
+     }
+    }
+   ],
+   "summary": "Deposits held between ₹20 L and ₹24 L; current account is about three-quarters of the balance."
+  },
+  "investments.rajesh": {
+   "unit": "L",
+   "series": [
+    "equity",
+    "fixedIncome",
+    "altFixedIncome",
+    "cash"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹26 L",
+     "values": {
+      "equity": 16.1,
+      "fixedIncome": 6.2,
+      "altFixedIncome": 3.1,
+      "cash": 0.5
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹39 L",
+     "values": {
+      "equity": 24.2,
+      "fixedIncome": 9.4,
+      "altFixedIncome": 4.7,
+      "cash": 0.8
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "₹32 L",
+     "values": {
+      "equity": 19.8,
+      "fixedIncome": 7.7,
+      "altFixedIncome": 3.8,
+      "cash": 0.6
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹35 L",
+     "values": {
+      "equity": 21.7,
+      "fixedIncome": 8.4,
+      "altFixedIncome": 4.2,
+      "cash": 0.7
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹62.3 L",
+     "values": {
+      "equity": 38.6,
+      "fixedIncome": 15.0,
+      "altFixedIncome": 7.5,
+      "cash": 1.2
+     }
+    }
+   ],
+   "summary": "Investments rose from ₹26 L to ₹62.3 L, mostly equity."
+  },
+  "book.rm": {
+   "unit": "Cr",
+   "series": [
+    "bookDeposits",
+    "bookAssets",
+    "bookInvestments",
+    "bookInsurance"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹215 Cr",
+     "values": {
+      "bookDeposits": 68.8,
+      "bookAssets": 109.7,
+      "bookInvestments": 28.0,
+      "bookInsurance": 8.6
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹252 Cr",
+     "values": {
+      "bookDeposits": 80.6,
+      "bookAssets": 128.5,
+      "bookInvestments": 32.8,
+      "bookInsurance": 10.1
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "₹238 Cr",
+     "values": {
+      "bookDeposits": 76.2,
+      "bookAssets": 121.4,
+      "bookInvestments": 30.9,
+      "bookInsurance": 9.5
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹232 Cr",
+     "values": {
+      "bookDeposits": 74.2,
+      "bookAssets": 118.3,
+      "bookInvestments": 30.2,
+      "bookInsurance": 9.3
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹240 Cr",
+     "values": {
+      "bookDeposits": 76.8,
+      "bookAssets": 122.4,
+      "bookInvestments": 31.2,
+      "bookInsurance": 9.6
+     }
+    }
+   ],
+   "summary": "RM book ranged ₹215–252 Cr over the year."
+  },
+  "assets.rajesh": {
+   "unit": "L",
+   "series": [
+    "homeLoan",
+    "lap",
+    "personalLoan"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹8.2 L",
+     "values": {
+      "homeLoan": 5.5,
+      "lap": 2.0,
+      "personalLoan": 0.7
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹11.0 L",
+     "values": {
+      "homeLoan": 7.3,
+      "lap": 2.8,
+      "personalLoan": 0.9
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "₹9.5 L",
+     "values": {
+      "homeLoan": 6.3,
+      "lap": 2.4,
+      "personalLoan": 0.8
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹10.1 L",
+     "values": {
+      "homeLoan": 6.8,
+      "lap": 2.5,
+      "personalLoan": 0.8
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹11.9 L",
+     "values": {
+      "homeLoan": 7.9,
+      "lap": 3.0,
+      "personalLoan": 1.0
+     }
+    }
+   ],
+   "summary": "Loans grew from ₹8.2 L to ₹11.9 L; home loan is about two-thirds."
+  },
+  "insurance.rajesh": {
+   "unit": "L",
+   "series": [
+    "lifeInsurance",
+    "healthInsurance",
+    "generalInsurance"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "₹5.4 L",
+     "values": {
+      "lifeInsurance": 3.3,
+      "healthInsurance": 1.6,
+      "generalInsurance": 0.5
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "₹7.4 L",
+     "values": {
+      "lifeInsurance": 4.5,
+      "healthInsurance": 2.2,
+      "generalInsurance": 0.7
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "₹6.3 L",
+     "values": {
+      "lifeInsurance": 3.8,
+      "healthInsurance": 1.9,
+      "generalInsurance": 0.6
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "₹6.7 L",
+     "values": {
+      "lifeInsurance": 4.0,
+      "healthInsurance": 2.0,
+      "generalInsurance": 0.7
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "₹7.9 L",
+     "values": {
+      "lifeInsurance": 4.7,
+      "healthInsurance": 2.4,
+      "generalInsurance": 0.8
+     }
+    }
+   ],
+   "summary": "Insurance value rose from ₹5.4 L to ₹7.9 L, mostly life cover."
+  },
+  "allocation.rajesh": {
+   "unit": "%",
+   "scale": "percent",
+   "series": [
+    "equityAllocation",
+    "fixedIncomeAllocation"
+   ],
+   "points": [
+    {
+     "period": "Aug’25",
+     "totalLabel": "100%",
+     "values": {
+      "equityAllocation": 62,
+      "fixedIncomeAllocation": 38
+     }
+    },
+    {
+     "period": "Jan’26",
+     "totalLabel": "100%",
+     "values": {
+      "equityAllocation": 62,
+      "fixedIncomeAllocation": 38
+     }
+    },
+    {
+     "period": "Mar’26",
+     "totalLabel": "100%",
+     "values": {
+      "equityAllocation": 62,
+      "fixedIncomeAllocation": 38
+     }
+    },
+    {
+     "period": "Jul’26",
+     "totalLabel": "100%",
+     "values": {
+      "equityAllocation": 62,
+      "fixedIncomeAllocation": 38
+     }
+    },
+    {
+     "period": "Aug’26",
+     "totalLabel": "100%",
+     "values": {
+      "equityAllocation": 62,
+      "fixedIncomeAllocation": 38
+     }
+    }
+   ],
+   "summary": "Equity allocation stayed near 62% across the year."
+  }
+ },
+ "series": {
+  "deposits": {
+   "label": null,
+   "family": "banking",
+   "status": null
+  },
+  "ca": {
+   "label": "CA (Current account)",
+   "family": "banking",
+   "status": "NEW shade — was #FFA64D shared with deposits (CH3)"
+  },
+  "sa": {
+   "label": "SA (Savings account)",
+   "family": "banking",
+   "status": null
+  },
+  "td": {
+   "label": "TD (Term deposit)",
+   "family": "banking",
+   "status": null
+  },
+  "investments": {
+   "label": null,
+   "family": "investments",
+   "status": null
+  },
+  "equity": {
+   "label": null,
+   "family": "investments",
+   "status": "NEW shade — was #A64FF4 shared with investments (CH3)"
+  },
+  "fixedIncome": {
+   "label": null,
+   "family": "investments",
+   "status": null
+  },
+  "altFixedIncome": {
+   "label": "Alternate fixed income",
+   "family": "investments",
+   "status": null
+  },
+  "cash": {
+   "label": null,
+   "family": "investments",
+   "status": null
+  },
+  "assets": {
+   "label": null,
+   "family": "assets",
+   "status": null
+  },
+  "insurance": {
+   "label": null,
+   "family": "insurance",
+   "status": null
+  },
+  "equityAllocation": {
+   "label": null,
+   "family": "allocation",
+   "status": null
+  },
+  "fixedIncomeAllocation": {
+   "label": null,
+   "family": "allocation",
+   "status": null
+  },
+  "homeLoan": {
+   "label": "Home loan",
+   "family": "assets",
+   "status": "NEW (CH5)"
+  },
+  "lap": {
+   "label": "Loan against property",
+   "family": "assets",
+   "status": "NEW (CH5)"
+  },
+  "personalLoan": {
+   "label": "Personal loan",
+   "family": "assets",
+   "status": "NEW (CH5)"
+  },
+  "lifeInsurance": {
+   "label": "Life",
+   "family": "insurance",
+   "status": "NEW (CH5)"
+  },
+  "healthInsurance": {
+   "label": "Health",
+   "family": "insurance",
+   "status": "NEW (CH5)"
+  },
+  "generalInsurance": {
+   "label": "General",
+   "family": "insurance",
+   "status": "NEW (CH5)"
+  },
+  "bookDeposits": {
+   "label": "Deposits",
+   "family": "book",
+   "status": "alias — same colour as standard"
+  },
+  "bookAssets": {
+   "label": "Assets",
+   "family": "book",
+   "status": null
+  },
+  "bookInvestments": {
+   "label": "Investments",
+   "family": "book",
+   "status": null
+  },
+  "bookInsurance": {
+   "label": "Insurance",
+   "family": "book",
+   "status": null
+  }
+ },
+ "tabs": {
+  "rv": {
+   "label": "RV",
+   "subtitle": "Relationship value across all products",
+   "dataset": "rv.*",
+   "footnote": "RV calculation is basis logic for program eligibility",
+   "subtitleStatus": "approved (CH6)"
+  },
+  "deposits": {
+   "label": "Deposits",
+   "subtitle": "Deposits and transaction accounts only",
+   "dataset": "deposits.*",
+   "breakdown": true
+  },
+  "investments": {
+   "label": "Investments",
+   "subtitle": "Investments across asset classes",
+   "dataset": "investments.*",
+   "subtitleStatus": "approved (CH6)",
+   "views": {
+    "value": "datasets.investments.*",
+    "allocation": "datasets.allocation.* (scale=percent)"
+   }
+  },
+  "assets": {
+   "label": "Assets",
+   "subtitle": "Loans and credit facilities",
+   "dataset": "assets.*",
+   "breakdown": true,
+   "status": "NEW (CH5)"
+  },
+  "insurance": {
+   "label": "Insurance",
+   "subtitle": "Life, health and general insurance",
+   "dataset": "insurance.*",
+   "breakdown": true,
+   "status": "NEW (CH5)"
+  }
+ },
+ "examples": [
+  {
+   "legacy": "Client banking portfolio · Tab=RV, Client=Rajesh",
+   "tab": "rv",
+   "headline": {
+    "label": "Current value",
+    "value": "₹11.3 Cr"
+   },
+   "metricStrip": [
+    {
+     "label": "YoY Growth",
+     "change": "+20.2%",
+     "trend": "positive"
+    },
+    {
+     "label": "YTD Growth",
+     "change": "+6.2%",
+     "trend": "positive"
+    },
+    {
+     "label": "MoM Growth",
+     "change": "+2.1%",
+     "trend": "positive"
+    }
+   ],
+   "chart": "datasets.rv.rajesh",
+   "footnote": "RV calculation is basis logic for program eligibility"
+  },
+  {
+   "legacy": "Client banking portfolio · Tab=Deposits, Client=Rajesh",
+   "tab": "deposits",
+   "headline": {
+    "label": "Current value",
+    "value": "₹21.9 L"
+   },
+   "metricStrip": [
+    {
+     "label": "YoY Growth",
+     "change": "+34.3%",
+     "trend": "positive"
+    },
+    {
+     "label": "YTD Growth",
+     "change": "−40.2%",
+     "trend": "negative"
+    },
+    {
+     "label": "MoM Growth",
+     "change": "+7.5%",
+     "trend": "positive"
+    }
+   ],
+   "chart": "datasets.deposits.rajesh",
+   "breakdown": [
+    {
+     "label": "Current",
+     "value": "1 account · ₹16 L"
+    },
+    {
+     "label": "Savings",
+     "value": "2 accounts · ₹5 L"
+    },
+    {
+     "label": "Term deposit",
+     "value": "1 account · ₹90 K"
+    }
+   ]
+  },
+  {
+   "legacy": "Client banking portfolio · Tab=Investments, Client=Rajesh",
+   "tab": "investments",
+   "headline": {
+    "label": "Current value",
+    "value": "₹10.93 Cr"
+   },
+   "metricStrip": [
+    {
+     "label": "YoY Growth",
+     "change": "+19.8%",
+     "trend": "positive"
+    },
+    {
+     "label": "YTD Growth",
+     "change": "+7.3%",
+     "trend": "positive"
+    },
+    {
+     "label": "MoM Growth",
+     "change": "+2.0%",
+     "trend": "positive"
+    }
+   ],
+   "chart": "datasets.investments.rajesh"
+  },
+  {
+   "legacy": "Client banking portfolio · Tab=RV, Client=Jayanti",
+   "tab": "rv",
+   "headline": {
+    "label": "Current value",
+    "value": "₹39 L"
+   },
+   "metricStrip": [
+    {
+     "label": "YoY Growth",
+     "change": "+16.3%",
+     "trend": "positive"
+    },
+    {
+     "label": "YTD Growth",
+     "change": "−1.6%",
+     "trend": "negative"
+    },
+    {
+     "label": "MoM Growth",
+     "change": "+2.1%",
+     "trend": "positive"
+    }
+   ],
+   "chart": "datasets.rv.jayanti",
+   "footnote": "RV calculation is basis logic for program eligibility",
+   "fix": "re-link detached chart"
+  },
+  {
+   "status": "SYNTHETIC — illustrative only (CH5). Totals reuse rv.rajesh family totals; split is invented. Replace with real data.",
+   "tab": "assets",
+   "headline": {
+    "label": "Current value",
+    "value": "₹11.9 L"
+   },
+   "metricStrip": [
+    {
+     "label": "YoY Growth",
+     "change": "+45.1%",
+     "trend": "positive"
+    },
+    {
+     "label": "YTD Growth",
+     "change": "+4.4%",
+     "trend": "positive"
+    },
+    {
+     "label": "MoM Growth",
+     "change": "−0.8%",
+     "trend": "negative"
+    }
+   ],
+   "chart": "datasets.assets.rajesh",
+   "breakdown": [
+    {
+     "label": "Home loan",
+     "value": "1 account · ₹7.9 L"
+    },
+    {
+     "label": "Loan against property",
+     "value": "1 account · ₹3.0 L"
+    },
+    {
+     "label": "Personal loan",
+     "value": "1 account · ₹1 L"
+    }
+   ]
+  },
+  {
+   "status": "SYNTHETIC — illustrative only (CH5). Totals reuse rv.rajesh family totals; split is invented. Replace with real data.",
+   "tab": "insurance",
+   "headline": {
+    "label": "Current value",
+    "value": "₹7.9 L"
+   },
+   "metricStrip": [
+    {
+     "label": "YoY Growth",
+     "change": "+46.3%",
+     "trend": "positive"
+    },
+    {
+     "label": "YTD Growth",
+     "change": "+6.8%",
+     "trend": "positive"
+    },
+    {
+     "label": "MoM Growth",
+     "change": "—",
+     "trend": "neutral"
+    }
+   ],
+   "chart": "datasets.insurance.rajesh",
+   "breakdown": [
+    {
+     "label": "Life",
+     "value": "1 policy · ₹4.7 L"
+    },
+    {
+     "label": "Health",
+     "value": "1 policy · ₹2.4 L"
+    },
+    {
+     "label": "General",
+     "value": "2 policies · ₹80 K"
+    }
+   ]
+  }
+ ],
+ "aiRules": [
+  "There is ONE chart component: `Chart`. Never draw bars with rectangles by hand.",
+  "Datasets are data. Never create a variant per client, category or metric.",
+  "Series colours come only from RM kit chart tokens in `rm-style/ui/chart-series.ts`. Legend and bars read the same token — never set colours separately.",
+  "Series order in `series[]` = stack order bottom → top = legend order left → right.",
+  "Headline value (e.g. 'Current value') and the chart are INDEPENDENT data. Never compute, reconcile or 'correct' one from the other.",
+  "A chart always sits inside a `Card` (pattern=chart). Never place a bare chart on a page.",
+  "Always provide `summary` (one-sentence text alternative) for accessibility.",
+  "Only `type=stackedBar` is designed. Do not use bar/line/donut until they exist in this spec.",
+  "Every segment is separated by a 1px surface.default gap.",
+  "Book (RM-level) charts use only book* series; client charts never use book* series.",
+  "Percent view (`scale=percent`) is for allocation mix over time; bars always total 100%. Absolute view is for value over time."
+ ],
+ "decisionTree": [
+  {
+   "ask": "Showing how a total is made of parts, over time (2–6 periods)?",
+   "use": "Chart type=stackedBar"
+  },
+  {
+   "ask": "Only 1–3 numbers, no history?",
+   "use": "Card pattern=metric (Card spec)"
+  },
+  {
+   "ask": "Mix / allocation % changing over time?",
+   "use": "Chart type=stackedBar scale=percent (e.g. equityAllocation + fixedIncomeAllocation)"
+  },
+  {
+   "ask": "Allocation at ONE point in time (no history)?",
+   "use": "not designed — Card pattern=detail rows; donut stays reserved"
+  },
+  {
+   "ask": "More than 6 periods or 5 series?",
+   "use": "not supported — aggregate data or ask owner"
+  }
+ ]
+}

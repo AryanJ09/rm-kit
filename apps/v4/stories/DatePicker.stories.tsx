@@ -4,7 +4,7 @@ import type { DateRange } from "react-day-picker"
 import { DatePicker } from "@/rm-style/ui/date-picker"
 
 const meta = {
-  title: "RM Kit/Atoms/Date picker",
+  title: "RM Kit/Date picker",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -12,7 +12,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const cell = "flex w-(--ds-size-288) flex-col gap-(--ds-spacing-16)"
+const cell = "flex w-(--size-288) flex-col gap-(--spacing-inline-lg)"
 
 function Cell({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -27,7 +27,7 @@ const sample = new Date(2026, 9, 15, 12, 0)
 
 export const AllStates: Story = {
   render: () => (
-    <div className="grid grid-cols-2 gap-(--ds-spacing-32)">
+    <div className="grid grid-cols-2 gap-(--spacing-section-md)">
       <Cell title="Default">
         <DatePicker label="Client date" helper="Pick a day" />
       </Cell>

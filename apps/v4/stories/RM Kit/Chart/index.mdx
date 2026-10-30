@@ -1,0 +1,21 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="RM Kit/Chart" />
+
+# Chart
+
+Built on the shadcn chart in `rm-style/ui/chart.tsx` (`ChartContainer`, `ChartLegend`, `ChartLegendContent`). No new chart component.
+
+## Colour
+Series use the RM kit's named chart colours in `rm-style/ui/chart-series.ts`; the stacked-bar component lives in `rm-style/ui/stacked-bar-chart.tsx`. Series without an RM named colour use dedicated fallback slots; aliases for the same series share a colour. Every chart type (bar, pie, line, area) uses this mapping.
+
+## Selection
+Click a series (bar segment, slice, line) or its legend item to highlight it; the rest dims. Click again or click blank space to clear. Tag any series element with `data-series="<key>"` and it takes part automatically.
+
+## Stacked bar rules
+- Series order is stack order (bottom to top) and legend order (left to right).
+- 1px surface gap between segments; the whole stack has rounded outer corners.
+- Always supply `summary`; it becomes the accessible label and a hidden data table is rendered.
+- `scale="percent"` makes every bar 100% tall and hides value labels.
+- Headline values and the chart are independent data; never derive one from the other.
+- Place a chart inside a `Card`; do not use a bare chart on a page.

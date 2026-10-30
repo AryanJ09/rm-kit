@@ -9,7 +9,6 @@ import DemoInputGroupCustom from "@/examples/base/input-group-custom"
 import { InputGroupDemo as DemoInputGroupDemo } from "@/examples/base/input-group-demo"
 import { InputGroupDropdown as DemoInputGroupDropdown } from "@/examples/base/input-group-dropdown"
 import DemoInputGroupIcon from "@/examples/base/input-group-icon"
-import { InputGroupInCard as DemoInputGroupInCard } from "@/examples/base/input-group-in-card"
 import { InputGroupInlineEnd as DemoInputGroupInlineEnd } from "@/examples/base/input-group-inline-end"
 import { InputGroupInlineStart as DemoInputGroupInlineStart } from "@/examples/base/input-group-inline-start"
 import { InputGroupKbd as DemoInputGroupKbd } from "@/examples/base/input-group-kbd"
@@ -24,7 +23,7 @@ import { InputGroupWithButtons as DemoInputGroupWithButtons } from "@/examples/b
 import { InputGroupWithKbd as DemoInputGroupWithKbd } from "@/examples/base/input-group-with-kbd"
 
 const meta = {
-  title: "Components/Forms",
+  title: "RM Kit/Upcoming/Forms",
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
 } satisfies Meta
@@ -41,7 +40,6 @@ export const Custom: Story = { render: () => <DemoInputGroupCustom /> }
 export const Demo: Story = { render: () => <DemoInputGroupDemo /> }
 export const Dropdown: Story = { render: () => <DemoInputGroupDropdown /> }
 export const Icon: Story = { render: () => <DemoInputGroupIcon /> }
-export const InCard: Story = { render: () => <DemoInputGroupInCard /> }
 export const InlineEnd: Story = { render: () => <DemoInputGroupInlineEnd /> }
 export const InlineStart: Story = { render: () => <DemoInputGroupInlineStart /> }
 export const Kbd: Story = { render: () => <DemoInputGroupKbd /> }

@@ -14,13 +14,72 @@ const OUT = path.join(ROOT, "stories")
 
 // Batch A structure: the RM Kit section holds the components we design and own; everything else is Components.
 // Calendar is part of Date picker, so it gets no story of its own.
-const RM_KIT = new Set(["button","badge","checkbox","radio-group","switch","input","textarea","search","dropdown","date-picker","navigation-item","bottom-navigation","alert-dialog","dialog","drawer","message","message-scroller","sheet"])
+// Shadcn components queued to join the kit; shown under RM Kit/Upcoming.
+// Width-driven demos collapse to nothing in the docs page under "centered"; pad them instead.
+const PADDED = new Set(["field", "progress", "slider"])
+const UPCOMING = new Set(["sidebar", "tabs", "table", "toggle", "toggle-group", "input-group"])
+const RM_KIT = new Set([
+  "button",
+  "badge",
+  "checkbox",
+  "radio-group",
+  "switch",
+  "input",
+  "textarea",
+  "search",
+  "dropdown",
+  "date-picker",
+  "navigation-item",
+  "bottom-navigation",
+  "alert-dialog",
+  "dialog",
+  "drawer",
+  "message",
+  "message-scroller",
+  "sheet",
+  "accordion",
+  "skeleton",
+  "breadcrumb",
+  "chart",
+  "empty",
+  "field",
+  "input-otp",
+  "label",
+  "progress",
+  "questionnaire",
+  "slider",
+  "filter",
+  "filter-group",
+])
 const EXCLUDED = new Set(["calendar"])
+const STORY_NAMES = {
+  accordion: "Accordion",
+  breadcrumb: "Breadcrumb",
+  chart: "Chart",
+  empty: "Empty",
+  field: "Field",
+  "input-otp": "Input OTP",
+  label: "Label",
+  progress: "Progress",
+  questionnaire: "Questionnaire",
+  slider: "Slider",
+  filter: "Filter",
+  "filter-group": "Filter group",
+}
 // Batch E: these components are wider than a centred box, so their stories use the full canvas.
-const FULL_WIDTH = new Set(["card", "field", "input-group", "select", "switch"])
-const comps = fs.readdirSync(UI).filter((f) => f.endsWith(".tsx")).map((f) => f.slice(0, -4)).filter((c) => !EXCLUDED.has(c))
+const FULL_WIDTH = new Set(["input-group", "select"])
+const comps = fs
+  .readdirSync(UI)
+  .filter((f) => f.endsWith(".tsx"))
+  .map((f) => f.slice(0, -4))
+  .filter((c) => !EXCLUDED.has(c))
 const byLength = [...comps].sort((a, b) => b.length - a.length)
-const pascal = (s) => s.split(/[-_]/).filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join("")
+const pascal = (s) =>
+  s
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join("")
 
 // A demo is usable when every "@/..." import is an RM-backed base-nova ui module.
 function usable(src) {
@@ -34,7 +93,10 @@ function usable(src) {
 
 const groups = Object.fromEntries(comps.map((c) => [c, []]))
 const skipped = []
-for (const file of fs.readdirSync(EXAMPLES).filter((f) => f.endsWith(".tsx")).sort()) {
+for (const file of fs
+  .readdirSync(EXAMPLES)
+  .filter((f) => f.endsWith(".tsx"))
+  .sort()) {
   const base = file.slice(0, -4)
   if (base.endsWith("-rtl")) continue
   const comp = byLength.find((c) => base === c || base.startsWith(c + "-"))
@@ -44,7 +106,10 @@ for (const file of fs.readdirSync(EXAMPLES).filter((f) => f.endsWith(".tsx")).so
   const named = src.match(/export function (\w+)/)?.[1]
   const isDefault = /export default function/.test(src)
   // A named export that takes props is a helper for another demo, not a standalone story.
-  const needsProps = !isDefault && named && new RegExp(`export function ${named}\\(\\s*\\{`).test(src)
+  const needsProps =
+    !isDefault &&
+    named &&
+    new RegExp(`export function ${named}\\(\\s*\\{`).test(src)
   if ((!isDefault && !named) || needsProps || !usable(src)) {
     skipped.push(base)
     continue
@@ -56,6 +121,7 @@ const written = []
 const empty = []
 for (const comp of comps) {
   const demos = groups[comp]
+  if (comp === "chart") continue
   const figma = fs.existsSync(path.join(OUT, "figma", `${comp}.tsx`))
   if (!demos.length && !figma) {
     empty.push(comp)
@@ -80,21 +146,32 @@ for (const comp of comps) {
     ...(figma ? [`import FigmaGrid from "./figma/${comp}"`] : []),
     "",
     "const meta = {",
-    `  title: "${RM_KIT.has(comp) ? "RM Kit/Atoms" : "Components"}/${comp === "input-group" ? "Forms" : pascal(comp)}",`,
+    `  title: "${UPCOMING.has(comp) ? "RM Kit/Upcoming" : RM_KIT.has(comp) ? "RM Kit" : "Components"}/${comp === "input-group" ? "Forms" : STORY_NAMES[comp] || pascal(comp)}",`,
     '  tags: ["autodocs"],',
-    `  parameters: { layout: "${FULL_WIDTH.has(comp) ? "fullscreen" : "centered"}" },`,
+    `  parameters: { layout: "${FULL_WIDTH.has(comp) ? "fullscreen" : PADDED.has(comp) ? "padded" : "centered"}" },`,
     "} satisfies Meta",
     "",
     "export default meta",
     "type Story = StoryObj<typeof meta>",
     "",
-    ...(figma ? ['export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }'] : []),
-    ...stories.map((s) => `export const ${s.name}: Story = { render: () => <${s.id} /> }`),
+    ...(figma
+      ? [
+          'export const AllStates: Story = { name: "All States", render: () => <FigmaGrid />, parameters: { layout: "fullscreen" } }',
+        ]
+      : []),
+    ...stories.map(
+      (s) => `export const ${s.name}: Story = { render: () => <${s.id} /> }`
+    ),
     "",
   ]
   // Never overwrite a hand-written story: only files carrying the generated header are ours to replace.
   const target = path.join(OUT, `${pascal(comp)}.stories.tsx`)
-  if (fs.existsSync(target) && !fs.readFileSync(target, "utf8").startsWith("// Generated by scripts/gen-rm-stories.mjs")) {
+  if (
+    fs.existsSync(target) &&
+    !fs
+      .readFileSync(target, "utf8")
+      .startsWith("// Generated by scripts/gen-rm-stories.mjs")
+  ) {
     skipped.push(`${pascal(comp)} (hand-written)`)
     continue
   }

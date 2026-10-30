@@ -8,7 +8,7 @@ import { BreadcrumbLinkDemo as DemoBreadcrumbLink } from "@/examples/base/breadc
 import { BreadcrumbSeparatorDemo as DemoBreadcrumbSeparator } from "@/examples/base/breadcrumb-separator"
 
 const meta = {
-  title: "Components/Breadcrumb",
+  title: "RM Kit/Breadcrumb",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

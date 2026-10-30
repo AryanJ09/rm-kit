@@ -9,9 +9,9 @@ import { SwitchSizes as DemoSwitchSizes } from "@/examples/base/switch-sizes"
 import FigmaGrid from "./figma/switch"
 
 const meta = {
-  title: "RM Kit/Atoms/Switch",
+  title: "RM Kit/Switch",
   tags: ["autodocs"],
-  parameters: { layout: "fullscreen" },
+  parameters: { layout: "centered" },
 } satisfies Meta
 
 export default meta

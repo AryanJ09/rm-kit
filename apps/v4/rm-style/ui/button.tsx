@@ -9,15 +9,15 @@ import { Spinner } from "@/rm-style/ui/spinner"
 // Icon buttons are square at the same height. shadcn's names (outline, link, destructive, xs, default,
 // xl, icon, icon-xs) are kept as aliases so its demos render at the kit scale; an unknown size would
 // otherwise drop the height and padding silently.
-const sm = "h-(--size-control-sm) px-(--ds-spacing-12) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)"
-const md = "h-(--size-control-md) px-(--ds-spacing-16) [&_svg:not([class*='size-'])]:size-(--size-icon-md)"
-const lg = "h-(--size-control-lg) px-(--ds-spacing-24) [&_svg:not([class*='size-'])]:size-(--size-icon-lg)"
+const sm = "h-(--size-control-sm) px-(--spacing-inline-md) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)"
+const md = "h-(--size-control-md) px-(--spacing-inline-lg) [&_svg:not([class*='size-'])]:size-(--size-icon-md)"
+const lg = "h-(--size-control-lg) px-(--spacing-inline-xl) [&_svg:not([class*='size-'])]:size-(--size-icon-lg)"
 const iconSm = "size-(--size-control-sm) px-0 [&_svg:not([class*='size-'])]:size-(--size-icon-sm)"
 const iconMd = "size-(--size-control-md) px-0 [&_svg:not([class*='size-'])]:size-(--size-icon-md)"
 const iconLg = "size-(--size-control-lg) px-0 [&_svg:not([class*='size-'])]:size-(--size-icon-lg)"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center gap-(--ds-spacing-8) rounded-(--ds-radius-full) border-(length:--border-width-default) border-transparent font-sans text-(length:--typography-label-md-font-size) font-(--typography-label-md-font-weight) leading-(--typography-label-md-line-height) tracking-(--typography-label-md-letter-spacing) whitespace-nowrap transition-all outline-none select-none focus-visible:ring-(length:--ds-spacing-4) focus-visible:ring-primary-focus-ring data-focused:ring-(length:--ds-spacing-4) data-focused:ring-primary-focus-ring disabled:pointer-events-none disabled:border-transparent disabled:bg-surface-disabled disabled:text-text-disabled data-loading:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--size-icon-md)",
+  "group/button inline-flex shrink-0 items-center justify-center gap-(--spacing-inline-sm) rounded-(--radius-pill) border-(length:--border-width-default) border-transparent font-sans text-(length:--typography-label-md-font-size) font-(--typography-label-md-font-weight) leading-(--typography-label-md-line-height) tracking-(--typography-label-md-letter-spacing) whitespace-nowrap transition-all outline-none select-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring data-focused:ring-(length:--focus-ring-width) data-focused:ring-primary-focus-ring disabled:pointer-events-none disabled:border-transparent disabled:bg-surface-disabled disabled:text-text-disabled data-loading:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--size-icon-md)",
   {
     variants: {
       variant: {

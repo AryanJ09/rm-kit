@@ -1,0 +1,12 @@
+/* Center canvases by their actual specimen width, not the inner Storybook root. */
+.sb-main-centered #storybook-root:has(.style-nova) {
+  width: min(100%, 600px);
+  min-width: min(100%, 600px);
+}
+
+.sb-main-centered #storybook-root:has(.style-nova [data-slot="progress"]),
+.sb-main-centered #storybook-root:has(.style-nova [data-slot="slider"]),
+.sb-main-centered #storybook-root:has(.style-nova [data-slot="aspect-ratio"]) {
+  width: min(100%, 600px);
+  min-width: min(100%, 600px);
+}

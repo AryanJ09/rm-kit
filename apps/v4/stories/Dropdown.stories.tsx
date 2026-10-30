@@ -12,7 +12,7 @@ import { cn } from "cn"
 import { ChevronUpIcon } from "lucide-react"
 
 const meta = {
-  title: "RM Kit/Atoms/Dropdown",
+  title: "RM Kit/Dropdown",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -28,7 +28,7 @@ const options: DropdownOption[] = [
   { value: "legal", label: "Legal", disabled: true },
 ]
 
-const cell = "flex w-(--ds-size-288) flex-col gap-(--ds-spacing-16)"
+const cell = "flex w-(--size-288) flex-col gap-(--spacing-inline-lg)"
 
 function Cell({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -47,12 +47,12 @@ function StaticOpen() {
       <div
         className={cn(fieldTriggerVariants({ open: true }), "cursor-pointer")}
       >
-        <span className="min-w-0 flex-1 truncate text-field-label">
+        <span className="min-w-0 flex-1 truncate text-(color:--field-label)">
           Engineering
         </span>
         <ChevronUpIcon
           aria-hidden
-          className="size-(--field-icon-size) shrink-0 text-field-helper"
+          className="size-(--size-icon-sm) shrink-0 text-field-helper"
         />
       </div>
       <div className={dropdownPanelClassName}>
@@ -68,7 +68,7 @@ function StaticOpen() {
 
 export const AllStates: Story = {
   render: () => (
-    <div className="grid grid-cols-2 gap-(--ds-spacing-32)">
+    <div className="grid grid-cols-2 gap-(--spacing-section-md)">
       <Cell title="Default">
         <Dropdown
           label="Department"

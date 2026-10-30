@@ -8,9 +8,9 @@ import { SliderRange as DemoSliderRange } from "@/examples/base/slider-range"
 import { SliderVertical as DemoSliderVertical } from "@/examples/base/slider-vertical"
 
 const meta = {
-  title: "Components/Slider",
+  title: "RM Kit/Slider",
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
 } satisfies Meta
 
 export default meta

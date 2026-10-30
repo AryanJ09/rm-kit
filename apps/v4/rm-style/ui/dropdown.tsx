@@ -18,13 +18,13 @@ import {
 // Field shell shared by Dropdown and Date picker triggers. Same look as Input:
 // one blue focus, colours from semantic roles only.
 const fieldTriggerVariants = cva(
-  "flex w-full min-w-0 items-center justify-between gap-(--ds-spacing-8) rounded-(--field-radius) border-(length:--field-border-width) bg-background px-(--field-padding-x) text-left text-field-label transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
+  "flex w-full min-w-0 items-center justify-between gap-(--spacing-inline-sm) rounded-lg border-(length:--border-width-default) bg-background px-(--spacing-inset-control-x) text-left text-(color:--field-label) transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
       size: {
-        sm: "h-(--field-height-sm) text-sm",
-        md: "h-(--field-height-md) text-sm",
-        lg: "h-(--field-height-lg) text-lg",
+        sm: "h-(--size-control-sm) text-sm",
+        md: "h-(--size-control-md) text-sm",
+        lg: "h-(--size-control-lg) text-lg",
       },
       state: {
         default: "border-field-stroke",
@@ -46,7 +46,7 @@ const fieldTriggerVariants = cva(
 
 // Options panel: radius, border, shadow and padding all come from tokens.
 const dropdownPanelClassName =
-  "w-(--anchor-width) gap-0 rounded-(--dropdown-panel-radius) border-(length:--field-border-width) border-field-stroke bg-background p-(--dropdown-panel-padding) text-field-label shadow-(--dropdown-panel-shadow) ring-0"
+  "w-(--anchor-width) gap-0 rounded-md border-(length:--border-width-default) border-field-stroke bg-background p-(--spacing-inset-sm) text-(color:--field-label) shadow-(--elevation-popover) ring-0"
 
 type FieldState = "default" | "success" | "error"
 
@@ -70,11 +70,11 @@ function FieldShell({
         : "text-field-helper"
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-(--field-label-gap)">
-      {label ? <span className="text-xs font-medium text-field-label">{label}</span> : null}
+    <div className="flex w-full min-w-0 flex-col gap-(--spacing-stack-2xs)">
+      {label ? <span className="text-xs font-medium text-(color:--field-label)">{label}</span> : null}
       {children}
       {helper ? (
-        <span className={cn("text-(length:--ds-typography-font-size-11)", helperColor)}>{helper}</span>
+        <span className={cn("text-(length:--font-size-helper)", helperColor)}>{helper}</span>
       ) : null}
     </div>
   )
@@ -88,15 +88,7 @@ export type DropdownOption = {
 
 // The list itself, without the popover. The story renders it static for the
 // Open state; Dropdown renders it inside PopoverContent.
-// Option rows are as tall as the control of the same size: sm 40, md 48, lg 56, like buttons.
-const optionHeight = {
-  sm: "min-h-(--field-height-sm)",
-  md: "min-h-(--field-height-md)",
-  lg: "min-h-(--field-height-lg)",
-} as const
-
 function DropdownPanel({
-  size = "md",
   options,
   selected,
   searchable = false,
@@ -105,7 +97,6 @@ function DropdownPanel({
   onSelect,
   className,
 }: {
-  size?: keyof typeof optionHeight
   options: DropdownOption[]
   selected: string[]
   searchable?: boolean
@@ -117,18 +108,18 @@ function DropdownPanel({
   return (
     <Command
       className={cn(
-        "rounded-none bg-transparent p-0 text-field-label",
+        "rounded-none bg-transparent p-0 text-(color:--field-label)",
         className
       )}
     >
       {searchable ? (
         <CommandInput
           placeholder={searchPlaceholder}
-          className="text-field-label placeholder:text-field-placeholder"
+          className="text-(color:--field-label) placeholder:text-field-placeholder"
         />
       ) : null}
       <CommandList className="max-h-none overflow-visible p-0">
-        <CommandEmpty className="px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-sm text-field-helper">
+        <CommandEmpty className="px-(--spacing-inset-sm) py-(--spacing-inset-sm) text-sm text-field-helper">
           {emptyText}
         </CommandEmpty>
         <CommandGroup className="p-0">
@@ -145,7 +136,7 @@ function DropdownPanel({
                 data-checked={checked}
                 aria-checked={checked}
                 className={cn(
-                  cn(optionHeight[size], "rounded-none px-(--dropdown-option-padding-x) py-(--dropdown-option-padding-y) text-sm text-field-label data-selected:bg-surface-hover data-[checked=true]:bg-destructive-subtle data-[checked=true]:text-destructive data-disabled:text-text-disabled")
+                  "rounded-none px-(--spacing-inset-sm) py-(--spacing-inset-sm) text-xs text-(color:--field-label) data-selected:bg-surface-hover data-[checked=true]:bg-destructive-subtle data-[checked=true]:text-destructive data-disabled:text-text-disabled"
                 )}
               >
                 <span className="min-w-0 flex-1 truncate">{option.label}</span>
@@ -240,7 +231,7 @@ function Dropdown({
           </span>
           <Icon
             aria-hidden
-            className="size-(--field-icon-size) shrink-0 text-field-helper"
+            className="size-(--size-icon-sm) shrink-0 text-field-helper"
           />
         </PopoverTrigger>
         <PopoverContent
@@ -248,7 +239,6 @@ function Dropdown({
           className={dropdownPanelClassName}
         >
           <DropdownPanel
-            size={size}
             options={options}
             selected={selected}
             searchable={searchable}

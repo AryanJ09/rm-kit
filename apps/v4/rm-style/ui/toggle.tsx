@@ -4,20 +4,19 @@ import { Toggle as TogglePrimitive } from "@base-ui/react/toggle"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-// Toggle is a pressed or unpressed control. Its look comes only from the kit's chip and field roles.
-// Sizes follow the global scale: sm 40, default 48, lg 56.
 const toggleVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-(--ds-spacing-6) rounded-(--ds-radius-full) border-(length:--field-border-width) font-sans font-medium whitespace-nowrap transition-colors outline-none select-none hover:border-(--chip-selected-stroke) hover:text-(--chip-selected-text) hover:ring-(length:--field-focus-ring-width) hover:ring-primary-focus-ring focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring aria-pressed:border-(--chip-selected-stroke) aria-pressed:bg-(--chip-selected-background) aria-pressed:text-(--chip-selected-text) disabled:pointer-events-none disabled:border-(--chip-disabled-stroke) disabled:bg-(--chip-disabled-background) disabled:text-(--chip-disabled-text) [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "group/toggle inline-flex items-center justify-center gap-(--spacing-inline-xs) rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] disabled:pointer-events-none disabled:opacity-(--opacity-disabled) aria-invalid:border-destructive aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] aria-pressed:bg-muted data-[state=on]:bg-muted dark:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
   {
     variants: {
       variant: {
-        default: "border-transparent bg-transparent text-(--chip-text)",
-        outline: "border-(--chip-stroke) bg-(--chip-background) text-(--chip-text)",
+        default: "bg-transparent",
+        outline: "border border-input bg-transparent hover:bg-muted",
       },
       size: {
-        sm: "h-(--size-control-sm) px-(--ds-spacing-16) text-(length:--typography-label-md-font-size) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
-        default: "h-(--size-control-md) px-(--ds-spacing-16) text-(length:--typography-label-md-font-size) [&_svg:not([class*='size-'])]:size-(--size-icon-md)",
-        lg: "h-(--size-control-lg) px-(--ds-spacing-24) text-(length:--typography-label-md-font-size) [&_svg:not([class*='size-'])]:size-(--size-icon-lg)",
+        default:
+          "h-(--size-control-32) min-w-(--size-control-32) px-(--spacing-inset-md) has-data-[icon=inline-end]:pr-(--spacing-inline-sm) has-data-[icon=inline-start]:pl-(--spacing-inline-sm)",
+        sm: "h-(--size-control-28) min-w-(--size-control-28) rounded-xl px-(--spacing-inset-md) text-sm has-data-[icon=inline-end]:pr-(--spacing-stack-2xs) has-data-[icon=inline-start]:pl-(--spacing-stack-2xs) [&_svg:not([class*='size-'])]:size-(--size-icon-xs)",
+        lg: "h-(--size-control-36) min-w-(--size-control-36) px-(--spacing-inset-md) has-data-[icon=inline-end]:pr-(--spacing-inline-sm) has-data-[icon=inline-start]:pl-(--spacing-inline-sm)",
       },
     },
     defaultVariants: {
@@ -27,16 +26,19 @@ const toggleVariants = cva(
   }
 )
 
-type ToggleProps = TogglePrimitive.Props & VariantProps<typeof toggleVariants>
-
-function Toggle({ className, variant = "default", size = "default", ...props }: ToggleProps) {
+function Toggle({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: TogglePrimitive.Props & VariantProps<typeof toggleVariants>) {
   return (
     <TogglePrimitive
       data-slot="toggle"
-      className={cn(toggleVariants({ variant, size }), className)}
+      className={cn(toggleVariants({ variant, size, className }))}
       {...props}
     />
   )
 }
 
-export { Toggle, toggleVariants, type ToggleProps }
+export { Toggle, toggleVariants }

@@ -14,9 +14,9 @@ import DemoFieldSwitch from "@/examples/base/field-switch"
 import DemoFieldTextarea from "@/examples/base/field-textarea"
 
 const meta = {
-  title: "Components/Field",
+  title: "RM Kit/Field",
   tags: ["autodocs"],
-  parameters: { layout: "fullscreen" },
+  parameters: { layout: "padded" },
 } satisfies Meta
 
 export default meta

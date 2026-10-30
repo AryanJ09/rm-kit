@@ -15,7 +15,7 @@ import DemoSidebarMenu from "@/examples/base/sidebar-menu"
 import DemoSidebarRsc from "@/examples/base/sidebar-rsc"
 
 const meta = {
-  title: "Components/Sidebar",
+  title: "RM Kit/Upcoming/Sidebar",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

@@ -3,7 +3,7 @@ import { ClipboardList, House, Target, Users } from "lucide-react"
 import { NavigationItem } from "@/rm-style/ui/navigation-item"
 
 const meta = {
-  title: "RM Kit/Atoms/Navigation item",
+  title: "RM Kit/Bottom navigation/Navigation item",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -23,9 +23,9 @@ const states = ["inactive", "active", "pressed", "disabled"] as const
 export const AllStates: Story = {
   name: "All States",
   render: () => (
-    <div className="flex flex-col gap-(--ds-spacing-16) bg-background p-(--ds-spacing-16)">
+    <div className="flex flex-col gap-(--spacing-inline-lg) bg-background p-(--spacing-inline-lg)">
       {items.map((item) => (
-        <div key={item.label} className="flex gap-(--ds-spacing-16)">
+        <div key={item.label} className="flex gap-(--spacing-inline-lg)">
           {states.map((state) => (
             <NavigationItem
               key={state}

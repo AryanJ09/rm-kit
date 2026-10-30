@@ -12,9 +12,9 @@ import {
 } from "@/rm-style/ui/alert-dialog"
 import { Avatar, AvatarFallback } from "@/rm-style/ui/avatar"
 import { Badge } from "@/rm-style/ui/badge"
-import { Navigation, type Destination } from "@/rm-style/patterns/navigation"
+import { BottomNavigation } from "@/rm-style/ui/bottom-navigation"
 import { Button } from "@/rm-style/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/rm-style/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/bases/base/ui/card"
 import { Checkbox } from "@/rm-style/ui/checkbox"
 import { DatePicker } from "@/rm-style/ui/date-picker"
 import {
@@ -86,16 +86,16 @@ function Filters({
   view: string; setView: (v: string) => void
 }) {
   return (
-    <div className="flex flex-col gap-(--ds-spacing-16)">
+    <div className="flex flex-col gap-(--spacing-inline-lg)">
       <Dropdown label="Risk profile" placeholder="All profiles" mode="multiple" options={RISK_OPTIONS} value={risk} onValueChange={setRisk} />
       <DatePicker label="Review date" mode="range" placeholder="Pick a range" />
-      <div className="flex items-center justify-between gap-(--ds-spacing-16)">
+      <div className="flex items-center justify-between gap-(--spacing-inline-lg)">
         <Label htmlFor="active-only">Active clients only</Label>
         <Switch id="active-only" checked={activeOnly} onCheckedChange={setActiveOnly} />
       </div>
       <RadioGroup value={view} onValueChange={setView} aria-label="Sort clients">
-        <div className="flex items-center gap-(--ds-spacing-8)"><RadioGroupItem value="name" id="sort-name" /><Label htmlFor="sort-name">Sort by name</Label></div>
-        <div className="flex items-center gap-(--ds-spacing-8)"><RadioGroupItem value="aum" id="sort-aum" /><Label htmlFor="sort-aum">Sort by assets</Label></div>
+        <div className="flex items-center gap-(--spacing-inline-sm)"><RadioGroupItem value="name" id="sort-name" /><Label htmlFor="sort-name">Sort by name</Label></div>
+        <div className="flex items-center gap-(--spacing-inline-sm)"><RadioGroupItem value="aum" id="sort-aum" /><Label htmlFor="sort-aum">Sort by assets</Label></div>
       </RadioGroup>
     </div>
   )
@@ -110,9 +110,9 @@ function AddClient() {
           <DialogTitle>Add client</DialogTitle>
           <DialogDescription>Capture the basics now. You can finish the profile later.</DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-(--ds-spacing-16)">
-          <div className="flex flex-col gap-(--ds-spacing-8)"><Label htmlFor="client-name">Full name</Label><Input id="client-name" placeholder="Client name" /></div>
-          <div className="flex flex-col gap-(--ds-spacing-8)"><Label htmlFor="client-note">Note</Label><Textarea id="client-note" placeholder="How did you meet?" /></div>
+        <div className="flex flex-col gap-(--spacing-inline-lg)">
+          <div className="flex flex-col gap-(--spacing-inline-sm)"><Label htmlFor="client-name">Full name</Label><Input id="client-name" placeholder="Client name" /></div>
+          <div className="flex flex-col gap-(--spacing-inline-sm)"><Label htmlFor="client-note">Note</Label><Textarea id="client-note" placeholder="How did you meet?" /></div>
         </div>
         <DialogFooter><Button>Save client</Button></DialogFooter>
       </DialogContent>
@@ -121,7 +121,6 @@ function AddClient() {
 }
 
 function Dashboard() {
-  const [screen, setScreen] = useState<Destination>("Clients")
   const [query, setQuery] = useState("")
   const [risk, setRisk] = useState<string[]>([])
   const [activeOnly, setActiveOnly] = useState(false)
@@ -147,13 +146,13 @@ function Dashboard() {
 
   return (
     <div className="flex min-h-dvh flex-col bg-background font-sans text-foreground">
-      <header className="flex flex-col gap-(--ds-spacing-16) border-b border-border p-(--ds-spacing-16) md:flex-row md:items-center md:justify-between">
+      <header className="flex flex-col gap-(--spacing-inline-lg) border-b border-border p-(--spacing-inline-lg) md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-(length:--ds-typography-font-size-24) font-medium">Clients</h1>
-          <p className="text-(length:--ds-typography-font-size-14) text-text-secondary">{rows.length} of {CLIENTS.length - removed.length} shown</p>
+          <h1 className="text-(length:--font-size-2xl) font-medium">Clients</h1>
+          <p className="text-(length:--font-size-sm) text-text-secondary">{rows.length} of {CLIENTS.length - removed.length} shown</p>
         </div>
-        <div className="flex items-center gap-(--ds-spacing-8)">
-          <Search className="flex-1 md:w-(--ds-size-288) md:flex-none" placeholder="Search clients" value={query} onValueChange={setQuery} onClear={() => setQuery("")} />
+        <div className="flex items-center gap-(--spacing-inline-sm)">
+          <Search className="flex-1 md:w-(--size-288) md:flex-none" placeholder="Search clients" value={query} onValueChange={setQuery} onClear={() => setQuery("")} />
           <Sheet>
             <SheetTrigger render={<Button variant="secondary" className="lg:hidden" />}>Filters</SheetTrigger>
             <SheetContent>
@@ -161,40 +160,40 @@ function Dashboard() {
                 <SheetTitle>Filters</SheetTitle>
                 <SheetDescription>Narrow the client list.</SheetDescription>
               </SheetHeader>
-              <div className="p-(--ds-spacing-16)"><Filters {...filters} /></div>
+              <div className="p-(--spacing-inline-lg)"><Filters {...filters} /></div>
             </SheetContent>
           </Sheet>
           <AddClient />
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col gap-(--ds-spacing-24) p-(--ds-spacing-16) pb-(--ds-size-layout-nav-clearance) md:pb-(--ds-spacing-16)">
-        <section aria-label="Summary" className="grid gap-(--ds-spacing-16) sm:grid-cols-2 lg:grid-cols-4">
+      <main className="flex flex-1 flex-col gap-(--spacing-inline-xl) p-(--spacing-inline-lg) pb-(--size-layout-nav-clearance) md:pb-(--spacing-inline-lg)">
+        <section aria-label="Summary" className="grid gap-(--spacing-inline-lg) sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((s) => (
             <Card key={s.title}>
               <CardHeader>
                 <CardDescription>{s.title}</CardDescription>
-                <CardTitle className="text-(length:--ds-typography-font-size-28)">{s.value}</CardTitle>
+                <CardTitle className="text-(length:--typography-heading-lg-font-size)">{s.value}</CardTitle>
               </CardHeader>
-              <CardContent className="text-(length:--ds-typography-font-size-12) text-text-secondary">{s.note}</CardContent>
+              <CardContent className="text-(length:--font-size-xs) text-text-secondary">{s.note}</CardContent>
             </Card>
           ))}
         </section>
 
-        <div className="grid gap-(--ds-spacing-24) lg:grid-cols-3">
-          <section aria-label="Client list" className="flex flex-col gap-(--ds-spacing-16) lg:col-span-2">
+        <div className="grid gap-(--spacing-inline-xl) lg:grid-cols-3">
+          <section aria-label="Client list" className="flex flex-col gap-(--spacing-inline-lg) lg:col-span-2">
             <div className="hidden lg:block"><Filters {...filters} /></div>
 
             {/* Mobile: one card per client. */}
-            <ul className="flex flex-col gap-(--ds-spacing-8) md:hidden">
+            <ul className="flex flex-col gap-(--spacing-inline-sm) md:hidden">
               {rows.map((c) => (
-                <li key={c.id} className="flex items-center gap-(--ds-spacing-12) rounded-(--radius-md) border border-border p-(--ds-spacing-12)">
+                <li key={c.id} className="flex items-center gap-(--spacing-inline-md) rounded-(--radius-md) border border-border p-(--spacing-inline-md)">
                   <Avatar><AvatarFallback>{initials(c.name)}</AvatarFallback></Avatar>
-                  <div className="flex min-w-0 flex-1 flex-col gap-(--ds-spacing-4)">
+                  <div className="flex min-w-0 flex-1 flex-col gap-(--spacing-inline-xs)">
                     <span className="truncate font-medium">{c.name}</span>
                     <Badge variant={c.risk}>{label(c.risk)}</Badge>
                   </div>
-                  <span className="text-(length:--ds-typography-font-size-14) text-text-secondary">{c.aum}</span>
+                  <span className="text-(length:--font-size-sm) text-text-secondary">{c.aum}</span>
                 </li>
               ))}
             </ul>
@@ -249,9 +248,9 @@ function Dashboard() {
         </div>
       </main>
 
-      {/* Navigation pattern: a bottom bar pinned to the edge on mobile, a top bar on desktop. */}
-      <div className="order-last fixed inset-x-0 bottom-0 z-40 flex justify-center md:static md:order-first md:z-auto">
-        <Navigation value={screen} onValueChange={setScreen} />
+      {/* Mobile only: primary navigation pinned to the bottom edge. */}
+      <div className="fixed inset-x-0 bottom-0 flex justify-center md:hidden">
+        <BottomNavigation defaultActive="Clients" />
       </div>
 
       <AlertDialog open={removing !== null} onOpenChange={(open) => !open && setRemoving(null)}>

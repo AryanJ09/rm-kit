@@ -5,7 +5,7 @@ import { TableDemo as DemoTableDemo } from "@/examples/base/table-demo"
 import { TableFooterExample as DemoTableFooter } from "@/examples/base/table-footer"
 
 const meta = {
-  title: "Components/Table",
+  title: "RM Kit/Upcoming/Table",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

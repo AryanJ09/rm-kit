@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Search } from "@/rm-style/ui/search"
 
 const meta = {
-  title: "RM Kit/Atoms/Search",
+  title: "RM Kit/Search",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>
 
 // Static stand-in for the :focus-within look so every state shows at once.
 const focusedClass =
-  "border-field-focus ring-(length:--field-focus-ring-width) ring-primary-focus-ring"
+  "border-field-focus ring-(length:--focus-ring-width) ring-primary-focus-ring"
 
 function Cell({
   label,
@@ -27,8 +27,8 @@ function Cell({
   children: ReactNode
 }) {
   return (
-    <div className="flex w-(--ds-size-288) flex-col gap-(--field-label-gap)">
-      <span className="text-sm text-field-label">{label}</span>
+    <div className="flex w-(--size-288) flex-col gap-(--spacing-stack-2xs)">
+      <span className="text-sm text-(color:--field-label)">{label}</span>
       {children}
       {helper ? (
         <span
@@ -54,7 +54,7 @@ function FilledSearch() {
 
 export const AllStates: Story = {
   render: () => (
-    <div className="grid grid-cols-2 gap-(--ds-spacing-24)">
+    <div className="grid grid-cols-2 gap-(--spacing-inline-xl)">
       <Cell label="Default">
         <Search />
       </Cell>

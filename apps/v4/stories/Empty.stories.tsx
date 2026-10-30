@@ -9,7 +9,7 @@ import DemoEmptyInputGroup from "@/examples/base/empty-input-group"
 import DemoEmptyOutline from "@/examples/base/empty-outline"
 
 const meta = {
-  title: "Components/Empty",
+  title: "RM Kit/Empty",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

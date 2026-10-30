@@ -24,6 +24,14 @@ export type ChartConfig = Record<
 
 type ChartContextProps = {
   config: ChartConfig
+  activeKey: string | null
+}
+
+const CHART_SERIES_COUNT = 10
+
+// Positional fallback shared by chart types without a named RM series colour.
+function getChartColor(index: number) {
+  return `var(--chart-${(index % CHART_SERIES_COUNT) + 1})`
 }
 
 const ChartContext = React.createContext<ChartContextProps | null>(null)
@@ -44,6 +52,7 @@ function ChartContainer({
   children,
   config,
   initialDimension = INITIAL_DIMENSION,
+  onClick,
   ...props
 }: React.ComponentProps<"div"> & {
   config: ChartConfig
@@ -57,14 +66,30 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId()
   const chartId = `chart-${id ?? uniqueId.replace(/:/g, "")}`
+  const [activeKey, setActiveKey] = React.useState<string | null>(null)
+  const contextValue = React.useMemo(() => ({ config, activeKey }), [config, activeKey])
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    onClick?.(event)
+    const target = (event.target as Element).closest<HTMLElement>("[data-series]")
+    const key = target?.dataset.series ?? null
+    setActiveKey((current) => (key && key !== current ? key : null))
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Escape") setActiveKey(null)
+  }
 
   return (
-    <ChartContext.Provider value={{ config }}>
+    <ChartContext.Provider value={contextValue}>
       <div
         data-slot="chart"
         data-chart={chartId}
+        data-active-series={activeKey ?? undefined}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
         className={cn(
-          "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
+          "flex aspect-video justify-center text-xs select-none [&_.recharts-wrapper]:outline-hidden [&_.recharts-wrapper_*]:outline-hidden [&_[data-series]]:cursor-pointer [&_[data-series]]:transition-opacity [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden",
           className
         )}
         {...props}
@@ -85,14 +110,15 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
     ([, config]) => config.theme ?? config.color
   )
 
-  if (!colorConfig.length) {
-    return null
-  }
+  if (!colorConfig.length) return null
+
+  const hasThemeColors = colorConfig.some(([, item]) => item.theme)
+  const themes = (hasThemeColors ? Object.entries(THEMES) : [["light", ""]]) as [string, string][]
 
   return (
     <style
       dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
+        __html: themes
           .map(
             ([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
@@ -105,6 +131,9 @@ ${colorConfig
   })
   .join("\n")}
 }
+${colorConfig
+  .map(([key]) => `[data-chart=${id}][data-active-series="${key}"] [data-series]:not([data-series="${key}"]) { opacity: var(--chart-inactive-opacity); }\n[data-chart=${id}][data-active-series="${key}"] button[data-series="${key}"] { opacity: 1; }`)
+  .join("\n")}
 `
           )
           .join("\n"),
@@ -190,12 +219,12 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        "grid min-w-32 items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
+        "grid min-w-(--size-128) items-start gap-(--spacing-stack-2xs) rounded-lg border border-border/[calc(var(--opacity-half)*100%)] bg-background px-(--spacing-inset-md) py-(--spacing-stack-2xs) text-xs shadow-xl",
         className
       )}
     >
       {!nestLabel ? tooltipLabel : null}
-      <div className="grid gap-1.5">
+      <div className="grid gap-(--spacing-stack-2xs)">
         {payload
           .filter((item) => item.type !== "none")
           .map((item, index) => {
@@ -207,7 +236,7 @@ function ChartTooltipContent({
               <div
                 key={index}
                 className={cn(
-                  "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
+                  "flex w-full flex-wrap items-stretch gap-(--spacing-inline-sm) [&>svg]:h-(--size-icon-2xs) [&>svg]:w-(--size-icon-2xs) [&>svg]:text-muted-foreground",
                   indicator === "dot" && "items-center"
                 )}
               >
@@ -221,13 +250,15 @@ function ChartTooltipContent({
                       !hideIndicator && (
                         <div
                           className={cn(
-                            "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
+                            "shrink-0 rounded-(--radius-xs) border-(--color-border) bg-(--color-bg)",
                             {
-                              "h-2.5 w-2.5": indicator === "dot",
-                              "w-1": indicator === "line",
-                              "w-0 border-[1.5px] border-dashed bg-transparent":
+                              "h-(--size-icon-2xs) w-(--size-icon-2xs)":
+                                indicator === "dot",
+                              "w-(--spacing-inline-xs)": indicator === "line",
+                              "w-0 border-(length:--border-width-thick) border-dashed bg-transparent":
                                 indicator === "dashed",
-                              "my-0.5": nestLabel && indicator === "dashed",
+                              "my-(--spacing-stack-3xs)":
+                                nestLabel && indicator === "dashed",
                             }
                           )}
                           style={
@@ -245,7 +276,7 @@ function ChartTooltipContent({
                         nestLabel ? "items-end" : "items-center"
                       )}
                     >
-                      <div className="grid gap-1.5">
+                      <div className="grid gap-(--spacing-stack-2xs)">
                         {nestLabel ? tooltipLabel : null}
                         <span className="text-muted-foreground">
                           {itemConfig?.label ?? item.name}
@@ -281,7 +312,7 @@ function ChartLegendContent({
   hideIcon?: boolean
   nameKey?: string
 } & RechartsPrimitive.DefaultLegendContentProps) {
-  const { config } = useChart()
+  const { config, activeKey } = useChart()
 
   if (!payload?.length) {
     return null
@@ -290,8 +321,10 @@ function ChartLegendContent({
   return (
     <div
       className={cn(
-        "flex items-center justify-center gap-4",
-        verticalAlign === "top" ? "pb-3" : "pt-3",
+        "flex items-center justify-center gap-(--spacing-inline-xs)",
+        verticalAlign === "top"
+          ? "pb-(--spacing-stack-xs)"
+          : "pt-(--spacing-stack-xs)",
         className
       )}
     >
@@ -302,28 +335,46 @@ function ChartLegendContent({
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
           return (
-            <div
+            <button
+              type="button"
               key={index}
+              data-series={getPayloadSeriesKey(item, key)}
+              aria-pressed={activeKey === getPayloadSeriesKey(item, key)}
               className={cn(
-                "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground"
+                "flex cursor-pointer items-center gap-(--spacing-stack-2xs) rounded-(--radius-xs) transition-opacity outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring [&>svg]:h-(--size-icon-3xs) [&>svg]:w-(--size-icon-3xs) [&>svg]:text-muted-foreground"
               )}
             >
               {itemConfig?.icon && !hideIcon ? (
                 <itemConfig.icon />
               ) : (
                 <div
-                  className="h-2 w-2 shrink-0 rounded-[2px]"
+                  className="h-(--size-dot) w-(--size-dot) shrink-0 rounded-(--radius-xs)"
                   style={{
                     backgroundColor: item.color,
                   }}
                 />
               )}
               {itemConfig?.label}
-            </div>
+            </button>
           )
         })}
     </div>
   )
+}
+
+function getPayloadSeriesKey(payload: unknown, key: string) {
+  if (typeof payload !== "object" || payload === null) return key
+  const inner =
+    "payload" in payload &&
+    typeof payload.payload === "object" &&
+    payload.payload !== null
+      ? payload.payload
+      : undefined
+  if (key in payload && typeof payload[key as keyof typeof payload] === "string")
+    return payload[key as keyof typeof payload] as string
+  if (inner && key in inner && typeof inner[key as keyof typeof inner] === "string")
+    return inner[key as keyof typeof inner] as string
+  return key
 }
 
 function getPayloadConfigFromPayload(
@@ -369,4 +420,5 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  getChartColor,
 }

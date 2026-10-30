@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Input } from "@/rm-style/ui/input"
 
 const meta = {
-  title: "RM Kit/Atoms/Input",
+  title: "RM Kit/Input",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>
 
 // Static stand-in for the :focus-visible look so every state shows at once.
 const focusedClass =
-  "border-field-focus ring-(length:--field-focus-ring-width) ring-primary-focus-ring"
+  "border-field-focus ring-(length:--focus-ring-width) ring-primary-focus-ring"
 
 function Cell({
   label,
@@ -27,8 +27,8 @@ function Cell({
   children: ReactNode
 }) {
   return (
-    <div className="flex w-(--ds-size-288) flex-col gap-(--field-label-gap)">
-      <span className="text-sm text-field-label">{label}</span>
+    <div className="flex w-(--size-288) flex-col gap-(--spacing-stack-2xs)">
+      <span className="text-sm text-(color:--field-label)">{label}</span>
       {children}
       {helper ? (
         <span
@@ -45,11 +45,11 @@ const sizes = ["sm", "md", "lg"] as const
 
 export const AllStates: Story = {
   render: () => (
-    <div className="flex flex-col gap-(--ds-spacing-32)">
+    <div className="flex flex-col gap-(--spacing-section-md)">
       {sizes.map((size) => (
-        <div key={size} className="flex flex-col gap-(--ds-spacing-16)">
-          <span className="text-sm font-medium text-field-label">{size}</span>
-          <div className="grid grid-cols-2 gap-(--ds-spacing-24)">
+        <div key={size} className="flex flex-col gap-(--spacing-inline-lg)">
+          <span className="text-sm font-medium text-(color:--field-label)">{size}</span>
+          <div className="grid grid-cols-2 gap-(--spacing-inline-xl)">
             <Cell label="Default">
               <Input size={size} placeholder="Placeholder" />
             </Cell>

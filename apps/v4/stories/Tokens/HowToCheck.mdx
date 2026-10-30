@@ -1,0 +1,33 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Tokens/How to check" />
+
+# Working with RM Kit tokens
+
+## Token flow
+
+`Foundation (--ds-*) → Semantic role (--primary, --surface, --text-primary) → Component usage`
+
+Use semantic roles in component classes. A role must resolve to a foundation primitive. Add a missing role by referencing an existing primitive in `rm-style/tokens/semantic.css`; do not insert raw values into a component.
+
+## Validate
+
+From `apps/v4`, run:
+
+```sh
+node scripts/audit-tokens.mjs
+```
+
+The audit checks custom-property references and component classes. The **Tokens/Audit status** story runs the same `audit-core.mjs` function so Storybook and CLI report the same results.
+
+## Component trace
+
+The **Tokens/Component to semantic trace** story lists every `rm-style/ui` component with the semantic roles it uses and the primitive each role resolves to. Regenerate it after changing tokens or components:
+
+```sh
+node scripts/generate-token-data.mjs
+```
+
+## Inspect in the browser
+
+Right-click a component in Storybook, Inspect, then open Computed. Each property shows its `var(--role)` chain: component, `semantic.css`, `primitives.css`.

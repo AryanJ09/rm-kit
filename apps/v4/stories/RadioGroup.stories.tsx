@@ -9,7 +9,7 @@ import { RadioGroupInvalid as DemoRadioGroupInvalid } from "@/examples/base/radi
 import FigmaGrid from "./figma/radio-group"
 
 const meta = {
-  title: "RM Kit/Atoms/RadioGroup",
+  title: "RM Kit/RadioGroup",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta

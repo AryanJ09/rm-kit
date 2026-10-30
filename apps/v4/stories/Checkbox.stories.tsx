@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // Hand-written: this file is not regenerated.
 const meta = {
-  title: "RM Kit/Atoms/Checkbox",
+  title: "RM Kit/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
@@ -16,11 +16,11 @@ type Story = StoryObj<typeof meta>
 
 export const AllStates: Story = {
   render: () => (
-    <div className="grid gap-(--ds-spacing-16) p-(--ds-spacing-16)">
-      <div className="flex items-center gap-(--ds-spacing-16)"><Checkbox /> Unchecked</div>
-      <div className="flex items-center gap-(--ds-spacing-16)"><Checkbox defaultChecked /> Checked</div>
-      <div className="flex items-center gap-(--ds-spacing-16)"><Checkbox indeterminate /> Some selected</div>
-      <div className="flex items-center gap-(--ds-spacing-16)"><Checkbox disabled /> Disabled</div>
+    <div className="grid gap-(--spacing-inline-lg) p-(--spacing-inline-lg)">
+      <div className="flex items-center gap-(--spacing-inline-lg)"><Checkbox /> Unchecked</div>
+      <div className="flex items-center gap-(--spacing-inline-lg)"><Checkbox defaultChecked /> Checked</div>
+      <div className="flex items-center gap-(--spacing-inline-lg)"><Checkbox indeterminate /> Some selected</div>
+      <div className="flex items-center gap-(--spacing-inline-lg)"><Checkbox disabled /> Disabled</div>
     </div>
   ),
 }
@@ -37,7 +37,7 @@ export const SelectTable: Story = {
       <Table className="w-full">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-(--ds-size-icon-48)">
+            <TableHead className="w-(--size-icon-xl)">
               <Checkbox
                 aria-label="Select all"
                 checked={headerState === true}

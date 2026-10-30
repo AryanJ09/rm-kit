@@ -1,6 +1,8 @@
-import type { Preview } from '@storybook/nextjs-vite'
-import '../rm-style/theme.css'
-import '../app/style-registry.css'
+import type { Preview } from "@storybook/nextjs-vite"
+
+import "../rm-style/theme.css"
+import "../app/style-registry.css"
+import "../stories/storybook-canvas.css"
 
 const preview: Preview = {
   decorators: [
@@ -14,13 +16,13 @@ const preview: Preview = {
     options: {
       // RM Kit first, then the example screens, then everything else in its default order.
       storySort: {
-        order: ['RM Kit', 'Examples', '*'],
+        order: ["RM Kit", "Tokens", "Examples", "*"],
       },
     },
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
 
@@ -28,9 +30,9 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+      test: "todo",
+    },
   },
-};
+}
 
-export default preview;
+export default preview

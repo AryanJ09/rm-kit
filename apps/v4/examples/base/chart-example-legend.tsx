@@ -45,8 +45,8 @@ export function ChartBarDemoLegend() {
         />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+        <Bar dataKey="desktop" data-series="desktop" fill="var(--color-desktop)" radius={4} />
+        <Bar dataKey="mobile" data-series="mobile" fill="var(--color-mobile)" radius={4} />
       </BarChart>
     </ChartContainer>
   )

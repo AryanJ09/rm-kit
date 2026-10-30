@@ -29,8 +29,8 @@ export function ChartBarDemoGrid() {
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
-        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+        <Bar dataKey="desktop" data-series="desktop" fill="var(--color-desktop)" radius={4} />
+        <Bar dataKey="mobile" data-series="mobile" fill="var(--color-mobile)" radius={4} />
       </BarChart>
     </ChartContainer>
   )

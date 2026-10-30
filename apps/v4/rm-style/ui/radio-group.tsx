@@ -4,11 +4,17 @@ import { Radio as RadioPrimitive } from "@base-ui/react/radio"
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { cn } from "cn"
 
+// Shared with Questionnaire so a choice indicator is this exact radio, not a copy.
+export const radioControlClassName =
+  "group/radio-group-item peer relative flex aspect-square size-(--size-icon-md) shrink-0 rounded-full border-(length:--ring-width) border-control-stroke-default outline-none group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring not-data-checked:not-data-disabled:hover:border-primary not-data-disabled:hover:ring-(length:--focus-ring-width) hover:ring-primary-focus-ring data-disabled:cursor-not-allowed data-disabled:border-control-disabled aria-invalid:border-destructive aria-invalid:ring-(length:--ring-width-invalid) aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] aria-invalid:aria-checked:border-primary dark:bg-input/[calc(var(--opacity-soft)*100%)] dark:aria-invalid:border-destructive/[calc(var(--ring-opacity)*100%)] dark:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)] data-checked:border-primary data-checked:bg-background group-has-[:focus-visible]/field-label:data-checked:border-primary dark:data-checked:bg-primary"
+export const radioDotClassName =
+  "absolute top-1/2 left-1/2 size-(--size-dot-md) -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-disabled/radio-group-item:bg-control-disabled"
+
 function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   return (
     <RadioGroupPrimitive
       data-slot="radio-group"
-      className={cn("grid w-full gap-(--ds-spacing-8)", className)}
+      className={cn("grid w-full gap-(--spacing-stack-sm)", className)}
       {...props}
     />
   )
@@ -18,17 +24,14 @@ function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root
       data-slot="radio-group-item"
-      className={cn(
-        "group/radio-group-item peer relative flex aspect-square size-(--size-icon-md) shrink-0 rounded-full border-(length:--ring-width) border-control-stroke-default outline-none group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-(length:--field-focus-ring-width) focus-visible:ring-primary-focus-ring not-data-checked:not-data-disabled:hover:border-primary not-data-disabled:hover:ring-(length:--field-focus-ring-width) hover:ring-primary-focus-ring data-disabled:cursor-not-allowed data-disabled:border-control-disabled aria-invalid:border-destructive aria-invalid:ring-(length:--ds-spacing-4) aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-background group-has-[:focus-visible]/field-label:data-checked:border-primary dark:data-checked:bg-primary",
-        className
-      )}
+      className={cn(radioControlClassName, className)}
       {...props}
     >
       <RadioPrimitive.Indicator
         data-slot="radio-group-indicator"
         className="flex size-(--size-icon-md) items-center justify-center"
       >
-        <span className="absolute top-1/2 left-1/2 size-(--ds-spacing-10) -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-disabled/radio-group-item:bg-control-disabled" />
+        <span className={radioDotClassName} />
       </RadioPrimitive.Indicator>
     </RadioPrimitive.Root>
   )

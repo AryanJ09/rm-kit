@@ -11,7 +11,7 @@ import { Skeleton } from "./skeleton"
 
 // Shared with the card variant of Accordion so there is one card look.
 export const cardVariants = cva(
-  "group/card relative flex min-w-0 flex-col rounded-(--radius-2xl) border border-border text-card-foreground transition-colors outline-none",
+  "group/card relative flex min-w-0 flex-col rounded-(--radius-2xl) border border-border text-foreground transition-colors outline-none",
   {
     variants: {
       tone: {
@@ -123,7 +123,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-title"
       className={cn(
-        "text-(length:--font-size-sm) font-(--typography-heading-md-font-weight) text-card-foreground",
+        "text-(length:--font-size-sm) font-(--typography-heading-md-font-weight) text-foreground",
         className
       )}
       {...props}
@@ -186,7 +186,7 @@ function CardKeyValue({
     >
       <span className="shrink-0 text-muted-foreground">{label}</span>
       {/* Missing content shows a dash, never an empty gap. */}
-      <span className="min-w-0 text-right font-(--typography-label-strong-font-weight) text-card-foreground">{children ?? "—"}</span>
+      <span className="min-w-0 text-right font-(--typography-label-strong-font-weight) text-foreground">{children ?? "—"}</span>
     </div>
   )
 }

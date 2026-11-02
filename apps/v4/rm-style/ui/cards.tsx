@@ -39,12 +39,12 @@ import { Metric } from "./metric"
 import { Separator } from "./separator"
 import { Skeleton } from "./skeleton"
 
-/* ----- shared contract ----- */
+/* shared contract */
 
 // One set of states for every archetype.
 export type CardState = "default" | "loading" | "empty" | "error"
 type BadgeVariant = "conservative" | "moderate" | "growth" | "aggressive" | "secure" | "success" | "neutral"
-export type CardStatus = { label: string; variant?: BadgeVariant; dot?: boolean }
+export type CardStatus = { label: string; variant?: BadgeVariant; dot?: boolean; icon?: React.ReactNode }
 export type CardItem = { label: string; value?: React.ReactNode; trend?: "up" | "down" }
 
 type Common = {
@@ -65,6 +65,7 @@ function StatusBadge({ status }: { status?: CardStatus }) {
   if (!status) return null
   return (
     <Badge variant={status.variant ?? "moderate"} dot={status.dot}>
+      {status.icon}
       {status.label}
     </Badge>
   )
@@ -88,7 +89,7 @@ function ErrorBody({ errorTitle = "Unavailable", errorText = "Check your connect
 
 const trendText = { up: "text-(color:--category-success-text)", down: "text-(color:--category-aggressive-text)" }
 
-/* ----- StatCard ----- */
+/* StatCard */
 
 export type StatMetric = {
   label: string
@@ -98,16 +99,30 @@ export type StatMetric = {
   period?: string
   /** A hint behind an info icon beside the value (inline layout), e.g. the holdings behind a count. */
   info?: string
+  /** Colours the value (inline layout): success for a good figure, danger for a bad one. */
+  tone?: "default" | "success" | "danger"
+}
+
+const metricTone = {
+  default: "",
+  success: "text-(color:--category-success-text)",
+  danger: "text-(color:--category-aggressive-text)",
 }
 
 /** Numbers lead. `tile`: one or more big metric tiles. `inline`: a strip of small label-over-value KPIs. */
 function StatCard({
+  title,
   metrics,
   layout = "tile",
   tone = "default",
   divided = false,
+  children,
   ...common
 }: Common & {
+  /** A heading above the metrics. */
+  title?: string
+  /** Content under the metrics, set off by a hairline (e.g. a table or a matrix about the same numbers). */
+  children?: React.ReactNode
   metrics: StatMetric[]
   layout?: "tile" | "inline"
   /** `inverse`: the dark translucent tile used on the hero band. */
@@ -123,6 +138,7 @@ function StatCard({
         <ErrorBody {...common} />
       ) : (
         <CardBody loading={state === "loading"}>
+          {title && <CardTitle className="text-(length:--font-size-lg)">{title}</CardTitle>}
           {layout === "tile" ? (
             metrics.map((m) => (
               <Metric
@@ -142,8 +158,8 @@ function StatCard({
                   className={cn("flex min-w-0 flex-col text-(length:--font-size-xs)", divided && i > 0 && "border-l-(length:--border-width-default) border-border pl-(--spacing-inline-lg)")}
                 >
                   <span className="text-muted-foreground group-data-[tone=inverse]/card:text-primary-foreground">{m.label}</span>
-                  <span className="flex items-center gap-(--spacing-inline-xs) font-(--typography-label-strong-font-weight) text-(length:--font-size-base) text-card-foreground group-data-[tone=inverse]/card:text-primary-foreground">
-                    {empty || m.value === undefined ? "—" : m.value}
+                  <span className="flex items-center gap-(--spacing-inline-xs) font-(--typography-label-strong-font-weight) text-(length:--font-size-base) text-foreground group-data-[tone=inverse]/card:text-primary-foreground">
+                    <span className={metricTone[m.tone ?? "default"]}>{empty || m.value === undefined ? "—" : m.value}</span>
                     {!empty && m.info && (
                       // A metric can carry a hint (e.g. the holdings behind the count), shown on hover or focus.
                       <TooltipProvider>
@@ -167,13 +183,19 @@ function StatCard({
               ))}
             </div>
           )}
+          {children && !empty && (
+            <>
+              <Separator />
+              {children}
+            </>
+          )}
         </CardBody>
       )}
     </Card>
   )
 }
 
-/* ----- SummaryCard ----- */
+/* SummaryCard */
 
 /** Labelled facts about one thing: title, status, key-value lines, text, and optional choice chips. */
 function SummaryCard({
@@ -249,7 +271,7 @@ function SummaryCard({
               </CardKeyValue>
             ))}
             {description && (
-              <div className="text-(length:--font-size-sm) text-card-foreground">{description}</div>
+              <div className="text-(length:--font-size-sm) text-foreground">{description}</div>
             )}
             {note && <CardDescription>{note}</CardDescription>}
             {choices && (
@@ -276,7 +298,7 @@ function SummaryCard({
   )
 }
 
-/* ----- TaskCard ----- */
+/* TaskCard */
 
 const taskAccent = {
   brand: "bg-(color:--accent-subtle) text-icon-accent",
@@ -314,7 +336,7 @@ function TaskCard({
           <span
             className={cn(
               "text-(length:--typography-heading-lg-font-size) leading-(--typography-heading-lg-line-height) font-(--typography-heading-md-font-weight)",
-              error ? "text-destructive" : "text-card-foreground"
+              error ? "text-destructive" : "text-foreground"
             )}
           >
             {error ? "—" : state === "empty" ? 0 : count}
@@ -327,7 +349,7 @@ function TaskCard({
       <CardBody loading={loading}>
         <div className="flex flex-col gap-(--spacing-stack-xs)">
           <CardTitle className="text-(length:--font-size-base)">{title}</CardTitle>
-          <span className={cn("text-(length:--font-size-xs)", error ? "text-destructive" : "text-card-foreground")}>
+          <span className={cn("text-(length:--font-size-xs)", error ? "text-destructive" : "text-foreground")}>
             {error ? (common.errorText ?? "Unavailable. Tap to retry.") : state === "empty" ? emptyText : text}
           </span>
         </div>
@@ -336,7 +358,7 @@ function TaskCard({
   )
 }
 
-/* ----- ItemCard ----- */
+/* ItemCard */
 
 type ItemProps = Common & {
   /** Small line above the title. Omit it unless the design shows one. */
@@ -379,9 +401,7 @@ function ItemContent({ eyebrow, title, meta, description, kind, trailing, tags, 
       {((tags && tags.length > 0) || progress !== undefined) && (
         <div className="flex flex-wrap items-center gap-(--spacing-stack-2xs)">
           {tags?.map((t) => (
-            <Badge key={t.label} variant={t.variant ?? "neutral"}>
-              {t.label}
-            </Badge>
+            <StatusBadge key={t.label} status={{ ...t, variant: t.variant ?? "neutral" }} />
           ))}
           {progress !== undefined && (
             <Progress value={progress} className="w-(--size-72)" />
@@ -456,7 +476,7 @@ function ItemList({ children }: { children: React.ReactNode }) {
   )
 }
 
-/* ----- PersonCard ----- */
+/* PersonCard */
 
 /**
  * A person is the subject. Identity (avatar, name, lines), status tags, notes (text lines, `strong` for an alert),
@@ -530,9 +550,7 @@ function PersonCard({
           {tags && tags.length > 0 && (
             <div className="flex flex-wrap gap-(--spacing-stack-2xs)">
               {tags.map((t) => (
-                <Badge key={t.label} variant={t.variant ?? "neutral"} dot={t.dot}>
-                  {t.label}
-                </Badge>
+                <StatusBadge key={t.label} status={{ ...t, variant: t.variant ?? "neutral" }} />
               ))}
             </div>
           )}
@@ -597,7 +615,7 @@ function PersonCard({
   )
 }
 
-/* ----- GroupCard ----- */
+/* GroupCard */
 
 /** A card of cards. The header opens and closes the group; the children are other archetypes. */
 function GroupCard({

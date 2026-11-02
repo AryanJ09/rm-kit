@@ -35,13 +35,13 @@ function ItemSeparator({
 }
 
 const itemVariants = cva(
-  "group/item flex w-(--size-share-full) flex-wrap items-center rounded-(--radius-lg) border text-(length:--font-size-sm) transition-colors duration-(--motion-duration-fast) outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
+  "group/item flex w-(--size-share-full) flex-wrap items-center rounded-(--radius-lg) border text-(length:--font-size-sm) transition-colors duration-(--motion-duration-fast) outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--opacity-half)*100%)] [a]:transition-colors [a]:hover:bg-muted",
   {
     variants: {
       variant: {
         default: "border-transparent",
         outline: "border-border",
-        muted: "border-transparent bg-muted/50",
+        muted: "border-transparent bg-muted/[calc(var(--opacity-half)*100%)]",
       },
       size: {
         default: "gap-(--spacing-inset-md) px-(--spacing-inline-md) py-(--spacing-inset-md)",
@@ -81,7 +81,7 @@ function Item({
 }
 
 const itemMediaVariants = cva(
-  "flex shrink-0 items-center justify-center gap-(--spacing-inline-sm) group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none",
+  "flex shrink-0 items-center justify-center gap-(--spacing-inline-sm) group-has-data-[slot=item-description]/item:translate-y-(--spacing-stack-3xs) group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none",
   {
     variants: {
       variant: {

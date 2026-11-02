@@ -144,6 +144,7 @@
   --ds-typography-font-weight-bold: 700;
   --ds-typography-line-height-12: 12px;
   --ds-typography-line-height-14: 14px;
+  --ds-typography-line-height-none: 1;
   --ds-typography-line-height-16: 16px;
   --ds-typography-line-height-18: 18px;
   --ds-typography-line-height-20: 20px;
@@ -262,6 +263,9 @@
 
   /* motion */
   --ds-motion-duration-none: 0ms;
+  --ds-motion-duration-swipe: 400ms;
+  --ds-motion-distance-8: 8px;
+  --ds-motion-scale-95: 0.95;
   --ds-motion-duration-instant: 50ms;
   --ds-motion-duration-fast: 100ms;
   --ds-motion-duration-normal: 200ms;

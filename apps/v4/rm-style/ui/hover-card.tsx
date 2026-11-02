@@ -3,6 +3,9 @@
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card"
 import { cn } from "cn"
 
+import { useTokenPx } from "../lib/token-px"
+import { menuPanelClass } from "./menu"
+
 function HoverCard({ ...props }: PreviewCardPrimitive.Root.Props) {
   return <PreviewCardPrimitive.Root data-slot="hover-card" {...props} />
 }
@@ -13,31 +16,34 @@ function HoverCardTrigger({ ...props }: PreviewCardPrimitive.Trigger.Props) {
   )
 }
 
+// A hover card is a popup, so it wears the shared RM panel look (menu.ts). Its offsets are read from the spacing role.
 function HoverCardContent({
   className,
   side = "bottom",
-  sideOffset = 4,
+  sideOffset,
   align = "center",
-  alignOffset = 4,
+  alignOffset,
   ...props
 }: PreviewCardPrimitive.Popup.Props &
   Pick<
     PreviewCardPrimitive.Positioner.Props,
     "align" | "alignOffset" | "side" | "sideOffset"
   >) {
+  const gap = useTokenPx({ offset: "--spacing-inline-xs" })
   return (
     <PreviewCardPrimitive.Portal data-slot="hover-card-portal">
       <PreviewCardPrimitive.Positioner
         align={align}
-        alignOffset={alignOffset}
+        alignOffset={alignOffset ?? gap.offset}
         side={side}
-        sideOffset={sideOffset}
+        sideOffset={sideOffset ?? gap.offset}
         className="isolate z-(--z-index-overlay)"
       >
         <PreviewCardPrimitive.Popup
           data-slot="hover-card-content"
           className={cn(
-            "z-(--z-index-overlay) w-(--size-288) origin-(--transform-origin) rounded-(--radius-lg) bg-popover p-(--spacing-inset-md) text-(length:--font-size-sm) text-popover-foreground shadow-(--elevation-scale-md) ring-(length:--border-width-default) ring-foreground/10 outline-hidden duration-(--motion-duration-fast) data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            menuPanelClass,
+            "z-(--z-index-overlay) w-(--size-288) p-(--spacing-inset-md) text-(length:--font-size-sm)",
             className
           )}
           {...props}

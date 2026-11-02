@@ -4,6 +4,7 @@ import { InputOTPAlphanumeric as DemoInputOtpAlphanumeric } from "@/examples/bas
 import DemoInputOtpControlled from "@/examples/base/input-otp-controlled"
 import { InputOTPDemo as DemoInputOtpDemo } from "@/examples/base/input-otp-demo"
 import { InputOTPDisabled as DemoInputOtpDisabled } from "@/examples/base/input-otp-disabled"
+import { InputOTPForm as DemoInputOtpForm } from "@/examples/base/input-otp-form"
 import { InputOTPFourDigits as DemoInputOtpFourDigits } from "@/examples/base/input-otp-four-digits"
 import { InputOTPInvalid as DemoInputOtpInvalid } from "@/examples/base/input-otp-invalid"
 import { InputOTPPattern as DemoInputOtpPattern } from "@/examples/base/input-otp-pattern"
@@ -22,6 +23,7 @@ export const Alphanumeric: Story = { render: () => <DemoInputOtpAlphanumeric /> 
 export const Controlled: Story = { render: () => <DemoInputOtpControlled /> }
 export const Demo: Story = { render: () => <DemoInputOtpDemo /> }
 export const Disabled: Story = { render: () => <DemoInputOtpDisabled /> }
+export const Form: Story = { render: () => <DemoInputOtpForm /> }
 export const FourDigits: Story = { render: () => <DemoInputOtpFourDigits /> }
 export const Invalid: Story = { render: () => <DemoInputOtpInvalid /> }
 export const Pattern: Story = { render: () => <DemoInputOtpPattern /> }

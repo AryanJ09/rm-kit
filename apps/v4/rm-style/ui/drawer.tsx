@@ -71,7 +71,7 @@ function DrawerOverlay({
     <DrawerPrimitive.Backdrop
       data-slot="drawer-overlay"
       className={cn(
-        "fixed inset-(--spacing-none) z-(--z-index-overlay) min-h-dvh bg-overlay-scrim opacity-[max(var(--drawer-overlay-min-opacity,0),calc(1-var(--drawer-swipe-progress)))] transition-opacity duration-(--motion-duration-slow) ease-[cubic-bezier(0.32,0.72,0,1)] select-none data-ending-style:pointer-events-none data-ending-style:opacity-(--opacity-hidden) data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-snap-points:[--drawer-overlay-min-opacity:0.5] data-starting-style:opacity-(--opacity-hidden) data-swiping:duration-(--motion-duration-none) supports-backdrop-filter:backdrop-blur-xs supports-[-webkit-touch-callout:none]:absolute",
+        "fixed inset-(--spacing-none) z-(--z-index-overlay) min-h-dvh bg-overlay-scrim opacity-[max(var(--drawer-overlay-min-opacity,0),calc(1-var(--drawer-swipe-progress)))] transition-opacity duration-(--motion-duration-slow) ease-[cubic-bezier(0.32,0.72,0,1)] select-none data-ending-style:pointer-events-none data-ending-style:opacity-(--opacity-hidden) data-ending-style:duration-[calc(var(--drawer-swipe-strength)*var(--motion-duration-swipe))] data-snap-points:[--drawer-overlay-min-opacity:0.5] data-starting-style:opacity-(--opacity-hidden) data-swiping:duration-(--motion-duration-none) supports-backdrop-filter:backdrop-blur-xs supports-[-webkit-touch-callout:none]:absolute",
         className
       )}
       {...props}
@@ -131,7 +131,7 @@ function DrawerContent({
             // Stack.
             "[--bleed:var(--size-icon-xl)] [--peek:var(--spacing-inline-lg)] [--stack-height:var(--drawer-frontmost-height,var(--drawer-height,var(--spacing-none)))] [--stack-peek-offset:max(var(--spacing-none),calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-scale-base:max(0,calc(1-(var(--nested-drawers)*var(--stack-step))))] [--stack-scale:clamp(0,calc(var(--stack-scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--stack-shrink:calc(1-var(--stack-scale))] [--stack-step:0.05]",
             // Transitions.
-            "data-ending-style:transform-(--closed-transform) data-ending-style:opacity-[0.9999] data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-nested-drawer-swiping:duration-(--motion-duration-none) data-ending-style:data-nested-drawer-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-starting-style:transform-(--closed-transform) data-swiping:duration-(--motion-duration-none) data-ending-style:data-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)]",
+            "data-ending-style:transform-(--closed-transform) data-ending-style:opacity-(--opacity-full) data-ending-style:duration-[calc(var(--drawer-swipe-strength)*var(--motion-duration-swipe))] data-nested-drawer-swiping:duration-(--motion-duration-none) data-ending-style:data-nested-drawer-swiping:duration-[calc(var(--drawer-swipe-strength)*var(--motion-duration-swipe))] data-starting-style:transform-(--closed-transform) data-swiping:duration-(--motion-duration-none) data-ending-style:data-swiping:duration-[calc(var(--drawer-swipe-strength)*var(--motion-duration-swipe))]",
             // Axis: y.
             "data-[swipe-axis=y]:inset-x-(--spacing-none) data-[swipe-axis=y]:data-nested-drawer-open:h-(--stack-height)",
             // Axis: x.

@@ -228,7 +228,7 @@ function ComboboxChips({
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
       className={cn(
-        "flex min-h-(--size-control-md) flex-wrap items-center gap-(--spacing-stack-xs) rounded-(--radius-md) border-(length:--border-width-default) border-field-stroke bg-background bg-clip-padding px-(--spacing-inset-control-x) py-(--spacing-stack-xs) text-(length:--font-size-sm) text-(color:--field-label) transition-colors focus-within:border-field-focus focus-within:ring-(length:--focus-ring-width) focus-within:ring-primary-focus-ring has-aria-invalid:border-field-error has-data-[slot=combobox-chip]:px-(--spacing-stack-xs) dark:bg-input/30 dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40",
+        "flex min-h-(--size-control-md) flex-wrap items-center gap-(--spacing-stack-xs) rounded-(--radius-md) border-(length:--border-width-default) border-field-stroke bg-background bg-clip-padding px-(--spacing-inset-control-x) py-(--spacing-stack-xs) text-(length:--font-size-sm) text-(color:--field-label) transition-colors focus-within:border-field-focus focus-within:ring-(length:--focus-ring-width) focus-within:ring-primary-focus-ring has-aria-invalid:border-field-error has-data-[slot=combobox-chip]:px-(--spacing-stack-xs) dark:bg-input/[calc(var(--opacity-soft)*100%)] dark:has-aria-invalid:border-destructive/[calc(var(--opacity-half)*100%)] dark:has-aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)]",
         className
       )}
       {...props}

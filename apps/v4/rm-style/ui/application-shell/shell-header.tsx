@@ -115,7 +115,7 @@ function HomeShellHeader({
 }
 
 const whiteBar =
-  "flex w-(--size-share-full) shrink-0 flex-col gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-inline-md) text-card-foreground"
+  "flex w-(--size-share-full) shrink-0 flex-col gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-inline-md) text-foreground"
 
 function PageShellHeader({ title, action, time, className, ...props }: Omit<PageHeaderProps, "context">) {
   return (

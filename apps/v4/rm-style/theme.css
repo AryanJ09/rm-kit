@@ -35,14 +35,6 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
   --color-surface-foreground: var(--surface-foreground);
   --color-code: var(--code);
   --color-code-foreground: var(--code-foreground);
@@ -110,7 +102,6 @@
   --color-primary-subtle: var(--primary-subtle);
   --color-destructive-pressed: var(--destructive-pressed);
   --color-destructive-subtle: var(--destructive-subtle);
-  --color-control-stroke-default: var(--control-stroke-default);
   --color-icon-accent: var(--icon-accent);
   --color-accent-subtle-foreground: var(--accent-subtle-foreground);
   --color-field-focus: var(--field-focus);
@@ -132,8 +123,7 @@
   --color-overlay-color: var(--overlay-color);
   --color-overlay-scrim: var(--overlay-scrim);
   --color-primary-focus-ring: var(--primary-focus-ring);
-  --breakpoint-3xl: var(--breakpoint-wide);
-  --breakpoint-4xl: var(--breakpoint-ultra);
+  /* No custom breakpoints: Tailwind needs literal widths in a media query, and a var() chain breaks the production build. */
   --font-sans: var(--font-family-base);
 }
 

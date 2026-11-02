@@ -20,7 +20,7 @@ const bubbleVariants = cva(
     variants: {
       variant: {
         default:
-          "*:data-[slot=bubble-content]:bg-primary *:data-[slot=bubble-content]:text-primary-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-primary/80",
+          "*:data-[slot=bubble-content]:bg-primary *:data-[slot=bubble-content]:text-primary-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-primary/[calc(var(--opacity-heavy)*100%)]",
         secondary:
           "*:data-[slot=bubble-content]:bg-secondary *:data-[slot=bubble-content]:text-secondary-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-surface-active",
         muted:
@@ -31,9 +31,9 @@ const bubbleVariants = cva(
         outline:
           "*:data-[slot=bubble-content]:border-border *:data-[slot=bubble-content]:bg-background [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-input/[calc(var(--opacity-soft)*100%)]",
         ghost:
-          "border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-(--spacing-none) [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted/50",
+          "border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-(--spacing-none) [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted/[calc(var(--opacity-half)*100%)]",
         destructive:
-          "*:data-[slot=bubble-content]:bg-destructive/10 *:data-[slot=bubble-content]:text-destructive dark:*:data-[slot=bubble-content]:bg-destructive/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/30",
+          "*:data-[slot=bubble-content]:bg-destructive/[calc(var(--opacity-faint)*100%)] *:data-[slot=bubble-content]:text-destructive dark:*:data-[slot=bubble-content]:bg-destructive/[calc(var(--opacity-subtle)*100%)] [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/[calc(var(--opacity-subtle)*100%)] dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/[calc(var(--opacity-soft)*100%)]",
       },
     },
     defaultVariants: {
@@ -72,7 +72,7 @@ function BubbleContent({
     props: mergeProps<"div">(
       {
         className: cn(
-          "w-fit max-w-(--size-share-full) min-w-0 overflow-hidden rounded-(--radius-xl) border border-transparent px-(--spacing-inline-md) py-(--spacing-inline-sm) text-(length:--font-size-sm) leading-(--line-height-lg) wrap-break-word group-data-[align=end]/bubble:self-end [button]:text-left [button,a]:transition-colors [button,a]:outline-none [button,a]:focus-visible:border-ring [button,a]:focus-visible:ring-(length:--focus-ring-width) [button,a]:focus-visible:ring-ring/50",
+          "w-fit max-w-(--size-share-full) min-w-0 overflow-hidden rounded-(--radius-xl) border border-transparent px-(--spacing-inline-md) py-(--spacing-inline-sm) text-(length:--font-size-sm) leading-(--line-height-lg) wrap-break-word group-data-[align=end]/bubble:self-end [button]:text-left [button,a]:transition-colors [button,a]:outline-none [button,a]:focus-visible:border-ring [button,a]:focus-visible:ring-(length:--focus-ring-width) [button,a]:focus-visible:ring-ring/[calc(var(--opacity-half)*100%)]",
           className
         ),
       },

@@ -28,7 +28,7 @@ function Switch({
       data-slot="switch"
       data-size={size}
       className={cn(
-        "peer group/switch relative inline-flex shrink-0 items-center rounded-(--radius-pill) border border-transparent transition-all outline-none group-has-[:focus-visible]/field-label:border-transparent group-has-[:focus-visible]/field-label:ring-(length:--spacing-none) after:absolute after:-inset-x-(--spacing-inline-md) after:-inset-y-(--spacing-inline-sm) focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring aria-invalid:border-destructive aria-invalid:ring-(length:--ring-width-invalid) aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] data-[size=default]:h-(--size-icon-lg) data-[size=default]:w-(--size-40) data-[size=default]:px-(--spacing-stack-3xs) data-[size=sm]:h-(--size-icon-xs) data-[size=sm]:w-(--size-icon-lg) data-[size=sm]:px-(--spacing-stack-3xs) dark:aria-invalid:border-destructive/[calc(var(--opacity-half)*100%)] dark:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)] data-checked:bg-primary data-unchecked:bg-control-stroke-default dark:data-unchecked:bg-input/[calc(var(--opacity-heavy)*100%)] data-unchecked:not-data-disabled:hover:ring-(length:--focus-ring-width) hover:ring-primary-focus-ring data-disabled:cursor-not-allowed data-disabled:border-control-disabled data-disabled:bg-control-disabled data-disabled:data-checked:bg-control-disabled",
+        "peer group/switch relative inline-flex shrink-0 items-center rounded-(--radius-pill) border border-transparent transition-all outline-none group-has-[:focus-visible]/field-label:border-transparent group-has-[:focus-visible]/field-label:ring-(length:--spacing-none) after:absolute after:-inset-x-(--spacing-inline-md) after:-inset-y-(--spacing-inline-sm) focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring aria-invalid:border-destructive aria-invalid:ring-(length:--ring-width-invalid) aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] data-[size=default]:h-(--size-icon-lg) data-[size=default]:w-(--size-40) data-[size=default]:px-(--spacing-stack-3xs) data-[size=sm]:h-(--size-icon-xs) data-[size=sm]:w-(--size-icon-lg) data-[size=sm]:px-(--spacing-stack-3xs) dark:aria-invalid:border-destructive/[calc(var(--opacity-half)*100%)] dark:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)] data-checked:bg-primary data-unchecked:bg-border-strong dark:data-unchecked:bg-input/[calc(var(--opacity-heavy)*100%)] data-unchecked:not-data-disabled:hover:ring-(length:--focus-ring-width) hover:ring-primary-focus-ring data-disabled:cursor-not-allowed data-disabled:border-control-disabled data-disabled:bg-control-disabled data-disabled:data-checked:bg-control-disabled",
         className
       )}
       checked={on}
@@ -45,7 +45,7 @@ function Switch({
     </SwitchPrimitive.Root>
   )
   if (!startLabel && !endLabel) return control
-  const label = "text-(length:--font-size-xs) text-card-foreground"
+  const label = "text-(length:--font-size-xs) text-foreground"
   const strong = "font-(--typography-label-strong-font-weight)"
   return (
     <span data-slot="switch-labelled" className="inline-flex items-center gap-(--spacing-inline-sm)">

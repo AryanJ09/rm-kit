@@ -29,7 +29,7 @@ function AlertDialogOverlay({
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-overlay"
       className={cn(
-        "bg-overlay-scrim fixed inset-(--spacing-none) isolate z-(--z-index-overlay) duration-(--motion-duration-fast) supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "bg-overlay-scrim fixed inset-(--spacing-none) isolate z-(--z-index-overlay) duration-(--motion-duration-fast) supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-(--opacity-hidden) data-closed:animate-out data-closed:fade-out-(--opacity-hidden)",
         className
       )}
       {...props}
@@ -51,7 +51,7 @@ function AlertDialogContent({
         data-slot="alert-dialog-content"
         data-size={size}
         className={cn(
-          "group/alert-dialog-content fixed top-(--size-share-half) left-(--size-share-half) z-(--z-index-overlay) grid w-(--size-share-full) -translate-x-(--size-share-half) -translate-y-(--size-share-half) gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none data-[size=default]:max-w-(--size-panel-xs) data-[size=sm]:max-w-(--size-panel-xs) data-[size=default]:sm:max-w-(--size-panel-sm) data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "group/alert-dialog-content fixed top-(--size-share-half) left-(--size-share-half) z-(--z-index-overlay) grid w-(--size-share-full) -translate-x-(--size-share-half) -translate-y-(--size-share-half) gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none data-[size=default]:max-w-(--size-panel-xs) data-[size=sm]:max-w-(--size-panel-xs) data-[size=default]:sm:max-w-(--size-panel-sm) data-open:animate-in data-open:fade-in-(--opacity-hidden) data-open:zoom-in-(--motion-scale-enter) data-closed:animate-out data-closed:fade-out-(--opacity-hidden) data-closed:zoom-out-(--motion-scale-enter)",
           className
         )}
         {...props}

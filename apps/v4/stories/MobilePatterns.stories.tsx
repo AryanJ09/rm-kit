@@ -9,6 +9,7 @@ import type { Destination } from "@/rm-style/ui/application-shell/bottom-navigat
 import { MobileClient360, type Client360Tab } from "./patterns/mobile-client360"
 import { MobileLeads, type LeadsState } from "./patterns/mobile-leads"
 import { MobileRmPortfolio } from "./patterns/mobile-rm-portfolio"
+import { MobileRmProfile, type RmProfileTab } from "./patterns/mobile-rm-profile"
 import { MobileClients, type ClientsState } from "./patterns/mobile-clients"
 import { MobileHome, type HomeState } from "./patterns/mobile-home"
 import { PhoneGrid } from "./patterns/phone-grid"
@@ -126,4 +127,16 @@ export const RmPortfolio: StoryObj<{ footerNote: boolean }> = {
   globals: { viewport: { value: "rmMobile", isRotated: false } },
   args: { footerNote: true },
   render: (args) => <MobileRmPortfolio {...args} />,
+}
+
+/** RM profile: the person card, then Portfolio (My Customers with the matrix) and SOP (score, goals with target and cap flags). */
+export const RmProfile: StoryObj<{ tab: RmProfileTab; footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { tab: "portfolio", footerNote: true },
+  argTypes: { tab: { control: "inline-radio", options: ["portfolio", "sop"] } },
+  render: ({ tab, ...args }) => {
+    const [current, setCurrent] = React.useState<RmProfileTab>(tab)
+    React.useEffect(() => setCurrent(tab), [tab])
+    return <MobileRmProfile {...args} tab={current} onTabChange={setCurrent} />
+  },
 }

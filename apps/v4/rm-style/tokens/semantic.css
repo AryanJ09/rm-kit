@@ -56,7 +56,6 @@
   --border-default: var(--ds-color-neutral-200);
   --border-strong: var(--ds-color-neutral-300);
 
-  --control-stroke-default: var(--ds-color-neutral-300);
   --primary-focus-ring: color-mix(
     in oklab,
     var(--primary) calc(var(--ds-opacity-25) * 100%),
@@ -64,14 +63,6 @@
   );
 
   /* sidebar, surface-foreground, selection and code (values approved) */
-  --sidebar: var(--ds-color-neutral-50);
-  --sidebar-foreground: var(--ds-color-neutral-900);
-  --sidebar-primary: var(--ds-color-brand-600);
-  --sidebar-primary-foreground: var(--ds-color-neutral-0);
-  --sidebar-accent: var(--ds-color-neutral-100);
-  --sidebar-accent-foreground: var(--ds-color-neutral-900);
-  --sidebar-border: var(--ds-color-neutral-200);
-  --sidebar-ring: var(--ds-color-brand-500);
   --surface-foreground: var(--ds-color-neutral-900);
   --selection: var(--ds-color-brand-600);
   --selection-foreground: var(--ds-color-neutral-0);
@@ -133,6 +124,9 @@
   --motion-duration-normal: var(--ds-motion-duration-normal);
   --motion-duration-slow: var(--ds-motion-duration-slow);
   --motion-duration-none: var(--ds-motion-duration-none);
+  --motion-duration-swipe: var(--ds-motion-duration-swipe);
+  --motion-distance-sm: var(--ds-motion-distance-8);
+  --motion-scale-enter: var(--ds-motion-scale-95);
   --motion-easing-standard: var(--ds-motion-easing-standard);
   --motion-easing-decelerate: var(--ds-motion-easing-decelerate);
   --motion-easing-accelerate: var(--ds-motion-easing-accelerate);
@@ -177,7 +171,6 @@
   --chart-8: var(--ds-color-chart-8);
   --chart-9: var(--ds-color-chart-9);
   --chart-10: var(--ds-color-chart-10);
-  --chart-inactive-opacity: var(--ds-opacity-30);
 
   /* RM kit named chart colours (palette/chart/*) */
   --chart-deposits: var(--ds-color-chart-3);
@@ -300,6 +293,7 @@
 
   /* type scale (Tailwind text-* utilities) */
   --font-size-xs: var(--ds-typography-font-size-12);
+  --line-height-none: var(--ds-typography-line-height-none);
   --line-height-xs: var(--ds-typography-line-height-16);
   --font-size-sm: var(--ds-typography-font-size-14);
   --line-height-sm: var(--ds-typography-line-height-20);

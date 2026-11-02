@@ -53,7 +53,7 @@ function Commands() {
 // Command lets people search and run commands. It filters as you type, moves with the arrow keys and runs on Enter.
 export const Palette: Story = {
   render: () => (
-    <Command className="w-(--size-288) border-(length:--border-width-default) border-(--control-stroke-default) shadow-(--elevation-popover)">
+    <Command className="w-(--size-288) border-(length:--border-width-default) border-(--border-strong) shadow-(--elevation-popover)">
       <Commands />
     </Command>
   ),

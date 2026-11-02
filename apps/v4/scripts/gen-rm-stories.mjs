@@ -14,12 +14,13 @@ const OUT = path.join(ROOT, "stories")
 
 // Batch A structure: the RM Kit section holds the components we design and own; everything else is Components.
 // Calendar is part of Date picker, so it gets no story of its own.
-// Shadcn components queued to join the kit; shown under RM Kit/Upcoming.
+// No "Upcoming" group any more: every kit component is under RM Kit.
 // Width-driven demos collapse to nothing in the docs page under "centered"; pad them instead.
 const PADDED = new Set(["field", "progress", "slider"])
-const UPCOMING = new Set(["table", "toggle", "toggle-group", "input-group"])
+const UPCOMING = new Set([])
 const RM_KIT = new Set([
   "button",
+  "table",
   "command",
   "scroll-area",
   "separator",
@@ -56,7 +57,8 @@ const RM_KIT = new Set([
   "filter",
   "filter-group",
 ])
-const EXCLUDED = new Set(["calendar"])
+// input-group has a hand-written Forms story.
+const EXCLUDED = new Set(["calendar", "input-group"])
 const STORY_NAMES = {
   accordion: "Accordion",
   breadcrumb: "Breadcrumb",

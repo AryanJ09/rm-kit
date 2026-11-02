@@ -5,7 +5,6 @@ import DemoEmptyAvatar from "@/examples/base/empty-avatar"
 import { EmptyMuted as DemoEmptyBackground } from "@/examples/base/empty-background"
 import { EmptyInCard as DemoEmptyCard } from "@/examples/base/empty-card"
 import DemoEmptyDemo from "@/examples/base/empty-demo"
-import DemoEmptyInputGroup from "@/examples/base/empty-input-group"
 import DemoEmptyOutline from "@/examples/base/empty-outline"
 
 const meta = {
@@ -22,5 +21,4 @@ export const Avatar: Story = { render: () => <DemoEmptyAvatar /> }
 export const Background: Story = { render: () => <DemoEmptyBackground /> }
 export const Card: Story = { render: () => <DemoEmptyCard /> }
 export const Demo: Story = { render: () => <DemoEmptyDemo /> }
-export const InputGroup: Story = { render: () => <DemoEmptyInputGroup /> }
 export const Outline: Story = { render: () => <DemoEmptyOutline /> }

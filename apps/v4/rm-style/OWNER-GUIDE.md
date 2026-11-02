@@ -4,7 +4,7 @@
 `rm-style/theme.css`. Three sections, top to bottom:
 
 1. **Primitives** (`--ds-color-*`, `--ds-spacing-*`, `--ds-radius-*`, `--ds-typography-*`, `--ds-elevation-*`). Your raw values. Change a value here and everything that points at it follows.
-2. **Semantic roles** (`:root`, shadcn names such as `--primary`, `--border`, `--sidebar`). Each one points at a primitive. "Primary is brand-600" lives here.
+2. **Semantic roles** (`:root`, RM role names such as `--primary`, `--border`, `--surface`). Each one points at a primitive. "Primary is brand-600" lives here.
 3. **Scale redirects** (`@theme inline`). Tailwind's sizes (spacing, text, radius, shadow, blur, tracking, fonts) point at your primitives.
 
 Structure never changes. Only values change.

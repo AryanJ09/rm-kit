@@ -31,7 +31,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-(--spacing-none) isolate z-(--z-index-overlay) bg-overlay-scrim duration-(--motion-duration-fast) supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "fixed inset-(--spacing-none) isolate z-(--z-index-overlay) bg-overlay-scrim duration-(--motion-duration-fast) supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-(--opacity-hidden) data-closed:animate-out data-closed:fade-out-(--opacity-hidden)",
         className
       )}
       {...props}
@@ -53,7 +53,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "fixed top-(--size-share-half) left-(--size-share-half) z-(--z-index-overlay) grid w-(--size-share-full) max-w-[calc(100%-var(--spacing-section-md))] -translate-x-(--size-share-half) -translate-y-(--size-share-half) gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-(length:--font-size-sm) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none sm:max-w-(--size-panel-sm) data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-(--size-share-half) left-(--size-share-half) z-(--z-index-overlay) grid w-(--size-share-full) max-w-[calc(100%-var(--spacing-section-md))] -translate-x-(--size-share-half) -translate-y-(--size-share-half) gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-(length:--font-size-sm) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none sm:max-w-(--size-panel-sm) data-open:animate-in data-open:fade-in-(--opacity-hidden) data-open:zoom-in-(--motion-scale-enter) data-closed:animate-out data-closed:fade-out-(--opacity-hidden) data-closed:zoom-out-(--motion-scale-enter)",
           className
         )}
         {...props}
@@ -122,7 +122,7 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
     <DialogPrimitive.Title
       data-slot="dialog-title"
       className={cn(
-        "cn-font-heading text-(length:--font-size-base) leading-none font-(--typography-label-sm-font-weight)",
+        "cn-font-heading text-(length:--font-size-base) leading-(--line-height-none) font-(--typography-label-sm-font-weight)",
         className
       )}
       {...props}

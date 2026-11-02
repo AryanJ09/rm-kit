@@ -66,7 +66,7 @@ export function DonutChart({
           aria-hidden
           className="size-(--size-160) rounded-(--radius-pill) border-(length:--border-width-thick) border-muted"
         />
-        <p className="m-0 text-(length:--font-size-xs) text-card-foreground">{emptyText}</p>
+        <p className="m-0 text-(length:--font-size-xs) text-foreground">{emptyText}</p>
       </div>
     )
   }
@@ -98,7 +98,7 @@ export function DonutChart({
         {total && (
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-(--spacing-stack-xs)">
             <span className="text-(length:--font-size-chart-legend) text-muted-foreground">{total.label}</span>
-            <span className="text-(length:--font-size-sm) font-(--typography-heading-md-font-weight) text-card-foreground">{total.value}</span>
+            <span className="text-(length:--font-size-sm) font-(--typography-heading-md-font-weight) text-foreground">{total.value}</span>
           </div>
         )}
       </div>

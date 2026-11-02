@@ -13,7 +13,7 @@ export const Playground: Story = {
   render: () => (
     <HoverCard>
       <HoverCardTrigger render={<Button variant="link" />}>Relationship value</HoverCardTrigger>
-      <HoverCardContent className="w-(--size-72) p-(--spacing-inline-lg) text-(length:--font-size-sm)">
+      <HoverCardContent>
         Total value of this client's deposits, investments and insurance, as of the last month end.
       </HoverCardContent>
     </HoverCard>

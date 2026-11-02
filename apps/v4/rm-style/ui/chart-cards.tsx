@@ -56,7 +56,7 @@ function useChoice(items: Choice[], value?: string, onChange?: (id: string) => v
   ] as const
 }
 
-/* ----- TrendCard ----- */
+/* TrendCard */
 
 export type GrowthMetric = { label: string; change: string; trend: Trend }
 
@@ -142,7 +142,7 @@ function TrendCard({
   )
 }
 
-/* ----- AllocationCard ----- */
+/* AllocationCard */
 
 export type AllocationProduct = { label: string; value: string; change: string; trend: Trend; holdings: string }
 
@@ -200,7 +200,7 @@ function LegendRow({ part }: { part: AllocationPart }) {
         <span className="truncate text-(length:--font-size-chart-legend) text-muted-foreground">{part.label}</span>
       </span>
       <span className="flex shrink-0 items-center gap-(--spacing-inline-sm)">
-        <span className="font-(--typography-label-strong-font-weight) text-card-foreground">{part.value}</span>
+        <span className="font-(--typography-label-strong-font-weight) text-foreground">{part.value}</span>
         <span className="text-muted-foreground">{part.share}%</span>
       </span>
     </div>
@@ -211,7 +211,7 @@ function Stat({ label, value }: { label: string; value?: string }) {
   return (
     <div className="flex min-w-0 flex-1 flex-col gap-(--spacing-stack-3xs)">
       <span className="text-(length:--font-size-xs) text-muted-foreground">{label}</span>
-      <span className="text-(length:--font-size-sm) font-(--typography-label-md-font-weight) text-card-foreground">{value ?? dash}</span>
+      <span className="text-(length:--font-size-sm) font-(--typography-label-md-font-weight) text-foreground">{value ?? dash}</span>
     </div>
   )
 }
@@ -283,7 +283,7 @@ function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyTex
             </div>
             <Separator />
             <div className="flex flex-col gap-(--spacing-inline-md)">
-              <span className="text-(length:--font-size-sm) font-(--typography-label-md-font-weight) text-card-foreground">{L.items}</span>
+              <span className="text-(length:--font-size-sm) font-(--typography-label-md-font-weight) text-foreground">{L.items}</span>
               {(empty ? [] : part.products ?? []).map((p) => (
                 <SummaryCard
                   key={p.label}

@@ -40,7 +40,7 @@ function Metric({
       {...props}
     >
       <span className="text-(length:--font-size-xs) text-muted-foreground">{label}</span>
-      <span className="text-(length:--typography-heading-lg-font-size) leading-(--typography-heading-lg-line-height) font-(--typography-heading-md-font-weight) text-card-foreground">
+      <span className="text-(length:--typography-heading-lg-font-size) leading-(--typography-heading-lg-line-height) font-(--typography-heading-md-font-weight) text-foreground">
         {value}
       </span>
       <div className="flex items-center gap-(--spacing-inline-xs) text-(length:--font-size-xs)">

@@ -8,7 +8,7 @@ import * as React from "react"
 import { cn } from "cn"
 
 const chipVariants = cva(
-  "group/chip inline-flex items-center justify-center gap-(--spacing-stack-2xs) rounded-(--radius-pill) border-(length:--border-width-default) border-(--control-stroke-default) bg-transparent font-sans text-(length:--font-size-xs) font-(--typography-title-sm-font-weight) whitespace-nowrap text-text-tertiary transition-colors outline-none hover:border-primary hover:bg-background hover:text-primary focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring data-pressed:border-primary data-pressed:bg-primary-subtle data-pressed:text-primary disabled:pointer-events-none disabled:border-border disabled:bg-surface-disabled disabled:text-text-disabled aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
+  "group/chip inline-flex items-center justify-center gap-(--spacing-stack-2xs) rounded-(--radius-pill) border-(length:--border-width-default) border-(--border-strong) bg-transparent font-sans text-(length:--font-size-xs) font-(--typography-title-sm-font-weight) whitespace-nowrap text-text-tertiary transition-colors outline-none hover:border-primary hover:bg-background hover:text-primary focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring data-pressed:border-primary data-pressed:bg-primary-subtle data-pressed:text-primary disabled:pointer-events-none disabled:border-border disabled:bg-surface-disabled disabled:text-text-disabled aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
   {
     variants: {
       variant: {

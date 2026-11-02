@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { MessageActionsDemo as DemoMessageActions } from "@/examples/base/message-actions"
 import { MessageAttachmentDemo as DemoMessageAttachment } from "@/examples/base/message-attachment"
 import { MessageAvatarDemo as DemoMessageAvatar } from "@/examples/base/message-avatar"
-import { MessageDemo as DemoMessageDemo } from "@/examples/base/message-demo"
 import { MessageGroupDemo as DemoMessageGroup } from "@/examples/base/message-group"
 import { MessageHeaderFooterDemo as DemoMessageHeaderFooter } from "@/examples/base/message-header-footer"
 
@@ -19,6 +18,5 @@ type Story = StoryObj<typeof meta>
 export const Actions: Story = { render: () => <DemoMessageActions /> }
 export const Attachment: Story = { render: () => <DemoMessageAttachment /> }
 export const Avatar: Story = { render: () => <DemoMessageAvatar /> }
-export const Demo: Story = { render: () => <DemoMessageDemo /> }
 export const Group: Story = { render: () => <DemoMessageGroup /> }
 export const HeaderFooter: Story = { render: () => <DemoMessageHeaderFooter /> }

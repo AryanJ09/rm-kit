@@ -2,7 +2,7 @@
 
 // RM Kit Tabs. Two variants:
 // - primary: label row with an underline on the active tab (this was the shadcn "line" variant).
-// - secondary: segmented pill control from Figma "Tabs/secondary" (this was the shadcn "default" variant).
+// - secondary: segmented pill control (this was the shadcn "default" variant). `appearance` is filled (solid active) or soft.
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
@@ -45,9 +45,12 @@ const legacyVariant = { line: "primary", default: "secondary" } as const
 function TabsList({
   className,
   variant = "primary",
+  appearance = "filled",
   ...props
 }: TabsPrimitive.List.Props & {
   variant?: VariantProps<typeof tabsListVariants>["variant"] | keyof typeof legacyVariant
+  /** Secondary only. filled: the active segment is solid. soft: a tinted strip with a raised active pill. */
+  appearance?: "filled" | "soft"
 }) {
   const resolved =
     variant && variant in legacyVariant
@@ -57,7 +60,8 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       data-variant={resolved}
-      className={cn(tabsListVariants({ variant: resolved }), className)}
+      data-appearance={appearance}
+      className={cn(tabsListVariants({ variant: resolved }), resolved === "secondary" && appearance === "soft" && "bg-primary-subtle", className)}
       {...props}
     />
   )
@@ -73,7 +77,9 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
         "group-data-[variant=primary]/tabs-list:px-(--spacing-inline-md) group-data-[variant=primary]/tabs-list:py-(--spacing-inline-sm) group-data-[variant=primary]/tabs-list:text-text-tertiary group-data-[variant=primary]/tabs-list:data-active:text-primary",
         "after:absolute after:bg-primary after:opacity-(--opacity-hidden) after:transition-opacity group-data-[variant=primary]/tabs-list:data-active:after:opacity-(--opacity-full) after:inset-x-0 after:bottom-(--spacing-none) after:h-(--border-width-thick)",
         // secondary: pill segments, active segment filled
-        "group-data-[variant=secondary]/tabs-list:rounded-(--radius-pill) group-data-[variant=secondary]/tabs-list:p-(--spacing-inline-md) group-data-[variant=secondary]/tabs-list:text-accent group-data-[variant=secondary]/tabs-list:data-active:bg-primary group-data-[variant=secondary]/tabs-list:data-active:text-primary-foreground",
+        "group-data-[variant=secondary]/tabs-list:rounded-(--radius-pill) group-data-[variant=secondary]/tabs-list:group-data-[appearance=filled]/tabs-list:p-(--spacing-inline-md) group-data-[variant=secondary]/tabs-list:group-data-[appearance=filled]/tabs-list:text-accent group-data-[variant=secondary]/tabs-list:group-data-[appearance=filled]/tabs-list:data-active:bg-primary group-data-[variant=secondary]/tabs-list:group-data-[appearance=filled]/tabs-list:data-active:text-primary-foreground",
+        // secondary, soft appearance: a tinted strip with a raised active pill (the small period toggles)
+        "group-data-[variant=secondary]/tabs-list:group-data-[appearance=soft]/tabs-list:p-(--spacing-inline-sm) group-data-[variant=secondary]/tabs-list:group-data-[appearance=soft]/tabs-list:text-muted-foreground group-data-[variant=secondary]/tabs-list:group-data-[appearance=soft]/tabs-list:data-active:bg-card group-data-[variant=secondary]/tabs-list:group-data-[appearance=soft]/tabs-list:data-active:text-primary",
         className
       )}
       {...props}

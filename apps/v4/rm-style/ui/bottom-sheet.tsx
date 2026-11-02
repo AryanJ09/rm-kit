@@ -1,12 +1,14 @@
 "use client"
 
-// RM Kit Bottom sheet: a Sheet docked to the bottom edge, with the Figma structure
-// (heading + close, divider, body, divider, footer). Built on the existing Sheet, so overlay and animation stay shared.
+// RM Kit Bottom sheet: a Sheet docked to the bottom edge, as in the prototype. From the top: a drag handle bar, the title
+// with a close button, a divider, the body (scrolls on its own) and a footer (sticky, under a divider, primary action last).
+// Built on the existing Sheet, so the overlay and animation are shared. Everything is a semantic role.
 import * as React from "react"
 import { XIcon } from "lucide-react"
 import { cn } from "cn"
 
-import { Separator } from "@/styles/base-nova/ui/separator"
+import { Button } from "./button"
+import { Separator } from "./separator"
 import {
   Sheet,
   SheetClose,
@@ -14,7 +16,7 @@ import {
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "@/styles/base-nova/ui/sheet"
+} from "./sheet"
 
 const BottomSheet = Sheet
 const BottomSheetTrigger = SheetTrigger
@@ -30,7 +32,7 @@ function BottomSheetContent({
   title: React.ReactNode
   /** Read by screen readers only. */
   description?: string
-  /** Buttons row, shown under a divider. */
+  /** Buttons row, pinned under a divider. Primary action last. */
   footer?: React.ReactNode
 }) {
   return (
@@ -38,30 +40,30 @@ function BottomSheetContent({
       side="bottom"
       showCloseButton={false}
       className={cn(
-        "mx-auto max-h-(--viewport-sheet-max-height) w-full max-w-(--size-layout-frame-width) gap-(--spacing-inline-md) overflow-y-auto rounded-t-(--radius-2xl) p-(--spacing-group)",
+        "mx-auto flex max-h-(--viewport-sheet-max-height) w-(--size-share-full) max-w-(--size-layout-frame-width) flex-col gap-(--spacing-inline-md) overflow-hidden rounded-t-(--radius-2xl) p-(--spacing-none)",
         className
       )}
       {...props}
     >
-      <div data-slot="bottom-sheet-heading" className="flex items-center justify-between">
+      <div data-slot="bottom-sheet-handle" aria-hidden className="mx-auto mt-(--spacing-inline-sm) h-(--size-track) w-(--size-control-32) shrink-0 rounded-(--radius-pill) bg-(color:--border-strong)" />
+      <div data-slot="bottom-sheet-heading" className="flex shrink-0 items-center justify-between gap-(--spacing-inline-md) px-(--spacing-group)">
         <SheetTitle className="text-(length:--font-size-base) font-(--typography-heading-md-font-weight) text-text-primary">{title}</SheetTitle>
-        <SheetClose
-          aria-label="Close"
-          className="inline-flex size-(--size-icon-md) items-center justify-center rounded-(--radius-pill) text-text-tertiary outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
-        >
-          <XIcon className="size-(--size-icon-xs)" />
+        <SheetClose render={<Button variant="ghost" size="icon-sm" aria-label="Close" className="text-icon-default" />}>
+          <XIcon />
         </SheetClose>
       </div>
       <SheetDescription className="sr-only">{description ?? ""}</SheetDescription>
-      <Separator />
-      {children}
+      <div className="shrink-0 px-(--spacing-group)">
+        <Separator />
+      </div>
+      <div data-slot="bottom-sheet-body" className="min-h-0 flex-1 overflow-y-auto px-(--spacing-group)">
+        {children}
+      </div>
       {footer && (
-        <>
+        <div data-slot="bottom-sheet-footer" className="shrink-0 px-(--spacing-group) pb-(--spacing-group)">
           <Separator />
-          <div data-slot="bottom-sheet-footer" className="flex gap-(--spacing-inline-md) *:flex-1">
-            {footer}
-          </div>
-        </>
+          <div className="mt-(--spacing-inline-md) flex gap-(--spacing-inline-md) *:flex-1">{footer}</div>
+        </div>
       )}
     </SheetContent>
   )

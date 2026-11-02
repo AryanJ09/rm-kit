@@ -34,7 +34,7 @@ export const SelectTable: Story = {
     const count = picked.filter(Boolean).length
     const headerState = count === 0 ? false : count === rows.length ? true : "indeterminate"
     return (
-      <Table className="w-full">
+      <Table className="w-(--size-share-full)">
         <TableHeader>
           <TableRow>
             <TableHead className="w-(--size-icon-xl)">

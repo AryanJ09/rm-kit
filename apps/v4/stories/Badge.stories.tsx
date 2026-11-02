@@ -34,7 +34,7 @@ const label = (t: string) => t[0].toUpperCase() + t.slice(1)
 // Rows are the seven types; columns are the three statuses.
 export const AllStates: Story = {
   render: () => (
-    <Table className="w-full p-(--spacing-inline-lg)">
+    <Table className="w-(--size-share-full) p-(--spacing-inline-lg)">
       <TableHeader>
         <TableRow>
           <TableHead>Type</TableHead>
@@ -68,7 +68,7 @@ export const AllStates: Story = {
 // Real use: a client list with a risk badge per row.
 export const InContext: Story = {
   render: () => (
-    <Table className="w-full p-(--spacing-inline-lg)">
+    <Table className="w-(--size-share-full) p-(--spacing-inline-lg)">
       <TableHeader>
         <TableRow>
           <TableHead>Client</TableHead>

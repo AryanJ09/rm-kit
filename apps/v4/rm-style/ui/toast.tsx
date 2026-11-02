@@ -4,7 +4,7 @@ import * as React from "react"
 import { Toast as ToastPrimitive } from "@base-ui/react/toast"
 import { cn } from "cn"
 
-import { Button } from "@/rm-style/ui/button"
+import { Button } from "./button"
 import { XIcon, CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon } from "lucide-react"
 
 const toast = ToastPrimitive.createToastManager()
@@ -22,7 +22,7 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
     <ToastPrimitive.Viewport
       data-slot="toast-viewport"
       className={cn(
-        "pointer-events-none fixed inset-x-(--spacing-inline-lg) bottom-(--spacing-inline-lg) z-(--z-index-overlay) mx-auto w-auto max-w-sm outline-none sm:right-(--spacing-inline-lg) sm:left-auto sm:mx-(--spacing-none) sm:w-full",
+        "pointer-events-none fixed inset-x-(--spacing-inline-lg) bottom-(--spacing-inline-lg) z-(--z-index-overlay) mx-auto w-auto max-w-(--size-panel-sm) outline-none sm:right-(--spacing-inline-lg) sm:left-auto sm:mx-(--spacing-none) sm:w-(--size-share-full)",
         className
       )}
       {...props}
@@ -35,12 +35,12 @@ function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
     <ToastPrimitive.Root
       data-slot="toast"
       className={cn(
-        "group/toast pointer-events-auto absolute right-(--spacing-none) bottom-(--spacing-none) z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-(--radius-2xl) border bg-popover text-popover-foreground shadow-(--elevation-scale-lg) will-change-transform outline-none select-none focus-visible:border-ring focus-visible:ring-(length:--spacing-inline-xs) focus-visible:ring-ring/50",
+        "group/toast pointer-events-auto absolute right-(--spacing-none) bottom-(--spacing-none) z-[calc(1000-var(--toast-index))] w-(--size-share-full) origin-bottom rounded-(--radius-2xl) border bg-popover text-popover-foreground shadow-(--elevation-scale-lg) will-change-transform outline-none select-none focus-visible:border-ring focus-visible:ring-(length:--spacing-inline-xs) focus-visible:ring-ring/50",
         "[--gap:var(--spacing-inline-md)] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:var(--spacing-inline-md)] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))]",
         "h-(--height) [transform:translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]",
-        "after:absolute after:top-full after:left-(--spacing-none) after:h-[calc(var(--gap)+var(--border-width-default))] after:w-full after:content-['']",
+        "after:absolute after:top-(--size-share-full) after:left-(--spacing-none) after:h-[calc(var(--gap)+var(--border-width-default))] after:w-(--size-share-full) after:content-['']",
         "data-expanded:h-(--toast-height) data-expanded:[transform:translateX(var(--toast-swipe-movement-x))_translateY(var(--offset-y))]",
-        "data-limited:opacity-0 data-starting-style:[transform:translateY(150%)]",
+        "data-limited:opacity-(--opacity-hidden) data-starting-style:[transform:translateY(150%)]",
         "[&[data-ending-style]:not([data-limited]):not([data-swipe-direction])]:[transform:translateY(150%)]",
         "data-ending-style:data-[swipe-direction=down]:[transform:translateY(calc(var(--toast-swipe-movement-y)+150%))]",
         "data-ending-style:data-[swipe-direction=left]:[transform:translateX(calc(var(--toast-swipe-movement-x)-150%))_translateY(var(--offset-y))]",
@@ -62,7 +62,7 @@ function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
     <ToastPrimitive.Content
       data-slot="toast-content"
       className={cn(
-        "flex h-full items-center gap-(--spacing-inline-md) overflow-hidden p-(--spacing-inline-lg) transition-opacity duration-(--motion-duration-normal) ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
+        "flex h-(--size-share-full) items-center gap-(--spacing-inline-md) overflow-hidden p-(--spacing-inline-lg) transition-opacity duration-(--motion-duration-normal) ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-(--opacity-hidden) data-expanded:opacity-(--opacity-full)",
         className
       )}
       {...props}

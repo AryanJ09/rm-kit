@@ -17,7 +17,7 @@ function Slider({
 
   return (
     <SliderPrimitive.Root
-      className={cn("data-horizontal:w-full data-vertical:h-full", className)}
+      className={cn("data-horizontal:w-(--size-share-full) data-vertical:h-(--size-share-full)", className)}
       data-slot="slider"
       defaultValue={defaultValue}
       value={value}
@@ -26,14 +26,14 @@ function Slider({
       thumbAlignment="edge"
       {...props}
     >
-      <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-disabled:opacity-(--opacity-disabled) data-vertical:h-full data-vertical:min-h-(--size-160) data-vertical:w-auto data-vertical:flex-col">
+      <SliderPrimitive.Control className="relative flex w-(--size-share-full) touch-none items-center select-none data-disabled:opacity-(--opacity-disabled) data-vertical:h-(--size-share-full) data-vertical:min-h-(--size-160) data-vertical:w-auto data-vertical:flex-col">
         <SliderPrimitive.Track
           data-slot="slider-track"
-          className="relative grow overflow-hidden rounded-(--radius-pill) bg-muted select-none data-horizontal:h-(--size-track) data-horizontal:w-full data-vertical:h-full data-vertical:w-(--size-track)"
+          className="relative grow overflow-hidden rounded-(--radius-pill) bg-muted select-none data-horizontal:h-(--size-track) data-horizontal:w-(--size-share-full) data-vertical:h-(--size-share-full) data-vertical:w-(--size-track)"
         >
           <SliderPrimitive.Indicator
             data-slot="slider-range"
-            className="bg-primary select-none data-horizontal:h-full data-vertical:w-full"
+            className="bg-primary select-none data-horizontal:h-(--size-share-full) data-vertical:w-(--size-share-full)"
           />
         </SliderPrimitive.Track>
         {Array.from({ length: _values.length }, (_, index) => (

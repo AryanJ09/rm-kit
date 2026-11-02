@@ -98,3 +98,7 @@ components, never a new component. Home is the first; Leads, Clients and CRM fol
 ## 8. How to add the next screen
 
 See [../02-screen-build-order.md](../02-screen-build-order.md): the build order that Home and Clients followed.
+
+## 9. AI suggestions
+
+An AI suggestion is a note or a pill, never a custom card: `Alert variant="ai"` for a sentence (sparkle icon, gradient), `Chip variant="ai"` size sm for a short tappable suggestion. Both use the brand-to-accent gradient roles.

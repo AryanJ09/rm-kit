@@ -1,9 +1,9 @@
 "use client"
 
-// RM Kit chart cards, from Figma "Client banking portfolio" and "Wealth portfolio". A chart always sits in a card, so these are
+// RM Kit chart cards: a tabbed trend card and an allocation card. A chart always sits in a card, so these are
 // card archetypes (see cards.tsx and the card catalog), fed with data:
 //   TrendCard       how a total changed over time (history, growth, performance): a stacked-bar chart with a headline, a growth
-//                   strip and breakdown rows. Client, tab and category are data, never variants.
+//                   strip and breakdown rows. Tab and part are data, never variants.
 //   AllocationCard  how a total is split right now (mix, share, composition): a donut with its legend, and per part the holding
 //                   numbers and products.
 // They share the card states (default, loading, empty, error) and the choice chips with every other archetype.
@@ -11,15 +11,15 @@ import * as React from "react"
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react"
 import { cn } from "cn"
 
-import { Button } from "@/rm-style/ui/button"
-import { Card, CardBody, CardDescription, CardHeader, CardKeyValue, CardTitle, CardTitleGroup } from "@/rm-style/ui/card"
-import { SummaryCard, type CardState } from "@/rm-style/ui/cards"
-import { Chip } from "@/rm-style/ui/chip/chip"
-import { DonutChart, type DonutSegment } from "@/rm-style/ui/donut-chart"
-import { Separator } from "@/rm-style/ui/separator"
-import { StackedBarChart, type ChartState, type StackedBarChartProps } from "@/rm-style/ui/stacked-bar-chart"
-import { Tabs, TabsList, TabsTrigger } from "@/rm-style/ui/tabs"
-import { getChartSeriesColor, getChartSeriesLabel } from "./chart-series"
+import { Button } from "./button"
+import { Card, CardBody, CardDescription, CardHeader, CardKeyValue, CardTitle, CardTitleGroup } from "./card"
+import { SummaryCard, type CardState } from "./cards"
+import { Chip } from "./chip/chip"
+import { DonutChart, type DonutSegment } from "./donut-chart"
+import { Separator } from "./separator"
+import { StackedBarChart, type ChartState, type StackedBarChartProps } from "./stacked-bar-chart"
+import { Switch } from "./switch"
+import { Tabs, TabsList, TabsTrigger } from "./tabs"
 
 const trendText = {
   up: "text-(color:--category-success-text)",
@@ -63,7 +63,7 @@ export type GrowthMetric = { label: string; change: string; trend: Trend }
 export type TrendCardProps = {
   title: string
   subtitle?: string
-  /** Choice chips under the title (e.g. RV, Deposits, Investments). The parent supplies the matching chart and numbers. */
+  /** Choice chips under the title, e.g. one per metric. The parent supplies the matching chart and numbers. */
   tabs?: Choice[]
   tab?: string
   onTabChange?: (id: string) => void
@@ -149,11 +149,11 @@ export type AllocationProduct = { label: string; value: string; change: string; 
 export type AllocationPart = {
   id: string
   label: string
-  /** Chart series key, which gives the colour (see chart-series.ts). */
-  series: string
+  /** Colour of the part in the donut and the legend, e.g. "var(--chart-1)". */
+  colour?: string
   /** Share of the whole, 0 to 100. */
   share: number
-  /** Display value, e.g. "₹6.85 Cr". */
+  /** Display value, e.g. "₹6.85 M". */
   value: string
   cost?: string
   returns?: string
@@ -165,7 +165,7 @@ export type AllocationCardProps = {
   title: string
   /** Family or Individual: the scope of the numbers. Omit when there is no scope. */
   scope?: { options: Choice[]; value?: string; onChange?: (id: string) => void }
-  /** The centre of the donut, e.g. { label: "AUM", value: "₹11.3 Cr" }. */
+  /** The centre of the donut, e.g. { label: "Total", value: "₹11.3 Cr" }. */
   total: { label: string; value: string }
   parts: AllocationPart[]
   /** Which view is on: "summary" or a part id. */
@@ -173,8 +173,22 @@ export type AllocationCardProps = {
   onTabChange?: (id: string) => void
   /** Text for the empty state. */
   emptyText?: string
+  /** Show the part chips (Summary, each part). Off for a donut on its own. */
+  chips?: boolean
+  /** Labels for the figures and the products list. Defaults are neutral; a product sets its own words. */
+  labels?: Partial<AllocationLabels>
   state?: CardState
 }
+
+const defaultAllocationLabels = {
+  value: "Value",
+  share: "Share",
+  cost: "Cost",
+  returns: "Returns",
+  benchmark: "Benchmark",
+  items: "Items",
+}
+export type AllocationLabels = typeof defaultAllocationLabels
 
 const dash = "—"
 
@@ -182,11 +196,12 @@ function LegendRow({ part }: { part: AllocationPart }) {
   return (
     <div className="flex items-center gap-(--spacing-inline-sm) text-(length:--font-size-xs)">
       <span className="flex min-w-0 items-center gap-(--spacing-stack-2xs)">
-        <span aria-hidden className="size-(--size-icon-xs) shrink-0" style={{ background: getChartSeriesColor(part.series, "var(--chart-1)") }} />
+        <span aria-hidden className="size-(--size-icon-xs) shrink-0" style={{ background: part.colour ?? "var(--chart-1)" }} />
         <span className="truncate text-(length:--font-size-chart-legend) text-muted-foreground">{part.label}</span>
       </span>
-      <span className="font-(--typography-label-strong-font-weight) text-card-foreground">
-        {part.value} · {part.share}%
+      <span className="flex shrink-0 items-center gap-(--spacing-inline-sm)">
+        <span className="font-(--typography-label-strong-font-weight) text-card-foreground">{part.value}</span>
+        <span className="text-muted-foreground">{part.share}%</span>
       </span>
     </div>
   )
@@ -201,13 +216,14 @@ function Stat({ label, value }: { label: string; value?: string }) {
   )
 }
 
-function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyText, state = "default" }: AllocationCardProps) {
+function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyText, state = "default", chips = true, labels }: AllocationCardProps) {
+  const L = { ...defaultAllocationLabels, ...labels }
   const tabs: Choice[] = [{ id: "summary", label: "Summary" }, ...parts.map((p) => ({ id: p.id, label: p.label }))]
   const [current, change] = useChoice(tabs, tab, onTabChange)
   const [scopeValue, setScope] = useChoice(scope?.options ?? [], scope?.value, scope?.onChange)
   const part = parts.find((p) => p.id === current)
   const empty = state === "empty"
-  const segments: DonutSegment[] = parts.map((p) => ({ key: p.series, value: p.share }))
+  const segments: DonutSegment[] = parts.map((p) => ({ key: p.id, value: p.share, label: p.label, colour: p.colour }))
   return (
     <Card>
       <CardHeader>
@@ -215,9 +231,18 @@ function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyTex
           <CardTitle className="text-(length:--font-size-base)">{title}</CardTitle>
         </CardTitleGroup>
       </CardHeader>
-      {scope && (
+      {scope && scope.options.length === 2 && (
+        // Two scope options are a labelled switch; more are tabs.
+        <Switch
+          startLabel={scope.options[0].label}
+          endLabel={scope.options[1].label}
+          checked={scopeValue === scope.options[1].id}
+          onCheckedChange={(on) => setScope(scope.options[on ? 1 : 0].id)}
+        />
+      )}
+      {scope && scope.options.length !== 2 && (
         <Tabs value={scopeValue} onValueChange={(v) => setScope(String(v))}>
-          <TabsList variant="secondary" className="w-full">
+          <TabsList variant="secondary" className="w-(--size-share-full)">
             {scope.options.map((o) => (
               <TabsTrigger key={o.id} value={o.id} className="flex-1">
                 {o.label}
@@ -226,7 +251,7 @@ function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyTex
           </TabsList>
         </Tabs>
       )}
-      <Choices items={tabs} value={current} onChange={change} label={`${title} view`} />
+      {chips && <Choices items={tabs} value={current} onChange={change} label={`${title} view`} />}
       <CardBody loading={state === "loading"}>
         {!part ? (
           <>
@@ -234,7 +259,7 @@ function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyTex
               segments={segments}
               total={total}
               state={empty ? "empty" : "populated"}
-              summary={`${title}: ${parts.map((p) => `${getChartSeriesLabel(p.series)} ${p.share}%`).join(", ")}`}
+              summary={`${title}: ${parts.map((p) => `${p.label} ${p.share}%`).join(", ")}`}
               emptyText={emptyText}
             />
             {!empty && (
@@ -248,17 +273,17 @@ function AllocationCard({ title, scope, total, parts, tab, onTabChange, emptyTex
         ) : (
           <>
             <div className="flex gap-(--spacing-inline-md)">
-              <Stat label="Current value" value={empty ? undefined : part.value} />
-              <Stat label="Share of portfolio" value={empty ? undefined : `${part.share}%`} />
+              <Stat label={L.value} value={empty ? undefined : part.value} />
+              <Stat label={L.share} value={empty ? undefined : `${part.share}%`} />
             </div>
             <div className="flex gap-(--spacing-inline-md)">
-              <Stat label="Holding cost" value={empty ? undefined : part.cost} />
-              <Stat label="Returns" value={empty ? undefined : part.returns} />
-              <Stat label="Benchmark" value={empty ? undefined : part.benchmark} />
+              <Stat label={L.cost} value={empty ? undefined : part.cost} />
+              <Stat label={L.returns} value={empty ? undefined : part.returns} />
+              <Stat label={L.benchmark} value={empty ? undefined : part.benchmark} />
             </div>
             <Separator />
             <div className="flex flex-col gap-(--spacing-inline-md)">
-              <span className="text-(length:--font-size-sm) font-(--typography-label-md-font-weight) text-card-foreground">Products</span>
+              <span className="text-(length:--font-size-sm) font-(--typography-label-md-font-weight) text-card-foreground">{L.items}</span>
               {(empty ? [] : part.products ?? []).map((p) => (
                 <SummaryCard
                   key={p.label}

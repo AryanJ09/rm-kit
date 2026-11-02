@@ -17,7 +17,7 @@ function NativeSelect({
   return (
     <div
       className={cn(
-        "group/native-select relative w-fit has-[select:disabled]:opacity-50",
+        "group/native-select relative w-fit has-[select:disabled]:opacity-(--opacity-disabled)",
         className
       )}
       data-slot="native-select-wrapper"
@@ -26,10 +26,10 @@ function NativeSelect({
       <select
         data-slot="native-select"
         data-size={resolved}
-        className={cn(controlShellClass, controlSize[resolved], "w-full min-w-0 appearance-none pr-(--spacing-section-md) select-none selection:bg-primary selection:text-primary-foreground disabled:pointer-events-none")}
+        className={cn(controlShellClass, controlSize[resolved], "w-(--size-share-full) min-w-0 appearance-none pr-(--spacing-section-md) select-none selection:bg-primary selection:text-primary-foreground disabled:pointer-events-none")}
         {...props}
       />
-      <ChevronDownIcon className="pointer-events-none absolute top-1/2 right-(--spacing-inset-md) size-(--size-icon-sm) -translate-y-1/2 text-text-tertiary select-none" aria-hidden="true" data-slot="native-select-icon" />
+      <ChevronDownIcon className="pointer-events-none absolute top-(--size-share-half) right-(--spacing-inset-md) size-(--size-icon-sm) -translate-y-(--size-share-half) text-text-tertiary select-none" aria-hidden="true" data-slot="native-select-icon" />
     </div>
   )
 }

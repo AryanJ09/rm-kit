@@ -11,7 +11,7 @@ function ResizablePanelGroup({
     <ResizablePrimitive.Group
       data-slot="resizable-panel-group"
       className={cn(
-        "flex h-full w-full aria-[orientation=vertical]:flex-col",
+        "flex h-(--size-share-full) w-(--size-share-full) aria-[orientation=vertical]:flex-col",
         className
       )}
       {...props}
@@ -34,7 +34,7 @@ function ResizableHandle({
     <ResizablePrimitive.Separator
       data-slot="resizable-handle"
       className={cn(
-        "relative flex w-(--border-width-default) items-center justify-center bg-border ring-offset-background after:absolute after:inset-y-(--spacing-none) after:left-1/2 after:w-(--spacing-inline-xs) after:-translate-x-1/2 focus-visible:ring-(length:--border-width-default) focus-visible:ring-ring focus-visible:outline-hidden aria-[orientation=horizontal]:h-(--border-width-default) aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:left-(--spacing-none) aria-[orientation=horizontal]:after:h-(--spacing-inline-xs) aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:translate-x-0 aria-[orientation=horizontal]:after:-translate-y-1/2 [&[aria-orientation=horizontal]>div]:rotate-90",
+        "relative flex w-(--border-width-default) items-center justify-center bg-border ring-offset-background after:absolute after:inset-y-(--spacing-none) after:left-(--size-share-half) after:w-(--spacing-inline-xs) after:-translate-x-(--size-share-half) focus-visible:ring-(length:--border-width-default) focus-visible:ring-ring focus-visible:outline-hidden aria-[orientation=horizontal]:h-(--border-width-default) aria-[orientation=horizontal]:w-(--size-share-full) aria-[orientation=horizontal]:after:left-(--spacing-none) aria-[orientation=horizontal]:after:h-(--spacing-inline-xs) aria-[orientation=horizontal]:after:w-(--size-share-full) aria-[orientation=horizontal]:after:translate-x-0 aria-[orientation=horizontal]:after:-translate-y-(--size-share-half) [&[aria-orientation=horizontal]>div]:rotate-90",
         className
       )}
       {...props}

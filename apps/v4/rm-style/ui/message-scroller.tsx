@@ -9,7 +9,7 @@ import {
 } from "@shadcn/react/message-scroller"
 import { cn } from "cn"
 
-import { Button } from "@/rm-style/ui/button"
+import { Button } from "./button"
 import { ArrowDownIcon } from "lucide-react"
 
 function MessageScrollerProvider(
@@ -57,7 +57,7 @@ function MessageScrollerContent({
   return (
     <MessageScrollerPrimitive.Content
       data-slot="message-scroller-content"
-      className={cn("flex h-max min-h-full flex-col gap-(--spacing-inline-xl)", className)}
+      className={cn("flex h-max min-h-(--size-share-full) flex-col gap-(--spacing-inline-xl)", className)}
       {...props}
     />
   )
@@ -99,7 +99,7 @@ function MessageScrollerButton({
       data-size={size}
       direction={direction}
       className={cn(
-        "absolute inset-s-1/2 -translate-x-1/2 border-border bg-background text-foreground transition-[translate,scale,opacity] duration-(--motion-duration-normal) hover:bg-muted hover:text-foreground data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-0 data-[active=false]:duration-(--motion-duration-slow) data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:translate-y-0 data-[active=true]:scale-100 data-[active=true]:opacity-100 data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=end]:bottom-(--spacing-inline-lg) data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:top-(--spacing-inline-lg) data-[direction=start]:data-[active=false]:-translate-y-full rtl:translate-x-1/2 data-[direction=start]:[&_svg]:rotate-180",
+        "absolute inset-s-1/2 -translate-x-(--size-share-half) border-border bg-background text-foreground transition-[translate,scale,opacity] duration-(--motion-duration-normal) hover:bg-muted hover:text-foreground data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-(--opacity-hidden) data-[active=false]:duration-(--motion-duration-slow) data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:translate-y-0 data-[active=true]:scale-100 data-[active=true]:opacity-(--opacity-full) data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=end]:bottom-(--spacing-inline-lg) data-[direction=end]:data-[active=false]:translate-y-(--size-share-full) data-[direction=start]:top-(--spacing-inline-lg) data-[direction=start]:data-[active=false]:-translate-y-(--size-share-full) rtl:translate-x-(--size-share-half) data-[direction=start]:[&_svg]:rotate-180",
         className
       )}
       render={render ?? <Button variant={variant} size={size} />}

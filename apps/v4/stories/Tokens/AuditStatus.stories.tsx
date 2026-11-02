@@ -11,7 +11,7 @@ type Story = StoryObj<typeof meta>
 
 export const CurrentAudit: Story = {
   render: () => (
-    <main className="mx-auto grid w-full max-w-(--size-layout-frame-width) gap-(--spacing-inline-lg) p-(--spacing-inline-xl)">
+    <main className="mx-auto grid w-(--size-share-full) max-w-(--size-layout-frame-width) gap-(--spacing-inline-lg) p-(--spacing-inline-xl)">
       <h1 className="text-(length:--typography-heading-lg-font-size) font-(--typography-heading-md-font-weight)">
         Token audit
       </h1>

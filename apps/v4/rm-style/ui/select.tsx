@@ -137,7 +137,7 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        menuRowClass, menuSelectedClass, "w-full",
+        menuRowClass, menuSelectedClass, "w-(--size-share-full)",
         className
       )}
       {...props}
@@ -170,7 +170,7 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpArrow
       data-slot="select-scroll-up-button"
       className={cn(
-        "top-(--spacing-none) z-(--z-index-base) flex w-full cursor-default items-center justify-center bg-popover py-(--spacing-stack-xs) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
+        "top-(--spacing-none) z-(--z-index-base) flex w-(--size-share-full) cursor-default items-center justify-center bg-popover py-(--spacing-stack-xs) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
         className
       )}
       {...props}
@@ -189,7 +189,7 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownArrow
       data-slot="select-scroll-down-button"
       className={cn(
-        "bottom-(--spacing-none) z-(--z-index-base) flex w-full cursor-default items-center justify-center bg-popover py-(--spacing-stack-xs) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
+        "bottom-(--spacing-none) z-(--z-index-base) flex w-(--size-share-full) cursor-default items-center justify-center bg-popover py-(--spacing-stack-xs) [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
         className
       )}
       {...props}

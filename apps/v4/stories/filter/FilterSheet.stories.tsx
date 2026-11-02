@@ -63,8 +63,8 @@ function SheetBody({ state, expanded = false }: { state: SheetState; expanded?: 
   if (state === "loading") {
     return (
       <div className="flex flex-col gap-(--spacing-inline-md)">
-        <Skeleton className="h-(--size-icon-3xs) w-full rounded-(--radius-sm) bg-surface-disabled" />
-        <Skeleton className="h-(--size-icon-3xs) w-full rounded-(--radius-sm) bg-surface-disabled" />
+        <Skeleton className="h-(--size-icon-3xs) w-(--size-share-full) rounded-(--radius-sm) bg-surface-disabled" />
+        <Skeleton className="h-(--size-icon-3xs) w-(--size-share-full) rounded-(--radius-sm) bg-surface-disabled" />
         <Skeleton className="h-(--size-icon-3xs) w-(--size-160) rounded-(--radius-sm) bg-surface-disabled" />
       </div>
     )
@@ -100,7 +100,7 @@ const footer = (state: SheetState) => (
 // Static copy of the sheet, drawn as a card, to show each Figma state.
 function SheetCard({ state, expanded }: { state: SheetState; expanded?: boolean }) {
   return (
-    <div className="flex w-(--size-layout-frame-width) max-w-full flex-col gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-group)">
+    <div className="flex w-(--size-layout-frame-width) max-w-(--size-share-full) flex-col gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-group)">
       <div className="flex items-center justify-between">
         <span className="text-(length:--font-size-base) font-(--typography-heading-md-font-weight) text-text-primary">Filter Clients</span>
         <span aria-hidden className="text-text-tertiary">×</span>
@@ -129,7 +129,7 @@ export const Loading: Story = { render: () => <SheetCard state="loading" /> }
 // Figma "Empty filter": shown in the list when no client matches.
 export const Empty: Story = {
   render: () => (
-    <div className="flex w-(--size-layout-frame-width) max-w-full flex-col items-start gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-section-sm)">
+    <div className="flex w-(--size-layout-frame-width) max-w-(--size-share-full) flex-col items-start gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-section-sm)">
       <span className="text-(length:--font-size-base) font-(--typography-heading-md-font-weight) text-text-primary">No clients match these filters</span>
       <span className="text-(length:--font-size-helper) text-text-primary">Try removing a filter or searching by name or CRN.</span>
       <Button variant="secondary">Reset filters</Button>
@@ -168,7 +168,7 @@ export const Interactive: Story = {
 export const Overlay: Story = {
   parameters: { layout: "fullscreen" },
   render: () => (
-    <div className="mx-auto flex w-(--size-layout-frame-width) max-w-full flex-col gap-(--spacing-stack-lg) bg-(--overlay-color) pt-(--spacing-stack-lg)">
+    <div className="mx-auto flex w-(--size-layout-frame-width) max-w-(--size-share-full) flex-col gap-(--spacing-stack-lg) bg-(--overlay-color) pt-(--spacing-stack-lg)">
       <span className="px-(--spacing-inline-md) text-(length:--font-size-base) font-(--typography-heading-md-font-weight) text-primary-foreground">Clients</span>
       <SheetCard state="applied" expanded />
     </div>

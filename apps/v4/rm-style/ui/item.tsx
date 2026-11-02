@@ -4,7 +4,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-import { Separator } from "@/rm-style/ui/separator"
+import { Separator } from "./separator"
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -12,7 +12,7 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
       role="list"
       data-slot="item-group"
       className={cn(
-        "group/item-group flex w-full flex-col gap-(--spacing-inline-lg) has-data-[size=sm]:gap-(--spacing-inset-md) has-data-[size=xs]:gap-(--spacing-inline-sm)",
+        "group/item-group flex w-(--size-share-full) flex-col gap-(--spacing-inline-lg) has-data-[size=sm]:gap-(--spacing-inset-md) has-data-[size=xs]:gap-(--spacing-inline-sm)",
         className
       )}
       {...props}
@@ -35,7 +35,7 @@ function ItemSeparator({
 }
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-(--radius-lg) border text-(length:--font-size-sm) transition-colors duration-(--motion-duration-fast) outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
+  "group/item flex w-(--size-share-full) flex-wrap items-center rounded-(--radius-lg) border text-(length:--font-size-sm) transition-colors duration-(--motion-duration-fast) outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
   {
     variants: {
       variant: {
@@ -130,7 +130,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
-        "line-clamp-1 flex w-fit items-center gap-(--spacing-inline-sm) text-(length:--font-size-sm) leading-snug font-(--typography-label-sm-font-weight) underline-offset-4",
+        "line-clamp-1 flex w-fit items-center gap-(--spacing-inline-sm) text-(length:--font-size-sm) leading-(--line-height-sm) font-(--typography-label-sm-font-weight) underline-offset-4",
         className
       )}
       {...props}
@@ -143,7 +143,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="item-description"
       className={cn(
-        "line-clamp-2 text-left text-(length:--font-size-sm) leading-normal font-(--typography-body-md-font-weight) text-muted-foreground group-data-[size=xs]/item:text-(length:--font-size-xs) [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+        "line-clamp-2 text-left text-(length:--font-size-sm) leading-(--line-height-base) font-(--typography-body-md-font-weight) text-muted-foreground group-data-[size=xs]/item:text-(length:--font-size-xs) [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
         className
       )}
       {...props}
@@ -166,7 +166,7 @@ function ItemHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-header"
       className={cn(
-        "flex basis-full items-center justify-between gap-(--spacing-inline-sm)",
+        "flex basis-(--size-share-full) items-center justify-between gap-(--spacing-inline-sm)",
         className
       )}
       {...props}
@@ -179,7 +179,7 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-footer"
       className={cn(
-        "flex basis-full items-center justify-between gap-(--spacing-inline-sm)",
+        "flex basis-(--size-share-full) items-center justify-between gap-(--spacing-inline-sm)",
         className
       )}
       {...props}

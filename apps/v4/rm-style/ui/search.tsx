@@ -6,14 +6,14 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { SearchIcon, XIcon } from "lucide-react"
 import { cn } from "cn"
 
-import { Spinner } from "@/rm-style/ui/spinner"
+import { Spinner } from "./spinner"
 import { controlSize } from "./control"
 import { FieldShell } from "./field-shell"
 
 // Pill-shaped search field. The wrapper draws the border and focus ring so the
 // icons and the text share one outline.
 const searchVariants = cva(
-  "group flex w-full min-w-0 items-center rounded-(--radius-pill) border-(length:--border-width-default) bg-background text-(color:--field-label) transition-colors has-disabled:cursor-not-allowed has-disabled:border-control-disabled has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--focus-ring-width) focus-within:ring-primary-focus-ring",
+  "group flex w-(--size-share-full) min-w-0 items-center rounded-(--radius-pill) border-(length:--border-width-default) bg-background text-(color:--field-label) transition-colors has-disabled:cursor-not-allowed has-disabled:border-control-disabled has-disabled:bg-surface-disabled has-disabled:text-text-disabled has-[input:read-only]:bg-surface-hover focus-within:border-field-focus focus-within:ring-(length:--focus-ring-width) focus-within:ring-primary-focus-ring",
   {
     variants: {
       size: controlSize,
@@ -84,7 +84,7 @@ function Search({
         value={current}
         placeholder={placeholder}
         onChange={(event) => change(event.target.value)}
-        className="h-full min-w-0 flex-1 bg-transparent px-(--spacing-inline-sm) outline-none placeholder:text-field-placeholder disabled:cursor-not-allowed [&::-webkit-search-cancel-button]:appearance-none"
+        className="h-(--size-share-full) min-w-0 flex-1 bg-transparent px-(--spacing-inline-sm) outline-none placeholder:text-field-placeholder disabled:cursor-not-allowed [&::-webkit-search-cancel-button]:appearance-none"
         {...props}
       />
       {loading ? (

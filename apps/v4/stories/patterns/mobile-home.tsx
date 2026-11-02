@@ -2,7 +2,7 @@
 // It is assembled only from kit components (ApplicationShell with its hero and footerNote slots, StatCard, TaskCard, ItemCard,
 // SectionHeader, Alert, Empty). Sample text follows the Figma example; names are generic.
 import * as React from "react"
-import { ArrowLeftRightIcon, CakeIcon, CalendarDaysIcon, ClipboardListIcon, HouseIcon, ShieldCheckIcon } from "lucide-react"
+import { CakeIcon, CalendarCheckIcon, ClipboardListIcon, CreditCardIcon, HouseIcon, ShieldCheckIcon, TrendingUpIcon, TriangleAlertIcon } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/rm-style/ui/alert"
 import { ApplicationShell, type ShellWorkspace } from "@/rm-style/ui/application-shell"
@@ -28,25 +28,25 @@ export const shellWorkspaces: ShellWorkspace[] = [
   },
 ]
 
+// The six task cards of the prototype: the icon and its tint change per category.
 const tasks = [
-  { count: 4, icon: CalendarDaysIcon, title: "Maturities Due", text: "Renewals and Maturities in next 45 days" },
-  { count: 9, icon: ShieldCheckIcon, title: "Re-KYC due", text: "Meet regulatory requirement" },
-  { count: 2, icon: CakeIcon, title: "Birthdays today", text: "Wish and build stronger relationship" },
-  { count: 6, icon: ArrowLeftRightIcon, title: "Large debits/credits", text: "Cross-sell or prevent attrition" },
-]
-
-const products = [
-  { eyebrow: "Alternate Equity Income", title: "3P India Equity Fund-1", meta: "AIF" },
-  { eyebrow: "Alternate Equity Income", title: "ICICI Prudential Contra", meta: "PMS" },
-  { eyebrow: "Alternate Equity Income", title: "Kotak India Focus Portfolio Investment Advisory", meta: "PMS" },
-  { eyebrow: "Alternate Equity Income", title: "Axis Growth Opportunities", meta: "AIF" },
-]
-const riskTags = [
-  { label: "Conservative", variant: "conservative" },
-  { label: "Moderate", variant: "moderate" },
-  { label: "Growth", variant: "growth" },
-  { label: "Aggressive", variant: "aggressive" },
+  { count: 9, icon: ShieldCheckIcon, title: "Re-KYC due", text: "Meet regulatory requirement", accent: "brand" },
+  { count: 6, icon: CalendarCheckIcon, title: "Follow-ups", text: "Check today's scheduled follow-ups", accent: "brand" },
+  { count: 6, icon: CreditCardIcon, title: "Large debits/credits", text: "Cross-sell or prevent attrition", accent: "brand" },
+  { count: 5, icon: TriangleAlertIcon, title: "Open Escalations", text: "Connect internally to fastrack resolution", accent: "warning" },
+  { count: 5, icon: TrendingUpIcon, title: "Journey drop-offs", text: "Assist journey completion", accent: "info" },
+  { count: 2, icon: CakeIcon, title: "Birthdays today", text: "Wish and build stronger relationship", accent: "brand" },
 ] as const
+
+// The products of the prototype's Home list: a title, the type of the product (the trailing badge), a line, and risk tags.
+const products = [
+  { title: "Alfma Capital India Fund (Agastya)", kind: { label: "Private Equity Fund", variant: "neutral" as const }, description: "Leveraged acquisitions targeting high-margin business consolidation plays", risk: ["aggressive"] },
+  { title: "Bagmane REIT", kind: { label: "REIT", variant: "neutral" as const }, description: "Capital appreciation potential in urbanization drives demand in emerging IT corridors", risk: ["moderate", "growth"] },
+  { title: "AllAccurate Building Beats PMS", kind: { label: "PMS", variant: "neutral" as const }, description: "Concentrated holding in high-yield stocks with tactical sector rotation", risk: ["moderate", "growth", "aggressive"] },
+  { title: "3P India Equity Fund-1", kind: { label: "AIF", variant: "neutral" as const }, description: "Flexi-cap, quality-focused value strategy with large-cap bias.", risk: ["conservative", "moderate", "growth", "aggressive"] },
+  { title: "Arttha Capital Fund IV", kind: { label: "Venture Debt Fund", variant: "neutral" as const }, description: "Secure steady growth with lower risk through Arttha Capital Fund IV's dependable debt strategy.", risk: ["moderate", "growth"] },
+] as const
+
 
 export type MobileHomeProps = {
   state?: HomeState
@@ -62,7 +62,7 @@ export type MobileHomeProps = {
 function HomeContent({ state }: { state: HomeState }) {
   const cardState: CardState = state === "loading" ? "loading" : state === "empty" ? "empty" : "default"
   return (
-    <div className="flex min-h-full flex-col gap-(--spacing-stack-lg) bg-surface-hover px-(--spacing-inline-md) pt-(--spacing-inline-lg) pb-(--spacing-stack-lg)">
+    <div className="flex min-h-(--size-share-full) flex-col gap-(--spacing-stack-lg) bg-surface-hover px-(--spacing-inline-md) pt-(--spacing-inline-lg) pb-(--spacing-stack-lg)">
       {state === "error" && (
         <Alert variant="error">
           <AlertTitle>Unable to load</AlertTitle>
@@ -75,7 +75,7 @@ function HomeContent({ state }: { state: HomeState }) {
         ))}
       </div>
       <div className="flex flex-col gap-(--spacing-stack-sm)">
-        <SectionHeader title="Focussed Products" />
+        <SectionHeader title="Products" />
         {state === "empty" ? (
           <div className="rounded-(--radius-2xl) bg-card">
             <Empty>
@@ -96,13 +96,15 @@ function HomeContent({ state }: { state: HomeState }) {
           </>
         ) : (
           <ItemList>
-            {products.map((p, i) => (
+            {products.map((p) => (
               <ItemCard
                 key={p.title}
                 inList
-                {...p}
+                title={p.title}
+                kind={p.kind}
+                description={p.description}
                 state={state === "loading" ? "loading" : "default"}
-                tags={i === 0 || i === 1 ? [...riskTags] : undefined}
+                tags={p.risk.map((r) => ({ label: r[0].toUpperCase() + r.slice(1), variant: r }))}
                 onClick={() => {}}
               />
             ))}
@@ -128,17 +130,31 @@ export function MobileHome({ state = "populated", hero = true, footerNote = true
           <>
             <div className="flex gap-(--spacing-inline-md) px-(--spacing-group)">
               <div className="flex-1">
-                <StatCard tone="inverse" layout="inline" state={state === "loading" ? "loading" : state === "empty" ? "empty" : "default"} metrics={[{ label: "Families", value: "20" }, { label: "CRNs", value: "23" }]} />
+                <StatCard tone="inverse" layout="inline" state={state === "loading" ? "loading" : state === "empty" ? "empty" : "default"} metrics={[{ label: "CRN", value: "23" }, { label: "RV", value: "₹250 Cr", trend: "up" }]} />
               </div>
               <div className="flex-1">
-                <StatCard tone="inverse" layout="inline" state={state === "loading" ? "loading" : state === "empty" ? "empty" : "default"} metrics={[{ label: "AUM", value: "₹9.2 Cr", trend: "up", change: "+3.3%" }]} />
+                <StatCard tone="inverse" layout="inline" state={state === "loading" ? "loading" : state === "empty" ? "empty" : "default"} metrics={[{ label: "Provisional SOP Score", value: "58.9" }]} />
               </div>
             </div>
             <div className="px-(--spacing-inline-lg) pt-(--spacing-stack-3xs)">
-              <Search placeholder="Search name, CRN" />
+              <Search placeholder="Search by CRN" />
             </div>
           </>
         ) : undefined
+      }
+      collapsedHeader={
+        <>
+          {[
+            { label: "CRN", value: "23" },
+            { label: "RV", value: "₹250 Cr" },
+            { label: "SOP", value: "58.9" },
+          ].map((m) => (
+            <span key={m.label} className="inline-flex items-center gap-(--spacing-stack-2xs) rounded-(--radius-pill) bg-(color:--accent-subtle) px-(--spacing-inline-sm) py-(--spacing-stack-3xs) text-(length:--font-size-xs) text-foreground">
+              <span className="text-muted-foreground">{m.label}</span>
+              <span className="font-(--typography-label-strong-font-weight)">{m.value}</span>
+            </span>
+          ))}
+        </>
       }
       footerNote={footerNote ? footerNoteText : undefined}
     >

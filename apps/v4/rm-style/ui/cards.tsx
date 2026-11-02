@@ -4,20 +4,24 @@
 // make a card: the Card shell is locked (no className), and the archetypes take data, not layout, so the same data always
 // gives the same card. Pick one with the catalog in rm-style/learnings/golden-rules/03-card-catalog.md.
 //
-//   StatCard     numbers lead            (KPI, total, balance, count, score, rate, AUM)
+//   StatCard     numbers lead            (KPI, total, balance, count, score, rate, share)
 //   SummaryCard  labelled facts          (details, overview, info, callout, notice, row of key-values)
 //   TaskCard     a count of to-dos       (pending, due, reminders, inbox, queue)
-//   ItemCard     a record you open       (product, fund, document, listing, result)
-//   PersonCard   a person is the subject (client, attendee, contact, member, user)
-//   GroupCard    a card of cards         (grouped cues, sections, folders, expandable lists)
+//   ItemCard     a record you open       (item, document, listing, result, record)
+//   PersonCard   a person is the subject (person, attendee, contact, member, user)
+//   GroupCard    a card of cards         (grouped items, sections, folders, expandable lists)
 import * as React from "react"
 import { ChevronRightIcon, EllipsisIcon, TrendingDownIcon, TrendingUpIcon, type LucideIcon } from "lucide-react"
 import { cn } from "cn"
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/rm-style/ui/accordion"
-import { Avatar, AvatarFallback } from "@/rm-style/ui/avatar"
-import { Badge } from "@/rm-style/ui/badge"
-import { Button } from "@/rm-style/ui/button"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion"
+import { Avatar, AvatarFallback } from "./avatar"
+import { Badge } from "./badge"
+import { Button } from "./button"
+import { Counter } from "./counter"
+import { Progress } from "./progress"
+import { InfoIcon } from "lucide-react"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip"
 import {
   Card,
   CardBody,
@@ -28,19 +32,19 @@ import {
   CardTitle,
   CardTitleGroup,
   CardTrailing,
-} from "@/rm-style/ui/card"
-import { Chip } from "@/rm-style/ui/chip/chip"
-import { Dropdown, type DropdownOption } from "@/rm-style/ui/dropdown"
-import { Metric } from "@/rm-style/ui/metric"
-import { Separator } from "@/rm-style/ui/separator"
-import { Skeleton } from "@/rm-style/ui/skeleton"
+} from "./card"
+import { Chip } from "./chip/chip"
+import { Dropdown, type DropdownOption } from "./dropdown"
+import { Metric } from "./metric"
+import { Separator } from "./separator"
+import { Skeleton } from "./skeleton"
 
 /* ----- shared contract ----- */
 
 // One set of states for every archetype.
 export type CardState = "default" | "loading" | "empty" | "error"
 type BadgeVariant = "conservative" | "moderate" | "growth" | "aggressive" | "secure" | "success" | "neutral"
-export type CardStatus = { label: string; variant?: BadgeVariant }
+export type CardStatus = { label: string; variant?: BadgeVariant; dot?: boolean }
 export type CardItem = { label: string; value?: React.ReactNode; trend?: "up" | "down" }
 
 type Common = {
@@ -60,7 +64,7 @@ const shell = ({ onClick, selected, disabled }: Common) => ({ onClick, selected,
 function StatusBadge({ status }: { status?: CardStatus }) {
   if (!status) return null
   return (
-    <Badge variant={status.variant ?? "moderate"} dot>
+    <Badge variant={status.variant ?? "moderate"} dot={status.dot}>
       {status.label}
     </Badge>
   )
@@ -92,6 +96,8 @@ export type StatMetric = {
   trend?: "up" | "down" | "neutral"
   change?: string
   period?: string
+  /** A hint behind an info icon beside the value (inline layout), e.g. the holdings behind a count. */
+  info?: string
 }
 
 /** Numbers lead. `tile`: one or more big metric tiles. `inline`: a strip of small label-over-value KPIs. */
@@ -99,12 +105,15 @@ function StatCard({
   metrics,
   layout = "tile",
   tone = "default",
+  divided = false,
   ...common
 }: Common & {
   metrics: StatMetric[]
   layout?: "tile" | "inline"
   /** `inverse`: the dark translucent tile used on the hero band. */
   tone?: "default" | "inverse"
+  /** inline: a hairline between the metrics. */
+  divided?: boolean
 }) {
   const { state = "default" } = common
   const empty = state === "empty"
@@ -127,11 +136,25 @@ function StatCard({
             ))
           ) : (
             <div className="flex gap-(--spacing-inline-lg)">
-              {metrics.map((m) => (
-                <div key={m.label} className="flex min-w-0 flex-col text-(length:--font-size-xs)">
+              {metrics.map((m, i) => (
+                <div
+                  key={m.label}
+                  className={cn("flex min-w-0 flex-col text-(length:--font-size-xs)", divided && i > 0 && "border-l-(length:--border-width-default) border-border pl-(--spacing-inline-lg)")}
+                >
                   <span className="text-muted-foreground group-data-[tone=inverse]/card:text-primary-foreground">{m.label}</span>
                   <span className="flex items-center gap-(--spacing-inline-xs) font-(--typography-label-strong-font-weight) text-(length:--font-size-base) text-card-foreground group-data-[tone=inverse]/card:text-primary-foreground">
                     {empty || m.value === undefined ? "—" : m.value}
+                    {!empty && m.info && (
+                      // A metric can carry a hint (e.g. the holdings behind the count), shown on hover or focus.
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger render={<Button variant="ghost" size="icon-xs" aria-label={`About ${m.label}`} />}>
+                            <InfoIcon />
+                          </TooltipTrigger>
+                          <TooltipContent>{m.info}</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )}
                     {!empty && m.change && (
                       <span className="flex items-center gap-(--spacing-stack-3xs) text-(length:--font-size-xs) font-(--typography-label-sm-font-weight)">
                         {m.trend === "up" && <TrendingUpIcon className="size-(--size-icon-3xs)" />}
@@ -163,6 +186,7 @@ function SummaryCard({
   choices,
   onMore,
   action,
+  children,
   tone = "default",
   density = "default",
   ...common
@@ -181,6 +205,8 @@ function SummaryCard({
   onMore?: () => void
   /** One action under the content (e.g. "Reset filters"). Only when needed. */
   action?: { label: string; onClick: () => void; variant?: "default" | "secondary" }
+  /** Any content below the lines and above the action (e.g. a bar list). The card hosts it; it keeps its own shell. */
+  children?: React.ReactNode
   /** `info`: a highlighted notice or mandatory item. */
   tone?: "default" | "info"
   /** `compact`: the one-line row. */
@@ -211,7 +237,7 @@ function SummaryCard({
       {state === "error" ? (
         <ErrorBody {...common} />
       ) : (
-        (items?.length || description || note || choices || action || state === "loading") && (
+        (items?.length || description || note || choices || action || children || state === "loading") && (
           <CardBody loading={state === "loading"}>
             {items?.map((item) => (
               <CardKeyValue key={item.label} label={item.label}>
@@ -235,6 +261,7 @@ function SummaryCard({
                 ))}
               </div>
             )}
+            {children}
             {action && (
               <div>
                 <Button variant={action.variant ?? "secondary"} onClick={action.onClick}>
@@ -251,12 +278,19 @@ function SummaryCard({
 
 /* ----- TaskCard ----- */
 
+const taskAccent = {
+  brand: "bg-(color:--accent-subtle) text-icon-accent",
+  warning: "bg-(color:--category-growth-surface) text-(color:--category-growth-text)",
+  info: "bg-(color:--category-moderate-surface) text-(color:--category-moderate-text)",
+}
+
 /** A count of to-dos that opens a list. Only the icon changes per category; the colour is always the brand. Empty shows 0 and the all-clear text; error shows a dash and asks to retry. */
 function TaskCard({
   count,
   title,
   text,
   icon: Icon,
+  accent = "brand",
   emptyText = "You’re all caught up.",
   ...common
 }: Common & {
@@ -264,6 +298,8 @@ function TaskCard({
   title: string
   text: string
   icon: LucideIcon
+  /** Tint of the icon circle by category: brand (default), warning (amber) or info (blue). The prototype tints by category. */
+  accent?: "brand" | "warning" | "info"
   emptyText?: string
 }) {
   const { state = "default" } = common
@@ -284,7 +320,7 @@ function TaskCard({
             {error ? "—" : state === "empty" ? 0 : count}
           </span>
         )}
-        <span className="flex size-(--size-icon-lg) shrink-0 items-center justify-center rounded-(--radius-pill) bg-(color:--accent-subtle) text-icon-accent">
+        <span className={cn("flex size-(--size-icon-lg) shrink-0 items-center justify-center rounded-(--radius-pill)", taskAccent[accent])}>
           <Icon className="size-(--size-icon-xs)" />
         </span>
       </CardHeader>
@@ -303,15 +339,26 @@ function TaskCard({
 /* ----- ItemCard ----- */
 
 type ItemProps = Common & {
+  /** Small line above the title. Omit it unless the design shows one. */
   eyebrow?: string
   title: string
+  /** Line under the title, e.g. the type of product or the amount. */
   meta?: string
+  /** A line of text under the meta (a description). */
+  description?: string
+  /** A badge at the top right, e.g. the product type ("PMS", "AIF"). */
+  kind?: CardStatus
+  /** Anything at the right end of the row, e.g. an amount with a direction arrow. */
+  trailing?: React.ReactNode
+  /** Tags under the text, e.g. risk profiles. */
   tags?: CardStatus[]
+  /** 0 to 100: a progress bar beside the tags (e.g. how far a lead has moved). */
+  progress?: number
   /** A row inside an ItemList: no card shell, the list draws the surface and the separators. */
   inList?: boolean
 }
 
-function ItemContent({ eyebrow, title, meta, tags, onClick }: ItemProps) {
+function ItemContent({ eyebrow, title, meta, description, kind, trailing, tags, progress, onClick }: ItemProps) {
   return (
     <>
       <CardHeader className="flex-nowrap">
@@ -320,19 +367,25 @@ function ItemContent({ eyebrow, title, meta, tags, onClick }: ItemProps) {
           <CardTitle className="text-(length:--font-size-base)">{title}</CardTitle>
           {meta && <span className="text-(length:--font-size-sm) text-muted-foreground">{meta}</span>}
         </CardTitleGroup>
-        {onClick && (
+        {(kind || trailing || onClick) && (
           <CardTrailing>
-            <ChevronRightIcon className="size-(--size-icon-md) text-icon-default" />
+            {trailing}
+            {kind && <Badge variant={kind.variant ?? "neutral"}>{kind.label}</Badge>}
+            {onClick && <ChevronRightIcon className="size-(--size-icon-md) text-icon-default" />}
           </CardTrailing>
         )}
       </CardHeader>
-      {tags && tags.length > 0 && (
-        <div className="flex flex-wrap gap-(--spacing-stack-2xs)">
-          {tags.map((t) => (
+      {description && <span className="text-(length:--font-size-xs) text-muted-foreground">{description}</span>}
+      {((tags && tags.length > 0) || progress !== undefined) && (
+        <div className="flex flex-wrap items-center gap-(--spacing-stack-2xs)">
+          {tags?.map((t) => (
             <Badge key={t.label} variant={t.variant ?? "neutral"}>
               {t.label}
             </Badge>
           ))}
+          {progress !== undefined && (
+            <Progress value={progress} className="w-(--size-72)" />
+          )}
         </div>
       )}
     </>
@@ -405,90 +458,141 @@ function ItemList({ children }: { children: React.ReactNode }) {
 
 /* ----- PersonCard ----- */
 
-/** A person is the subject. `read`: identity only. `edit`: plus a field. `removable`: plus a remove action. */
+/**
+ * A person is the subject. Identity (avatar, name, lines), status tags, notes (text lines, `strong` for an alert),
+ * a trailing badge (`role`), an optional footer (e.g. meetings with a counter), and a mode: `read` (identity only),
+ * `edit` (plus a field) or `removable` (plus a remove action). `inList` renders the person as a row of a list.
+ */
 function PersonCard({
   name,
   initials,
   lines,
+  tags,
   notes,
   role,
+  footer,
   mode = "read",
   field,
   onRemove,
+  inList = false,
+  chevron,
   ...common
 }: Common & {
   name: string
   /** Shows an avatar when given. */
   initials?: string
+  /** Lines under the name, e.g. "63 years, M" or a CRN. */
   lines?: string[]
-  /** Lines under the identity with a tone: a status ("AUTH · Head") or an alert ("Overdue · 31 Aug 2026", `strong`). */
+  /** Tags under the lines, e.g. "Head", "Family of 13". */
+  tags?: CardStatus[]
+  /** Text lines under the tags. `tone` colours them; `strong` makes them bold (an alert). */
   notes?: { text: string; tone?: "success" | "danger" | "neutral"; strong?: boolean }[]
+  /** A badge at the top right, e.g. "Auth" or a segment. */
   role?: CardStatus
+  /** Below everything, separated by a line (e.g. the meetings row with its counter). */
+  footer?: React.ReactNode
   mode?: "read" | "edit" | "removable"
   field?: { label: string; options: DropdownOption[]; value?: string[]; onValueChange?: (v: string[]) => void; helper?: string }
   onRemove?: () => void
+  inList?: boolean
+  /** Shows a chevron (an opened record). Defaults to on when the person is clickable. */
+  chevron?: boolean
 }) {
-  const { state = "default" } = common
-  // Loading is skeleton lines only, as in a list of rows still waiting for data.
-  if (state === "loading")
-    return (
-      <Card {...shell(common)}>
-        <CardBody loading />
-      </Card>
-    )
-  return (
-    <Card {...shell(common)}>
-      <CardHeader>
-        {initials && (
-          <CardLeading>
-            <Avatar>
-              <AvatarFallback>{initials}</AvatarFallback>
-            </Avatar>
-          </CardLeading>
-        )}
-        <CardTitleGroup>
-          <CardTitle>{name}</CardTitle>
-          {lines?.map((l) => <CardDescription key={l}>{l}</CardDescription>)}
-        </CardTitleGroup>
-        {(role || (common.onClick && mode === "read")) && (
-          <CardTrailing>
-            <StatusBadge status={role} />
-            {/* A clickable person card opens the person: a chevron, as on ItemCard. */}
-            {common.onClick && mode === "read" && <ChevronRightIcon className="size-(--size-icon-md) text-icon-default" />}
-          </CardTrailing>
-        )}
-      </CardHeader>
-      {notes?.map((n) => (
-        <span
-          key={n.text}
-          className={cn(
-            "text-(length:--font-size-xs)",
-            n.strong && "font-(--typography-label-strong-font-weight)",
-            n.tone === "success" && "text-(color:--category-success-text)",
-            n.tone === "danger" && "text-(color:--category-aggressive-text)",
-            (!n.tone || n.tone === "neutral") && "text-muted-foreground"
-          )}
-        >
-          {n.text}
-        </span>
-      ))}
+  const { state = "default", onClick, disabled } = common
+  const showChevron = chevron ?? (!!onClick && mode === "read")
+  const body = (
+    <>
       {state === "error" ? (
         <ErrorBody {...common} />
-      ) : mode === "edit" && field ? (
-        <Dropdown
-          label={field.label}
-          helper={field.helper}
-          options={field.options}
-          value={field.value}
-          onValueChange={field.onValueChange}
-        />
-      ) : mode === "removable" ? (
-        <div>
-          <Button variant="ghost" size="sm" onClick={onRemove}>
-            Remove
-          </Button>
-        </div>
-      ) : null}
+      ) : state === "loading" ? (
+        <CardBody loading />
+      ) : (
+        <>
+          <CardHeader>
+            {initials && (
+              <CardLeading>
+                <Avatar>
+                  <AvatarFallback>{initials}</AvatarFallback>
+                </Avatar>
+              </CardLeading>
+            )}
+            <CardTitleGroup>
+              <CardTitle>{name}</CardTitle>
+              {lines?.map((l) => <CardDescription key={l}>{l}</CardDescription>)}
+            </CardTitleGroup>
+            {(role || showChevron) && (
+              <CardTrailing>
+                <StatusBadge status={role} />
+                {showChevron && <ChevronRightIcon className="size-(--size-icon-md) text-icon-default" />}
+              </CardTrailing>
+            )}
+          </CardHeader>
+          {tags && tags.length > 0 && (
+            <div className="flex flex-wrap gap-(--spacing-stack-2xs)">
+              {tags.map((t) => (
+                <Badge key={t.label} variant={t.variant ?? "neutral"} dot={t.dot}>
+                  {t.label}
+                </Badge>
+              ))}
+            </div>
+          )}
+          {notes?.map((n) => (
+            <span
+              key={n.text}
+              className={cn(
+                "text-(length:--font-size-xs)",
+                n.strong && "font-(--typography-label-strong-font-weight)",
+                n.tone === "success" && "text-(color:--category-success-text)",
+                n.tone === "danger" && "text-(color:--category-aggressive-text)",
+                (!n.tone || n.tone === "neutral") && "text-muted-foreground"
+              )}
+            >
+              {n.text}
+            </span>
+          ))}
+          {mode === "edit" && field ? (
+            <Dropdown label={field.label} helper={field.helper} options={field.options} value={field.value} onValueChange={field.onValueChange} />
+          ) : mode === "removable" ? (
+            <div>
+              <Button variant="ghost" size="sm" onClick={onRemove}>
+                Remove
+              </Button>
+            </div>
+          ) : null}
+          {footer && <div className="flex flex-col gap-(--spacing-inline-md)"><Separator />{footer}</div>}
+        </>
+      )}
+    </>
+  )
+  if (inList) {
+    // A row: the same content with no shell; the list draws the surface and the separators.
+    return (
+      <div
+        data-slot="person-row"
+        role={onClick ? "button" : undefined}
+        tabIndex={onClick && !disabled ? 0 : undefined}
+        aria-disabled={disabled || undefined}
+        inert={disabled || undefined}
+        onClick={disabled ? undefined : onClick}
+        onKeyDown={(e) => {
+          if (onClick && !disabled && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault()
+            onClick()
+          }
+        }}
+        className={cn(
+          "flex min-w-0 flex-col gap-(--spacing-stack-xs) p-(--spacing-stack-md) outline-none",
+          onClick && "cursor-pointer hover:bg-surface-hover active:bg-(color:--accent-subtle) focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring focus-visible:ring-inset",
+          disabled && "bg-surface-disabled *:opacity-(--opacity-disabled)"
+        )}
+      >
+        {body}
+      </div>
+    )
+  }
+  return (
+    <Card {...shell(common)} onClick={onClick} disabled={disabled} selected={common.selected}>
+      {body}
     </Card>
   )
 }
@@ -501,6 +605,7 @@ function GroupCard({
   subtitle,
   initials,
   count,
+  countLabel,
   defaultOpen = false,
   state = "default",
   children,
@@ -508,8 +613,10 @@ function GroupCard({
   title: string
   subtitle?: string
   initials?: string
-  /** Badge in the header, e.g. "2 CUES". */
-  count?: string
+  /** A Counter in the header: the number of cues, members, items. Hidden when undefined. */
+  count?: number
+  /** Word after the counter, e.g. "Cues". */
+  countLabel?: string
   defaultOpen?: boolean
   state?: "default" | "loading"
   children: React.ReactNode
@@ -530,9 +637,12 @@ function GroupCard({
               <CardTitle>{title}</CardTitle>
               {subtitle && <CardDescription>{subtitle}</CardDescription>}
             </CardTitleGroup>
-            {count && (
+            {count !== undefined && (
               <CardTrailing>
-                <Badge variant="neutral">{count}</Badge>
+                <span className="flex items-center gap-(--spacing-stack-2xs) text-(length:--font-size-xs) text-muted-foreground">
+                  {count !== undefined && <Counter count={count} tone="muted" showZero />}
+                  {countLabel && <span>{countLabel}</span>}
+                </span>
               </CardTrailing>
             )}
           </CardHeader>
@@ -548,4 +658,4 @@ function GroupCard({
   )
 }
 
-export { StatCard, SummaryCard, TaskCard, ItemCard, ItemList, PersonCard, GroupCard }
+export { StatCard, SummaryCard, TaskCard, ItemCard, ItemList, PersonCard, GroupCard, CardKeyValue }

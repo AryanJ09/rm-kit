@@ -52,7 +52,7 @@ export const Secondary: Story = {
   args: { variant: "secondary" },
   render: () => (
     <Tabs defaultValue="cues" className="w-(--size-layout-frame-width)">
-      <TabsList variant="secondary" className="w-full">
+      <TabsList variant="secondary" className="w-(--size-share-full)">
         <TabsTrigger value="cues">Cues</TabsTrigger>
         <TabsTrigger value="profile">Profile</TabsTrigger>
       </TabsList>

@@ -15,7 +15,7 @@ function BubbleGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const bubbleVariants = cva(
-  "group/bubble relative flex w-fit max-w-[80%] min-w-0 flex-col gap-(--spacing-inline-xs) group-data-[align=end]/message:self-end data-[align=end]:self-end data-[variant=ghost]:max-w-full",
+  "group/bubble relative flex w-fit max-w-(--size-share-max) min-w-0 flex-col gap-(--spacing-inline-xs) group-data-[align=end]/message:self-end data-[align=end]:self-end data-[variant=ghost]:max-w-(--size-share-full)",
   {
     variants: {
       variant: {
@@ -72,7 +72,7 @@ function BubbleContent({
     props: mergeProps<"div">(
       {
         className: cn(
-          "w-fit max-w-full min-w-0 overflow-hidden rounded-(--radius-xl) border border-transparent px-(--spacing-inline-md) py-(--spacing-inline-sm) text-(length:--font-size-sm) leading-relaxed wrap-break-word group-data-[align=end]/bubble:self-end [button]:text-left [button,a]:transition-colors [button,a]:outline-none [button,a]:focus-visible:border-ring [button,a]:focus-visible:ring-(length:--focus-ring-width) [button,a]:focus-visible:ring-ring/50",
+          "w-fit max-w-(--size-share-full) min-w-0 overflow-hidden rounded-(--radius-xl) border border-transparent px-(--spacing-inline-md) py-(--spacing-inline-sm) text-(length:--font-size-sm) leading-(--line-height-lg) wrap-break-word group-data-[align=end]/bubble:self-end [button]:text-left [button,a]:transition-colors [button,a]:outline-none [button,a]:focus-visible:border-ring [button,a]:focus-visible:ring-(length:--focus-ring-width) [button,a]:focus-visible:ring-ring/50",
           className
         ),
       },
@@ -90,8 +90,8 @@ const bubbleReactionsVariants = cva(
   {
     variants: {
       side: {
-        top: "top-(--spacing-none) -translate-y-3/4",
-        bottom: "bottom-(--spacing-none) translate-y-3/4",
+        top: "top-(--spacing-none) -translate-y-(--size-share-three-quarters)",
+        bottom: "bottom-(--spacing-none) translate-y-(--size-share-three-quarters)",
       },
       align: {
         start: "left-(--spacing-inline-md)",

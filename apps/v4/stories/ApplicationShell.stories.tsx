@@ -67,7 +67,7 @@ const meta = {
     notificationCount: { control: { type: "number", min: 0 }, description: "Bell badge. Hidden at 0, shows 99+ above 99." },
     hero: { control: "boolean", description: "mobile: content under the header on the same gradient (summary tile, search)." },
     footerNote: { control: "boolean", description: "mobile: small centred note at the end of the content." },
-    insidePage: { control: "boolean", description: "mobile: the white inside-page bar (back arrow, title) instead of the home bar." },
+    insidePage: { control: "boolean", description: "mobile: the inside page header (back, centred title) instead of the home bar." },
   },
 } satisfies Meta<Args>
 
@@ -101,7 +101,7 @@ export const Mobile: Story = {
         ) : undefined
       }
       footerNote={footerNote ? "Powered by Brand • v0.2.0" : undefined}
-      insidePage={insidePage ? { title: "Clients", time: "12:30", onBack: () => {} } : undefined}
+      pageHeader={insidePage ? { context: "inside", title: "Clients", time: "12:30", onBack: () => {} } : undefined}
     >
       {content}
     </ApplicationShell>

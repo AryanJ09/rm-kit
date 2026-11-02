@@ -29,7 +29,33 @@ type ChartContextProps = {
 
 const CHART_SERIES_COUNT = 10
 
-// Positional fallback shared by chart types without a named RM series colour.
+// Positional fallback: the chart palette by index, for a series with no colour of its own.
+/**
+ * Resolves semantic size roles to pixels. The chart library needs numbers for its geometry, so they are read from the tokens
+ * (measured through a probe element) instead of being typed in. Server render gives 0 until the client measures.
+ */
+function measureTokens<T extends Record<string, string>>(roles: T): Record<keyof T, number> {
+  const out = {} as Record<keyof T, number>
+  for (const key of Object.keys(roles) as (keyof T)[]) {
+    if (typeof document === "undefined") {
+      out[key] = 0
+      continue
+    }
+    const probe = document.createElement("div")
+    probe.style.cssText = `position:absolute;visibility:hidden;width:var(${roles[key]})`
+    document.body.appendChild(probe)
+    out[key] = probe.getBoundingClientRect().width
+    probe.remove()
+  }
+  return out
+}
+
+function useTokenPx<T extends Record<string, string>>(roles: T): Record<keyof T, number> {
+  const [px, setPx] = React.useState(() => measureTokens(roles))
+  React.useLayoutEffect(() => setPx(measureTokens(roles)), []) // eslint-disable-line react-hooks/exhaustive-deps
+  return px
+}
+
 function getChartColor(index: number) {
   return `var(--chart-${(index % CHART_SERIES_COUNT) + 1})`
 }
@@ -236,7 +262,7 @@ function ChartTooltipContent({
               <div
                 key={index}
                 className={cn(
-                  "flex w-full flex-wrap items-stretch gap-(--spacing-inline-sm) [&>svg]:h-(--size-icon-2xs) [&>svg]:w-(--size-icon-2xs) [&>svg]:text-muted-foreground",
+                  "flex w-(--size-share-full) flex-wrap items-stretch gap-(--spacing-inline-sm) [&>svg]:h-(--size-icon-2xs) [&>svg]:w-(--size-icon-2xs) [&>svg]:text-muted-foreground",
                   indicator === "dot" && "items-center"
                 )}
               >
@@ -421,4 +447,5 @@ export {
   ChartLegendContent,
   ChartStyle,
   getChartColor,
+  useTokenPx,
 }

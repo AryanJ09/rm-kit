@@ -1,8 +1,8 @@
 "use client"
 
 import { useMemo } from "react"
-import { Label } from "@/rm-style/ui/label"
-import { Separator } from "@/rm-style/ui/separator"
+import { Label } from "./label"
+import { Separator } from "./separator"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
@@ -42,7 +42,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="field-group"
       className={cn(
-        "group/field-group @container/field-group flex w-full flex-col gap-(--spacing-group) data-[slot=checkbox-group]:gap-(--spacing-inline-md) *:data-[slot=field-group]:gap-(--spacing-inline-lg)",
+        "group/field-group @container/field-group flex w-(--size-share-full) flex-col gap-(--spacing-group) data-[slot=checkbox-group]:gap-(--spacing-inline-md) *:data-[slot=field-group]:gap-(--spacing-inline-lg)",
         className
       )}
       {...props}
@@ -51,15 +51,15 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const fieldVariants = cva(
-  "group/field flex w-full gap-(--spacing-inline-sm) data-[invalid=true]:text-destructive",
+  "group/field flex w-(--size-share-full) gap-(--spacing-inline-sm) data-[invalid=true]:text-destructive",
   {
     variants: {
       orientation: {
-        vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
+        vertical: "flex-col *:w-(--size-share-full) [&>.sr-only]:w-auto",
         horizontal:
           "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-(--border-width-default)",
         responsive:
-          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-(--border-width-default)",
+          "flex-col *:w-(--size-share-full) @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-(--border-width-default)",
       },
     },
     defaultVariants: {
@@ -106,7 +106,7 @@ function FieldLabel({
       data-slot="field-label"
       className={cn(
         "group/field-label peer/field-label flex w-fit group-data-[disabled=true]/field:opacity-(--opacity-disabled) has-data-checked:border-primary/[calc(var(--opacity-soft)*100%)] has-data-checked:bg-primary/[calc(var(--opacity-faint)*100%)] has-[>[data-slot=field]]:rounded-(--radius-lg) has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/[calc(var(--opacity-half)*100%)] has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-(length:--focus-ring-width) has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/[calc(var(--ring-opacity)*100%)] *:data-[slot=field]:p-(--spacing-inset-md) dark:has-data-checked:border-primary/[calc(var(--opacity-subtle)*100%)] dark:has-data-checked:bg-primary/[calc(var(--opacity-faint)*100%)]",
-        "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
+        "has-[>[data-slot=field]]:w-(--size-share-full) has-[>[data-slot=field]]:flex-col",
         className
       )}
       {...props}
@@ -132,7 +132,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="field-description"
       className={cn(
-        "text-left text-(length:--font-size-sm) leading-normal font-(--typography-body-md-font-weight) text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-(--spacing-stack-2xs)",
+        "text-left text-(length:--font-size-sm) leading-(--line-height-base) font-(--typography-body-md-font-weight) text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-(--spacing-stack-2xs)",
         "last:mt-0 nth-last-2:-mt-(--spacing-stack-xs)",
         "[&>a]:underline [&>a]:underline-offset-(--spacing-inline-xs) [&>a:hover]:text-primary",
         className
@@ -159,7 +159,7 @@ function FieldSeparator({
       )}
       {...props}
     >
-      <Separator className="absolute inset-(--spacing-none) top-1/2" />
+      <Separator className="absolute inset-(--spacing-none) top-(--size-share-half)" />
       {children && (
         <span
           className="relative mx-auto block w-fit bg-background px-(--spacing-inline-sm) text-muted-foreground"
@@ -229,7 +229,7 @@ function FieldActions({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-actions"
-      className={cn("flex w-full items-center justify-end gap-(--spacing-inline-md)", className)}
+      className={cn("flex w-(--size-share-full) items-center justify-end gap-(--spacing-inline-md)", className)}
       {...props}
     />
   )

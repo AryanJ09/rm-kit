@@ -4,7 +4,7 @@ import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { cn } from "cn"
 
-import { Button } from "@/rm-style/ui/button"
+import { Button } from "./button"
 import { XIcon } from "lucide-react"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
@@ -53,7 +53,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 left-1/2 z-(--z-index-overlay) grid w-full max-w-[calc(100%-var(--spacing-section-md))] -translate-x-1/2 -translate-y-1/2 gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-(length:--font-size-sm) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-(--size-share-half) left-(--size-share-half) z-(--z-index-overlay) grid w-(--size-share-full) max-w-[calc(100%-var(--spacing-section-md))] -translate-x-(--size-share-half) -translate-y-(--size-share-half) gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-(length:--font-size-sm) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none sm:max-w-(--size-panel-sm) data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className
         )}
         {...props}

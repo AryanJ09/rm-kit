@@ -132,6 +132,7 @@
   --motion-duration-fast: var(--ds-motion-duration-fast);
   --motion-duration-normal: var(--ds-motion-duration-normal);
   --motion-duration-slow: var(--ds-motion-duration-slow);
+  --motion-duration-none: var(--ds-motion-duration-none);
   --motion-easing-standard: var(--ds-motion-easing-standard);
   --motion-easing-decelerate: var(--ds-motion-easing-decelerate);
   --motion-easing-accelerate: var(--ds-motion-easing-accelerate);
@@ -162,6 +163,8 @@
   --opacity-strong: var(--ds-opacity-60);
   --opacity-heavy: var(--ds-opacity-80);
   --opacity-half: var(--ds-opacity-50);
+  --opacity-hidden: var(--ds-opacity-0);
+  --opacity-full: var(--ds-opacity-100);
 
   /* chart: positional series slots 1-10 (fallback for data without a named colour) */
   --chart-1: var(--ds-color-chart-1);
@@ -235,6 +238,14 @@
   --size-control-36: var(--ds-size-control-36);
   --size-control-44: var(--ds-size-control-44);
   --size-288: var(--ds-size-288);
+  /* Widest a message bubble may take, as a share of its row. */
+  --size-share-max: var(--ds-size-share-80);
+  --size-share-half: var(--ds-size-share-50);
+  --size-share-full: var(--ds-size-share-100);
+  --size-share-three-quarters: var(--ds-size-share-75);
+  --size-share-third: var(--ds-size-share-33);
+  --size-panel-xs: var(--ds-size-320);
+  --size-panel-sm: var(--ds-size-384);
   --size-18: var(--ds-size-18);
   --size-40: var(--ds-spacing-40);
   --size-60: var(--ds-size-60);

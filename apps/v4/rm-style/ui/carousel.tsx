@@ -6,7 +6,7 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
 
-import { Button } from "@/rm-style/ui/button"
+import { Button } from "./button"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 
 type CarouselApi = UseEmblaCarouselType[1]
@@ -162,7 +162,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       aria-roledescription="slide"
       data-slot="carousel-item"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
+        "min-w-0 shrink-0 grow-0 basis-(--size-share-full)",
         orientation === "horizontal" ? "pl-(--spacing-inline-lg)" : "pt-(--spacing-inline-lg)",
         className
       )}
@@ -188,7 +188,7 @@ function CarouselPrevious({
         "absolute touch-manipulation rounded-(--radius-pill)",
         orientation === "horizontal"
           ? "inset-y-(--spacing-none) -left-(--spacing-section-lg) my-auto"
-          : "-top-(--spacing-section-lg) left-1/2 -translate-x-1/2 rotate-90",
+          : "-top-(--spacing-section-lg) left-(--size-share-half) -translate-x-(--size-share-half) rotate-90",
         className
       )}
       disabled={!canScrollPrev}
@@ -218,7 +218,7 @@ function CarouselNext({
         "absolute touch-manipulation rounded-(--radius-pill)",
         orientation === "horizontal"
           ? "inset-y-(--spacing-none) -right-(--spacing-section-lg) my-auto"
-          : "-bottom-(--spacing-section-lg) left-1/2 -translate-x-1/2 rotate-90",
+          : "-bottom-(--spacing-section-lg) left-(--size-share-half) -translate-x-(--size-share-half) rotate-90",
         className
       )}
       disabled={!canScrollNext}

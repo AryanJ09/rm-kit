@@ -1,6 +1,6 @@
 "use client"
 
-// RM Kit Application shell: the fixed frame around every screen. Rebuilt from the OneDLS reference:
+// RM Kit Application shell: the fixed frame around every screen. Rebuilt from the reference design:
 // sidebar navigation (logo, profile, items with badges, service items), a header with the customer context,
 // notification bell and avatar, and one scrolling content slot.
 // - mobile (default): the Shell header (avatar, greeting, bell, hamburger that opens the sidebar as a sheet), content, and the
@@ -19,6 +19,7 @@ import { Avatar, AvatarFallback } from "../avatar"
 import { Badge } from "../badge"
 import { BottomNavigation, type BottomNavigationProps } from "./bottom-navigation"
 import { Button } from "../button"
+import { BottomNavCenterIcon } from "../../icons/bottom-nav-center"
 import { ShellHeader as MobileShellHeader, type ShellHeaderProps } from "./shell-header"
 import { DropdownMenu, DropdownMenuChipTrigger, DropdownMenuContent, DropdownMenuItem } from "../dropdown-menu"
 import { Tabs, TabsList, TabsTrigger } from "../tabs"
@@ -66,7 +67,7 @@ type ApplicationShellProps = Omit<React.ComponentProps<"div">, "title"> & {
   title: React.ReactNode
   /** Header second line, e.g. the customer reference number. */
   subtitle?: React.ReactNode
-  /** mobile: the greeting in the Shell header ("Hi Lakshmesh"). Defaults to the title. */
+  /** mobile: the line next to the avatar in the Shell header (e.g. "Good morning, Alex"). Defaults to the title. */
   greeting?: React.ReactNode
   /** Initials in the header avatar. */
   initials?: string
@@ -94,10 +95,10 @@ type ApplicationShellProps = Omit<React.ComponentProps<"div">, "title"> & {
   hero?: React.ReactNode
   /** mobile only: a small centred note at the end of the content (brand line, version, date). */
   footerNote?: React.ReactNode
-  /** mobile only: replaces the home bar with the white inside-page bar (back chevron, title), full width as in Figma, for pages opened from a destination. */
-  insidePage?: Omit<Extract<ShellHeaderProps, { context: string }>, "context"> & {
-    context?: "inside-page" | "client-detail" | "inside-page-description"
-  }
+  /** mobile only: replaces the home bar with a page header (see ShellHeader). Omit to keep the home bar. */
+  pageHeader?: ShellHeaderProps & { context: "page" | "inside" }
+  /** mobile only, home bar: the compact content shown once the page scrolls (e.g. metric pills). */
+  collapsedHeader?: React.ReactNode
 }
 
 // Sidebar item, Figma "Sidebar-menu": white pill with hairline border; selected has the pink fill.
@@ -118,7 +119,7 @@ function ShellItem({ item, active, onSelect }: { item: ShellNavItem; active: boo
         <Icon />
         <span>{item.label}</span>
       </SidebarMenuButton>
-      {item.badge ? <SidebarMenuBadge className="top-1/2! right-(--spacing-inline-md)! -translate-y-1/2">{item.badge}</SidebarMenuBadge> : null}
+      {item.badge ? <SidebarMenuBadge className="top-(--size-share-half)! right-(--spacing-inline-md)! -translate-y-(--size-share-half)">{item.badge}</SidebarMenuBadge> : null}
     </SidebarMenuItem>
   )
 }
@@ -138,7 +139,7 @@ function WorkspaceSwitcher({
     <div data-slot="workspace-switcher" className="group-data-[collapsible=icon]:hidden">
       {workspaces.length === 2 ? (
         <Tabs value={value} onValueChange={(v) => onChange(String(v))}>
-          <TabsList variant="secondary" className="w-full">
+          <TabsList variant="secondary" className="w-(--size-share-full)">
             {workspaces.map((w) => (
               <TabsTrigger key={w.id} value={w.id}>
                 {w.label}
@@ -178,7 +179,7 @@ function ShellSidebar({
 }) {
   const { items, serviceItems } = workspace
   return (
-    <Sidebar variant="floating" collapsible="icon" className="h-full">
+    <Sidebar variant="floating" collapsible="icon" className="h-(--size-share-full)">
       <SidebarHeader className="gap-(--spacing-inline-md) p-(--spacing-group)">
         {logo && <div className="group-data-[collapsible=icon]:hidden">{logo}</div>}
         <WorkspaceSwitcher workspaces={workspaces} value={workspace.id} onChange={onWorkspaceChange} />
@@ -269,26 +270,38 @@ function MobileHeader({
   initials,
   onNotificationsClick,
   hero,
+  collapsed,
+  scrolled,
 }: {
   greeting: React.ReactNode
   initials: string
   onNotificationsClick?: () => void
   hero?: React.ReactNode
+  collapsed?: React.ReactNode
+  scrolled: boolean
 }) {
   const { toggleSidebar } = useSidebar()
+  // Once the page scrolls, a hero gives way to the compact header: the same bar with the collapsed content (metric pills).
+  const compact = scrolled && !!collapsed
   const header = (
     <MobileShellHeader
-      greeting={greeting}
+      title={greeting}
       initials={initials}
       onNotificationsClick={onNotificationsClick}
       onMenuClick={toggleSidebar}
-      transparent={!!hero}
+      collapsed={compact ? collapsed : undefined}
+      // The compact bar keeps the red gradient; the transparent one only sits on the hero's gradient.
+      transparent={!!hero && !compact}
     />
   )
-  if (!hero) return header
-  // With a hero, one gradient sits behind the header and the hero content.
+  if (!hero || compact) return header
+  // With a hero, one gradient sits behind the header and the hero content. The brand mark is a faded decoration behind it.
   return (
-    <div data-slot="shell-hero" className="flex shrink-0 flex-col gap-(--spacing-stack-2xs) bg-linear-to-r from-error to-icon-accent pb-(--spacing-inline-sm)">
+    <div data-slot="shell-hero" className="relative flex shrink-0 flex-col gap-(--spacing-stack-2xs) overflow-hidden bg-linear-to-r from-error to-icon-accent pb-(--spacing-inline-sm)">
+      <BottomNavCenterIcon
+        aria-hidden
+        className="pointer-events-none absolute -right-(--spacing-inline-xl) -top-(--spacing-stack-lg) size-(--size-128) text-primary-foreground opacity-(--opacity-faint)"
+      />
       {header}
       {hero}
     </div>
@@ -314,7 +327,8 @@ function ApplicationShell({
   navigation,
   hero,
   footerNote,
-  insidePage,
+  pageHeader,
+  collapsedHeader,
   framed = true,
   className,
   children,
@@ -326,6 +340,7 @@ function ApplicationShell({
   const [innerActive, setInnerActive] = React.useState<string | undefined>(current?.items[0]?.id)
   const active = activeItem ?? innerActive
   const mainId = React.useId()
+  const [scrolled, setScrolled] = React.useState(false)
   // The sidebar sheet opens inside this frame, never over the page around it.
   const [frame, setFrame] = React.useState<HTMLDivElement | null>(null)
 
@@ -353,9 +368,9 @@ function ApplicationShell({
         "relative flex overflow-hidden bg-background contain-layout",
         // mobile has one standard size (width and height of the frame); it shrinks only when its parent is smaller
         framed
-          ? cn("rounded-(--radius-2xl) border-(length:--border-width-default) border-border shadow-(--elevation-popover)", isDesktop ? "h-full" : "h-(--size-layout-frame-height) max-h-full")
+          ? cn("rounded-(--radius-2xl) border-(length:--border-width-default) border-border shadow-(--elevation-popover)", isDesktop ? "h-(--size-share-full)" : "h-(--size-layout-frame-height) max-h-(--size-share-full)")
           : "h-svh",
-        isDesktop ? "w-full" : "mx-auto w-(--size-layout-frame-width) max-w-full",
+        isDesktop ? "w-(--size-share-full)" : "mx-auto w-(--size-layout-frame-width) max-w-(--size-share-full)",
         className
       )}
       {...props}
@@ -368,7 +383,7 @@ function ApplicationShell({
         Skip to content
       </a>
       {/* mobile: the sidebar is always the sheet behind the hamburger, whatever the window width */}
-      <SidebarProvider mobile={!isDesktop} portalContainer={frame} className="h-full min-h-0 w-full">
+      <SidebarProvider mobile={!isDesktop} portalContainer={frame} className="h-(--size-share-full) min-h-0 w-(--size-share-full)">
         {current && (
           <ShellSidebar
             logo={logo}
@@ -380,7 +395,7 @@ function ApplicationShell({
             onSelect={select}
           />
         )}
-        <div className="flex h-full min-w-0 flex-1 flex-col">
+        <div className="flex h-(--size-share-full) min-w-0 flex-1 flex-col">
           {isDesktop ? (
             <DesktopHeader
               title={title}
@@ -389,12 +404,19 @@ function ApplicationShell({
               notificationCount={notificationCount}
               onNotificationsClick={onNotificationsClick}
             />
-          ) : insidePage ? (
-            <MobileShellHeader {...insidePage} context={insidePage.context ?? "inside-page"} />
+          ) : pageHeader ? (
+            <div className="shrink-0 p-(--spacing-inline-sm) pb-(--spacing-none)">
+              <MobileShellHeader {...pageHeader} />
+            </div>
           ) : (
-            <MobileHeader greeting={greeting ?? title} initials={initials ?? ""} onNotificationsClick={onNotificationsClick} hero={hero} />
+            <MobileHeader greeting={greeting ?? title} initials={initials ?? ""} onNotificationsClick={onNotificationsClick} hero={hero} collapsed={collapsedHeader} scrolled={scrolled} />
           )}
-          <main id={mainId} tabIndex={-1} className="min-h-0 flex-1 overflow-auto outline-none">
+          <main
+            id={mainId}
+            tabIndex={-1}
+            className="min-h-0 flex-1 overflow-auto outline-none"
+            onScroll={(event) => setScrolled(event.currentTarget.scrollTop > 0)}
+          >
             {children}
             {!isDesktop && footerNote && (
               <div data-slot="shell-footer-note" className="px-(--spacing-inline-lg) pt-(--spacing-inline-lg) pb-(--spacing-stack-lg) text-center text-(length:--font-size-xs) text-field-helper">
@@ -402,7 +424,7 @@ function ApplicationShell({
               </div>
             )}
           </main>
-          {!isDesktop && <BottomNavigation {...navigation} className={cn("w-full shrink-0", navigation?.className)} />}
+          {!isDesktop && <BottomNavigation {...navigation} className={cn("w-(--size-share-full) shrink-0", navigation?.className)} />}
         </div>
       </SidebarProvider>
     </div>

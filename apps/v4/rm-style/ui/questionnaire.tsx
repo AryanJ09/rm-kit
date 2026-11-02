@@ -4,10 +4,10 @@ import * as React from "react"
 import { Questionnaire as QuestionnairePrimitive } from "@shadcn/react/questionnaire"
 import { cn } from "cn"
 
-import { buttonVariants, type Button } from "@/rm-style/ui/button"
+import { buttonVariants, type Button } from "./button"
 import { CheckIcon } from "lucide-react"
-import { checkboxControlClassName, checkboxIndicatorClassName } from "@/rm-style/ui/checkbox"
-import { radioControlClassName, radioDotClassName } from "@/rm-style/ui/radio-group"
+import { checkboxControlClassName, checkboxIndicatorClassName } from "./checkbox"
+import { radioControlClassName, radioDotClassName } from "./radio-group"
 
 function Questionnaire({
   className,
@@ -16,7 +16,7 @@ function Questionnaire({
   return (
     <QuestionnairePrimitive.Root
       data-slot="questionnaire"
-      className={cn("flex w-full min-w-0 flex-col gap-(--spacing-inline-lg)", className)}
+      className={cn("flex w-(--size-share-full) min-w-0 flex-col gap-(--spacing-inline-lg)", className)}
       {...props}
     />
   )
@@ -116,7 +116,7 @@ function QuestionnaireChoice({
     >
       <QuestionnairePrimitive.ChoiceInput
         data-slot="questionnaire-choice-input"
-        className="absolute inset-(--spacing-none) z-(--z-index-base) size-full cursor-pointer opacity-0"
+        className="absolute inset-(--spacing-none) z-(--z-index-base) size-full cursor-pointer opacity-(--opacity-hidden)"
         render={(inputProps, state) => (
           <>
             <input {...inputProps} />
@@ -181,12 +181,12 @@ function QuestionnaireInput({
   return (
     <div
       data-slot="questionnaire-input-wrapper"
-      className="group/questionnaire-input relative w-full min-w-0"
+      className="group/questionnaire-input relative w-(--size-share-full) min-w-0"
     >
       <QuestionnairePrimitive.Input
         data-slot="questionnaire-input"
         className={cn(
-          "h-(--size-control-md) w-full min-w-0 rounded-(--radius-lg) border border-input bg-transparent px-(--spacing-inset-md) py-(--spacing-stack-xs) text-(length:--font-size-base) transition-[color,box-shadow,background-color] outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input disabled:opacity-(--opacity-disabled) aria-invalid:border-destructive aria-invalid:ring-(length:--focus-ring-width) aria-invalid:ring-ring-destructive/[calc(var(--opacity-subtle)*100%)] md:text-(length:--font-size-sm) dark:bg-input dark:disabled:bg-input dark:aria-invalid:border-destructive/[calc(var(--ring-opacity)*100%)] dark:aria-invalid:ring-ring-destructive/[calc(var(--opacity-medium)*100%)]",
+          "h-(--size-control-md) w-(--size-share-full) min-w-0 rounded-(--radius-lg) border border-input bg-transparent px-(--spacing-inset-md) py-(--spacing-stack-xs) text-(length:--font-size-base) transition-[color,box-shadow,background-color] outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input disabled:opacity-(--opacity-disabled) aria-invalid:border-destructive aria-invalid:ring-(length:--focus-ring-width) aria-invalid:ring-ring-destructive/[calc(var(--opacity-subtle)*100%)] md:text-(length:--font-size-sm) dark:bg-input dark:disabled:bg-input dark:aria-invalid:border-destructive/[calc(var(--ring-opacity)*100%)] dark:aria-invalid:ring-ring-destructive/[calc(var(--opacity-medium)*100%)]",
           "selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground",
           className
         )}
@@ -217,7 +217,7 @@ function QuestionnaireActions({
     <div
       data-slot="questionnaire-actions"
       className={cn(
-        "grid min-h-(--size-control-44) w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-(--spacing-inline-sm) sm:min-h-(--size-control-32)",
+        "grid min-h-(--size-control-44) w-(--size-share-full) grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-(--spacing-inline-sm) sm:min-h-(--size-control-32)",
         className
       )}
       {...props}

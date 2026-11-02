@@ -89,7 +89,7 @@ function Chip({
       >
         <TogglePrimitive
           data-slot="chip-label"
-          className="inline-flex h-full items-center gap-(--spacing-inline-xs) rounded-(--radius-pill) pr-(--spacing-inline-md) pl-(--spacing-inline-md) outline-none group-has-data-pressed/chip:pr-(--spacing-none) focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
+          className="inline-flex h-(--size-share-full) items-center gap-(--spacing-inline-xs) rounded-(--radius-pill) pr-(--spacing-inline-md) pl-(--spacing-inline-md) outline-none group-has-data-pressed/chip:pr-(--spacing-none) focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
           {...props}
         >
           {content}
@@ -102,7 +102,7 @@ function Chip({
             onRemove()
             setRemoved(true)
           }}
-          className="hidden h-full items-center justify-center rounded-(--radius-pill) pr-(--spacing-inline-md) pl-(--spacing-stack-2xs) outline-none group-has-data-pressed/chip:inline-flex focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
+          className="hidden h-(--size-share-full) items-center justify-center rounded-(--radius-pill) pr-(--spacing-inline-md) pl-(--spacing-stack-2xs) outline-none group-has-data-pressed/chip:inline-flex focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
         >
           <XIcon className="size-(--size-icon-3xs)" />
         </button>

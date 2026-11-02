@@ -7,7 +7,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-import { Skeleton } from "@/rm-style/ui/skeleton"
+import { Skeleton } from "./skeleton"
 
 // Shared with the card variant of Accordion so there is one card look.
 export const cardVariants = cva(
@@ -160,8 +160,8 @@ function CardBody({
     >
       {loading ? (
         <div data-slot="card-skeleton" className="flex flex-col gap-(--spacing-inline-md)" aria-label="Loading">
-          <Skeleton className="h-(--size-skeleton-line-height) w-full" />
-          <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+          <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
+          <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
           <Skeleton className="h-(--size-skeleton-line-height) w-(--size-skeleton-line-width)" />
         </div>
       ) : (
@@ -181,12 +181,12 @@ function CardKeyValue({
   return (
     <div
       data-slot="card-key-value"
-      className={cn("flex min-w-0 gap-(--spacing-inline-lg) text-(length:--font-size-xs)", className)}
+      className={cn("flex min-w-0 items-center justify-between gap-(--spacing-inline-lg) text-(length:--font-size-xs)", className)}
       {...props}
     >
       <span className="shrink-0 text-muted-foreground">{label}</span>
       {/* Missing content shows a dash, never an empty gap. */}
-      <span className="min-w-0 text-card-foreground">{children ?? "—"}</span>
+      <span className="min-w-0 text-right font-(--typography-label-strong-font-weight) text-card-foreground">{children ?? "—"}</span>
     </div>
   )
 }

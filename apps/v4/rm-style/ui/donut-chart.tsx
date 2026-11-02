@@ -1,26 +1,25 @@
 "use client"
 
-// RM Kit Donut chart, from Figma "Wealth allocation donut": a ring split into parts, with a total in the centre. States:
+// RM Kit Donut chart: a ring split into parts, with a total in the centre. States:
 // populated, loading (skeleton lines) and empty (a grey ring and a line of text). It shares the chart wrapper, the named series
 // colours and the accessible summary with the stacked bar chart.
 import * as React from "react"
 import { Cell, Pie, PieChart } from "recharts"
 
-import { ChartContainer, getChartColor, type ChartConfig } from "@/rm-style/ui/chart"
-import { Skeleton } from "@/rm-style/ui/skeleton"
-import { getChartSeriesColor, getChartSeriesColorIndex, getChartSeriesLabel } from "./chart-series"
+import { ChartContainer, getChartColor, useTokenPx, type ChartConfig } from "./chart"
+import { Skeleton } from "./skeleton"
 
-export type DonutSegment = { key: string; value: number }
+export type DonutSegment = { key: string; value: number; label?: string; colour?: string }
 export type DonutState = "populated" | "loading" | "empty"
 
-// Chart geometry is in numbers because the chart library needs them (the stacked bar does the same).
-const DONUT_SIZE = 180
+// The ring is sized by a size role (the nearest role is --size-160). Ring thickness and the gap between parts
+// are chart parameters (a share of the radius and degrees), not lengths.
 const DONUT_INNER = "64%"
 const DONUT_GAP_ANGLE = 1
 
 export interface DonutChartProps {
   segments: DonutSegment[]
-  /** Text in the centre, e.g. { label: "AUM", value: "₹11.3 Cr" }. */
+  /** Text in the centre, e.g. { label: "Total", value: "₹11.3 Cr" }. */
   total?: { label: string; value: string }
   state?: DonutState
   /** Accessible label; a hidden data table is rendered with it. */
@@ -35,14 +34,15 @@ export function DonutChart({
   summary,
   emptyText = "No allocation data available",
 }: DonutChartProps) {
+  const { size } = useTokenPx({ size: "--size-160" })
   const config = React.useMemo<ChartConfig>(
     () =>
       Object.fromEntries(
         segments.map((s, index) => [
           s.key,
           {
-            label: getChartSeriesLabel(s.key),
-            color: getChartSeriesColor(s.key, getChartColor(getChartSeriesColorIndex(s.key) ?? index)),
+            label: s.label ?? s.key,
+            color: s.colour ?? getChartColor(index),
           },
         ])
       ),
@@ -52,8 +52,8 @@ export function DonutChart({
   if (state === "loading") {
     return (
       <div data-slot="rm-donut" data-state="loading" aria-busy="true" className="flex flex-col gap-(--spacing-inline-md)">
-        <Skeleton className="h-(--size-skeleton-line-height) w-full" />
-        <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+        <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
+        <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
         <Skeleton className="h-(--size-skeleton-line-height) w-(--size-skeleton-line-width)" />
       </div>
     )
@@ -64,8 +64,7 @@ export function DonutChart({
       <div data-slot="rm-donut" data-state="empty" className="flex flex-col items-center gap-(--spacing-inline-md)">
         <div
           aria-hidden
-          className="rounded-(--radius-pill) border-(length:--border-width-thick) border-muted"
-          style={{ width: DONUT_SIZE, height: DONUT_SIZE }}
+          className="size-(--size-160) rounded-(--radius-pill) border-(length:--border-width-thick) border-muted"
         />
         <p className="m-0 text-(length:--font-size-xs) text-card-foreground">{emptyText}</p>
       </div>
@@ -75,8 +74,8 @@ export function DonutChart({
   const sum = segments.reduce((a, s) => a + s.value, 0)
   return (
     <div role="group" aria-label={summary} data-slot="rm-donut" data-state="populated" className="flex justify-center">
-      <div className="relative" style={{ width: DONUT_SIZE, height: DONUT_SIZE }}>
-        <ChartContainer config={config} className="aspect-auto size-full" initialDimension={{ width: DONUT_SIZE, height: DONUT_SIZE }}>
+      <div className="relative size-(--size-160)">
+        <ChartContainer config={config} className="aspect-auto size-full" initialDimension={{ width: size, height: size }}>
           <PieChart>
             <Pie
               data={segments}
@@ -114,7 +113,7 @@ export function DonutChart({
         <tbody>
           {segments.map((s) => (
             <tr key={s.key}>
-              <th>{getChartSeriesLabel(s.key)}</th>
+              <th>{s.label ?? s.key}</th>
               <td>{sum ? `${Math.round((s.value / sum) * 1000) / 10}%` : "0%"}</td>
             </tr>
           ))}

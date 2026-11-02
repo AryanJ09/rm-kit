@@ -19,7 +19,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/rm-style/ui/dropdown-menu"
+} from "./dropdown-menu"
 import { CheckIcon } from "lucide-react"
 
 import {

@@ -24,7 +24,7 @@ export function FieldShell({
         : "text-field-helper"
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-(--spacing-stack-2xs)">
+    <div className="flex w-(--size-share-full) min-w-0 flex-col gap-(--spacing-stack-2xs)">
       {label ? <span className="text-(length:--font-size-xs) font-(--typography-label-sm-font-weight) text-(color:--field-label)">{label}</span> : null}
       {children}
       {helper ? (

@@ -73,13 +73,13 @@ function BottomNavigation({
         aria-hidden="true"
         viewBox="0 0 430 74"
         preserveAspectRatio="none"
-        className="fill-nav-surface pointer-events-none absolute inset-x-(--spacing-none) bottom-(--spacing-none) -z-(--z-index-base) h-(--size-nav-surface-height) w-full drop-shadow-(--elevation-nav)"
+        className="fill-nav-surface pointer-events-none absolute inset-x-(--spacing-none) bottom-(--spacing-none) -z-(--z-index-base) h-(--size-nav-surface-height) w-(--size-share-full) drop-shadow-(--elevation-nav)"
       >
         <path d="M411.653 0C421.786 0 430 7.163 430 16V74H0V16C0 7.163 8.214 0 18.347 0H154.035C165.223 0 174.293 7.91 174.293 17.667C174.293 37.181 192.624 53 215 53C237.376 53 255.707 37.181 255.707 17.667C255.707 7.91 264.777 0 275.965 0H411.653Z" />
       </svg>
       <div className="flex">{leftItems.map(renderItem)}</div>
       <BottomNavigationCentralButton
-        className="absolute top-(--spacing-none) left-1/2 -translate-x-1/2"
+        className="absolute top-(--spacing-none) left-(--size-share-half) -translate-x-(--size-share-half)"
         state={centerState}
         aria-label="Centre action"
         onClick={onCenterClick}

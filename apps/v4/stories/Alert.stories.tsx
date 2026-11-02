@@ -62,7 +62,7 @@ export const Playground: Story = {
 export const Tones: Story = {
   parameters: { layout: "padded" },
   render: () => (
-    <div className="flex w-(--size-layout-frame-width) max-w-full flex-col gap-(--spacing-inline-md)">
+    <div className="flex w-(--size-layout-frame-width) max-w-(--size-share-full) flex-col gap-(--spacing-inline-md)">
       {(Object.keys(copy) as AlertTone[]).map((tone) => (
         <Alert key={tone} variant={tone}>
           <AlertTitle>{copy[tone].title}</AlertTitle>

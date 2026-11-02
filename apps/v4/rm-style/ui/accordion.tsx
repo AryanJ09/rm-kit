@@ -1,6 +1,7 @@
 import * as React from "react"
-import { cardVariants } from "@/rm-style/ui/card"
-import { Skeleton } from "@/rm-style/ui/skeleton"
+import { cardVariants } from "./card"
+import { Badge } from "./badge"
+import { Skeleton } from "./skeleton"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import { cn } from "cn"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
@@ -26,7 +27,7 @@ function Accordion({
           data-slot="accordion"
           data-variant={variant}
           className={cn(
-            "flex w-full flex-col",
+            "flex w-(--size-share-full) flex-col",
             variant === "card" && "gap-(--spacing-inline-md)",
             className
           )}
@@ -51,11 +52,22 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   )
 }
 
+/**
+ * A section trigger. In the card variant it can also show what the section holds:
+ * `count` shows as "(n)" after the title (the prototype writes it as text), `status` is a Badge, `icon` is optional. Plain variant: children only.
+ */
 function AccordionTrigger({
   className,
   children,
+  icon,
+  count,
+  status,
   ...props
-}: AccordionPrimitive.Trigger.Props) {
+}: AccordionPrimitive.Trigger.Props & {
+  icon?: React.ReactNode
+  count?: number
+  status?: { label: string; variant?: React.ComponentProps<typeof Badge>["variant"] }
+}) {
   const card = React.useContext(AccordionVariant) === "card"
   const iconColor =
     React.useContext(AccordionChevron) === "default"
@@ -66,13 +78,18 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          card && "items-center! py-(--spacing-none)! hover:no-underline",
+          card && "items-center! gap-(--spacing-inline-md) py-(--spacing-none)! hover:no-underline",
           "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-(--radius-lg) border border-transparent py-(--spacing-inset-md) text-left text-(length:--font-size-sm) font-(--typography-title-sm-font-weight) transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-(--opacity-disabled) **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-(--size-icon-sm)",
           className
         )}
         {...props}
       >
-        {children}
+        {card && icon && <span className="flex shrink-0 items-center text-icon-accent [&_svg]:size-(--size-icon-md)">{icon}</span>}
+        <span className={cn("flex min-w-0 flex-1 items-center gap-(--spacing-inline-sm)", card && "text-(length:--font-size-base) font-(--typography-title-md-font-weight)")}>
+          {children}
+          {card && count !== undefined && <span className="font-(--typography-label-sm-font-weight) text-muted-foreground">({count})</span>}
+          {card && status && <Badge variant={status.variant ?? "neutral"}>{status.label}</Badge>}
+        </span>
         <ChevronDownIcon
           data-slot="accordion-trigger-icon"
           className={cn(
@@ -118,8 +135,8 @@ function AccordionContent({
             className="flex flex-col gap-(--spacing-stack-sm)"
             aria-label="Loading"
           >
-            <Skeleton className="h-(--size-skeleton-line-height) w-full" />
-            <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+            <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
+            <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
             <Skeleton className="h-(--size-skeleton-line-height) w-(--size-skeleton-line-width)" />
           </div>
         ) : (

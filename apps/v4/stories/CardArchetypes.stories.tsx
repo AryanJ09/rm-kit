@@ -2,7 +2,7 @@
 // The six card archetypes (rm-style/ui/cards.tsx). Every card in a product is one of these, picked with
 // rm-style/learnings/golden-rules/03-card-catalog.md and filled with data props.
 import * as React from "react"
-import { ArrowLeftRightIcon, CakeIcon, CalendarDaysIcon, ShieldCheckIcon } from "lucide-react"
+import { ArrowLeftRightIcon, CakeIcon, CalendarDaysIcon, ShieldCheckIcon, TrendingUpIcon, TriangleAlertIcon } from "lucide-react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 import { Chip } from "@/rm-style/ui/chip/chip"
@@ -165,7 +165,7 @@ export const Group: StoryObj<{ open: boolean; loading: boolean }> = {
   args: { open: true, loading: false },
   render: ({ open, loading }) => (
     <div className={column}>
-      <GroupCard key={String(open)} title="Jayanti Raj" subtitle="CRN: 45495722" initials="J" count="2 CUES" defaultOpen={open} state={loading ? "loading" : "default"}>
+      <GroupCard key={String(open)} title="Jayanti Raj" subtitle="CRN: 45495722" initials="J" count={2} countLabel="Cues" defaultOpen={open} state={loading ? "loading" : "default"}>
         <SummaryCard tone="info" title="KYC Re-verification" status={{ label: "Mandatory", variant: "aggressive" }} note="Video KYC abandoned at document upload." />
         <SummaryCard title="Mutual Fund" onMore={() => {}} note="First-time investor profile. Pitch a starter SIP." />
       </GroupCard>
@@ -197,12 +197,14 @@ export const AllStates: StoryObj = {
   },
 }
 
-/* ----- task cards: only the icon changes per category ----- */
+/* ----- task cards: the icon changes per category; the tint is brand, warning (amber) or info (blue) ----- */
 
 export const TaskIcons: StoryObj = {
   render: () => (
     <div className="grid grid-cols-2 gap-(--spacing-inline-md)">
       <TaskCard onClick={() => {}} icon={CalendarDaysIcon} count={4} title="Maturities Due" text="Next 45 days" />
+      <TaskCard onClick={() => {}} accent="warning" icon={TriangleAlertIcon} count={5} title="Open Escalations" text="Connect internally to fastrack resolution" />
+      <TaskCard onClick={() => {}} accent="info" icon={TrendingUpIcon} count={5} title="Journey drop-offs" text="Assist journey completion" />
       <TaskCard onClick={() => {}} icon={ShieldCheckIcon} count={2} title="Re-KYC" text="Pending verification" />
       <TaskCard onClick={() => {}} icon={CakeIcon} count={3} title="Birthdays" text="This week" />
       <TaskCard onClick={() => {}} icon={ArrowLeftRightIcon} count={7} title="Transactions" text="Awaiting review" />
@@ -240,7 +242,7 @@ export const FamilyTable: StoryObj<{ state: "populated" | "loading" | "no match"
             {state === "loading" ? (
               <TableRow>
                 <TableCell colSpan={3}>
-                  <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+                  <Skeleton className="h-(--size-skeleton-line-height) w-(--size-share-full)" />
                 </TableCell>
               </TableRow>
             ) : rows.length ? (

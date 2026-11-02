@@ -7,11 +7,11 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      className="relative w-(--size-share-full) overflow-x-auto"
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-(length:--font-size-sm)", className)}
+        className={cn("w-(--size-share-full) caption-bottom text-(length:--font-size-sm)", className)}
         {...props}
       />
     </div>

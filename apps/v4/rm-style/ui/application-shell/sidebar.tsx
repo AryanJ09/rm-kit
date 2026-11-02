@@ -6,23 +6,23 @@ import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-import { useIsMobile } from "@/hooks/use-mobile"
-import { Button } from "@/styles/base-nova/ui/button"
-import { Input } from "@/styles/base-nova/ui/input"
-import { Separator } from "@/styles/base-nova/ui/separator"
+import { useIsMobile } from "../../lib/use-mobile"
+import { Button } from "../button"
+import { Input } from "../input"
+import { Separator } from "../separator"
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/styles/base-nova/ui/sheet"
-import { Skeleton } from "@/styles/base-nova/ui/skeleton"
+} from "../sheet"
+import { Skeleton } from "../skeleton"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/styles/base-nova/ui/tooltip"
+} from "../tooltip"
 import { MenuIcon, PanelLeftIcon } from "lucide-react"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
@@ -159,7 +159,7 @@ function SidebarProvider({
         data-slot="sidebar-wrapper"
         style={style}
         className={cn(
-          "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
+          "group/sidebar-wrapper flex min-h-svh w-(--size-share-full) has-data-[variant=inset]:bg-sidebar",
           className
         )}
         {...props}
@@ -190,7 +190,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          "flex h-full w-(--size-288) flex-col bg-sidebar text-sidebar-foreground",
+          "flex h-(--size-share-full) w-(--size-288) flex-col bg-sidebar text-sidebar-foreground",
           className
         )}
         {...props}
@@ -217,7 +217,7 @@ function Sidebar({
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
+          <div className="flex h-(--size-share-full) w-(--size-share-full) flex-col">{children}</div>
         </SheetContent>
       </Sheet>
     )
@@ -265,7 +265,7 @@ function Sidebar({
         data-slot="sidebar-container"
         data-side={side}
         className={cn(
-          "fixed inset-y-(--spacing-none) z-(--z-index-base) hidden h-svh w-(--size-288) transition-[left,right,width] duration-(--motion-duration-normal) ease-linear data-[side=left]:left-(--spacing-none) data-[side=left]:group-data-[collapsible=offcanvas]:-translate-x-full data-[side=right]:right-(--spacing-none) data-[side=right]:group-data-[collapsible=offcanvas]:translate-x-full md:flex",
+          "fixed inset-y-(--spacing-none) z-(--z-index-base) hidden h-svh w-(--size-288) transition-[left,right,width] duration-(--motion-duration-normal) ease-linear data-[side=left]:left-(--spacing-none) data-[side=left]:group-data-[collapsible=offcanvas]:-translate-x-(--size-share-full) data-[side=right]:right-(--spacing-none) data-[side=right]:group-data-[collapsible=offcanvas]:translate-x-(--size-share-full) md:flex",
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-(--spacing-inline-sm) group-data-[collapsible=icon]:w-[calc(var(--size-control-44)+var(--spacing-group)*2)]"
@@ -334,8 +334,8 @@ function SidebarEdgeTrigger({
       className={cn(
         "absolute top-(--spacing-group) z-(--z-index-base) flex size-(--size-control-sm) items-center justify-center rounded-(--radius-pill) border-(length:--border-width-default) border-border bg-card text-sidebar-foreground outline-hidden hover:bg-(--surface-hover) focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring",
         // Expanded: straddle the panel edge. data-collapsible is empty only when expanded.
-        "in-data-[collapsible=]:in-data-[side=left]:right-(--spacing-none) in-data-[collapsible=]:in-data-[side=left]:translate-x-1/2",
-        "in-data-[collapsible=]:in-data-[side=right]:left-(--spacing-none) in-data-[collapsible=]:in-data-[side=right]:-translate-x-1/2",
+        "in-data-[collapsible=]:in-data-[side=left]:right-(--spacing-none) in-data-[collapsible=]:in-data-[side=left]:translate-x-(--size-share-half)",
+        "in-data-[collapsible=]:in-data-[side=right]:left-(--spacing-none) in-data-[collapsible=]:in-data-[side=right]:-translate-x-(--size-share-half)",
         // Collapsed: Figma has no toggle on the icon rail, so hide it. SidebarRail or Cmd/Ctrl+B expands again.
         "in-data-[collapsible=icon]:hidden",
         className
@@ -359,10 +359,10 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-(--spacing-none) z-(--z-index-base) hidden w-(--spacing-inline-lg) transition-all ease-linear group-data-[side=left]:-right-(--spacing-inline-lg) group-data-[side=right]:left-(--spacing-none) after:absolute after:inset-y-(--spacing-none) after:start-1/2 after:w-(--ring-width) hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "absolute inset-y-(--spacing-none) z-(--z-index-base) hidden w-(--spacing-inline-lg) transition-all ease-linear group-data-[side=left]:-right-(--spacing-inline-lg) group-data-[side=right]:left-(--spacing-none) after:absolute after:inset-y-(--spacing-none) after:start-(--size-share-half) after:w-(--ring-width) hover:after:bg-sidebar-border sm:flex ltr:-translate-x-(--size-share-half) rtl:-translate-x-(--size-share-half)",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
-        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
+        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-(--size-share-full) hover:group-data-[collapsible=offcanvas]:bg-sidebar",
         "[[data-side=left][data-collapsible=offcanvas]_&]:-right-(--spacing-inline-sm)",
         "[[data-side=right][data-collapsible=offcanvas]_&]:-left-(--spacing-inline-sm)",
         className
@@ -377,7 +377,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
     <main
       data-slot="sidebar-inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-(--spacing-inline-sm) md:peer-data-[variant=inset]:ml-(--spacing-none) md:peer-data-[variant=inset]:rounded-(--radius-xl) md:peer-data-[variant=inset]:shadow-(--elevation-scale-sm) md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-(--spacing-inline-sm)",
+        "relative flex w-(--size-share-full) flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-(--spacing-inline-sm) md:peer-data-[variant=inset]:ml-(--spacing-none) md:peer-data-[variant=inset]:rounded-(--radius-xl) md:peer-data-[variant=inset]:shadow-(--elevation-scale-sm) md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-(--spacing-inline-sm)",
         className
       )}
       {...props}
@@ -393,7 +393,7 @@ function SidebarInput({
     <Input
       data-slot="sidebar-input"
       data-sidebar="input"
-      className={cn("h-(--size-control-32) w-full bg-background shadow-none", className)}
+      className={cn("h-(--size-control-32) w-(--size-share-full) bg-background shadow-none", className)}
       {...props}
     />
   )
@@ -454,7 +454,7 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-group"
       data-sidebar="group"
-      className={cn("relative flex w-full min-w-0 flex-col p-(--spacing-inline-sm)", className)}
+      className={cn("relative flex w-(--size-share-full) min-w-0 flex-col p-(--spacing-inline-sm)", className)}
       {...props}
     />
   )
@@ -470,7 +470,7 @@ function SidebarGroupLabel({
     props: mergeProps<"div">(
       {
         className: cn(
-          "flex h-(--size-control-32) shrink-0 items-center rounded-(--radius-md) px-(--spacing-inline-sm) text-(length:--font-size-xs) font-(--typography-title-sm-font-weight) text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-(--motion-duration-normal) ease-linear group-data-[collapsible=icon]:-mt-(--spacing-section-md) group-data-[collapsible=icon]:opacity-0 focus-visible:ring-(length:--focus-ring-width) [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0",
+          "flex h-(--size-control-32) shrink-0 items-center rounded-(--radius-md) px-(--spacing-inline-sm) text-(length:--font-size-xs) font-(--typography-title-sm-font-weight) text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-(--motion-duration-normal) ease-linear group-data-[collapsible=icon]:-mt-(--spacing-section-md) group-data-[collapsible=icon]:opacity-(--opacity-hidden) focus-visible:ring-(length:--focus-ring-width) [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0",
           className
         ),
       },
@@ -516,7 +516,7 @@ function SidebarGroupContent({
     <div
       data-slot="sidebar-group-content"
       data-sidebar="group-content"
-      className={cn("w-full text-(length:--font-size-sm)", className)}
+      className={cn("w-(--size-share-full) text-(length:--font-size-sm)", className)}
       {...props}
     />
   )
@@ -527,7 +527,7 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="sidebar-menu"
       data-sidebar="menu"
-      className={cn("flex w-full min-w-0 flex-col gap-(--spacing-none)", className)}
+      className={cn("flex w-(--size-share-full) min-w-0 flex-col gap-(--spacing-none)", className)}
       {...props}
     />
   )
@@ -545,7 +545,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button group/menu-button flex w-full items-center gap-(--spacing-inline-sm) overflow-hidden rounded-(--radius-md) p-(--spacing-inline-sm) text-left text-(length:--font-size-sm) ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-(--spacing-section-md) group-data-[collapsible=icon]:size-(--size-control-32)! group-data-[collapsible=icon]:p-(--spacing-inline-sm)! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-(length:--focus-ring-width) active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:font-(--typography-title-sm-font-weight) data-active:text-sidebar-accent-foreground [&_svg]:size-(--size-icon-sm) [&_svg]:shrink-0 [&>span:last-child]:truncate",
+  "peer/menu-button group/menu-button flex w-(--size-share-full) items-center gap-(--spacing-inline-sm) overflow-hidden rounded-(--radius-md) p-(--spacing-inline-sm) text-left text-(length:--font-size-sm) ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-(--spacing-section-md) group-data-[collapsible=icon]:size-(--size-control-32)! group-data-[collapsible=icon]:p-(--spacing-inline-sm)! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-(length:--focus-ring-width) active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-(--opacity-disabled) aria-disabled:pointer-events-none aria-disabled:opacity-(--opacity-disabled) data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:font-(--typography-title-sm-font-weight) data-active:text-sidebar-accent-foreground [&_svg]:size-(--size-icon-sm) [&_svg]:shrink-0 [&>span:last-child]:truncate",
   {
     variants: {
       variant: {
@@ -636,7 +636,7 @@ function SidebarMenuAction({
         className: cn(
           "absolute top-(--spacing-stack-2xs) right-(--spacing-stack-xs) flex aspect-square w-(--size-icon-md) items-center justify-center rounded-(--radius-md) p-(--spacing-none) text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-(--spacing-stack-2xs) peer-data-[size=lg]/menu-button:top-(--spacing-inset-md) peer-data-[size=sm]/menu-button:top-(--spacing-stack-xs) after:absolute after:-inset-(--spacing-inline-sm) hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-(length:--focus-ring-width) md:after:hidden [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0",
           showOnHover &&
-            "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-active/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-100 md:opacity-0",
+            "group-focus-within/menu-item:opacity-(--opacity-full) group-hover/menu-item:opacity-(--opacity-full) peer-data-active/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-(--opacity-full) md:opacity-(--opacity-hidden)",
           className
         ),
       },
@@ -749,7 +749,7 @@ function SidebarMenuSubButton({
     props: mergeProps<"a">(
       {
         className: cn(
-          "flex h-(--size-control-28) min-w-0 -translate-x-px items-center gap-(--spacing-inline-sm) overflow-hidden rounded-(--radius-md) px-(--spacing-inline-sm) text-sidebar-foreground ring-sidebar-ring outline-hidden group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-(length:--focus-ring-width) active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-(length:--font-size-sm) data-[size=sm]:text-(length:--font-size-xs) data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+          "flex h-(--size-control-28) min-w-0 -translate-x-px items-center gap-(--spacing-inline-sm) overflow-hidden rounded-(--radius-md) px-(--spacing-inline-sm) text-sidebar-foreground ring-sidebar-ring outline-hidden group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-(length:--focus-ring-width) active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-(--opacity-disabled) aria-disabled:pointer-events-none aria-disabled:opacity-(--opacity-disabled) data-[size=md]:text-(length:--font-size-sm) data-[size=sm]:text-(length:--font-size-xs) data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
           className
         ),
       },

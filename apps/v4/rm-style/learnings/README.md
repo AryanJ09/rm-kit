@@ -8,5 +8,6 @@ What building the kit taught us, kept apart from the rules. The rules live in th
 | [02-screen-build-order.md](02-screen-build-order.md) | The steps for the next mobile screen, in order. |
 | [03-working-agreements.md](03-working-agreements.md) | How we work together: when to ask, when to build, how to verify. |
 | [04-charts-strategy.md](04-charts-strategy.md) | How the chart cards were planned: what existed, the self-questions, and the decisions. |
+| [05-prototype-delta.md](05-prototype-delta.md) | What the prototype has that the kit does not: every screen, every component and pattern, mapped to the closest kit piece, with the decisions needed. |
 | [golden-rules/](golden-rules/README.md) | The rules these learnings produced: build rules, design rules, and the card catalog (D30). |
 

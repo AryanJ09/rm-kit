@@ -1,4 +1,4 @@
-// RM Kit Metric, from Figma "Card/RM metric tile" (its inner "Financial metric"): label, big value and a trend line with an
+// RM Kit Metric: label, big value and a trend line with an
 // icon, the change and its period. Standalone; it also fits inside a Card as a nested tile.
 import * as React from "react"
 import { MinusIcon, TrendingDownIcon, TrendingUpIcon } from "lucide-react"

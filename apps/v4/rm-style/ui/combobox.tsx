@@ -4,13 +4,13 @@ import * as React from "react"
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { cn } from "cn"
 
-import { Button } from "@/rm-style/ui/button"
+import { Button } from "./button"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/rm-style/ui/input-group"
+} from "./input-group"
 import { ChevronDownIcon, XIcon, CheckIcon } from "lucide-react"
 
 import {
@@ -154,7 +154,7 @@ function ComboboxItem({
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       className={cn(
-        menuRowClass, menuSelectedClass, "w-full",
+        menuRowClass, menuSelectedClass, "w-(--size-share-full)",
         className
       )}
       {...props}
@@ -198,7 +198,7 @@ function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
     <ComboboxPrimitive.Empty
       data-slot="combobox-empty"
       className={cn(
-        "hidden w-full justify-center py-(--spacing-inline-sm) text-center text-(length:--font-size-sm) text-text-tertiary group-data-empty/combobox-content:flex",
+        "hidden w-(--size-share-full) justify-center py-(--spacing-inline-sm) text-center text-(length:--font-size-sm) text-text-tertiary group-data-empty/combobox-content:flex",
         className
       )}
       {...props}
@@ -257,7 +257,7 @@ function ComboboxChip({
       {showRemove && (
         <ComboboxPrimitive.ChipRemove
           render={<button type="button" />}
-          className="flex h-full items-center justify-center rounded-(--radius-pill) pr-(--spacing-inline-md) pl-(--spacing-stack-2xs) text-current outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
+          className="flex h-(--size-share-full) items-center justify-center rounded-(--radius-pill) pr-(--spacing-inline-md) pl-(--spacing-stack-2xs) text-current outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
           data-slot="combobox-chip-remove"
         >
           <XIcon className="pointer-events-none size-(--size-icon-3xs)" />

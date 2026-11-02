@@ -1,3 +1,4 @@
+import { productSeries } from "../../examples/product-series"
 // Hand-written from Figma "Client banking portfolio", "Wealth allocation donut" and "Wealth portfolio". Not generated.
 // The two chart cards (rm-style/ui/chart-cards.tsx): TrendCard and AllocationCard. Data is generic; layout is fixed in the cards.
 import * as React from "react"
@@ -30,7 +31,7 @@ function trendFor(tab: string, client: string) {
     tabs: tabChoices,
     headline: ex.headline,
     growth: (ex.metricStrip ?? []).map((m) => ({ label: m.label, change: m.change, trend: trendMap[m.trend as keyof typeof trendMap] })) as GrowthMetric[],
-    chart: { series: d.series, points: d.points, unit: d.unit, summary: d.summary ?? ex.chart },
+    chart: { seriesMeta: productSeries, series: d.series, points: d.points, unit: d.unit, summary: d.summary ?? ex.chart },
     rows: "breakdown" in ex ? ex.breakdown : undefined,
     footnote: "footnote" in ex ? ex.footnote : undefined,
   }
@@ -38,7 +39,7 @@ function trendFor(tab: string, client: string) {
 
 const parts: AllocationPart[] = [
   {
-    id: "equity", label: "Equity", series: "equityAllocation", share: 60.6, value: "₹6.85 Cr",
+    id: "equity", label: "Equity", colour: productSeries.equityAllocation?.colour, share: 60.6, value: "₹6.85 Cr",
     cost: "₹5.2 Cr", returns: "+18.4%", benchmark: "+14.1%",
     products: [
       { label: "Direct equity", value: "₹5.54 Cr", change: "+₹2.75 L (+20.79%)", trend: "up", holdings: "2 holdings" },
@@ -46,7 +47,7 @@ const parts: AllocationPart[] = [
     ],
   },
   {
-    id: "fixed-income", label: "Fixed income", series: "fixedIncomeAllocation", share: 39.4, value: "₹4.45 Cr",
+    id: "fixed-income", label: "Fixed income", colour: productSeries.fixedIncomeAllocation?.colour, share: 39.4, value: "₹4.45 Cr",
     cost: "₹4.5 Cr", returns: "-0.6%", benchmark: "+5.9%",
     products: [{ label: "Bonds, Debentures & other fixed income", value: "₹2.69 Cr", change: "-₹25 K", trend: "down", holdings: "1 holding" }],
   },

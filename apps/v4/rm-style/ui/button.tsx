@@ -1,9 +1,10 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import { Counter } from "./counter"
 import { Slot } from "radix-ui"
 
-import { Spinner } from "@/rm-style/ui/spinner"
+import { Spinner } from "./spinner"
 
 // One global size scale, shared with the form fields: sm = 40, md = 48 (default), lg = 56.
 // Icon buttons are square at the same height. shadcn's names (outline, link, destructive, xs, default,
@@ -27,6 +28,8 @@ const buttonVariants = cva(
         destructive: "bg-destructive text-destructive-foreground data-pressed:bg-destructive-pressed active:bg-destructive-pressed",
         outline: "border-primary bg-background text-primary data-pressed:bg-primary-subtle active:bg-primary-subtle",
         link: "bg-background text-primary data-pressed:bg-primary-subtle active:bg-primary-subtle",
+        // Mark won in the prototype: a green outline.
+        success: "border-success bg-background text-field-success data-pressed:bg-(color:--category-success-surface) active:bg-(color:--category-success-surface)",
       },
       size: {
         sm, md, lg,
@@ -54,7 +57,8 @@ function Button({
   nativeButton: _nativeButton,
   loading = false,
   loadingLabel = "Please wait",
-  children,
+  children: childrenProp,
+  count,
   onClick,
   ...props
 }: React.ComponentProps<"button"> &
@@ -66,8 +70,23 @@ function Button({
     nativeButton?: boolean
     loading?: boolean
     loadingLabel?: string
+    /** A count badge on the corner (e.g. the filter button with one filter on). Hidden at 0 or undefined. */
+    count?: number
   }) {
   const Comp = asChild ? Slot.Root : "button"
+  const showCount = count !== undefined && count > 0
+  const children = showCount ? (
+    <>
+      {childrenProp}
+      <Counter
+        count={count}
+        data-slot="button-count"
+        className="absolute -top-(--spacing-stack-3xs) -right-(--spacing-stack-3xs)"
+      />
+    </>
+  ) : (
+    childrenProp
+  )
   if (render) {
     return React.cloneElement(
       render,

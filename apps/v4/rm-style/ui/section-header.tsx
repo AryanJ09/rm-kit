@@ -3,6 +3,7 @@
 // use a heading instead; use this one when the action or the shared spacing is wanted.
 import * as React from "react"
 import { cn } from "cn"
+import { Button } from "./button"
 
 type SectionHeaderProps = Omit<React.ComponentProps<"div">, "title"> & {
   title: React.ReactNode
@@ -15,20 +16,16 @@ function SectionHeader({ title, actionLabel, onAction, className, ...props }: Se
   return (
     <div
       data-slot="section-header"
-      className={cn("flex h-(--size-control-md) w-full items-center justify-between", className)}
+      className={cn("flex h-(--size-control-md) w-(--size-share-full) items-center justify-between", className)}
       {...props}
     >
       <h2 className="text-(length:--font-size-xs) font-(--typography-label-sm-font-weight) tracking-(--letter-spacing-widest) text-muted-foreground uppercase">
         {title}
       </h2>
       {actionLabel && (
-        <button
-          type="button"
-          onClick={onAction}
-          className="rounded-(--radius-sm) text-(length:--font-size-xs) font-(--typography-label-sm-font-weight) text-destructive outline-none focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
-        >
+        <Button variant="ghost" size="sm" onClick={onAction}>
           {actionLabel}
-        </button>
+        </Button>
       )}
     </div>
   )

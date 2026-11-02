@@ -5,8 +5,9 @@ import { cn } from "cn"
 
 // RM Kit Alert, from Figma "Alerts": four tones (info, success, warning, error). Each has its own icon, a tinted surface
 // and the tone colour on icon, title and description.
+// The AI suggestion note is its own component: see ai-suggestion.tsx.
 const alertVariants = cva(
-  "group/alert relative flex w-full items-start gap-(--spacing-inset-md) rounded-(--radius-md) p-(--spacing-inline-md) text-left font-sans text-(length:--font-size-xs) has-data-[slot=alert-action]:pr-(--size-control-md)",
+  "group/alert relative flex w-(--size-share-full) items-start gap-(--spacing-inset-md) rounded-(--radius-md) p-(--spacing-inline-md) text-left font-sans text-(length:--font-size-xs) has-data-[slot=alert-action]:pr-(--size-control-md)",
   {
     variants: {
       variant: {

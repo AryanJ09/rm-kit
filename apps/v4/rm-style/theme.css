@@ -4,13 +4,8 @@
 @import "./tokens/primitives.css";
 @import "./tokens/semantic.css";
 
-/* Tailwind only generates classes it can see: scan the kit, the stories and the demos. */
+/* Tailwind only generates classes it can see: scan the kit. */
 @source "./ui/**/*.tsx";
-@source "../stories/**/*.tsx";
-@source "../examples/base/**/*.tsx";
-@source "../styles/base-nova/**/*.tsx";
-@source "../styles/base-rhea/**/*.tsx";
-@source "../registry/bases/base/**/*.tsx";
 
 @custom-variant dark (&:is(.dark *));
 

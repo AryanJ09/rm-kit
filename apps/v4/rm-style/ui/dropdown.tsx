@@ -5,14 +5,14 @@ import { cva } from "class-variance-authority"
 import { cn } from "cn"
 import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react"
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/rm-style/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandItem,
   CommandList,
-} from "@/rm-style/ui/command"
+} from "./command"
 import { controlSize } from "./control"
 import { FieldShell, type FieldState } from "./field-shell"
 import {
@@ -42,7 +42,7 @@ import { menuPanelClass } from "./menu"
 // Field shell shared by Dropdown and Date picker triggers. Same look as Input:
 // one blue focus, colours from semantic roles only.
 const fieldTriggerVariants = cva(
-  "flex w-full min-w-0 items-center justify-between gap-(--spacing-inline-sm) rounded-(--radius-lg) border-(length:--border-width-default) bg-background px-(--spacing-inset-control-x) text-left text-(color:--field-label) transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
+  "flex w-(--size-share-full) min-w-0 items-center justify-between gap-(--spacing-inline-sm) rounded-(--radius-lg) border-(length:--border-width-default) bg-background px-(--spacing-inset-control-x) text-left text-(color:--field-label) transition-colors outline-none focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
       size: controlSize,
@@ -193,7 +193,7 @@ function SelectField({
   return (
     <FieldShell label={label} helper={helper} state={state}>
       <Select value={current} onValueChange={(v) => v != null && onChange([String(v)])} disabled={disabled}>
-        <SelectTrigger id={id} size={size} className={cn("w-full", stateBorder[state], className)}>
+        <SelectTrigger id={id} size={size} className={cn("w-(--size-share-full)", stateBorder[state], className)}>
           <SelectValue>{display ?? <span className="text-field-placeholder">{placeholder}</span>}</SelectValue>
         </SelectTrigger>
         <SelectContent alignItemWithTrigger={false} className="w-(--anchor-width)">
@@ -241,7 +241,7 @@ function ComboboxField({
     <FieldShell label={label} helper={helper} state={state}>
       {mode === "multiple" ? (
         <Combobox multiple items={labels} value={toLabels(selected)} onValueChange={(ls) => onChange(toValues(ls as string[]))} disabled={disabled}>
-          <ComboboxChips ref={anchor} className={cn("w-full", stateBorder[state], className)}>
+          <ComboboxChips ref={anchor} className={cn("w-(--size-share-full)", stateBorder[state], className)}>
             <ComboboxValue>
               {(values: string[]) => (
                 <React.Fragment>
@@ -257,7 +257,7 @@ function ComboboxField({
         </Combobox>
       ) : (
         <Combobox items={labels} value={toLabels(selected)[0] ?? null} onValueChange={(l) => onChange(l ? toValues([l as string]) : [])} disabled={disabled}>
-          <ComboboxInput id={id} placeholder={placeholder} showClear className={cn("w-full", controlSize[size], stateBorder[state], className)} />
+          <ComboboxInput id={id} placeholder={placeholder} showClear className={cn("w-(--size-share-full)", controlSize[size], stateBorder[state], className)} />
           <ComboboxContent>{list}</ComboboxContent>
         </Combobox>
       )}

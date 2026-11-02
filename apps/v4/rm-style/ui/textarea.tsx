@@ -6,7 +6,7 @@ import { FieldShell } from "./field-shell"
 
 // Same states and tokens as Input. Height is a minimum so the field grows with its content.
 const textareaVariants = cva(
-  "flex field-sizing-content w-full min-w-0 rounded-(--radius-lg) border-(length:--border-width-default) bg-background px-(--spacing-inset-control-x) py-(--spacing-inset-control-y) text-(color:--field-label) transition-colors outline-none placeholder:text-field-placeholder read-only:bg-field-readonly focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
+  "flex field-sizing-content w-(--size-share-full) min-w-0 rounded-(--radius-lg) border-(length:--border-width-default) bg-background px-(--spacing-inset-control-x) py-(--spacing-inset-control-y) text-(color:--field-label) transition-colors outline-none placeholder:text-field-placeholder read-only:bg-field-readonly focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring disabled:cursor-not-allowed disabled:border-control-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
   {
     variants: {
       size: controlMinSize,

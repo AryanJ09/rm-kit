@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/rm-style/ui/button"
+import { Button } from "./button"
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
 import { cn } from "cn"
 
@@ -51,7 +51,7 @@ function AlertDialogContent({
         data-slot="alert-dialog-content"
         data-size={size}
         className={cn(
-          "group/alert-dialog-content fixed top-1/2 left-1/2 z-(--z-index-overlay) grid w-full -translate-x-1/2 -translate-y-1/2 gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "group/alert-dialog-content fixed top-(--size-share-half) left-(--size-share-half) z-(--z-index-overlay) grid w-(--size-share-full) -translate-x-(--size-share-half) -translate-y-(--size-share-half) gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none data-[size=default]:max-w-(--size-panel-xs) data-[size=sm]:max-w-(--size-panel-xs) data-[size=default]:sm:max-w-(--size-panel-sm) data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className
         )}
         {...props}

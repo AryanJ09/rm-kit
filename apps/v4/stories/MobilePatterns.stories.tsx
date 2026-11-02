@@ -6,6 +6,9 @@ import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 import type { Destination } from "@/rm-style/ui/application-shell/bottom-navigation"
+import { MobileClient360, type Client360Tab } from "./patterns/mobile-client360"
+import { MobileLeads, type LeadsState } from "./patterns/mobile-leads"
+import { MobileRmPortfolio } from "./patterns/mobile-rm-portfolio"
 import { MobileClients, type ClientsState } from "./patterns/mobile-clients"
 import { MobileHome, type HomeState } from "./patterns/mobile-home"
 import { PhoneGrid } from "./patterns/phone-grid"
@@ -85,4 +88,42 @@ export const ClientsAllStates: Story = {
   name: "Clients: all states",
   parameters: { layout: "fullscreen" },
   render: () => <PhoneGrid items={clientStates.map((s) => ({ label: s, screen: <MobileClients state={s} /> }))} />,
+}
+
+type Client360Args = { tab: Client360Tab; name: string; crn: string; footerNote: boolean }
+
+/** Client 360: a profile, a metric strip and an AI suggestion, then Cues (members, cue cards) or Profile (portfolios and sections). */
+export const Client360: StoryObj<Client360Args> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { tab: "cues", name: "Rajesh Mehra", crn: "56792323", footerNote: true },
+  argTypes: {
+    tab: { control: "inline-radio", options: ["cues", "profile"] },
+    name: { control: "text" },
+    crn: { control: "text" },
+    footerNote: { control: "boolean" },
+  },
+  render: ({ tab, ...args }) => {
+    // The control sets the starting tab; clicks then move between Cues and Profile.
+    const [current, setCurrent] = React.useState<Client360Tab>(tab)
+    React.useEffect(() => setCurrent(tab), [tab])
+    return <MobileClient360 {...args} tab={current} onTabChange={setCurrent} />
+  },
+}
+
+/** Leads: the list of leads with their stage and progress. */
+export const Leads: StoryObj<{ state: LeadsState; footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { state: "default", footerNote: true },
+  argTypes: {
+    state: { control: "inline-radio", options: ["default", "empty", "loading", "error"] },
+    footerNote: { control: "boolean" },
+  },
+  render: (args) => <MobileLeads {...args} />,
+}
+
+/** RM Portfolio: the RM's CRNs and AUM, the composition trend, the asset allocation, the client tiers and the revenue. */
+export const RmPortfolio: StoryObj<{ footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { footerNote: true },
+  render: (args) => <MobileRmPortfolio {...args} />,
 }

@@ -220,6 +220,13 @@
   --ds-size-256: 256px;
   --ds-size-288: 288px;
   --ds-size-128: 128px;
+  --ds-size-share-80: 80%;
+  --ds-size-share-50: 50%;
+  --ds-size-share-100: 100%;
+  --ds-size-share-75: 75%;
+  --ds-size-share-33: 33.333%;
+  --ds-size-320: 320px;
+  --ds-size-384: 384px;
   --ds-size-progress-min-width: 14ch;
   --ds-size-sheet-max-height: 90vh;
   --ds-size-160: 160px;
@@ -254,6 +261,7 @@
   --ds-blur-xl: 24px;
 
   /* motion */
+  --ds-motion-duration-none: 0ms;
   --ds-motion-duration-instant: 50ms;
   --ds-motion-duration-fast: 100ms;
   --ds-motion-duration-normal: 200ms;

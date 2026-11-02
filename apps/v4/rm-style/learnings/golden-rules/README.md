@@ -6,6 +6,7 @@ Rules learned while building the kit. They are short on purpose: each one says w
 |---|---|
 | [01-build-rules.md](01-build-rules.md) | How a component is built: tokens, values, files, stories, verification. |
 | [02-design-rules.md](02-design-rules.md) | How a component should look and behave: components, layout, composition. |
+| [../README.md](../README.md) | The learnings these rules came from: the journey, the screen build order, working agreements. |
 | [03-card-catalog.md](03-card-catalog.md) | Which card archetype a requirement needs, its props and shared states. Read before any card. |
 
 Enforce rule B3 with the checker:

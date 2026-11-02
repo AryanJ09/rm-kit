@@ -89,7 +89,7 @@ function ChartContainer({
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         className={cn(
-          "flex aspect-video justify-center text-xs select-none [&_.recharts-wrapper]:outline-hidden [&_.recharts-wrapper_*]:outline-hidden [&_[data-series]]:cursor-pointer [&_[data-series]]:transition-opacity [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden",
+          "flex aspect-video justify-center text-(length:--font-size-xs) select-none [&_.recharts-wrapper]:outline-hidden [&_.recharts-wrapper_*]:outline-hidden [&_[data-series]]:cursor-pointer [&_[data-series]]:transition-opacity [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden",
           className
         )}
         {...props}
@@ -189,7 +189,7 @@ function ChartTooltipContent({
 
     if (labelFormatter) {
       return (
-        <div className={cn("font-medium", labelClassName)}>
+        <div className={cn("font-(--typography-label-sm-font-weight)", labelClassName)}>
           {labelFormatter(value, payload)}
         </div>
       )
@@ -199,7 +199,7 @@ function ChartTooltipContent({
       return null
     }
 
-    return <div className={cn("font-medium", labelClassName)}>{value}</div>
+    return <div className={cn("font-(--typography-label-sm-font-weight)", labelClassName)}>{value}</div>
   }, [
     label,
     labelFormatter,
@@ -219,7 +219,7 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        "grid min-w-(--size-128) items-start gap-(--spacing-stack-2xs) rounded-lg border border-border/[calc(var(--opacity-half)*100%)] bg-background px-(--spacing-inset-md) py-(--spacing-stack-2xs) text-xs shadow-xl",
+        "grid min-w-(--size-128) items-start gap-(--spacing-stack-2xs) rounded-(--radius-lg) border border-border/[calc(var(--opacity-half)*100%)] bg-background px-(--spacing-inset-md) py-(--spacing-stack-2xs) text-(length:--font-size-xs) shadow-(--elevation-scale-xl)",
         className
       )}
     >
@@ -283,7 +283,7 @@ function ChartTooltipContent({
                         </span>
                       </div>
                       {item.value != null && (
-                        <span className="font-mono font-medium text-foreground tabular-nums">
+                        <span className="font-mono font-(--typography-label-sm-font-weight) text-foreground tabular-nums">
                           {typeof item.value === "number"
                             ? item.value.toLocaleString()
                             : String(item.value)}

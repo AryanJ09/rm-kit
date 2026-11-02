@@ -135,6 +135,29 @@ export function StackedBarChart({
   const plotRoom = VALUE_LABEL_ROOM + PLOT_HEIGHT + AXIS_ROOM
   const legendH = legendHeight || LEGEND_PAD
 
+  // Loading is compact, as in Figma: three skeleton lines and the legend, with no empty plot area.
+  if (state === "loading") {
+    return (
+      <div role="group" aria-label={summary} aria-busy="true" data-slot="rm-chart" data-state="loading" data-scale={scale} className="flex flex-col gap-(--spacing-inline-md)">
+        <div className="flex flex-col gap-(--spacing-inline-md)">
+          <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+          <Skeleton className="h-(--size-skeleton-line-height) w-full" />
+          <Skeleton className="h-(--size-skeleton-line-height) w-(--size-skeleton-line-width)" />
+        </div>
+        {showLegend && (
+          <div className="flex flex-wrap gap-x-(--spacing-inline-xs) gap-y-(--spacing-stack-3xs) text-(length:--font-size-chart-legend) text-text-secondary">
+            {series.map((k) => (
+              <span key={k} className="flex items-center gap-(--spacing-stack-2xs)">
+                <span aria-hidden className="size-(--size-icon-3xs)" style={{ background: getChartSeriesColor(k, getChartColor(getChartSeriesColorIndex(k) ?? 0)) }} />
+                {getChartSeriesLabel(k)}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div role="group" aria-label={summary} data-slot="rm-chart" data-state={state} data-scale={scale}>
       <div className="rmchart-chart-area">
@@ -207,15 +230,6 @@ export function StackedBarChart({
           </BarChart>
         </ChartContainer>
 
-        {state === "loading" && (
-          <div className="rmchart-chart-overlay" style={{ height: plotRoom }} aria-busy="true">
-            <div className="rmchart-skel" style={{ paddingBottom: AXIS_ROOM }}>
-              <Skeleton className="h-(--size-icon-3xs) w-full" />
-              <Skeleton className="h-(--size-icon-3xs) w-full" />
-              <Skeleton className="h-(--size-icon-3xs) w-full" />
-            </div>
-          </div>
-        )}
         {state === "noData" && (
           <div className="rmchart-chart-overlay" style={{ height: plotRoom }}>
             <p className="rmchart-empty-text m-0">No historical data available</p>

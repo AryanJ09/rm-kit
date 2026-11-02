@@ -9,7 +9,7 @@ type Args = {
 }
 
 const meta = {
-  title: "RM Kit/Shell header",
+  title: "RM Kit/Application shell/Shell header",
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
   args: { greeting: "Hi Lakshmesh", initials: "LP" },

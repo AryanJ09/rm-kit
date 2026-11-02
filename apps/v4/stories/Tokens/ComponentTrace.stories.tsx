@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>
 export const CurrentComponents: Story = {
   render: () => (
     <main className="mx-auto grid w-full max-w-(--size-layout-frame-width) gap-(--spacing-inline-lg) p-(--spacing-inline-xl)">
-      <h1 className="text-(length:--typography-heading-lg-font-size) font-bold">
+      <h1 className="text-(length:--typography-heading-lg-font-size) font-(--typography-heading-md-font-weight)">
         Component to semantic trace
       </h1>
       <p className="text-text-secondary">
@@ -24,7 +24,7 @@ export const CurrentComponents: Story = {
           key={component.name}
           className="grid gap-(--spacing-inline-sm) rounded-(--radius-md) border border-(--border-subtle) p-(--spacing-inline-lg)"
         >
-          <h2 className="font-semibold capitalize">
+          <h2 className="font-(--typography-label-strong-font-weight) capitalize">
             {component.name.replaceAll("-", " ")}
           </h2>
           <code className="text-(length:--typography-caption-font-size)">

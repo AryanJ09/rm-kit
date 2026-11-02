@@ -29,7 +29,7 @@ function AlertDialogOverlay({
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-overlay"
       className={cn(
-        "bg-overlay-scrim fixed inset-0 isolate z-50 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "bg-overlay-scrim fixed inset-(--spacing-none) isolate z-(--z-index-overlay) duration-(--motion-duration-fast) supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
         className
       )}
       {...props}
@@ -51,7 +51,7 @@ function AlertDialogContent({
         data-slot="alert-dialog-content"
         data-size={size}
         className={cn(
-          "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-(--spacing-inline-lg) rounded-xl bg-popover p-(--spacing-inline-lg) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-100 outline-none data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "group/alert-dialog-content fixed top-1/2 left-1/2 z-(--z-index-overlay) grid w-full -translate-x-1/2 -translate-y-1/2 gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className
         )}
         {...props}
@@ -84,7 +84,7 @@ function AlertDialogFooter({
     <div
       data-slot="alert-dialog-footer"
       className={cn(
-        "-mx-4 -mb-4 flex flex-col-reverse gap-(--spacing-inline-sm) rounded-b-xl border-t bg-muted/[calc(var(--opacity-half)*100%)] p-(--spacing-inline-lg) group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2 sm:flex-row sm:justify-end",
+        "-mx-(--spacing-inline-lg) -mb-(--spacing-inline-lg) flex flex-col-reverse gap-(--spacing-inline-sm) rounded-b-xl border-t bg-muted/[calc(var(--opacity-half)*100%)] p-(--spacing-inline-lg) group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2 sm:flex-row sm:justify-end",
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ function AlertDialogMedia({
     <div
       data-slot="alert-dialog-media"
       className={cn(
-        "mb-(--spacing-inline-sm) inline-flex size-(--size-40) items-center justify-center rounded-md bg-muted sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[svg:not([class*='size-'])]:size-(--size-icon-lg)",
+        "mb-(--spacing-inline-sm) inline-flex size-(--size-40) items-center justify-center rounded-(--radius-md) bg-muted sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[svg:not([class*='size-'])]:size-(--size-icon-lg)",
         className
       )}
       {...props}
@@ -116,7 +116,7 @@ function AlertDialogTitle({
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
       className={cn(
-        "cn-font-heading text-base font-medium sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
+        "cn-font-heading text-(length:--font-size-base) font-(--typography-label-sm-font-weight) sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
         className
       )}
       {...props}
@@ -132,7 +132,7 @@ function AlertDialogDescription({
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
       className={cn(
-        "text-sm text-balance text-muted-foreground md:text-pretty *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+        "text-(length:--font-size-sm) text-balance text-muted-foreground md:text-pretty *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
         className
       )}
       {...props}

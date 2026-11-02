@@ -6,14 +6,14 @@ const types = ["conservative", "moderate", "growth", "aggressive", "secure", "su
 
 export default function FigmaBadge() {
   return (
-    <div className="grid gap-2 p-4">
+    <div className="grid gap-(--spacing-inline-sm) p-(--spacing-inline-lg)">
       {types.map((type) => {
         const label = type[0].toUpperCase() + type.slice(1)
         return (
-          <div key={type} className="flex items-center gap-2">
+          <div key={type} className="flex items-center gap-(--spacing-inline-sm)">
             <Badge variant={type}>{label}</Badge>
             <Badge variant={type}>
-              <span className="size-2 rounded-full bg-current" />
+              <span className="size-(--size-dot) rounded-(--radius-pill) bg-current" />
               {label}
             </Badge>
             <Badge variant={type}>

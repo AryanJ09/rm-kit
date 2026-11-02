@@ -14,6 +14,7 @@ import {
   CommandList,
 } from "@/rm-style/ui/command"
 import { controlSize } from "./control"
+import { FieldShell, type FieldState } from "./field-shell"
 import {
   Combobox,
   ComboboxChip,
@@ -68,38 +69,6 @@ const dropdownPanelClassName = cn(
   menuPanelClass,
   "w-(--anchor-width) gap-(--spacing-none) ring-(length:--spacing-none)"
 )
-
-type FieldState = "default" | "success" | "error"
-
-// Label above, helper below. Shared with the Date picker.
-function FieldShell({
-  label,
-  helper,
-  state = "default",
-  children,
-}: {
-  label?: string
-  helper?: string
-  state?: FieldState
-  children: React.ReactNode
-}) {
-  const helperColor =
-    state === "error"
-      ? "text-field-error"
-      : state === "success"
-        ? "text-field-success"
-        : "text-field-helper"
-
-  return (
-    <div className="flex w-full min-w-0 flex-col gap-(--spacing-stack-2xs)">
-      {label ? <span className="text-(length:--font-size-xs) font-(--typography-label-sm-font-weight) text-(color:--field-label)">{label}</span> : null}
-      {children}
-      {helper ? (
-        <span className={cn("text-(length:--font-size-helper)", helperColor)}>{helper}</span>
-      ) : null}
-    </div>
-  )
-}
 
 export type DropdownOption = {
   value: string

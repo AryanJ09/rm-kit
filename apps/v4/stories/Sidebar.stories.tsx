@@ -13,7 +13,7 @@ const viewports = {
 }
 
 const meta = {
-  title: "RM Kit/Sidebar",
+  title: "RM Kit/Application shell/Sidebar",
   component: Sidebar,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen", viewport: { options: viewports } },

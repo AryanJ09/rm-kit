@@ -7,7 +7,8 @@ import type { DateRange } from "react-day-picker"
 
 import { Calendar } from "@/rm-style/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/rm-style/ui/popover"
-import { FieldShell, fieldTriggerVariants } from "@/rm-style/ui/dropdown"
+import { fieldTriggerVariants } from "@/rm-style/ui/dropdown"
+import { FieldShell } from "@/rm-style/ui/field-shell"
 
 type DateTime = { hour: number; minute: number; period: "AM" | "PM" }
 
@@ -50,7 +51,7 @@ function formatValue(
 
 // Native selects keep keyboard and screen reader behaviour for free.
 const timeSelectClassName =
-  "h-(--size-control-md) rounded-lg border-(length:--border-width-default) border-field-stroke bg-background px-(--spacing-inline-sm) text-sm text-(color:--field-label) outline-none focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
+  "h-(--size-control-md) rounded-(--radius-lg) border-(length:--border-width-default) border-field-stroke bg-background px-(--spacing-inline-sm) text-(length:--font-size-sm) text-(color:--field-label) outline-none focus-visible:border-field-focus focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-primary-focus-ring"
 
 type DatePickerProps = {
   id?: string
@@ -179,7 +180,7 @@ function DatePicker({
           )}
           {enableTime ? (
             <div className="flex items-center gap-(--spacing-inline-sm) border-t border-field-stroke pt-(--spacing-stack-sm)">
-              <span className="text-sm text-(color:--field-label)">Time</span>
+              <span className="text-(length:--font-size-sm) text-(color:--field-label)">Time</span>
               <select
                 aria-label="Hour"
                 className={timeSelectClassName}

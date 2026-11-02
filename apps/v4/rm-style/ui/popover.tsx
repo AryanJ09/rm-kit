@@ -33,12 +33,12 @@ function PopoverContent({
         side={side}
         sideOffset={sideOffset}
         anchor={anchor}
-        className="isolate z-50"
+        className="isolate z-(--z-index-overlay)"
       >
         <PopoverPrimitive.Popup
           data-slot="popover-content"
           className={cn(
-            "z-50 flex w-(--size-288) origin-(--transform-origin) flex-col gap-(--spacing-inset-md) rounded-(--radius-lg) bg-popover p-(--spacing-inset-md) text-(length:--font-size-sm) text-popover-foreground shadow-(--elevation-popover) ring-(length:--border-width-default) ring-foreground/10 outline-hidden duration-(--motion-duration-fast) data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            "z-(--z-index-overlay) flex w-(--size-288) origin-(--transform-origin) flex-col gap-(--spacing-inset-md) rounded-(--radius-lg) bg-popover p-(--spacing-inset-md) text-(length:--font-size-sm) text-popover-foreground shadow-(--elevation-popover) ring-(length:--border-width-default) ring-foreground/10 outline-hidden duration-(--motion-duration-fast) data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className
           )}
           {...props}
@@ -52,7 +52,7 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="popover-header"
-      className={cn("flex flex-col gap-0.5 text-(length:--font-size-sm)", className)}
+      className={cn("flex flex-col gap-(--spacing-stack-3xs) text-(length:--font-size-sm)", className)}
       {...props}
     />
   )

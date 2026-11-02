@@ -2,9 +2,9 @@
 
 // RM Kit Shell header, from Figma "Shell header": the top bar of the mobile application shell. Four contexts:
 // - home (default): a red gradient bar with the user's avatar, a greeting, a notifications button and the menu button (hamburger).
-// - inside-page: a white bar with a back arrow and a bold page title.
+// - inside-page: a white bar with a back chevron and a bold page title.
 // - client-detail: the same bar with a regular line (name and reference).
-// - inside-page-description: back arrow, title, a trailing plus action and a grey description line below.
+// - inside-page-description: back chevron, title, a trailing plus action and a grey description line below.
 import * as React from "react"
 import { BellIcon, ChevronLeftIcon, MenuIcon, PlusIcon } from "lucide-react"
 import { cn } from "cn"
@@ -99,7 +99,7 @@ function InsidePageHeader({
       data-slot="shell-header"
       data-context={context}
       className={cn(
-        "flex w-full flex-col gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-inline-md) text-card-foreground",
+        "flex w-full shrink-0 flex-col gap-(--spacing-inline-md) rounded-(--radius-2xl) border-(length:--border-width-default) border-border bg-card p-(--spacing-inline-md) text-card-foreground",
         className
       )}
       {...props}

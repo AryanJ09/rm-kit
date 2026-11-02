@@ -8,6 +8,7 @@ import { cn } from "cn"
 
 import { Spinner } from "@/rm-style/ui/spinner"
 import { controlSize } from "./control"
+import { FieldShell } from "./field-shell"
 
 // Pill-shaped search field. The wrapper draws the border and focus ring so the
 // icons and the text share one outline.
@@ -34,6 +35,10 @@ type SearchProps = Omit<React.ComponentProps<"input">, "size" | "onChange"> &
     onValueChange?: (value: string) => void
     onClear?: () => void
     loading?: boolean
+    /** Label above the field. Omit for a bare search. */
+    label?: string
+    /** Helper line below ("Loading clients…", an error message). Takes the error colour from `state`. */
+    helper?: string
   }
 
 function Search({
@@ -45,6 +50,8 @@ function Search({
   onValueChange,
   onClear,
   loading = false,
+  label,
+  helper,
   placeholder = "Search",
   ...props
 }: SearchProps) {
@@ -58,7 +65,7 @@ function Search({
     onValueChange?.(next)
   }
 
-  return (
+  const field = (
     <div
       data-slot="search"
       data-size={size}
@@ -98,6 +105,13 @@ function Search({
         </button>
       ) : null}
     </div>
+  )
+  return label || helper ? (
+    <FieldShell label={label} helper={helper} state={state === "error" ? "error" : "default"}>
+      {field}
+    </FieldShell>
+  ) : (
+    field
   )
 }
 

@@ -147,6 +147,6 @@ Use `select` for a plain "choose one" form field, `combobox` when there are many
 
 ### D30. Every card is an archetype
 
-Rule: a card is one of six archetypes in `rm-style/ui/cards.tsx` (StatCard, SummaryCard, TaskCard, ItemCard, PersonCard, GroupCard), picked with [03-card-catalog.md](03-card-catalog.md) and filled with data props. The `Card` shell takes no `className` or `style`, so its look cannot drift. A need no archetype covers becomes a new prop or archetype in the catalog first, never a one-off card. Custom work of any kind still uses semantic roles only (B3).
+Rule: a card is one of eight archetypes: six in `rm-style/ui/cards.tsx` (StatCard, SummaryCard, TaskCard, ItemCard, PersonCard, GroupCard) and two in `rm-style/ui/chart-cards.tsx` (TrendCard, AllocationCard), picked with [03-card-catalog.md](03-card-catalog.md) and filled with data props. The `Card` shell takes no `className` or `style`, so its look cannot drift. A need no archetype covers becomes a new prop or archetype in the catalog first, never a one-off card. Custom work of any kind still uses semantic roles only (B3).
 Why: the same requirement given twice produced two different cards. Data props leave no layout choices to guess.
 Check: `node scripts/check-rm-rules.mjs` flags any import of `@/rm-style/ui/card` outside the kit's card files.

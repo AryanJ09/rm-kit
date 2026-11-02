@@ -1,6 +1,6 @@
 // Hand-written. Not generated: edit this file directly.
 // The six card archetypes (rm-style/ui/cards.tsx). Every card in a product is one of these, picked with
-// rm-style/golden-rules/03-card-catalog.md and filled with data props.
+// rm-style/learnings/golden-rules/03-card-catalog.md and filled with data props.
 import * as React from "react"
 import { ArrowLeftRightIcon, CakeIcon, CalendarDaysIcon, ShieldCheckIcon } from "lucide-react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"

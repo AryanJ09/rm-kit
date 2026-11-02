@@ -29,7 +29,7 @@ function FieldLegend({
       data-slot="field-legend"
       data-variant={variant}
       className={cn(
-        "mb-(--spacing-stack-2xs) font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base",
+        "mb-(--spacing-stack-2xs) font-(--typography-label-sm-font-weight) data-[variant=label]:text-(length:--font-size-sm) data-[variant=legend]:text-(length:--font-size-base)",
         className
       )}
       {...props}
@@ -105,7 +105,7 @@ function FieldLabel({
     <Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit group-data-[disabled=true]/field:opacity-(--opacity-disabled) has-data-checked:border-primary/[calc(var(--opacity-soft)*100%)] has-data-checked:bg-primary/[calc(var(--opacity-faint)*100%)] has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/[calc(var(--opacity-half)*100%)] has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-(length:--focus-ring-width) has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/[calc(var(--ring-opacity)*100%)] *:data-[slot=field]:p-(--spacing-inset-md) dark:has-data-checked:border-primary/[calc(var(--opacity-subtle)*100%)] dark:has-data-checked:bg-primary/[calc(var(--opacity-faint)*100%)]",
+        "group/field-label peer/field-label flex w-fit group-data-[disabled=true]/field:opacity-(--opacity-disabled) has-data-checked:border-primary/[calc(var(--opacity-soft)*100%)] has-data-checked:bg-primary/[calc(var(--opacity-faint)*100%)] has-[>[data-slot=field]]:rounded-(--radius-lg) has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/[calc(var(--opacity-half)*100%)] has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-(length:--focus-ring-width) has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/[calc(var(--ring-opacity)*100%)] *:data-[slot=field]:p-(--spacing-inset-md) dark:has-data-checked:border-primary/[calc(var(--opacity-subtle)*100%)] dark:has-data-checked:bg-primary/[calc(var(--opacity-faint)*100%)]",
         "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
         className
       )}
@@ -119,7 +119,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="field-label"
       className={cn(
-        "flex w-fit items-center gap-(--spacing-inline-sm) text-sm font-medium group-data-[disabled=true]/field:opacity-(--opacity-disabled)",
+        "flex w-fit items-center gap-(--spacing-inline-sm) text-(length:--font-size-sm) font-(--typography-label-sm-font-weight) group-data-[disabled=true]/field:opacity-(--opacity-disabled)",
         className
       )}
       {...props}
@@ -132,7 +132,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="field-description"
       className={cn(
-        "text-left text-sm leading-normal font-(--typography-body-md-font-weight) text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-(--spacing-stack-2xs)",
+        "text-left text-(length:--font-size-sm) leading-normal font-(--typography-body-md-font-weight) text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-(--spacing-stack-2xs)",
         "last:mt-0 nth-last-2:-mt-(--spacing-stack-xs)",
         "[&>a]:underline [&>a]:underline-offset-(--spacing-inline-xs) [&>a:hover]:text-primary",
         className
@@ -154,12 +154,12 @@ function FieldSeparator({
       data-slot="field-separator"
       data-content={!!children}
       className={cn(
-        "relative -my-(--spacing-inline-sm) h-(--size-icon-md) text-sm group-data-[variant=outline]/field-group:-mb-(--spacing-inline-sm)",
+        "relative -my-(--spacing-inline-sm) h-(--size-icon-md) text-(length:--font-size-sm) group-data-[variant=outline]/field-group:-mb-(--spacing-inline-sm)",
         className
       )}
       {...props}
     >
-      <Separator className="absolute inset-0 top-1/2" />
+      <Separator className="absolute inset-(--spacing-none) top-1/2" />
       {children && (
         <span
           className="relative mx-auto block w-fit bg-background px-(--spacing-inline-sm) text-muted-foreground"
@@ -215,7 +215,7 @@ function FieldError({
     <div
       role="alert"
       data-slot="field-error"
-      className={cn("text-sm font-(--typography-body-md-font-weight) text-destructive", className)}
+      className={cn("text-(length:--font-size-sm) font-(--typography-body-md-font-weight) text-destructive", className)}
       {...props}
     >
       {content}

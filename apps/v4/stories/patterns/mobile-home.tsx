@@ -13,9 +13,11 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/rm-style/ui/
 import { Search } from "@/rm-style/ui/search"
 import { SectionHeader } from "@/rm-style/ui/section-header"
 
+export const footerNoteText = "Powered by Brand • v0.2.0 • 08 Oct 2026"
+
 export type HomeState = "populated" | "loading" | "empty" | "error"
 
-const workspaces: ShellWorkspace[] = [
+export const shellWorkspaces: ShellWorkspace[] = [
   {
     id: "main",
     label: "Main",
@@ -119,7 +121,7 @@ export function MobileHome({ state = "populated", hero = true, footerNote = true
       title="Hi Lakshmesh"
       initials="LP"
       notificationCount={0}
-      workspaces={workspaces}
+      workspaces={shellWorkspaces}
       navigation={{ active, onActiveChange: onNavigate }}
       hero={
         hero ? (
@@ -138,7 +140,7 @@ export function MobileHome({ state = "populated", hero = true, footerNote = true
           </>
         ) : undefined
       }
-      footerNote={footerNote ? "Powered by Brand • v0.2.0 • 08 Oct 2026" : undefined}
+      footerNote={footerNote ? footerNoteText : undefined}
     >
       {screen ?? <HomeContent state={state} />}
     </ApplicationShell>

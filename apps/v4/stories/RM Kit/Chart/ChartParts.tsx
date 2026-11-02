@@ -1,9 +1,6 @@
-import React, { useState } from "react"
-import { ArrowDown, ArrowUp } from "lucide-react"
-import { Button } from "@/rm-style/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/bases/base/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@/rm-style/ui/tabs"
-import { StackedBarChart, type ChartState } from "@/rm-style/ui/stacked-bar-chart"
+import React from "react"
+import { TrendCard } from "@/rm-style/ui/chart-cards"
+import type { StackedBarChartProps, ChartState } from "@/rm-style/ui/stacked-bar-chart"
 import { datasets, examples, tabs as tabSpec } from "./chart-data"
 
 export function Panel({ title, children }: { title: string; children: React.ReactNode }) {
@@ -15,93 +12,48 @@ export function Panel({ title, children }: { title: string; children: React.Reac
   )
 }
 
-export function DatasetChart({ name, ...rest }: { name: string; state?: ChartState }) {
+const stateToCard = { populated: "default", loading: "loading", noData: "empty", error: "error" } as const
+
+/** A dataset on its own: the chart inside a card (a chart always sits in a card). */
+export function DatasetChart({ name, state = "populated", ...rest }: { name: string; state?: ChartState } & Partial<Omit<StackedBarChartProps, "state">>) {
   const d = datasets[name]
   return (
-    <Card pattern="detail" density="comfortable">
-      <CardContent>
-        <StackedBarChart
-          series={d.series}
-          points={d.points}
-          unit={d.unit}
-          scale={d.scale === "percent" ? "percent" : "absolute"}
-          showValueLabels={d.scale !== "percent"}
-          summary={d.summary ?? name}
-          {...rest}
-        />
-      </CardContent>
-    </Card>
+    <TrendCard
+      title={name}
+      state={stateToCard[state]}
+      chart={{
+        series: d.series,
+        points: d.points,
+        unit: d.unit,
+        scale: d.scale === "percent" ? "percent" : "absolute",
+        showValueLabels: d.scale !== "percent",
+        summary: d.summary ?? name,
+        ...rest,
+      }}
+    />
   )
 }
 
-const trendIcon = { positive: ArrowUp, negative: ArrowDown, neutral: null } as const
+const tabChoices = Object.entries(tabSpec).map(([id, t]) => ({ id, label: t.label }))
+const trend = { positive: "up", negative: "down", neutral: "neutral" } as const
 
+/** The banking portfolio card with its tabs working (used by the chart sandbox). */
 export function PortfolioCard() {
-  const [tab, setTab] = useState("rv")
-  const [mix, setMix] = useState<"value" | "allocation">("value")
-  const ex = examples.find((e) => e.tab === tab && e.chart.endsWith("rajesh"))
-  if (!ex) return <Card pattern="detail"><CardContent>No chart available.</CardContent></Card>
-  const name = tab === "investments" && mix === "allocation" ? "allocation.rajesh" : ex.chart.replace("datasets.", "")
-  const d = datasets[name]
-  const spec = tabSpec[tab as keyof typeof tabSpec]
-  const pct = name === "allocation.rajesh"
+  const [tab, setTab] = React.useState("rv")
+  const ex = examples.find((e) => e.tab === tab && e.chart.endsWith("rajesh"))!
+  const d = datasets[ex.chart.replace("datasets.", "")]
   return (
-    <Card pattern="detail">
-      <CardHeader>
-        <CardTitle>Banking Portfolio</CardTitle>
-        <CardDescription>{spec.subtitle}</CardDescription>
-      </CardHeader>
-      <Tabs className="min-w-0" value={tab} onValueChange={(v) => { setTab(String(v)); setMix("value") }}>
-        <TabsList variant="line" className="w-full justify-start overflow-x-auto">
-          {Object.entries(tabSpec).map(([k, t]) => (
-            <TabsTrigger key={k} value={k} className="flex-none px-1 text-[13px]">{t.label}</TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
-      <CardContent className="rmchart-portfolio-body">
-        <div className="rmchart-row"><span>{ex.headline.label}</span><strong>{ex.headline.value}</strong></div>
-        <div className="rmchart-metric-strip">
-          {(ex.metricStrip ?? []).map((m) => {
-            const Icon = trendIcon[m.trend as keyof typeof trendIcon]
-            return (
-              <div key={m.label}>
-                <div className="rmchart-label">{m.label}</div>
-                <div className={`rmchart-change rmchart-${m.trend}`}>
-                  {Icon && <Icon size={14} aria-hidden />}
-                  {m.change.replace(/^[+]/, "")}
-                  <span className="sr-only">{m.trend}</span>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-        {tab === "investments" && (
-          <div className="rmchart-chips" role="group" aria-label="Chart view">
-            {(["value", "allocation"] as const).map((v) => (
-              <Button key={v} size="sm" variant={mix === v ? "default" : "outline"} onClick={() => setMix(v)}>
-                {v === "value" ? "Value" : "Allocation"}
-              </Button>
-            ))}
-          </div>
-        )}
-        <StackedBarChart
-          series={d.series}
-          points={d.points}
-          unit={d.unit}
-          scale={pct ? "percent" : "absolute"}
-          showValueLabels={!pct}
-          summary={d.summary ?? name}
-        />
-        {"breakdown" in ex && ex.breakdown && (
-          <>
-            <div className="rmchart-divider" />
-            {ex.breakdown.map((b) => (
-              <div className="rmchart-row" key={b.label}><span>{b.label}</span><span>{b.value}</span></div>
-            ))}
-          </>
-        )}
-        {"footnote" in ex && ex.footnote && <p className="rmchart-caption m-0">{ex.footnote}</p>}
-      </CardContent>
-    </Card>
+    <TrendCard
+      title="Banking Portfolio"
+      subtitle={tabSpec[tab as keyof typeof tabSpec].subtitle}
+      tabs={tabChoices}
+      tab={tab}
+      onTabChange={setTab}
+      headline={ex.headline}
+      growth={(ex.metricStrip ?? []).map((m) => ({ label: m.label, change: m.change, trend: trend[m.trend as keyof typeof trend] }))}
+      chart={{ series: d.series, points: d.points, unit: d.unit, summary: d.summary ?? ex.chart }}
+      rows={"breakdown" in ex ? ex.breakdown : undefined}
+      footnote={"footnote" in ex ? ex.footnote : undefined}
+    />
   )
 }

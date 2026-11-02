@@ -9,10 +9,10 @@ const types = [
 
 export default function FigmaCheckbox() {
   return (
-    <div className="grid gap-4 p-4">
+    <div className="grid gap-(--spacing-inline-lg) p-(--spacing-inline-lg)">
       {types.map((type) => (
-        <div key={type.label} className="flex items-center gap-4">
-          <span className="w-20 text-sm text-text-secondary">{type.label}</span>
+        <div key={type.label} className="flex items-center gap-(--spacing-inline-lg)">
+          <span className="w-(--size-72) text-(length:--font-size-sm) text-text-secondary">{type.label}</span>
           <Checkbox {...type.props} />
           <Checkbox {...type.props} disabled />
         </div>

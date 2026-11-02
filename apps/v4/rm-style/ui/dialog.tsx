@@ -31,7 +31,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 bg-overlay-scrim duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "fixed inset-(--spacing-none) isolate z-(--z-index-overlay) bg-overlay-scrim duration-(--motion-duration-fast) supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
         className
       )}
       {...props}
@@ -53,7 +53,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-var(--spacing-section-md))] -translate-x-1/2 -translate-y-1/2 gap-(--spacing-inline-lg) rounded-xl bg-popover p-(--spacing-inline-lg) text-sm text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-1/2 left-1/2 z-(--z-index-overlay) grid w-full max-w-[calc(100%-var(--spacing-section-md))] -translate-x-1/2 -translate-y-1/2 gap-(--spacing-inline-lg) rounded-(--radius-xl) bg-popover p-(--spacing-inline-lg) text-(length:--font-size-sm) text-popover-foreground ring-(length:--border-width-default) ring-foreground/[calc(var(--opacity-faint)*100%)] duration-(--motion-duration-fast) outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className
         )}
         {...props}
@@ -102,7 +102,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "-mx-4 -mb-4 flex flex-col-reverse gap-(--spacing-inline-sm) rounded-b-xl border-t bg-muted/[calc(var(--opacity-half)*100%)] p-(--spacing-inline-lg) sm:flex-row sm:justify-end",
+        "-mx-(--spacing-inline-lg) -mb-(--spacing-inline-lg) flex flex-col-reverse gap-(--spacing-inline-sm) rounded-b-xl border-t bg-muted/[calc(var(--opacity-half)*100%)] p-(--spacing-inline-lg) sm:flex-row sm:justify-end",
         className
       )}
       {...props}
@@ -122,7 +122,7 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
     <DialogPrimitive.Title
       data-slot="dialog-title"
       className={cn(
-        "cn-font-heading text-base leading-none font-medium",
+        "cn-font-heading text-(length:--font-size-base) leading-none font-(--typography-label-sm-font-weight)",
         className
       )}
       {...props}
@@ -138,7 +138,7 @@ function DialogDescription({
     <DialogPrimitive.Description
       data-slot="dialog-description"
       className={cn(
-        "text-sm text-muted-foreground *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+        "text-(length:--font-size-sm) text-muted-foreground *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
         className
       )}
       {...props}

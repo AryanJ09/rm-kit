@@ -71,7 +71,7 @@ function ChipGroupItem({
       data-size={context.size || size}
       data-spacing={context.spacing}
       className={cn(
-        "shrink-0 focus:z-10 focus-visible:z-10",
+        "shrink-0 focus:z-(--z-index-base) focus-visible:z-(--z-index-base)",
         chipVariants({
           variant: context.variant || variant,
           size: context.size || size,

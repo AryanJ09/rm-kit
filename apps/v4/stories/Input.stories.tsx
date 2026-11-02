@@ -28,11 +28,11 @@ function Cell({
 }) {
   return (
     <div className="flex w-(--size-288) flex-col gap-(--spacing-stack-2xs)">
-      <span className="text-sm text-(color:--field-label)">{label}</span>
+      <span className="text-(length:--font-size-sm) text-(color:--field-label)">{label}</span>
       {children}
       {helper ? (
         <span
-          className={`text-sm text-field-helper ${helperClassName ?? ""}`}
+          className={`text-(length:--font-size-sm) text-field-helper ${helperClassName ?? ""}`}
         >
           {helper}
         </span>
@@ -48,7 +48,7 @@ export const AllStates: Story = {
     <div className="flex flex-col gap-(--spacing-section-md)">
       {sizes.map((size) => (
         <div key={size} className="flex flex-col gap-(--spacing-inline-lg)">
-          <span className="text-sm font-medium text-(color:--field-label)">{size}</span>
+          <span className="text-(length:--font-size-sm) font-(--typography-label-sm-font-weight) text-(color:--field-label)">{size}</span>
           <div className="grid grid-cols-2 gap-(--spacing-inline-xl)">
             <Cell label="Default">
               <Input size={size} placeholder="Placeholder" />

@@ -3,6 +3,7 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { controlSize } from "./control"
+import { FieldShell } from "./field-shell"
 
 // Colours come from semantic roles only. Focus is always the blue field-focus
 // border plus the primary focus ring, even when the field is in error.
@@ -25,10 +26,15 @@ const inputVariants = cva(
 )
 
 type InputProps = Omit<React.ComponentProps<"input">, "size"> &
-  VariantProps<typeof inputVariants>
+  VariantProps<typeof inputVariants> & {
+    /** Label above the field. Omit for a bare input. */
+    label?: string
+    /** Helper line below. Takes the error or success colour from `state`. */
+    helper?: string
+  }
 
-function Input({ className, type, size, state, ...props }: InputProps) {
-  return (
+function Input({ className, type, size, state, label, helper, ...props }: InputProps) {
+  const field = (
     <InputPrimitive
       type={type}
       data-slot="input"
@@ -37,6 +43,13 @@ function Input({ className, type, size, state, ...props }: InputProps) {
       className={cn(inputVariants({ size, state }), className)}
       {...props}
     />
+  )
+  return label || helper ? (
+    <FieldShell label={label} helper={helper} state={state ?? "default"}>
+      {field}
+    </FieldShell>
+  ) : (
+    field
   )
 }
 

@@ -14,7 +14,7 @@ const primitives = result.roles.filter((role) => role.primitive.length > 0)
 export const PrimitiveToSemanticToComponent: Story = {
   render: () => (
     <main className="mx-auto grid w-full max-w-(--size-layout-frame-width) gap-(--spacing-inline-xl) p-(--spacing-inline-xl)">
-      <h1 className="text-(length:--typography-heading-lg-font-size) font-bold">
+      <h1 className="text-(length:--typography-heading-lg-font-size) font-(--typography-heading-md-font-weight)">
         Token pipeline
       </h1>
       <p className="text-text-secondary">
@@ -23,15 +23,15 @@ export const PrimitiveToSemanticToComponent: Story = {
       </p>
       <div className="grid gap-(--spacing-inline-md)">
         <section className="rounded-(--radius-md) border border-(--border-subtle) p-(--spacing-inline-lg)">
-          <h2 className="mb-(--spacing-inline-sm) font-semibold">1 · Foundation</h2>
-          <code>--ds-color-brand-600 · primitive</code>
+          <h2 className="mb-(--spacing-inline-sm) font-(--typography-label-strong-font-weight)">1 · Foundation</h2>
+          <code>--primary · primitive</code>
         </section>
         <section className="rounded-(--radius-md) border border-(--border-subtle) p-(--spacing-inline-lg)">
-          <h2 className="mb-(--spacing-inline-sm) font-semibold">2 · Semantic</h2>
-          <code>--primary → var(--ds-color-brand-600)</code>
+          <h2 className="mb-(--spacing-inline-sm) font-(--typography-label-strong-font-weight)">2 · Semantic</h2>
+          <code>--primary → var(--primary)</code>
         </section>
         <section className="rounded-(--radius-md) border border-(--border-subtle) p-(--spacing-inline-lg)">
-          <h2 className="mb-(--spacing-inline-sm) font-semibold">3 · Component</h2>
+          <h2 className="mb-(--spacing-inline-sm) font-(--typography-label-strong-font-weight)">3 · Component</h2>
           <div className="flex flex-wrap items-center gap-(--spacing-inline-md)">
             <Button>Button</Button>
             <code>
@@ -41,7 +41,7 @@ export const PrimitiveToSemanticToComponent: Story = {
         </section>
       </div>
       <div className="grid gap-(--spacing-inline-sm)">
-        <h2 className="font-semibold">Semantic roles ({primitives.length})</h2>
+        <h2 className="font-(--typography-label-strong-font-weight)">Semantic roles ({primitives.length})</h2>
         {primitives.map((role) => (
           <div
             key={role.name}

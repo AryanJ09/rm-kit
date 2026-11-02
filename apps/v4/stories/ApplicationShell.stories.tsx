@@ -53,7 +53,7 @@ type Args = {
 }
 
 const meta = {
-  title: "RM Kit/Application shell",
+  title: "RM Kit/Application shell/Application shell",
   tags: ["autodocs"],
   parameters: { layout: "fullscreen", viewport: { options: viewports } },
   // The shell stands for the device, so it sits on a neutral canvas with room around it.

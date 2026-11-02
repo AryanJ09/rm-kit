@@ -16,7 +16,14 @@ const preview: Preview = {
     options: {
       // RM Kit first, then the example screens, then everything else in its default order.
       storySort: {
-        order: ["RM Kit", "Tokens", "Examples", "*"],
+        order: [
+          "RM Kit",
+          // The application shell and everything that belongs to it live in one folder, in reading order.
+          ["Application shell", ["Application shell", "Mobile patterns", "Shell header", "Sidebar", "Bottom navigation", "Central button", "Navigation item"]],
+          "Tokens",
+          "Examples",
+          "*",
+        ],
       },
     },
     controls: {

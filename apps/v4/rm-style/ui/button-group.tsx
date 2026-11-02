@@ -6,7 +6,7 @@ import { cn } from "cn"
 import { Separator } from "@/rm-style/ui/separator"
 
 const buttonGroupVariants = cva(
-  "flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-2 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
+  "flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-(--z-index-base) has-[>[data-slot=button-group]]:gap-(--spacing-inline-sm) has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   {
     variants: {
       orientation: {
@@ -48,7 +48,7 @@ function ButtonGroupText({
     props: mergeProps<"div">(
       {
         className: cn(
-          "flex items-center gap-2 rounded-lg border bg-muted px-2.5 text-sm font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+          "flex items-center gap-(--spacing-inline-sm) rounded-(--radius-lg) border bg-muted px-(--spacing-inset-md) text-(length:--font-size-sm) font-(--typography-label-sm-font-weight) [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
           className
         ),
       },
@@ -71,7 +71,7 @@ function ButtonGroupSeparator({
       data-slot="button-group-separator"
       orientation={orientation}
       className={cn(
-        "relative self-stretch bg-input data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto",
+        "relative self-stretch bg-input data-horizontal:mx-(--border-width-default) data-horizontal:w-auto data-vertical:my-(--border-width-default) data-vertical:h-auto",
         className
       )}
       {...props}

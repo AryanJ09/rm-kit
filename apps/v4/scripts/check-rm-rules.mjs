@@ -1,4 +1,4 @@
-// Checks the build golden rules (rm-style/golden-rules/01-build-rules.md) on component and story files.
+// Checks the build golden rules (rm-style/learnings/golden-rules/01-build-rules.md) on component and story files.
 // Run from apps/v4:   node scripts/check-rm-rules.mjs [file ...]     (no files: every hand-written story and rm-style/ui file)
 // Reports: raw Tailwind scale values, hex/px/rem literals, primitive (--ds-*) references, and var() names that are not in semantic.css.
 // Exit code 1 when anything is found.
@@ -13,15 +13,17 @@ const defined = new Set([
   ...names(read(path.join(ROOT, "rm-style/tokens/semantic.css"))),
   ...names(read(path.join(ROOT, "rm-style/theme.css"))),
 ])
-// Set at runtime by library code, not tokens.
-const runtimeVars = new Set(["--skeleton-width", "--anchor-width", "--available-height", "--available-width", "--transform-origin", "--spacing", "--tw-content", "--accordion-panel-height"])
+// Set at runtime by library code, not tokens ("--color-" is the prefix of the per-series colour the chart wrapper defines).
+const runtimeVars = new Set(["--skeleton-width", "--anchor-width", "--available-height", "--available-width", "--transform-origin", "--spacing", "--tw-content", "--accordion-panel-height", "--color-", "--chart-"])
 
 const RAW = new RegExp(
   String.raw`(?<![\w-])(?:[a-z-]+:)*!?-?(?:` +
     [
       "text-(?:xs|sm|base|lg|xl|2xl)",
       "font-(?:bold|medium|semibold|normal|light)",
-      "(?:p|px|py|pt|pb|pl|pr|m|mx|my|gap|gap-x|gap-y|size|w|h|max-w|min-w|max-h|min-h|top|left|right|bottom|inset|space-x|space-y)-(?:[1-9]\\d*(?:\\.\\d+)?|px)",
+      "(?:p|px|py|pt|pb|pl|pr|m|mx|my|mt|mb|ml|mr|ms|me|gap|gap-x|gap-y|size|w|h|max-w|min-w|max-h|min-h|top|left|right|bottom|start|end|inset|inset-x|inset-y|space-x|space-y)-(?:[1-9]\\d*(?:\\.\\d+)?|px)",
+      "z-[1-9]\\d*",
+      "(?:duration|delay)-[1-9]\\d*",
       "rounded-(?:sm|md|lg|xl|2xl|3xl|full)",
       "shadow-(?:xs|sm|md|lg|xl|2xl)",
       "ring-\\d",
@@ -65,12 +67,16 @@ for (const f of files) {
     for (const m of line.matchAll(RAW)) findings.push(`  raw value   ${m[0]}  (line ${i + 1})`)
   })
   for (const v of new Set(src.match(/(?<![\w-])--ds-[\w-]+/g) ?? [])) findings.push(`  primitive   ${v}`)
+  // A variable the file sets itself (e.g. style={{ "--gap": ... }} or [--peek:...]) is local to that component, not a token.
+  const local = new Set([...src.matchAll(/["'\[](--[a-z][\w-]*)["']?\s*[:\]]/g)].map((m) => m[1]))
+  // Set by the headless library at runtime (positioner, popup, toast stack).
+  const libraryVar = /^--(positioner|popup|toast|stack|transform|anchor|available|drawer|nested)-/
   for (const v of new Set([...src.matchAll(/(?<![\w-])(--[a-z][\w-]*)/g)].map((m) => m[1]))) {
-    if (!v.startsWith("--ds-") && !defined.has(v) && !runtimeVars.has(v)) findings.push(`  not in semantic.css   ${v}`)
+    if (!v.startsWith("--ds-") && !defined.has(v) && !runtimeVars.has(v) && !local.has(v) && !libraryVar.test(v)) findings.push(`  not in semantic.css   ${v}`)
   }
   // D30: a card is always an archetype (rm-style/ui/cards.tsx). Only the kit's own card files and the Card story may use the raw shell.
   const base = path.basename(f)
-  if (!["card.tsx", "cards.tsx", "accordion.tsx", "Card.stories.tsx"].includes(base) && /from "@\/rm-style\/ui\/card"/.test(src))
+  if (!["card.tsx", "cards.tsx", "chart-cards.tsx", "accordion.tsx", "Card.stories.tsx"].includes(base) && /from "@\/rm-style\/ui\/card"/.test(src))
     findings.push(`  raw card    import an archetype from @/rm-style/ui/cards instead (D30)`)
   if (findings.length) {
     total += findings.length

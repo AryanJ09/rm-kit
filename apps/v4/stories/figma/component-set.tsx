@@ -20,22 +20,22 @@ export function VariantGrid({
   cell: (column: string, row: string) => ReactNode
 }) {
   const style = {
-    "--set-line": "#9747ff",
+    "--set-line": "var(--category-conservative-text)",
     gridTemplateColumns: `${labelWidth}px repeat(${columns.length}, ${cellWidth}px)`,
     gridTemplateRows: `auto repeat(${rows.length}, ${cellHeight}px)`,
   } as CSSProperties
-  const label = "text-(length:--ds-typography-font-size-12) text-(--set-line)"
+  const label = "text-(length:--font-size-xs) text-(--set-line)"
 
   return (
     <div
-      className="relative grid w-full min-w-max p-(--ds-spacing-16)"
+      className="relative grid w-full min-w-max p-(--spacing-inline-lg)"
       style={style}
     >
       <div />
       {columns.map((column) => (
         <div
           key={column}
-          className={`${label} pb-(--ds-spacing-8) text-center`}
+          className={`${label} pb-(--spacing-inline-sm) text-center`}
         >
           {column}
         </div>
@@ -43,7 +43,7 @@ export function VariantGrid({
       {rows.map((row, r) => (
         <Fragment key={row}>
           <div
-            className={`${label} flex items-center justify-end pr-(--ds-spacing-12)`}
+            className={`${label} flex items-center justify-end pr-(--spacing-inline-md)`}
           >
             {row}
           </div>
@@ -51,7 +51,7 @@ export function VariantGrid({
             <div
               key={`${row}-${column}`}
               className={[
-                "flex items-center justify-center border-dashed border-(--set-line) p-(--ds-spacing-24)",
+                "flex items-center justify-center border-dashed border-(--set-line) p-(--spacing-inline-xl)",
                 cellClassName,
                 r > 0 ? "border-t" : "",
                 c > 0 ? "border-l" : "",
@@ -63,7 +63,7 @@ export function VariantGrid({
         </Fragment>
       ))}
       <div
-        className="pointer-events-none absolute inset-0 rounded-(--ds-radius-8) border border-dashed border-(--set-line)"
+        className="pointer-events-none absolute inset-(--spacing-none) rounded-(--radius-md) border border-dashed border-(--set-line)"
         style={{ gridColumn: "2 / -1", gridRow: "2 / -1" }}
       />
     </div>

@@ -17,6 +17,8 @@ Go down the list; the first question that answers "yes" wins. The words in brack
 | 3 | Is a person the subject? (client, customer, attendee, participant, contact, member, user, employee, advisor, nominee, family member, profile) | **PersonCard** |
 | 4 | Is it a record someone taps to open? (product, fund, scheme, plan, document, file, listing, search result, order, transaction, offer, recommendation) | **ItemCard** |
 | 5 | Does it hold other cards, opened and closed together? (group, section, folder, category, expandable list, grouped cues, accordion of cards) | **GroupCard** |
+| 5b | Did a total change over time? (history, trend, growth, performance, YoY, timeline, monthly, stacked bars, movement) | **TrendCard** |
+| 5c | Is a total split into parts right now? (mix, split, share, composition, allocation, breakdown by class, donut, pie, distribution) | **AllocationCard** |
 | 6 | Is it rows with the same columns? (table, list of members, ledger, statement, comparison) | **Table** (not a card; rows may be compact SummaryCards) |
 | 7 | Anything else: labelled facts or text about one thing (details, overview, info, profile details, callout, notice, banner, cue, nudge, insight, note, key-value row, breakdown row) | **SummaryCard** |
 
@@ -30,6 +32,8 @@ Go down the list; the first question that answers "yes" wins. The words in brack
 | ItemCard | `eyebrow`, `title`, `meta`, `tags[]`; a chevron shows when it has `onClick` |
 | PersonCard | `name`, `initials`, `lines[]`, `role`, `mode: read \| edit \| removable`, `field`, `onRemove` |
 | GroupCard | `title`, `subtitle`, `initials`, `count`, `defaultOpen`, children = other archetypes |
+| TrendCard | `title`, `subtitle`, `tabs`, `headline`, `growth[]`, `chart` (series, points, unit, scale), `rows[]`, `footnote`; states default, loading, empty, error |
+| AllocationCard | `title`, `scope`, `total`, `parts[]` (series, share, value, cost, returns, benchmark, products), `tab`, `emptyText`; states default, loading, empty |
 
 ## 3. Shared states (every archetype, same behaviour)
 
@@ -90,3 +94,7 @@ components, never a new component. Home is the first; Leads, Clients and CRM fol
 | Empty, loading, failed | `Empty`, card `state`, `Alert` + Retry | children |
 | Brand line, version, date | plain text | `footerNote` |
 | Bottom navigation, central button | `ApplicationShell` | `navigation` (central button stays visible; no screen yet) |
+
+## 8. How to add the next screen
+
+See [../02-screen-build-order.md](../02-screen-build-order.md): the build order that Home and Clients followed.

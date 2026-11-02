@@ -94,7 +94,7 @@ type ApplicationShellProps = Omit<React.ComponentProps<"div">, "title"> & {
   hero?: React.ReactNode
   /** mobile only: a small centred note at the end of the content (brand line, version, date). */
   footerNote?: React.ReactNode
-  /** mobile only: replaces the home bar with the white inside-page bar (back arrow, title), for pages opened from a destination. */
+  /** mobile only: replaces the home bar with the white inside-page bar (back chevron, title), full width as in Figma, for pages opened from a destination. */
   insidePage?: Omit<Extract<ShellHeaderProps, { context: string }>, "context"> & {
     context?: "inside-page" | "client-detail" | "inside-page-description"
   }
@@ -390,9 +390,7 @@ function ApplicationShell({
               onNotificationsClick={onNotificationsClick}
             />
           ) : insidePage ? (
-            <div data-slot="shell-inside-header" className="shrink-0 p-(--spacing-inline-sm) pb-(--spacing-none)">
-              <MobileShellHeader {...insidePage} context={insidePage.context ?? "inside-page"} />
-            </div>
+            <MobileShellHeader {...insidePage} context={insidePage.context ?? "inside-page"} />
           ) : (
             <MobileHeader greeting={greeting ?? title} initials={initials ?? ""} onNotificationsClick={onNotificationsClick} hero={hero} />
           )}
@@ -404,7 +402,7 @@ function ApplicationShell({
               </div>
             )}
           </main>
-          {!isDesktop && <BottomNavigation className="shrink-0" {...navigation} />}
+          {!isDesktop && <BottomNavigation {...navigation} className={cn("w-full shrink-0", navigation?.className)} />}
         </div>
       </SidebarProvider>
     </div>

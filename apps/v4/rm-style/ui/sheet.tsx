@@ -28,7 +28,7 @@ function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
     <SheetPrimitive.Backdrop
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-overlay-scrim transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-xs",
+        "fixed inset-(--spacing-none) z-(--z-index-overlay) bg-overlay-scrim transition-opacity duration-(--motion-duration-normal) data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-xs",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ function SheetContent({
         data-slot="sheet-content"
         data-side={side}
         className={cn(
-          "fixed z-50 flex flex-col gap-(--spacing-inline-lg) bg-popover bg-clip-padding text-sm text-popover-foreground shadow-lg transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=bottom]:data-ending-style:translate-y-(--size-40) data-[side=bottom]:data-starting-style:translate-y-(--size-40) data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:data-ending-style:-translate-x-(--size-40) data-[side=left]:data-starting-style:-translate-x-(--size-40) data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:data-ending-style:translate-x-(--size-40) data-[side=right]:data-starting-style:translate-x-(--size-40) data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b data-[side=top]:data-ending-style:-translate-y-(--size-40) data-[side=top]:data-starting-style:-translate-y-(--size-40) data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+          "fixed z-(--z-index-overlay) flex flex-col gap-(--spacing-inline-lg) bg-popover bg-clip-padding text-(length:--font-size-sm) text-popover-foreground shadow-(--elevation-scale-lg) transition duration-(--motion-duration-normal) ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:inset-x-(--spacing-none) data-[side=bottom]:bottom-(--spacing-none) data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=bottom]:data-ending-style:translate-y-(--size-40) data-[side=bottom]:data-starting-style:translate-y-(--size-40) data-[side=left]:inset-y-(--spacing-none) data-[side=left]:left-(--spacing-none) data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:data-ending-style:-translate-x-(--size-40) data-[side=left]:data-starting-style:-translate-x-(--size-40) data-[side=right]:inset-y-(--spacing-none) data-[side=right]:right-(--spacing-none) data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:data-ending-style:translate-x-(--size-40) data-[side=right]:data-starting-style:translate-x-(--size-40) data-[side=top]:inset-x-(--spacing-none) data-[side=top]:top-(--spacing-none) data-[side=top]:h-auto data-[side=top]:border-b data-[side=top]:data-ending-style:-translate-y-(--size-40) data-[side=top]:data-starting-style:-translate-y-(--size-40) data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
           className
         )}
         {...props}
@@ -108,7 +108,7 @@ function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
     <SheetPrimitive.Title
       data-slot="sheet-title"
       className={cn(
-        "cn-font-heading text-base font-medium text-foreground",
+        "cn-font-heading text-(length:--font-size-base) font-(--typography-label-sm-font-weight) text-foreground",
         className
       )}
       {...props}
@@ -123,7 +123,7 @@ function SheetDescription({
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-(length:--font-size-sm) text-muted-foreground", className)}
       {...props}
     />
   )

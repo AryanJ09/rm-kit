@@ -54,15 +54,15 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "border-field-stroke text-(color:--field-label) data-[active=true]:border-field-focus data-[active=true]:ring-primary-focus-ring relative flex h-(--size-control-md) w-(--size-control-md) items-center justify-center rounded-lg border-(length:--border-width-default) bg-background text-(length:--typography-body-md-font-size) transition-all outline-none aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:ring-(length:--focus-ring-width) data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] dark:bg-input/[calc(var(--opacity-soft)*100%)] dark:data-[active=true]:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)]",
+        "border-field-stroke text-(color:--field-label) data-[active=true]:border-field-focus data-[active=true]:ring-primary-focus-ring relative flex h-(--size-control-md) w-(--size-control-md) items-center justify-center rounded-(--radius-lg) border-(length:--border-width-default) bg-background text-(length:--typography-body-md-font-size) transition-all outline-none aria-invalid:border-destructive data-[active=true]:z-(--z-index-base) data-[active=true]:ring-(length:--focus-ring-width) data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/[calc(var(--opacity-subtle)*100%)] dark:bg-input/[calc(var(--opacity-soft)*100%)] dark:data-[active=true]:aria-invalid:ring-destructive/[calc(var(--opacity-medium)*100%)]",
         className
       )}
       {...props}
     >
       {char}
       {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-(--size-icon-sm) w-(--border-width-default) animate-caret-blink bg-foreground duration-1000" />
+        <div className="pointer-events-none absolute inset-(--spacing-none) flex items-center justify-center">
+          <div className="h-(--size-icon-sm) w-(--border-width-default) animate-caret-blink bg-foreground" />
         </div>
       )}
     </div>

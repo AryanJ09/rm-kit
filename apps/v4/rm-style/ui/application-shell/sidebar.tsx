@@ -250,7 +250,7 @@ function Sidebar({
       <div
         data-slot="sidebar-gap"
         className={cn(
-          "relative w-(--size-288) bg-transparent transition-[width] duration-200 ease-linear",
+          "relative w-(--size-288) bg-transparent transition-[width] duration-(--motion-duration-normal) ease-linear",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           // Hover-open icon rail floats over the page: the layout gap keeps the rail width until it is pinned open.
@@ -265,7 +265,7 @@ function Sidebar({
         data-slot="sidebar-container"
         data-side={side}
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--size-288) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:-translate-x-full data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:translate-x-full md:flex",
+          "fixed inset-y-(--spacing-none) z-(--z-index-base) hidden h-svh w-(--size-288) transition-[left,right,width] duration-(--motion-duration-normal) ease-linear data-[side=left]:left-(--spacing-none) data-[side=left]:group-data-[collapsible=offcanvas]:-translate-x-full data-[side=right]:right-(--spacing-none) data-[side=right]:group-data-[collapsible=offcanvas]:translate-x-full md:flex",
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-(--spacing-inline-sm) group-data-[collapsible=icon]:w-[calc(var(--size-control-44)+var(--spacing-group)*2)]"
@@ -332,10 +332,10 @@ function SidebarEdgeTrigger({
         toggleSidebar()
       }}
       className={cn(
-        "absolute top-(--spacing-group) z-20 flex size-(--size-control-sm) items-center justify-center rounded-(--radius-pill) border-(length:--border-width-default) border-border bg-card text-sidebar-foreground outline-hidden hover:bg-(--surface-hover) focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring",
+        "absolute top-(--spacing-group) z-(--z-index-base) flex size-(--size-control-sm) items-center justify-center rounded-(--radius-pill) border-(length:--border-width-default) border-border bg-card text-sidebar-foreground outline-hidden hover:bg-(--surface-hover) focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring",
         // Expanded: straddle the panel edge. data-collapsible is empty only when expanded.
-        "in-data-[collapsible=]:in-data-[side=left]:right-0 in-data-[collapsible=]:in-data-[side=left]:translate-x-1/2",
-        "in-data-[collapsible=]:in-data-[side=right]:left-0 in-data-[collapsible=]:in-data-[side=right]:-translate-x-1/2",
+        "in-data-[collapsible=]:in-data-[side=left]:right-(--spacing-none) in-data-[collapsible=]:in-data-[side=left]:translate-x-1/2",
+        "in-data-[collapsible=]:in-data-[side=right]:left-(--spacing-none) in-data-[collapsible=]:in-data-[side=right]:-translate-x-1/2",
         // Collapsed: Figma has no toggle on the icon rail, so hide it. SidebarRail or Cmd/Ctrl+B expands again.
         "in-data-[collapsible=icon]:hidden",
         className
@@ -359,7 +359,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-(--spacing-inline-lg) transition-all ease-linear group-data-[side=left]:-right-(--spacing-inline-lg) group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-(--ring-width) hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "absolute inset-y-(--spacing-none) z-(--z-index-base) hidden w-(--spacing-inline-lg) transition-all ease-linear group-data-[side=left]:-right-(--spacing-inline-lg) group-data-[side=right]:left-(--spacing-none) after:absolute after:inset-y-(--spacing-none) after:start-1/2 after:w-(--ring-width) hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
@@ -377,7 +377,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
     <main
       data-slot="sidebar-inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-(--spacing-inline-sm) md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-(--radius-xl) md:peer-data-[variant=inset]:shadow-(--elevation-scale-sm) md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-(--spacing-inline-sm) md:peer-data-[variant=inset]:ml-(--spacing-none) md:peer-data-[variant=inset]:rounded-(--radius-xl) md:peer-data-[variant=inset]:shadow-(--elevation-scale-sm) md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-(--spacing-inline-sm)",
         className
       )}
       {...props}
@@ -470,7 +470,7 @@ function SidebarGroupLabel({
     props: mergeProps<"div">(
       {
         className: cn(
-          "flex h-(--size-control-32) shrink-0 items-center rounded-(--radius-md) px-(--spacing-inline-sm) text-(length:--font-size-xs) font-(--typography-title-sm-font-weight) text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-200 ease-linear group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 focus-visible:ring-(length:--focus-ring-width) [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0",
+          "flex h-(--size-control-32) shrink-0 items-center rounded-(--radius-md) px-(--spacing-inline-sm) text-(length:--font-size-xs) font-(--typography-title-sm-font-weight) text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-(--motion-duration-normal) ease-linear group-data-[collapsible=icon]:-mt-(--spacing-section-md) group-data-[collapsible=icon]:opacity-0 focus-visible:ring-(length:--focus-ring-width) [&>svg]:size-(--size-icon-sm) [&>svg]:shrink-0",
           className
         ),
       },

@@ -23,7 +23,7 @@ function PaginationContent({
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("flex items-center gap-0.5", className)}
+      className={cn("flex items-center gap-(--spacing-stack-3xs)", className)}
       {...props}
     />
   )
@@ -71,7 +71,7 @@ function PaginationPrevious({
     <PaginationLink
       aria-label="Go to previous page"
       size="md"
-      className={cn("pl-1.5!", className)}
+      className={cn("pl-(--spacing-stack-2xs)!", className)}
       {...props}
     >
       <ChevronLeftIcon data-icon="inline-start" className="cn-rtl-flip" />
@@ -89,7 +89,7 @@ function PaginationNext({
     <PaginationLink
       aria-label="Go to next page"
       size="md"
-      className={cn("pr-1.5!", className)}
+      className={cn("pr-(--spacing-stack-2xs)!", className)}
       {...props}
     >
       <span className="hidden sm:block">{text}</span>
@@ -107,7 +107,7 @@ function PaginationEllipsis({
       aria-hidden
       data-slot="pagination-ellipsis"
       className={cn(
-        "flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        "flex size-(--size-control-32) items-center justify-center [&_svg:not([class*='size-'])]:size-(--size-icon-sm)",
         className
       )}
       {...props}

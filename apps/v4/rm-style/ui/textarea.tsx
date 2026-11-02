@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { controlMinSize } from "./control"
+import { FieldShell } from "./field-shell"
 
 // Same states and tokens as Input. Height is a minimum so the field grows with its content.
 const textareaVariants = cva(
@@ -23,10 +24,15 @@ const textareaVariants = cva(
 )
 
 type TextareaProps = Omit<React.ComponentProps<"textarea">, "size"> &
-  VariantProps<typeof textareaVariants>
+  VariantProps<typeof textareaVariants> & {
+    /** Label above the field. Omit for a bare textarea. */
+    label?: string
+    /** Helper line below. Takes the error or success colour from `state`. */
+    helper?: string
+  }
 
-function Textarea({ className, size, state, ...props }: TextareaProps) {
-  return (
+function Textarea({ className, size, state, label, helper, ...props }: TextareaProps) {
+  const field = (
     <textarea
       data-slot="textarea"
       data-size={size}
@@ -34,6 +40,13 @@ function Textarea({ className, size, state, ...props }: TextareaProps) {
       className={cn(textareaVariants({ size, state }), className)}
       {...props}
     />
+  )
+  return label || helper ? (
+    <FieldShell label={label} helper={helper} state={state ?? "default"}>
+      {field}
+    </FieldShell>
+  ) : (
+    field
   )
 }
 

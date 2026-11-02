@@ -2,7 +2,7 @@
 
 // RM Kit card archetypes. Every card in a product is one of these six, fed with data props. They are the only way to
 // make a card: the Card shell is locked (no className), and the archetypes take data, not layout, so the same data always
-// gives the same card. Pick one with the catalog in rm-style/golden-rules/03-card-catalog.md.
+// gives the same card. Pick one with the catalog in rm-style/learnings/golden-rules/03-card-catalog.md.
 //
 //   StatCard     numbers lead            (KPI, total, balance, count, score, rate, AUM)
 //   SummaryCard  labelled facts          (details, overview, info, callout, notice, row of key-values)
@@ -162,6 +162,7 @@ function SummaryCard({
   note,
   choices,
   onMore,
+  action,
   tone = "default",
   density = "default",
   ...common
@@ -178,6 +179,8 @@ function SummaryCard({
   choices?: { label: string; selected?: boolean; onSelect?: () => void }[]
   /** Shows a "more" icon in the header. */
   onMore?: () => void
+  /** One action under the content (e.g. "Reset filters"). Only when needed. */
+  action?: { label: string; onClick: () => void; variant?: "default" | "secondary" }
   /** `info`: a highlighted notice or mandatory item. */
   tone?: "default" | "info"
   /** `compact`: the one-line row. */
@@ -208,7 +211,7 @@ function SummaryCard({
       {state === "error" ? (
         <ErrorBody {...common} />
       ) : (
-        (items?.length || description || note || choices || state === "loading") && (
+        (items?.length || description || note || choices || action || state === "loading") && (
           <CardBody loading={state === "loading"}>
             {items?.map((item) => (
               <CardKeyValue key={item.label} label={item.label}>
@@ -230,6 +233,13 @@ function SummaryCard({
                     {c.label}
                   </Chip>
                 ))}
+              </div>
+            )}
+            {action && (
+              <div>
+                <Button variant={action.variant ?? "secondary"} onClick={action.onClick}>
+                  {action.label}
+                </Button>
               </div>
             )}
           </CardBody>
@@ -400,6 +410,7 @@ function PersonCard({
   name,
   initials,
   lines,
+  notes,
   role,
   mode = "read",
   field,
@@ -410,12 +421,21 @@ function PersonCard({
   /** Shows an avatar when given. */
   initials?: string
   lines?: string[]
+  /** Lines under the identity with a tone: a status ("AUTH · Head") or an alert ("Overdue · 31 Aug 2026", `strong`). */
+  notes?: { text: string; tone?: "success" | "danger" | "neutral"; strong?: boolean }[]
   role?: CardStatus
   mode?: "read" | "edit" | "removable"
   field?: { label: string; options: DropdownOption[]; value?: string[]; onValueChange?: (v: string[]) => void; helper?: string }
   onRemove?: () => void
 }) {
   const { state = "default" } = common
+  // Loading is skeleton lines only, as in a list of rows still waiting for data.
+  if (state === "loading")
+    return (
+      <Card {...shell(common)}>
+        <CardBody loading />
+      </Card>
+    )
   return (
     <Card {...shell(common)}>
       <CardHeader>
@@ -430,16 +450,30 @@ function PersonCard({
           <CardTitle>{name}</CardTitle>
           {lines?.map((l) => <CardDescription key={l}>{l}</CardDescription>)}
         </CardTitleGroup>
-        {role && (
+        {(role || (common.onClick && mode === "read")) && (
           <CardTrailing>
             <StatusBadge status={role} />
+            {/* A clickable person card opens the person: a chevron, as on ItemCard. */}
+            {common.onClick && mode === "read" && <ChevronRightIcon className="size-(--size-icon-md) text-icon-default" />}
           </CardTrailing>
         )}
       </CardHeader>
+      {notes?.map((n) => (
+        <span
+          key={n.text}
+          className={cn(
+            "text-(length:--font-size-xs)",
+            n.strong && "font-(--typography-label-strong-font-weight)",
+            n.tone === "success" && "text-(color:--category-success-text)",
+            n.tone === "danger" && "text-(color:--category-aggressive-text)",
+            (!n.tone || n.tone === "neutral") && "text-muted-foreground"
+          )}
+        >
+          {n.text}
+        </span>
+      ))}
       {state === "error" ? (
         <ErrorBody {...common} />
-      ) : state === "loading" ? (
-        <CardBody loading />
       ) : mode === "edit" && field ? (
         <Dropdown
           label={field.label}

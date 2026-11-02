@@ -11,7 +11,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn("w-full caption-bottom text-(length:--font-size-sm)", className)}
         {...props}
       />
     </div>
@@ -32,7 +32,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
+      className={cn("[&_tr:last-child]:border-(length:--spacing-none)", className)}
       {...props}
     />
   )
@@ -43,7 +43,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
     <tfoot
       data-slot="table-footer"
       className={cn(
-        "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
+        "border-t bg-muted/50 font-(--typography-label-sm-font-weight) [&>tr]:last:border-b-0",
         className
       )}
       {...props}
@@ -69,7 +69,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
     <th
       data-slot="table-head"
       className={cn(
-        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0",
+        "h-(--size-40) px-(--spacing-inline-sm) text-left align-middle font-(--typography-label-sm-font-weight) whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-(--spacing-none)",
         className
       )}
       {...props}
@@ -82,7 +82,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
     <td
       data-slot="table-cell"
       className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0",
+        "p-(--spacing-inline-sm) align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-(--spacing-none)",
         className
       )}
       {...props}
@@ -97,7 +97,7 @@ function TableCaption({
   return (
     <caption
       data-slot="table-caption"
-      className={cn("mt-4 text-sm text-muted-foreground", className)}
+      className={cn("mt-(--spacing-inline-lg) text-(length:--font-size-sm) text-muted-foreground", className)}
       {...props}
     />
   )

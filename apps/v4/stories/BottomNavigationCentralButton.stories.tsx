@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { VariantGrid } from "./figma/component-set"
 
 const meta = {
-  title: "RM Kit/Bottom navigation/Central button",
+  title: "RM Kit/Application shell/Central button",
   parameters: { layout: "fullscreen" },
 } satisfies Meta
 export default meta

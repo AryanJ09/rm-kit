@@ -19,7 +19,7 @@ function Avatar({
       data-slot="avatar"
       data-size={size}
       className={cn(
-        "group/avatar relative flex shrink-0 rounded-(--radius-pill) select-none after:absolute after:inset-0 after:rounded-(--radius-pill) after:border-(length:--border-width-default) after:border-border after:mix-blend-darken data-[size=default]:size-(--size-control-32) data-[size=lg]:size-(--size-control-md) data-[size=sm]:size-(--size-icon-lg) dark:after:mix-blend-lighten",
+        "group/avatar relative flex shrink-0 rounded-(--radius-pill) select-none after:absolute after:inset-(--spacing-none) after:rounded-(--radius-pill) after:border-(length:--border-width-default) after:border-border after:mix-blend-darken data-[size=default]:size-(--size-control-32) data-[size=lg]:size-(--size-control-md) data-[size=sm]:size-(--size-icon-lg) dark:after:mix-blend-lighten",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="avatar-badge"
       className={cn(
-        "absolute right-(--spacing-none) bottom-(--spacing-none) z-10 inline-flex items-center justify-center rounded-(--radius-pill) bg-primary text-primary-foreground ring-(length:--ring-width) ring-background select-none",
+        "absolute right-(--spacing-none) bottom-(--spacing-none) z-(--z-index-base) inline-flex items-center justify-center rounded-(--radius-pill) bg-primary text-primary-foreground ring-(length:--ring-width) ring-background select-none",
         "group-data-[size=sm]/avatar:size-(--size-dot) group-data-[size=sm]/avatar:[&>svg]:hidden",
         "group-data-[size=default]/avatar:size-(--size-dot-md) group-data-[size=default]/avatar:[&>svg]:size-(--size-dot)",
         "group-data-[size=lg]/avatar:size-(--size-icon-3xs) group-data-[size=lg]/avatar:[&>svg]:size-(--size-dot)",

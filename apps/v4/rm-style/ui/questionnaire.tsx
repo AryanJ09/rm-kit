@@ -30,7 +30,7 @@ function QuestionnaireProgress({
     <QuestionnairePrimitive.Progress
       data-slot="questionnaire-progress"
       className={cn(
-        "min-h-(--line-height-xs) w-fit min-w-(--measure-progress-min-width) text-xs font-(--typography-label-md-font-weight) text-muted-foreground tabular-nums",
+        "min-h-(--line-height-xs) w-fit min-w-(--measure-progress-min-width) text-(length:--font-size-xs) font-(--typography-label-md-font-weight) text-muted-foreground tabular-nums",
         className
       )}
       {...props}
@@ -46,7 +46,7 @@ function QuestionnaireItem({
     <QuestionnairePrimitive.Item
       data-slot="questionnaire-item"
       className={cn(
-        "flex min-w-0 flex-col gap-(--spacing-inline-lg) border-0 p-0 outline-none",
+        "flex min-w-0 flex-col gap-(--spacing-inline-lg) border-(length:--spacing-none) p-(--spacing-none) outline-none",
         className
       )}
       {...props}
@@ -62,7 +62,7 @@ function QuestionnaireTitle({
     <QuestionnairePrimitive.Title
       data-slot="questionnaire-title"
       className={cn(
-        "cn-font-heading text-base leading-(--typography-title-md-line-height) font-(--typography-label-md-font-weight) text-pretty [&:not(:has(~[data-slot=questionnaire-description]))]:mb-(--spacing-inline-lg)",
+        "cn-font-heading text-(length:--font-size-base) leading-(--typography-title-md-line-height) font-(--typography-label-md-font-weight) text-pretty [&:not(:has(~[data-slot=questionnaire-description]))]:mb-(--spacing-inline-lg)",
         className
       )}
       {...props}
@@ -77,7 +77,7 @@ function QuestionnaireDescription({
   return (
     <QuestionnairePrimitive.Description
       data-slot="questionnaire-description"
-      className={cn("text-sm text-pretty text-muted-foreground", className)}
+      className={cn("text-(length:--font-size-sm) text-pretty text-muted-foreground", className)}
       {...props}
     />
   )
@@ -108,7 +108,7 @@ function QuestionnaireChoice({
     <QuestionnairePrimitive.Choice
       data-slot="questionnaire-choice"
       className={cn(
-        "group/questionnaire-choice relative flex min-h-(--size-control-44) cursor-pointer items-start gap-(--spacing-inset-md) rounded-lg border border-input bg-transparent px-(--spacing-inline-md) py-(--spacing-inset-md) text-start text-sm transition-[color,box-shadow,background-color] duration-(--motion-duration-fast) outline-none select-none hover:bg-muted/[calc(var(--opacity-half)*100%)] has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-(length:--focus-ring-width) has-[>input:focus-visible]:ring-ring/[calc(var(--ring-opacity)*100%)] data-invalid:border-destructive dark:bg-input/[calc(var(--opacity-subtle)*100%)] data-checked:border-primary/[calc(var(--opacity-medium)*100%)] dark:data-checked:border-primary/[calc(var(--opacity-subtle)*100%)] data-checked:bg-muted",
+        "group/questionnaire-choice relative flex min-h-(--size-control-44) cursor-pointer items-start gap-(--spacing-inset-md) rounded-(--radius-lg) border border-input bg-transparent px-(--spacing-inline-md) py-(--spacing-inset-md) text-start text-(length:--font-size-sm) transition-[color,box-shadow,background-color] duration-(--motion-duration-fast) outline-none select-none hover:bg-muted/[calc(var(--opacity-half)*100%)] has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-(length:--focus-ring-width) has-[>input:focus-visible]:ring-ring/[calc(var(--ring-opacity)*100%)] data-invalid:border-destructive dark:bg-input/[calc(var(--opacity-subtle)*100%)] data-checked:border-primary/[calc(var(--opacity-medium)*100%)] dark:data-checked:border-primary/[calc(var(--opacity-subtle)*100%)] data-checked:bg-muted",
         "data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--opacity-disabled)",
         className
       )}
@@ -116,7 +116,7 @@ function QuestionnaireChoice({
     >
       <QuestionnairePrimitive.ChoiceInput
         data-slot="questionnaire-choice-input"
-        className="absolute inset-0 z-10 size-full cursor-pointer opacity-0"
+        className="absolute inset-(--spacing-none) z-(--z-index-base) size-full cursor-pointer opacity-0"
         render={(inputProps, state) => (
           <>
             <input {...inputProps} />
@@ -155,7 +155,7 @@ function QuestionnaireChoice({
       </QuestionnairePrimitive.ChoiceLabel>
       <QuestionnairePrimitive.ChoiceShortcut
         data-slot="questionnaire-choice-shortcut"
-        className="pointer-events-none ms-auto hidden size-(--size-icon-md) shrink-0 translate-y-(--spacing-stack-3xs) items-center justify-center rounded-md border border-input bg-background font-sans text-(length:--typography-micro-font-size) leading-none font-(--typography-label-md-font-weight) text-muted-foreground group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-(--spacing-stack-3xs) group-data-[shortcut]/questionnaire-choice:inline-flex"
+        className="pointer-events-none ms-auto hidden size-(--size-icon-md) shrink-0 translate-y-(--spacing-stack-3xs) items-center justify-center rounded-(--radius-md) border border-input bg-background font-sans text-(length:--typography-micro-font-size) leading-none font-(--typography-label-md-font-weight) text-muted-foreground group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-(--spacing-stack-3xs) group-data-[shortcut]/questionnaire-choice:inline-flex"
       />
     </QuestionnairePrimitive.Choice>
   )
@@ -186,7 +186,7 @@ function QuestionnaireInput({
       <QuestionnairePrimitive.Input
         data-slot="questionnaire-input"
         className={cn(
-          "h-(--size-control-md) w-full min-w-0 rounded-lg border border-input bg-transparent px-(--spacing-inset-md) py-(--spacing-stack-xs) text-base transition-[color,box-shadow,background-color] outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input disabled:opacity-(--opacity-disabled) aria-invalid:border-destructive aria-invalid:ring-(length:--focus-ring-width) aria-invalid:ring-ring-destructive/[calc(var(--opacity-subtle)*100%)] md:text-sm dark:bg-input dark:disabled:bg-input dark:aria-invalid:border-destructive/[calc(var(--ring-opacity)*100%)] dark:aria-invalid:ring-ring-destructive/[calc(var(--opacity-medium)*100%)]",
+          "h-(--size-control-md) w-full min-w-0 rounded-(--radius-lg) border border-input bg-transparent px-(--spacing-inset-md) py-(--spacing-stack-xs) text-(length:--font-size-base) transition-[color,box-shadow,background-color] outline-none focus-visible:border-ring focus-visible:ring-(length:--focus-ring-width) focus-visible:ring-ring/[calc(var(--ring-opacity)*100%)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input disabled:opacity-(--opacity-disabled) aria-invalid:border-destructive aria-invalid:ring-(length:--focus-ring-width) aria-invalid:ring-ring-destructive/[calc(var(--opacity-subtle)*100%)] md:text-(length:--font-size-sm) dark:bg-input dark:disabled:bg-input dark:aria-invalid:border-destructive/[calc(var(--ring-opacity)*100%)] dark:aria-invalid:ring-ring-destructive/[calc(var(--opacity-medium)*100%)]",
           "selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground",
           className
         )}
@@ -203,7 +203,7 @@ function QuestionnaireError({
   return (
     <QuestionnairePrimitive.Error
       data-slot="questionnaire-error"
-      className={cn("mt-(--spacing-stack-sm) text-sm text-destructive", className)}
+      className={cn("mt-(--spacing-stack-sm) text-(length:--font-size-sm) text-destructive", className)}
       {...props}
     />
   )

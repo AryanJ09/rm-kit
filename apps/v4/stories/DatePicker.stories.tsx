@@ -17,7 +17,7 @@ const cell = "flex w-(--size-288) flex-col gap-(--spacing-inline-lg)"
 function Cell({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className={cell}>
-      <span className="text-sm text-field-helper">{title}</span>
+      <span className="text-(length:--font-size-sm) text-field-helper">{title}</span>
       {children}
     </div>
   )

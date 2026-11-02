@@ -28,11 +28,11 @@ function Cell({
 }) {
   return (
     <div className="flex w-(--size-288) flex-col gap-(--spacing-stack-2xs)">
-      <span className="text-sm text-(color:--field-label)">{label}</span>
+      <span className="text-(length:--font-size-sm) text-(color:--field-label)">{label}</span>
       {children}
       {helper ? (
         <span
-          className={`text-sm text-field-helper ${helperClassName ?? ""}`}
+          className={`text-(length:--font-size-sm) text-field-helper ${helperClassName ?? ""}`}
         >
           {helper}
         </span>

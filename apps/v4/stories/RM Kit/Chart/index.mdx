@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks"
 
-<Meta title="RM Kit/Chart" />
+<Meta title="RM Kit/Chart/Guide" />
 
 # Chart
 
@@ -19,3 +19,10 @@ Click a series (bar segment, slice, line) or its legend item to highlight it; th
 - `scale="percent"` makes every bar 100% tall and hides value labels.
 - Headline values and the chart are independent data; never derive one from the other.
 - Place a chart inside a `Card`; do not use a bare chart on a page.
+
+## Chart cards (panels)
+A chart always sits in a card, so the panels are card archetypes in `rm-style/ui/chart-cards.tsx`:
+- **TrendCard**: how a total changed over time (history, growth, performance). Choice chips, a headline, a growth strip, the stacked bar chart and breakdown rows.
+- **AllocationCard**: how a total is split right now (mix, share, composition). A Family or Individual scope, choice chips, a donut with its legend, and per part the holding numbers and products.
+
+Client, tab and category are data, never variants. Strategy and decisions: `rm-style/learnings/04-charts-strategy.md`.

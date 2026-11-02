@@ -4,7 +4,7 @@ import { DirectionProvider, useDirection } from "@/rm-style/ui/direction"
 
 function DirectionLabel() {
   const dir = useDirection()
-  return <p className="text-sm">Current direction: {dir}</p>
+  return <p className="text-(length:--font-size-sm)">Current direction: {dir}</p>
 }
 
 const meta = {

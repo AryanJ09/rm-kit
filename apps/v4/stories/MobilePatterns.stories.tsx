@@ -9,6 +9,11 @@ import type { Destination } from "@/rm-style/ui/application-shell/bottom-navigat
 import { MobileClient360, type Client360Tab } from "./patterns/mobile-client360"
 import { MobileLeads, type LeadsState } from "./patterns/mobile-leads"
 import { MobileRmPortfolio } from "./patterns/mobile-rm-portfolio"
+import { MobileLeadDetail } from "./patterns/mobile-lead-detail"
+import { MobileCaseDetail } from "./patterns/mobile-case-detail"
+import { MobileCases, type CasesState } from "./patterns/mobile-cases"
+import { MobileTasks } from "./patterns/mobile-tasks"
+import type { CardState } from "@/rm-style/ui/cards"
 import { MobileRmProfile, type RmProfileTab } from "./patterns/mobile-rm-profile"
 import { MobileClients, type ClientsState } from "./patterns/mobile-clients"
 import { MobileHome, type HomeState } from "./patterns/mobile-home"
@@ -139,4 +144,34 @@ export const RmProfile: StoryObj<{ tab: RmProfileTab; footerNote: boolean }> = {
     React.useEffect(() => setCurrent(tab), [tab])
     return <MobileRmProfile {...args} tab={current} onTabChange={setCurrent} />
   },
+}
+
+/** Lead detail: the lead, its steps (tap the active one to move on), Mark won and Drop lead, the AI actions, details and remarks. */
+export const LeadDetail: StoryObj<{ footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { footerNote: true },
+  render: (args) => <MobileLeadDetail {...args} />,
+}
+
+/** Case detail: the case value with its contact actions, the gates as steps, and the remarks. */
+export const CaseDetail: StoryObj<{ footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { footerNote: true },
+  render: (args) => <MobileCaseDetail {...args} />,
+}
+
+/** Cases: a search and the case rows, or the empty message. */
+export const Cases: StoryObj<{ state: CasesState; footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { state: "default", footerNote: true },
+  argTypes: { state: { control: "inline-radio", options: ["default", "empty"] } },
+  render: (args) => <MobileCases {...args} />,
+}
+
+/** Tasks: one task card per category. */
+export const Tasks: StoryObj<{ state: CardState; footerNote: boolean }> = {
+  globals: { viewport: { value: "rmMobile", isRotated: false } },
+  args: { state: "default", footerNote: true },
+  argTypes: { state: { control: "inline-radio", options: ["default", "loading", "empty", "error"] } },
+  render: (args) => <MobileTasks {...args} />,
 }

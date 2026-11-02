@@ -7,6 +7,8 @@ import { Button } from "@/rm-style/ui/button"
 import { Chip } from "@/rm-style/ui/chip/chip"
 import { MeetingLogSheetContent } from "./patterns/meeting-log-sheet"
 import { CueActionSheet } from "./patterns/cue-action-sheet"
+import { FilterSheetContent } from "./patterns/filter-sheet"
+import { AddLeadSheetContent } from "./patterns/add-lead-sheet"
 import { BookIcon, CalculatorIcon, FileTextIcon } from "lucide-react"
 
 const meta = {
@@ -136,6 +138,54 @@ export const CueActions: Story = {
           }}
         />
       </div>
+    )
+  },
+}
+
+const leadsSections = [
+  { id: "stage", title: "Lead stage", options: ["New", "Qualifying", "Offer", "Won", "Dropped"] },
+  { id: "customer", title: "Customer type", options: ["New to bank", "Existing to bank"] },
+  { id: "amount", title: "Pipeline amount", options: ["Under ₹5 L", "₹5 L to ₹25 L", "Above ₹25 L"] },
+  { id: "category", title: "Category", options: ["Partner", "Branch", "Digital", "Referral", "Self"] },
+]
+const casesSections = [
+  { id: "status", title: "Status", options: ["New", "In progress", "Closed"] },
+  { id: "category", title: "Category", options: ["Loan", "Deposit", "Card"] },
+]
+
+function FilterStory({ title, sections }: { title: string; sections: typeof leadsSections }) {
+  const [open, setOpen] = React.useState(true)
+  const [value, setValue] = React.useState<string[]>([])
+  return (
+    <BottomSheet open={open} onOpenChange={setOpen}>
+      <BottomSheetTrigger render={<Button />}>Filters{value.length ? ` (${value.length})` : ""}</BottomSheetTrigger>
+      <FilterSheetContent title={title} sections={sections} toggle={{ id: "sla", label: "SLA breach only" }} value={value} onValueChange={setValue} onApply={() => setOpen(false)} />
+    </BottomSheet>
+  )
+}
+
+/** The Leads filter: chip sections (several can be chosen), an SLA switch, Reset and Apply pinned. */
+export const LeadsFilter: Story = { render: () => <FilterStory title="Filter Leads" sections={leadsSections} /> }
+
+/** The Cases filter: the same sheet with its own sections. */
+export const CasesFilter: Story = { render: () => <FilterStory title="Filter Cases" sections={casesSections} /> }
+
+/** Add lead: a form in the sheet; Cancel asks before the details are lost. */
+export const AddLead: Story = {
+  render: () => {
+    const [open, setOpen] = React.useState(true)
+    return (
+      <BottomSheet open={open} onOpenChange={setOpen}>
+        <BottomSheetTrigger render={<Button />}>Add lead</BottomSheetTrigger>
+        <AddLeadSheetContent
+          relationships={[{ value: "new", label: "New to bank" }, { value: "existing", label: "Existing to bank" }]}
+          sources={[{ value: "branch", label: "Branch" }, { value: "digital", label: "Digital" }, { value: "referral", label: "Referral" }]}
+          products={[{ value: "dep", label: "Deposit" }, { value: "sec", label: "Secured lending" }, { value: "uns", label: "Unsecured lending" }]}
+          temperatures={[{ value: "hot", label: "Hot" }, { value: "warm", label: "Warm" }, { value: "cold", label: "Cold" }]}
+          onSave={() => setOpen(false)}
+          onDiscard={() => setOpen(false)}
+        />
+      </BottomSheet>
     )
   },
 }

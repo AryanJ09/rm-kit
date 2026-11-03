@@ -5,6 +5,7 @@
 import * as React from "react"
 import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { cn } from "cn"
+import { useTokenPx } from "../lib/token-px"
 import { ChevronRightIcon, CheckIcon } from "lucide-react"
 
 import {
@@ -56,7 +57,7 @@ function DropdownMenuContent({
   align = "start",
   alignOffset = 0,
   side = "bottom",
-  sideOffset = 4,
+  sideOffset,
   className,
   ...props
 }: MenuPrimitive.Popup.Props &
@@ -64,6 +65,7 @@ function DropdownMenuContent({
     MenuPrimitive.Positioner.Props,
     "align" | "alignOffset" | "side" | "sideOffset"
   >) {
+  const gap = useTokenPx({ offset: "--spacing-inline-xs" })
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
@@ -71,7 +73,7 @@ function DropdownMenuContent({
         align={align}
         alignOffset={alignOffset}
         side={side}
-        sideOffset={sideOffset}
+        sideOffset={sideOffset ?? gap.offset}
       >
         <MenuPrimitive.Popup
           data-slot="dropdown-menu-content"
@@ -170,18 +172,19 @@ function DropdownMenuSubTrigger({
 
 function DropdownMenuSubContent({
   align = "start",
-  alignOffset = -3,
+  alignOffset,
   side = "right",
   sideOffset = 0,
   className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuContent>) {
+  const gap = useTokenPx({ offset: "--spacing-inline-xs" })
   return (
     <DropdownMenuContent
       data-slot="dropdown-menu-sub-content"
       className={cn("w-auto min-w-(--size-96)", className)}
       align={align}
-      alignOffset={alignOffset}
+      alignOffset={alignOffset ?? -gap.offset}
       side={side}
       sideOffset={sideOffset}
       {...props}

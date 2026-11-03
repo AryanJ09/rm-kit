@@ -29,7 +29,7 @@ function Progress({
   ...props
 }: ProgressPrimitive.Root.Props & {
   size?: "sm" | "lg"
-  tone?: "primary" | "secure"
+  tone?: "primary" | "secure" | "deep"
   valueLabel?: React.ReactNode
   markers?: ProgressMarker[]
 }) {
@@ -107,14 +107,15 @@ function ProgressIndicator({
   tone = "primary",
   size = "sm",
   ...props
-}: ProgressPrimitive.Indicator.Props & { tone?: "primary" | "secure"; size?: "sm" | "lg" }) {
+}: ProgressPrimitive.Indicator.Props & { tone?: "primary" | "secure" | "deep"; size?: "sm" | "lg" }) {
   return (
     <ProgressPrimitive.Indicator
       data-slot="progress-indicator"
       className={cn(
         "h-(--size-share-full) overflow-hidden transition-all",
         size === "lg" ? "rounded-(--radius-md)" : "rounded-(--radius-pill)",
-        tone === "secure" ? "bg-(color:--category-secure-text)" : "bg-primary",
+        // deep: the prototype's navy goal bars, nearest role is the chart navy-blue
+        tone === "secure" ? "bg-(color:--category-secure-text)" : tone === "deep" ? "bg-(color:--chart-6)" : "bg-primary",
         className
       )}
       {...props}

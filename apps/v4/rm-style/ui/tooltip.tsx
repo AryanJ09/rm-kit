@@ -2,6 +2,7 @@
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
 import { cn } from "cn"
+import { useTokenPx } from "../lib/token-px"
 
 function TooltipProvider({
   delay = 0,
@@ -27,7 +28,7 @@ function TooltipTrigger({ ...props }: TooltipPrimitive.Trigger.Props) {
 function TooltipContent({
   className,
   side = "top",
-  sideOffset = 4,
+  sideOffset,
   align = "center",
   alignOffset = 0,
   children,
@@ -37,13 +38,14 @@ function TooltipContent({
     TooltipPrimitive.Positioner.Props,
     "align" | "alignOffset" | "side" | "sideOffset"
   >) {
+  const gap = useTokenPx({ offset: "--spacing-inline-xs" })
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner
         align={align}
         alignOffset={alignOffset}
         side={side}
-        sideOffset={sideOffset}
+        sideOffset={sideOffset ?? gap.offset}
         className="isolate z-(--z-index-overlay)"
       >
         <TooltipPrimitive.Popup

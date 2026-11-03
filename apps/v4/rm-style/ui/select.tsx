@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { cn } from "cn"
+import { useTokenPx } from "../lib/token-px"
 
 import { controlShellClass, controlSize, type ControlSize } from "./control"
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from "lucide-react"
@@ -76,7 +77,7 @@ function SelectContent({
   className,
   children,
   side = "bottom",
-  sideOffset = 4,
+  sideOffset,
   align = "center",
   alignOffset = 0,
   // false: the list opens below the trigger. true would slide the list over the trigger to line the selected row up.
@@ -87,11 +88,12 @@ function SelectContent({
     SelectPrimitive.Positioner.Props,
     "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
   >) {
+  const gap = useTokenPx({ offset: "--spacing-inline-xs" })
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Positioner
         side={side}
-        sideOffset={sideOffset}
+        sideOffset={sideOffset ?? gap.offset}
         align={align}
         alignOffset={alignOffset}
         alignItemWithTrigger={alignItemWithTrigger}

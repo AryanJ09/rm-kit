@@ -195,7 +195,7 @@ export function MobileRmProfile({ tab: tabProp, onTabChange, footerNote = true, 
             {view === "goals" ? (
               <>
                 <SummaryCard title={rvGrowth.label} subtitle="Wtg: 25% • SOP: 15">
-                  <Progress size="lg" {...bar(rvGrowth)} />
+                  <Progress size="lg" tone="deep" {...bar(rvGrowth)} />
                 </SummaryCard>
                 <Accordion variant="card" defaultValue={["deposit"]}>
                   {groups.map((g) => (
@@ -209,7 +209,7 @@ export function MobileRmProfile({ tab: tabProp, onTabChange, footerNote = true, 
                       <AccordionContent>
                         <div className="flex flex-col gap-(--spacing-inline-md)">
                           <Separator />
-                          <Progress size="lg" {...bar(g.total)} />
+                          <Progress size="lg" tone="deep" {...bar(g.total)} />
                           {g.parts.map((p) => (
                             <React.Fragment key={p.label}>
                               <Separator />

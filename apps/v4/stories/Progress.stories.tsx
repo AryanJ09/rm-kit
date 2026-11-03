@@ -18,7 +18,7 @@ export const Controlled: Story = { render: () => <DemoProgressControlled /> }
 export const Demo: Story = { render: () => <DemoProgressDemo /> }
 export const Label: Story = { render: () => <DemoProgressLabel /> }
 
-type GoalArgs = { value: number; size: "sm" | "lg"; tone: "primary" | "secure"; showLabel: boolean; target: number; cap: number }
+type GoalArgs = { value: number; size: "sm" | "lg"; tone: "primary" | "secure" | "deep"; showLabel: boolean; target: number; cap: number }
 
 /** The bar with its options: size, fill tone, a label inside the fill, and Target and Cap flags over the track. */
 export const Goal: StoryObj<GoalArgs> = {
@@ -26,7 +26,7 @@ export const Goal: StoryObj<GoalArgs> = {
   argTypes: {
     value: { control: { type: "range", min: 0, max: 100 } },
     size: { control: "inline-radio", options: ["sm", "lg"], description: "sm: the thin line. lg: a tall bar that can carry a label." },
-    tone: { control: "inline-radio", options: ["primary", "secure"] },
+    tone: { control: "inline-radio", options: ["primary", "secure", "deep"] },
     showLabel: { control: "boolean", description: "A label inside the fill (size lg)." },
     target: { control: { type: "range", min: 0, max: 100 }, description: "Where the Target flag sits (0 hides it)." },
     cap: { control: { type: "range", min: 0, max: 100 }, description: "Where the Cap flag sits (0 hides it)." },

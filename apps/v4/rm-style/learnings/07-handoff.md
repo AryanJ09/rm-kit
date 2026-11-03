@@ -5,9 +5,9 @@ State at hand-off. Read this first; the rest of `learnings/` is history.
 ## What the kit is
 - One folder, `apps/v4/rm-style/`: `tokens/` (primitives, semantic), `theme.css` (Tailwind mapping), `ui/` (components), `lib/`
   (`token-px`, `use-mobile`), `icons/`. Components import each other by relative path, so the folder can be copied as is.
-- npm dependencies the folder needs: `tailwindcss`, `tw-animate-css`, `shadcn/tailwind.css` (see Open decisions), `cn`,
+- npm dependencies the folder needs: `tailwindcss`, `tw-animate-css`, `cn`,
   `class-variance-authority`, `lucide-react`, `@base-ui/react`, `recharts`, `react-day-picker`, `cmdk`, `embla-carousel-react`,
-  `input-otp`, `@shadcn/react`.
+  `input-otp`, `radix-ui` (button slot), `@shadcn/react` (questionnaire, message scroller). `README.md` in `rm-style/` has the full list.
 - Storybook has one category, **RM Kit**. Screens are *patterns* in `stories/patterns/`, built only from kit components.
   Example data (client names, product series) lives in `stories/` and `stories/examples/`, never in `rm-style/`.
 
@@ -44,18 +44,21 @@ All 17 have a story. Cases, Case detail and Lead detail use sample data shaped f
 - Roles added: share (half, three-quarters, third, full, max), panel widths, opacity hidden and full, motion none, swipe, distance,
   enter scale, line-height none.
 
-## Open decisions (need the owner)
-1. **Navy.** The prototype's main goal bars are dark navy. No semantic role is navy; the nearest is `--primary-pressed`. Bars use
-   brand blue. Add a role if an exact match matters.
-2. **Combobox, Select, Popover** are still shadcn-derived (they pass the audit). Their look is not yet the RM panel look the way
-   the Hover card now is, and tooltip and dropdown-menu are the same. They are used by `dropdown.tsx` and `date-picker.tsx`.
-3. **`shadcn/tailwind.css`** is still imported in `theme.css`. The kit uses its `data-open`, `data-closed`, `data-checked`,
-   `data-disabled` (and similar) variants about 160 times, plus `no-scrollbar`, `scroll-fade`, `shimmer` and the accordion
-   keyframes. To remove the import, copy those definitions into `theme.css`.
-4. **Storybook aliases** in `.storybook/main.ts` map shadcn's old import paths to the kit and one to shadcn's base card. Needed only
-   for the stock demo stories.
-5. 16 near-shadcn files (similarity 0.6 to 0.9) and 4 stock files (`carousel`, `collapsible`, `message-scroller`, `separator`)
-   remain. They are tokenised; decide whether to rebuild them as RM-native.
+## Decisions closed in the final round
+1. **Navy.** The goal bars use `--chart-6` (steel navy, the nearest existing role) through `Progress tone="deep"`. No role was added.
+2. **Popover, tooltip, select, combobox, dropdown-menu** now open at a role-based offset (`--spacing-inline-xs`), and Popover wears the
+   shared RM panel (`menu.ts`). Select, combobox and dropdown-menu already used it.
+3. **`shadcn/tailwind.css`** is gone from `theme.css`. `behaviors.css` holds the variants and utilities the kit uses.
+4. **Near-shadcn files.** Tokenised and kept for v1. Files whose lines still match shadcn's source by 0.9 or more: alert-dialog,
+   carousel, collapsible, dialog, drawer, empty, item, label, message-scroller, message, popover, scroll-area, separator, sheet,
+   skeleton, slider, tooltip. Rebuild them as RM-native when a design asks for it.
+5. **Storybook aliases** (`.storybook/main.ts`) stay: 139 stock demo stories in 22 story files import shadcn's demo files through
+   them. Removing the aliases means removing those stories, a separate sweep (backlog).
+
+## Backlog (v1.1)
+- Remove the 139 stock demo stories, then the aliases and `registry/bases` card alias.
+- Rebuild the near-shadcn files as RM-native.
+- v2: the component-lifecycle skill (`08-component-lifecycle.md`).
 
 ## Revert points
 - Tag `pre-cleanup-2026-11-02` and branch `backup/pre-cleanup-2026-11-02` at commit `fdf322f`, before any shadcn deletion.

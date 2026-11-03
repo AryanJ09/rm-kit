@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { cn } from "cn"
+import { useTokenPx } from "../lib/token-px"
 
 import { Button } from "./button"
 import {
@@ -98,7 +99,7 @@ function ComboboxInput({
 function ComboboxContent({
   className,
   side = "bottom",
-  sideOffset = 6,
+  sideOffset,
   align = "start",
   alignOffset = 0,
   anchor,
@@ -108,11 +109,12 @@ function ComboboxContent({
     ComboboxPrimitive.Positioner.Props,
     "side" | "align" | "sideOffset" | "alignOffset" | "anchor"
   >) {
+  const gap = useTokenPx({ offset: "--spacing-inline-xs" })
   return (
     <ComboboxPrimitive.Portal>
       <ComboboxPrimitive.Positioner
         side={side}
-        sideOffset={sideOffset}
+        sideOffset={sideOffset ?? gap.offset}
         align={align}
         alignOffset={alignOffset}
         anchor={anchor}

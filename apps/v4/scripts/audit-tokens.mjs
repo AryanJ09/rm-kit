@@ -12,14 +12,12 @@ const css = Object.fromEntries(
     fs.readFileSync(path.join(root, "rm-style/tokens", file), "utf8"),
   ])
 )
-const components = fs
-  .readdirSync(path.join(root, "rm-style/ui"))
-  .filter((file) => file.endsWith(".tsx"))
-  .map((file) => ({
-    name: file.replace(/\.tsx$/, ""),
-    file: `rm-style/ui/${file}`,
-    text: fs.readFileSync(path.join(root, "rm-style/ui", file), "utf8"),
-  }))
+// Every kit file, nested folders included (application-shell, chip), so a new component is never skipped.
+const components = KIT.map((name) => ({
+  name,
+  file: `rm-style/ui/${name}.tsx`,
+  text: fs.readFileSync(path.join(root, `rm-style/ui/${name}.tsx`), "utf8"),
+}))
 components.push(
   ...[
     "stories/ButtonPlayground.stories.tsx",

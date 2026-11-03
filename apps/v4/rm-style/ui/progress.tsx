@@ -39,6 +39,8 @@ function Progress({
       value={value}
       data-slot="progress"
       data-size={size}
+      // A bar with a text label inside the fill is named by it; a caller can still pass its own aria-label.
+      aria-label={typeof valueLabel === "string" ? valueLabel : undefined}
       className={cn(
         "flex flex-wrap gap-(--spacing-inline-md)",
         hasMarkers && "relative pt-(--size-control-44)",

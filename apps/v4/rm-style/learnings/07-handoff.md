@@ -55,7 +55,29 @@ All 17 have a story. Cases, Case detail and Lead detail use sample data shaped f
 5. **Storybook aliases** (`.storybook/main.ts`) stay: 139 stock demo stories in 22 story files import shadcn's demo files through
    them. Removing the aliases means removing those stories, a separate sweep (backlog).
 
+## Final verification (hand-off round)
+| Check | Result |
+|---|---|
+| Token audit | clean, 73 files (the audit used to skip `application-shell/` and `chip/`; it now walks every nested folder) |
+| Rules checker | no findings on 126 files |
+| `tsc` | 0 errors in `rm-style/`, `stories/`, `scripts/` (the dead `scripts/chart-sandbox` was removed: it imported deleted code) |
+| Production build | passes |
+| Render every story | 304 of 304 |
+| Consume test | `rm-style/` copied into an empty Vite project with only npm packages builds and bundles (Button, Progress, Accordion) |
+| Import boundary | no import leaves `rm-style/` |
+| Accessibility (axe, serious and critical, every RM Kit story) | see below |
+| Visual diff against the prototype | spot-checked: SOP and profile goals, attachment. Not a full 17-screen pixel diff. |
+
+Accessibility findings, for the owner:
+- **Colour contrast (36 stories):** mostly the placeholder and tertiary text roles (`--text-tertiary`, field placeholder: neutral-400 on white).
+  That is a palette decision, so no token was changed.
+- **Unnamed controls (stories):** select, combobox, dropdown and input demos render without a `Label`; icon-only buttons in some
+  stories have no `aria-label`. Components accept the props; the stories omit them.
+- **Fixed:** `Progress` is now named by its text label.
+- **Left:** `aria-prohibited-attr` and `nested-interactive` on card shell and archetype stories, `aria-required-children` on Command and Item.
+
 ## Backlog (v1.1)
+- Accessibility sweep from the list above (stories first, then placeholder contrast if the palette changes).
 - Remove the 139 stock demo stories, then the aliases and `registry/bases` card alias.
 - Rebuild the near-shadcn files as RM-native.
 - v2: the component-lifecycle skill (`08-component-lifecycle.md`).

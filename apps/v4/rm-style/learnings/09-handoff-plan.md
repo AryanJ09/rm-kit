@@ -1,6 +1,8 @@
 # Hand-off plan: closing the RM kit
 
-State today: committed on `main` locally (nothing pushed). Checks green (token audit, rules, `tsc`, production build, 301 stories).
+**Status: phases 1 to 4 done (see `07-handoff.md` for results and open backlog). Phase 5 is v2.**
+
+State when the plan was written: committed on `main` locally (nothing pushed). Checks green (token audit, rules, `tsc`, production build, 301 stories).
 Revert point: tag and branch `pre-cleanup-2026-11-02`. What is left is decisions, one rebuild, and packaging.
 
 ## Phase 1: owner decisions (blocks the rest)

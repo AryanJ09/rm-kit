@@ -7,26 +7,38 @@ import { cn } from "cn"
 import { Button } from "./button"
 
 const attachmentVariants = cva(
-  "group/attachment relative flex w-fit max-w-(--size-share-full) min-w-0 shrink-0 flex-wrap rounded-(--radius-xl) border bg-card text-foreground transition-colors focus-within:ring-(length:--border-width-default) focus-within:ring-ring/[calc(var(--opacity-half)*100%)] has-[>a,>button]:hover:bg-muted/[calc(var(--opacity-half)*100%)] data-[state=error]:border-destructive/[calc(var(--opacity-soft)*100%)] data-[state=idle]:border-dashed",
+  "group/attachment relative flex w-fit max-w-(--size-share-full) min-w-0 shrink-0 flex-wrap text-foreground transition-colors focus-within:ring-(length:--border-width-default) focus-within:ring-ring/[calc(var(--opacity-half)*100%)] has-[>a,>button]:hover:bg-muted/[calc(var(--opacity-half)*100%)]",
   {
     variants: {
+      // inline: the prototype's attachment, a steel-blue file icon and its name on the surface. card: a bordered card (a dashed one while idle).
+      appearance: {
+        inline: "gap-(--spacing-inline-md)",
+        card: "rounded-(--radius-xl) border bg-card data-[state=error]:border-destructive/[calc(var(--opacity-soft)*100%)] data-[state=idle]:border-dashed",
+      },
       size: {
-        default:
-          "gap-(--spacing-inline-sm) text-(length:--font-size-sm) has-data-[slot=attachment-content]:px-(--spacing-inset-md) has-data-[slot=attachment-content]:py-(--spacing-inline-sm) has-data-[slot=attachment-media]:p-(--spacing-inline-sm)",
-        sm: "gap-(--spacing-inset-md) text-(length:--font-size-xs) has-data-[slot=attachment-content]:px-(--spacing-inline-sm) has-data-[slot=attachment-content]:py-(--spacing-stack-2xs) has-data-[slot=attachment-media]:p-(--spacing-stack-2xs)",
-        xs: "gap-(--spacing-stack-2xs) rounded-(--radius-lg) text-(length:--font-size-xs) has-data-[slot=attachment-content]:px-(--spacing-stack-2xs) has-data-[slot=attachment-content]:py-(--spacing-inline-xs) has-data-[slot=attachment-media]:p-(--spacing-inline-xs)",
+        default: "text-(length:--font-size-sm)",
+        sm: "text-(length:--font-size-xs)",
+        xs: "text-(length:--font-size-xs)",
       },
       orientation: {
-        horizontal: "min-w-(--size-160) items-center",
+        horizontal: "items-center",
         vertical: "w-(--size-96) flex-col has-data-[slot=attachment-content]:w-(--size-128)",
       },
     },
+    compoundVariants: [
+      { appearance: "card", orientation: "horizontal", className: "min-w-(--size-160)" },
+      { appearance: "card", size: "default", className: "gap-(--spacing-inline-sm) has-data-[slot=attachment-content]:px-(--spacing-inset-md) has-data-[slot=attachment-content]:py-(--spacing-inline-sm) has-data-[slot=attachment-media]:p-(--spacing-inline-sm)" },
+      { appearance: "card", size: "sm", className: "gap-(--spacing-inset-md) has-data-[slot=attachment-content]:px-(--spacing-inline-sm) has-data-[slot=attachment-content]:py-(--spacing-stack-2xs) has-data-[slot=attachment-media]:p-(--spacing-stack-2xs)" },
+      { appearance: "card", size: "xs", className: "gap-(--spacing-stack-2xs) rounded-(--radius-lg) has-data-[slot=attachment-content]:px-(--spacing-stack-2xs) has-data-[slot=attachment-content]:py-(--spacing-inline-xs) has-data-[slot=attachment-media]:p-(--spacing-inline-xs)" },
+    ],
+    defaultVariants: { appearance: "inline" },
   }
 )
 
 function Attachment({
   className,
   state = "done",
+  appearance = "inline",
   size = "default",
   orientation = "horizontal",
   ...props
@@ -38,16 +50,17 @@ function Attachment({
     <div
       data-slot="attachment"
       data-state={state}
+      data-appearance={appearance}
       data-size={size}
       data-orientation={orientation}
-      className={cn(attachmentVariants({ size, orientation }), className)}
+      className={cn(attachmentVariants({ appearance, size, orientation }), className)}
       {...props}
     />
   )
 }
 
 const attachmentMediaVariants = cva(
-  "relative flex aspect-square w-(--size-40) shrink-0 items-center justify-center overflow-hidden rounded-(--radius-lg) bg-muted text-foreground group-data-[orientation=vertical]/attachment:w-(--size-share-full) group-data-[size=sm]/attachment:w-(--size-control-32) group-data-[size=xs]/attachment:w-(--size-control-28) group-data-[size=xs]/attachment:rounded-(--radius-md) group-data-[state=error]/attachment:bg-destructive/[calc(var(--opacity-faint)*100%)] group-data-[state=error]/attachment:text-destructive group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-(--size-icon-lg)! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-(--size-icon-sm) group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-(--size-icon-lg) group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-(--size-icon-xs)",
+  "relative flex aspect-square w-(--size-40) shrink-0 items-center justify-center overflow-hidden rounded-(--radius-lg) bg-muted text-foreground group-data-[appearance=inline]/attachment:aspect-auto group-data-[appearance=inline]/attachment:w-auto group-data-[appearance=inline]/attachment:bg-transparent group-data-[appearance=inline]/attachment:text-(color:--category-secure-text) group-data-[orientation=vertical]/attachment:w-(--size-share-full) group-data-[size=sm]/attachment:w-(--size-control-32) group-data-[size=xs]/attachment:w-(--size-control-28) group-data-[size=xs]/attachment:rounded-(--radius-md) group-data-[state=error]/attachment:bg-destructive/[calc(var(--opacity-faint)*100%)] group-data-[state=error]/attachment:text-destructive group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-(--size-icon-lg)! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-(--size-icon-sm) group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-(--size-icon-lg) group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-(--size-icon-xs)",
   {
     variants: {
       variant: {
@@ -101,7 +114,7 @@ function AttachmentTitle({
     <span
       data-slot="attachment-title"
       className={cn(
-        "block max-w-(--size-share-full) min-w-0 truncate font-(--typography-label-sm-font-weight) group-data-[state=processing]/attachment:shimmer group-data-[state=uploading]/attachment:shimmer",
+        "block max-w-(--size-share-full) min-w-0 truncate font-(--typography-label-sm-font-weight) group-data-[appearance=inline]/attachment:font-(--typography-caption-font-weight) group-data-[appearance=inline]/attachment:text-muted-foreground group-data-[state=processing]/attachment:shimmer group-data-[state=uploading]/attachment:shimmer",
         className
       )}
       {...props}
